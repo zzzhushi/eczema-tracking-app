@@ -21,6 +21,10 @@ The "AI" is deliberately split into four parts — only one is an LLM, and nothi
 - Flare photos are stored in the app sandbox with complete file protection (encrypted at rest), never in the shared photo library.
 - The LLM runs on-device via Apple Intelligence; prompts never leave the phone.
 
+## Running & testing
+
+See [TESTING.md](TESTING.md) for how to run the app in the simulator and on a physical iPhone, plus the manual test checklist.
+
 ## Building
 
 Requires Xcode 26+. The project is generated with [XcodeGen](https://github.com/yonaskolb/XcodeGen) from `project.yml`:
