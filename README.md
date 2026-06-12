@@ -50,6 +50,4 @@ Note: the AI assessment requires an Apple Intelligence–capable device (iPhone 
 
 ## Roadmap
 
-- Photo-based severity estimation (Foundation Models image input or a small Core ML model)
-- Backfilling exposures for past days
-- Reminders / streaks for daily logging
+- Photo-based severity estimation — blocked on Foundation Models image input, which ships with the iOS 27 SDK (the Progress photo timeline in the Flares tab is the manual version meanwhile)

@@ -82,6 +82,17 @@ The automated tests cover the math; these cover the experience. The **10-minute 
 
 ### Scenarios worth covering beyond the happy path
 
+**Backfill & reminders**
+
+- [ ] Backdate exposures: "Log products used" → set the date picker to 2 days ago → those exposures count toward a flare logged today (3-day window) and appear in Insights.
+- [ ] Backdate weather the same way from "Log today's weather" (the date picker defaults to today).
+- [ ] Daily reminder: toggle it on (Today tab), allow notifications, set a time 2 minutes out, background the app — the "eXzema check-in" notification fires. Toggle off and confirm it stops.
+- [ ] Reminder with notifications denied: deny permission → the toggle snaps back off with an explanation.
+
+**Photo progress**
+
+- [ ] Flares tab → "Progress" (top-left) shows all flare photos newest-first with date and severity; flares without photos are skipped; empty state shows if no photos exist.
+
 **Data & persistence**
 
 - [ ] Force-quit the app and relaunch — everything you logged is still there.
@@ -114,5 +125,5 @@ The automated tests cover the math; these cover the experience. The **10-minute 
 
 ### Known limitations to keep in mind while testing
 
-- Exposures can only be logged **for today** — you can't backfill "I used X last Tuesday" yet. (Flares *can* be backdated.)
+- Photo-based AI severity isn't built yet — it needs Foundation Models image input, which requires the iOS 27 SDK. The Progress view is the manual version meanwhile.
 - Barcode lookup is offline by design, against a bundled slice of ~3,000 popular Open Food Facts / Open Beauty Facts products — most barcodes you scan won't be in it. Regenerate a bigger slice with `python3 scripts/build_barcode_db.py` (see README).

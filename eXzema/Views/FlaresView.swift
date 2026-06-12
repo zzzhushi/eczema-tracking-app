@@ -48,6 +48,13 @@ struct FlaresView: View {
             }
             .navigationTitle("Flares")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink {
+                        PhotoTimelineView()
+                    } label: {
+                        Label("Progress", systemImage: "photo.on.rectangle.angled")
+                    }
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         showAdd = true
@@ -197,6 +204,73 @@ struct FlareDetailView: View {
             }
         }
         .navigationTitle("Flare")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+/// Chronological wall of all flare photos — the visual record of how the
+/// skin is doing across flares. (Photo-based AI severity scoring is planned
+/// once Foundation Models image input ships in the iOS 27 SDK.)
+struct PhotoTimelineView: View {
+    @Query(sort: \FlareEvent.date, order: .reverse) private var flares: [FlareEvent]
+
+    private var flaresWithPhotos: [FlareEvent] {
+        flares.filter { !$0.photoFilenames.isEmpty }
+    }
+
+    private func severityColor(_ severity: Int) -> Color {
+        switch severity {
+        case 7...: return .red
+        case 4...6: return .orange
+        default: return .yellow
+        }
+    }
+
+    var body: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 24) {
+                ForEach(flaresWithPhotos) { flare in
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text(flare.date.formatted(date: .abbreviated, time: .omitted))
+                                .font(.headline)
+                            Spacer()
+                            BadgeLabel(text: "Severity \(flare.severity)", color: severityColor(flare.severity))
+                        }
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(flare.photoFilenames, id: \.self) { filename in
+                                    if let image = PhotoStore.image(named: filename) {
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 170, height: 170)
+                                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    }
+                                }
+                            }
+                        }
+                        if !flare.bodyAreas.isEmpty {
+                            Text(flare.bodyAreas.joined(separator: ", "))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+            }
+            .padding(.vertical)
+        }
+        .overlay {
+            if flaresWithPhotos.isEmpty {
+                ContentUnavailableView(
+                    "No photos yet",
+                    systemImage: "photo",
+                    description: Text("Photos you attach to flares appear here as a timeline, so you can see your skin's progress over time.")
+                )
+            }
+        }
+        .navigationTitle("Progress")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

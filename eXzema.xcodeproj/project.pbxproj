@@ -15,6 +15,7 @@
 		253687EF7F3BC2B3D465832F /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41871BBAD6CC35E04E35E66C /* TodayView.swift */; };
 		300797CE5A19473F751A7A4E /* KnownAllergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590C8806B3F728A38B5F33D6 /* KnownAllergens.swift */; };
 		308BF05971ACDBCEF0B84B64 /* InsightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6604C85126A3C511FBE8FA7C /* InsightsView.swift */; };
+		47DF66C5A7C8AC2C428408C8 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEBDE3A070E24FD29C8F656 /* ReminderManager.swift */; };
 		4979C68B7CC2C1582F516A5E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E19E465D947F727A7D127A0 /* Models.swift */; };
 		53FFCB65537A7F0CECFE9DA5 /* EXzemaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8B92988F6BF8F85229B121 /* EXzemaApp.swift */; };
 		5E512612C6753B6DA75FE4AE /* AssistantService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CE279AF382355727B8CEA5 /* AssistantService.swift */; };
@@ -43,6 +44,7 @@
 		0F8B92988F6BF8F85229B121 /* EXzemaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXzemaApp.swift; sourceTree = "<group>"; };
 		12CCD5954B781EB5CC57992A /* eXzema.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = eXzema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E19E465D947F727A7D127A0 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		3CEBDE3A070E24FD29C8F656 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		41871BBAD6CC35E04E35E66C /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		590C8806B3F728A38B5F33D6 /* KnownAllergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnownAllergens.swift; sourceTree = "<group>"; };
 		6604C85126A3C511FBE8FA7C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				72F0B5D0C3083B41CED1A597 /* IngredientParser.swift */,
 				590C8806B3F728A38B5F33D6 /* KnownAllergens.swift */,
 				BA2C5811A5374ED668F895C8 /* PhotoStore.swift */,
+				3CEBDE3A070E24FD29C8F656 /* ReminderManager.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				4979C68B7CC2C1582F516A5E /* Models.swift in Sources */,
 				C6A8255F617D24B0ADCCE834 /* PhotoStore.swift in Sources */,
 				005129CFF22E14B10D708533 /* ProductsView.swift in Sources */,
+				47DF66C5A7C8AC2C428408C8 /* ReminderManager.swift in Sources */,
 				EC5A7466AAEA7E4861CF4AFC /* RootView.swift in Sources */,
 				79D20996D9375A05F4E74E76 /* ScannerSheet.swift in Sources */,
 				253687EF7F3BC2B3D465832F /* TodayView.swift in Sources */,

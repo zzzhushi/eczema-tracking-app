@@ -11,12 +11,36 @@ struct TodayView: View {
     @State private var showEnvironmentForm = false
     @State private var showFlareForm = false
 
+    @AppStorage("reminderEnabled") private var reminderEnabled = false
+    @AppStorage("reminderMinutes") private var reminderMinutes = 20 * 60
+    @State private var reminderAuthDenied = false
+
     private var todayExposures: [ExposureEntry] {
         exposures.filter { Calendar.current.isDateInToday($0.date) }
     }
 
     private var todayEnvironment: EnvironmentEntry? {
         environments.first { Calendar.current.isDateInToday($0.date) }
+    }
+
+    private var reminderTime: Binding<Date> {
+        Binding(
+            get: {
+                Calendar.current.date(
+                    bySettingHour: reminderMinutes / 60,
+                    minute: reminderMinutes % 60,
+                    second: 0,
+                    of: .now
+                ) ?? .now
+            },
+            set: { newValue in
+                let components = Calendar.current.dateComponents([.hour, .minute], from: newValue)
+                reminderMinutes = (components.hour ?? 20) * 60 + (components.minute ?? 0)
+                Task {
+                    await ReminderManager.scheduleDaily(hour: components.hour ?? 20, minute: components.minute ?? 0)
+                }
+            }
+        )
     }
 
     var body: some View {
@@ -77,6 +101,35 @@ struct TodayView: View {
                 } footer: {
                     Text("Daily logging is what makes the trigger insights trustworthy — even \"nothing new today\" is signal.")
                 }
+
+                Section {
+                    Toggle("Daily logging reminder", isOn: $reminderEnabled)
+                    if reminderEnabled {
+                        DatePicker("Time", selection: reminderTime, displayedComponents: .hourAndMinute)
+                    }
+                    if reminderAuthDenied {
+                        Text("Notifications are turned off for eXzema. Allow them in Settings → Notifications to use the reminder.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                } footer: {
+                    Text("A plain local notification — nothing leaves your device.")
+                }
+            }
+            .onChange(of: reminderEnabled) {
+                Task {
+                    if reminderEnabled {
+                        if await ReminderManager.requestAuthorization() {
+                            reminderAuthDenied = false
+                            await ReminderManager.scheduleDaily(hour: reminderMinutes / 60, minute: reminderMinutes % 60)
+                        } else {
+                            reminderAuthDenied = true
+                            reminderEnabled = false
+                        }
+                    } else {
+                        ReminderManager.cancel()
+                    }
+                }
             }
             .navigationTitle(Date.now.formatted(date: .abbreviated, time: .omitted))
             .sheet(isPresented: $showProductPicker) {
@@ -97,26 +150,36 @@ private struct ProductPickerSheet: View {
     @Environment(\.dismiss) private var dismiss
     let products: [Product]
     @State private var selected: Set<PersistentIdentifier> = []
+    @State private var date = Date()
 
     var body: some View {
         NavigationStack {
-            List(products) { product in
-                Button {
-                    if selected.contains(product.persistentModelID) {
-                        selected.remove(product.persistentModelID)
-                    } else {
-                        selected.insert(product.persistentModelID)
-                    }
-                } label: {
-                    HStack {
-                        Image(systemName: product.category.systemImage)
-                            .foregroundStyle(.tint)
-                        Text(product.name)
-                            .foregroundStyle(.primary)
-                        Spacer()
-                        if selected.contains(product.persistentModelID) {
-                            Image(systemName: "checkmark")
-                                .foregroundStyle(.tint)
+            List {
+                Section {
+                    DatePicker("Date", selection: $date, in: ...Date.now, displayedComponents: .date)
+                } footer: {
+                    Text("Backdate to fill in days you forgot to log.")
+                }
+                Section("Products & foods") {
+                    ForEach(products) { product in
+                        Button {
+                            if selected.contains(product.persistentModelID) {
+                                selected.remove(product.persistentModelID)
+                            } else {
+                                selected.insert(product.persistentModelID)
+                            }
+                        } label: {
+                            HStack {
+                                Image(systemName: product.category.systemImage)
+                                    .foregroundStyle(.tint)
+                                Text(product.name)
+                                    .foregroundStyle(.primary)
+                                Spacer()
+                                if selected.contains(product.persistentModelID) {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(.tint)
+                                }
+                            }
                         }
                     }
                 }
@@ -130,7 +193,7 @@ private struct ProductPickerSheet: View {
                     )
                 }
             }
-            .navigationTitle("Used today")
+            .navigationTitle("Log products")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -139,7 +202,7 @@ private struct ProductPickerSheet: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
                         for product in products where selected.contains(product.persistentModelID) {
-                            context.insert(ExposureEntry(date: .now, product: product))
+                            context.insert(ExposureEntry(date: date, product: product))
                         }
                         dismiss()
                     }
@@ -153,6 +216,7 @@ private struct ProductPickerSheet: View {
 private struct EnvironmentForm: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
+    @State private var date = Date()
     @State private var location = ""
     @State private var temperature = ""
     @State private var humidity = ""
@@ -164,6 +228,7 @@ private struct EnvironmentForm: View {
     var body: some View {
         NavigationStack {
             Form {
+                DatePicker("Date", selection: $date, in: ...Date.now, displayedComponents: .date)
                 TextField("Location (e.g. Seattle)", text: $location)
                 TextField("Temperature (°C)", text: $temperature)
                     .keyboardType(.numbersAndPunctuation)
@@ -176,7 +241,7 @@ private struct EnvironmentForm: View {
                     TextField("Anything else (AC all day, hot shower…)", text: $notes, axis: .vertical)
                 }
             }
-            .navigationTitle("Today's environment")
+            .navigationTitle("Log weather")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -185,7 +250,7 @@ private struct EnvironmentForm: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         context.insert(EnvironmentEntry(
-                            date: .now,
+                            date: date,
                             locationName: location,
                             temperatureC: Double(temperature),
                             humidityPercent: Double(humidity),
