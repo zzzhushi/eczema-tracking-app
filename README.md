@@ -24,7 +24,7 @@ The "AI" is deliberately split into four parts — only one is an LLM, and nothi
 
 ## Running & testing
 
-See [TESTING.md](TESTING.md) for how to run the app in the simulator and on a physical iPhone, plus the manual test checklist.
+See [TESTING.md](TESTING.md) for how to run the app in the simulator and on a physical iPhone, plus the manual test checklist. For the full design rationale, decision log, and roadmap, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Building
 
