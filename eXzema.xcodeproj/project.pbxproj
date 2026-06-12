@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		005129CFF22E14B10D708533 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7774DC16F32F7A011D518DD3 /* ProductsView.swift */; };
+		09455A36204B5397278BEF5D /* BarcodeDB.json in Resources */ = {isa = PBXBuildFile; fileRef = F12064C5FB416D5A177B6E6B /* BarcodeDB.json */; };
 		166EB0766B3392358D29A6A3 /* CorrelationEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19CBA8700B91A9AE5C463AF /* CorrelationEngineTests.swift */; };
 		1F8122B98D21D4D9FFA9993A /* FlaresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D509815651799DE231FA19C0 /* FlaresView.swift */; };
 		2296B88067026DDF1EDA32F8 /* IngredientParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F0B5D0C3083B41CED1A597 /* IngredientParser.swift */; };
@@ -21,7 +22,9 @@
 		734730036D2363118645837D /* CheckProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F880A7ED3CB799C931E568CF /* CheckProductView.swift */; };
 		79D20996D9375A05F4E74E76 /* ScannerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660C70C3C2ED73F0B634B9DA /* ScannerSheet.swift */; };
 		B5DA94D60552F619AC0F03B4 /* KnownAllergens.json in Resources */ = {isa = PBXBuildFile; fileRef = 9D54AFC7EDB9FF886D6A2045 /* KnownAllergens.json */; };
+		BCD6F5E7EE6526E2A515DE10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DFE95BCE9EF3A97E941C2FC3 /* Assets.xcassets */; };
 		C6A8255F617D24B0ADCCE834 /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C5811A5374ED668F895C8 /* PhotoStore.swift */; };
+		D4D42EE82525EAB0DFBE9897 /* BarcodeLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBCBBAE54AE423E1C37900FF /* BarcodeLookup.swift */; };
 		EC5A7466AAEA7E4861CF4AFC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BDFE6C3F4C08D5E64C804DB /* RootView.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,8 +54,11 @@
 		BA2C5811A5374ED668F895C8 /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
 		C19CBA8700B91A9AE5C463AF /* CorrelationEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrelationEngineTests.swift; sourceTree = "<group>"; };
 		D509815651799DE231FA19C0 /* FlaresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlaresView.swift; sourceTree = "<group>"; };
+		DFE95BCE9EF3A97E941C2FC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1F31CF024AE6540334CA1C7 /* CorrelationEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrelationEngine.swift; sourceTree = "<group>"; };
 		E42324FE9F26171DE66476B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EBCBBAE54AE423E1C37900FF /* BarcodeLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeLookup.swift; sourceTree = "<group>"; };
+		F12064C5FB416D5A177B6E6B /* BarcodeDB.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BarcodeDB.json; sourceTree = "<group>"; };
 		F8450D38523F86B9F354C3AF /* eXzemaTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = eXzemaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F880A7ED3CB799C931E568CF /* CheckProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +76,7 @@
 		2DC019695E88D67539BAD9B1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F12064C5FB416D5A177B6E6B /* BarcodeDB.json */,
 				9D54AFC7EDB9FF886D6A2045 /* KnownAllergens.json */,
 			);
 			path = Resources;
@@ -91,6 +98,7 @@
 		8893374CD355481BA3F0343C /* eXzema */ = {
 			isa = PBXGroup;
 			children = (
+				DFE95BCE9EF3A97E941C2FC3 /* Assets.xcassets */,
 				E42324FE9F26171DE66476B6 /* Info.plist */,
 				D18D74D671DA6A7C454450AD /* AI */,
 				DA19AD8DF6B5B31BD677EB64 /* App */,
@@ -147,6 +155,7 @@
 		F397EE8A0613F3BB30A8F8B7 /* Engine */ = {
 			isa = PBXGroup;
 			children = (
+				EBCBBAE54AE423E1C37900FF /* BarcodeLookup.swift */,
 				E1F31CF024AE6540334CA1C7 /* CorrelationEngine.swift */,
 				72F0B5D0C3083B41CED1A597 /* IngredientParser.swift */,
 				590C8806B3F728A38B5F33D6 /* KnownAllergens.swift */,
@@ -233,6 +242,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCD6F5E7EE6526E2A515DE10 /* Assets.xcassets in Resources */,
+				09455A36204B5397278BEF5D /* BarcodeDB.json in Resources */,
 				B5DA94D60552F619AC0F03B4 /* KnownAllergens.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E512612C6753B6DA75FE4AE /* AssistantService.swift in Sources */,
+				D4D42EE82525EAB0DFBE9897 /* BarcodeLookup.swift in Sources */,
 				734730036D2363118645837D /* CheckProductView.swift in Sources */,
 				63DB2BBF72FA3CCA5B56C5A7 /* CorrelationEngine.swift in Sources */,
 				53FFCB65537A7F0CECFE9DA5 /* EXzemaApp.swift in Sources */,
@@ -284,6 +296,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -384,6 +397,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

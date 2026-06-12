@@ -34,7 +34,7 @@ struct CheckProductView: View {
                     Button {
                         showScanner = true
                     } label: {
-                        Label("Scan ingredient label", systemImage: "camera.viewfinder")
+                        Label("Scan label or barcode", systemImage: "camera.viewfinder")
                     }
                 }
 
@@ -101,6 +101,12 @@ struct CheckProductView: View {
                     } else {
                         ingredientsText += ", " + scanned
                     }
+                } onProduct: { product in
+                    if name.trimmingCharacters(in: .whitespaces).isEmpty {
+                        name = product.displayName
+                    }
+                    ingredientsText = product.ingredientsText
+                    verdict = nil
                 }
             }
         }

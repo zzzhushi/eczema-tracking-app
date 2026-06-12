@@ -13,7 +13,8 @@ The "AI" is deliberately split into four parts — only one is an LLM, and nothi
 | Trigger correlation | Deterministic engine (`Engine/CorrelationEngine.swift`): for each ingredient, how many flares it preceded (coverage) × how often using it was followed by a flare (precision). Same history in, same ranking out. |
 | Eczema knowledge | Bundled reference data (`Resources/KnownAllergens.json`): EU-labeled fragrance allergens, formaldehyde-releasing preservatives, chemical UV filters, and other documented contact allergens/irritants. |
 | Language layer | Apple's **Foundation Models** framework (iOS 26+): the on-device ~3B model explains the engine's numbers and assesses new products, via `@Generable` guided generation. Free, offline, unlimited. Falls back to rule-based verdicts on devices without Apple Intelligence. |
-| Ingredient capture | VisionKit `DataScannerViewController`: on-device OCR + barcode scanning of ingredient labels. |
+| Ingredient capture | VisionKit `DataScannerViewController`: on-device OCR + barcode scanning of ingredient labels. Barcodes resolve against a bundled slice of Open Food Facts / Open Beauty Facts (`Resources/BarcodeDB.json`, ~3,000 popular products) — fully offline. |
+| Weather correlation | Logged weather is bucketed into eczema-relevant factors (cold, hot, dry air, humid, conditions) and scored by the same engine as ingredients. |
 
 ## Privacy
 
@@ -42,9 +43,13 @@ xcodebuild test -project eXzema.xcodeproj -scheme eXzema -destination 'platform=
 
 Note: the AI assessment requires an Apple Intelligence–capable device (iPhone 15 Pro or newer) with Apple Intelligence enabled; everywhere else the app transparently uses its rule-based fallback.
 
+## Regenerating bundled data
+
+- `python3 scripts/build_barcode_db.py` — refreshes/enlarges the offline barcode database (downloads the most-scanned products from Open Food Facts + Open Beauty Facts; takes a few minutes). Bump the targets in the script for a bigger slice.
+- `swift scripts/make_icon.swift` — re-renders the app icon.
+
 ## Roadmap
 
-- Bundle Open Food Facts / Open Beauty Facts slices for offline barcode → ingredient lookup
-- Weather/environment correlation in the engine (currently logged but not scored)
 - Photo-based severity estimation (Foundation Models image input or a small Core ML model)
+- Backfilling exposures for past days
 - Reminders / streaks for daily logging

@@ -83,12 +83,12 @@ struct AddProductView: View {
                     Button {
                         showScanner = true
                     } label: {
-                        Label("Scan ingredient label", systemImage: "camera.viewfinder")
+                        Label("Scan label or barcode", systemImage: "camera.viewfinder")
                     }
                 } header: {
                     Text("Ingredients")
                 } footer: {
-                    Text(parsedCount > 0 ? "\(parsedCount) ingredients detected." : "Tip: point the scanner at the INCI list on the packaging and tap each line of text.")
+                    Text(parsedCount > 0 ? "\(parsedCount) ingredients detected." : "Tip: tap a barcode to look the product up offline, or point at the INCI list and tap each line of text.")
                 }
             }
             .navigationTitle("New product")
@@ -112,6 +112,11 @@ struct AddProductView: View {
                     } else {
                         ingredientsText += ", " + scanned
                     }
+                } onProduct: { product in
+                    if name.trimmingCharacters(in: .whitespaces).isEmpty {
+                        name = product.displayName
+                    }
+                    ingredientsText = product.ingredientsText
                 }
             }
         }

@@ -77,7 +77,7 @@ The automated tests cover the math; these cover the experience. The **10-minute 
 4. Today tab → "Log today's weather" → fill in anything → Save. Expect it shown in the Environment section.
 5. Today tab → "Log a flare-up" → severity 7, pick areas, add 1–2 photos, toggle POEM on and answer the 7 questions, save. Expect: POEM total updates as you answer.
 6. **Flares tab** → open the flare. Expect: photos render, POEM and severity shown, and *methylisothiazolinone* appears under "Suspected triggers" with a red **Your trigger?** badge (same-day exposure counts — the window is flare day minus 3 days). Your weather entry appears under "Environment in that window".
-7. **Insights tab** → expect *methylisothiazolinone* ranked as a likely trigger ("Preceded 1 of 1 flares"), and the "On-device AI" section showing your device's AI status.
+7. **Insights tab** → expect *methylisothiazolinone* ranked as a likely trigger ("Preceded 1 of 1 flares"), and the "On-device AI" section showing your device's AI status. If your weather entry was an extreme (≤5 °C, ≥27 °C, ≤35% or ≥70% humidity, or a non-Clear condition), an "Environment patterns" section appears too.
 8. **Check tab** → paste `Water, Oxybenzone, Fragrance, Shea Butter` → expect *benzophenone-3* (oxybenzone's INCI name) and *fragrance* flagged as known allergens. Tap "Check against my history" → expect a **Caution** (or higher) verdict with suggestions. Header says "(on-device AI)" on an Apple Intelligence phone, "(rule-based)" otherwise.
 
 ### Scenarios worth covering beyond the happy path
@@ -96,6 +96,7 @@ The automated tests cover the math; these cover the experience. The **10-minute 
 - [ ] A flare with **no** exposures in the prior 3 days — flare detail shows the "no exposures logged" message instead of suspects.
 - [ ] Backdate a flare (date picker) to before your exposures — it should *not* count those exposures as suspects.
 - [ ] Insights with several flares: an ingredient used daily (e.g. glycerin in both products) ranks **below** one used only right before flares.
+- [ ] Weather correlation: log "Dry air" weather on a flare day and "Clear" mild weather on non-flare days (over several days) — "Environment patterns" should surface *dry air* but never *clear*.
 
 **Privacy (the whole point — verify it)**
 
@@ -104,7 +105,9 @@ The automated tests cover the math; these cover the experience. The **10-minute 
 
 **Phone-only**
 
-- [ ] **Scanner**: Check tab → "Scan ingredient label" → point at any real product's INCI list → tap a few text lines → "Use" → they land in the text field and parse. Also try a barcode (it captures the number — offline lookup is a roadmap item).
+- [ ] **Scanner — label text**: Check tab → "Scan label or barcode" → point at any real product's INCI list → tap a few text lines → "Use" → they land in the text field and parse.
+- [ ] **Scanner — barcode hit**: scan a common supermarket product's barcode (think Nutella-popular) — if it's in the offline database, the name and ingredients fill in automatically and the sheet closes.
+- [ ] **Scanner — barcode miss**: scan something obscure — a status bar should say it's not in the offline database and suggest scanning the label text; the raw number must NOT be inserted as an ingredient.
 - [ ] Camera permission: first scan asks for camera access; deny it once and confirm the app doesn't crash, then re-allow in Settings.
 - [ ] **AI on**: with Apple Intelligence enabled, run a product check — verdict header should say "(on-device AI)" and the summary should reference only ingredients actually in your list/history (it's instructed not to invent facts — call out anything fabricated).
 - [ ] **AI off**: toggle Apple Intelligence off in Settings → the same check should silently fall back to "(rule-based)" and Insights should explain why.
@@ -112,5 +115,4 @@ The automated tests cover the math; these cover the experience. The **10-minute 
 ### Known limitations to keep in mind while testing
 
 - Exposures can only be logged **for today** — you can't backfill "I used X last Tuesday" yet. (Flares *can* be backdated.)
-- Weather is tracked but not yet part of the trigger scoring.
-- Barcode scans capture the code but don't look up ingredients (offline Open Food Facts bundle is on the roadmap).
+- Barcode lookup is offline by design, against a bundled slice of ~3,000 popular Open Food Facts / Open Beauty Facts products — most barcodes you scan won't be in it. Regenerate a bigger slice with `python3 scripts/build_barcode_db.py` (see README).

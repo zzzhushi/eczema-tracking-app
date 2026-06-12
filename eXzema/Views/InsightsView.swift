@@ -4,6 +4,14 @@ import SwiftData
 struct InsightsView: View {
     @Query private var exposures: [ExposureEntry]
     @Query private var flares: [FlareEvent]
+    @Query private var environments: [EnvironmentEntry]
+
+    private var environmentScores: [TriggerScore] {
+        CorrelationEngine().environmentScores(
+            environments: HistoryAssembler.environmentRecords(environments),
+            flares: HistoryAssembler.flareRecords(flares)
+        )
+    }
 
     private var scores: [TriggerScore] {
         CorrelationEngine().triggerScores(
@@ -44,6 +52,18 @@ struct InsightsView: View {
                         Text("Likely triggers")
                     } footer: {
                         Text("Score combines how many of your flares an ingredient preceded and how often using it was followed by a flare. Everyday ingredients (like water) can rank high simply because they're always present — judge with that in mind.")
+                    }
+
+                    if !environmentScores.isEmpty {
+                        Section {
+                            ForEach(environmentScores) { score in
+                                TriggerScoreRow(score: score)
+                            }
+                        } header: {
+                            Text("Environment patterns")
+                        } footer: {
+                            Text("Weather conditions from your logs that preceded flares, scored the same way as ingredients.")
+                        }
                     }
 
                     if !knownInUse.isEmpty {
