@@ -150,7 +150,7 @@ final class Probe {
     /// and prints one line per call. Results are judged offline against the local manifest.
     func variantRound(_ variants: [Variant]) async {
         let rater = Rater(rubric: rubric)
-        let references = ["face": "face_clear", "hands": "hand_normal_patch"]
+        let references = ["face": CommandLine.arguments.contains("-closeupRef") ? "face_clear_closeup" : "face_clear", "hands": "hand_normal_patch"]
         func clean(_ text: String) -> String { text.replacingOccurrences(of: "\n", with: " ") }
         let only = Set(CommandLine.arguments.first { $0.hasPrefix("-photos=") }?.dropFirst(8).split(separator: ",").map(String.init) ?? [])
         for variant in variants {
