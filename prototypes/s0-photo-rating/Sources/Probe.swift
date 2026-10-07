@@ -5,6 +5,7 @@ import Observation
 struct Sample: Identifiable {
     let id = UUID()
     let index: Int
+    let name: String
     let url: URL
     var area = "hands"
     var label = "unlabeled"
@@ -21,6 +22,32 @@ final class Probe {
     private let rubric = try! Rubric.load()
     var availability: String { Rater(rubric: rubric).availability }
 
+    init() { loadBundled() }
+
+    /// Loads the sanitized fixtures bundled from the git-ignored local folder. A name ending in
+    /// `_time2` marks the same skin photographed minutes after the photo it is named after.
+    func loadBundled() {
+        let urls = (Bundle.main.urls(forResourcesWithExtension: "jpg", subdirectory: nil) ?? [])
+            .sorted { $0.lastPathComponent < $1.lastPathComponent }
+        let bases = urls.map { Self.base(of: $0) }
+        var loaded: [Sample] = []
+        for (i, url) in urls.enumerated() {
+            let name = url.deletingPathExtension().lastPathComponent
+            var s = Sample(index: i + 1, name: name, url: url)
+            s.area = name.hasPrefix("face") ? "face" : "hands"
+            if bases.filter({ $0 == bases[i] }).count > 1 {
+                s.group = (Array(Set(bases.filter { b in bases.filter { $0 == b }.count > 1 })).sorted().firstIndex(of: bases[i]) ?? 0) + 1
+            }
+            loaded.append(s)
+        }
+        samples = loaded
+    }
+
+    private static func base(of url: URL) -> String {
+        let name = url.deletingPathExtension().lastPathComponent
+        return name.components(separatedBy: "_time").first ?? name
+    }
+
     func load(_ items: [PhotosPickerItem]) async {
         samples = []
         for (i, item) in items.enumerated() {
@@ -30,7 +57,7 @@ final class Probe {
                   let jpeg = small.jpegData(compressionQuality: 0.85) else { continue }
             let url = FileManager.default.temporaryDirectory.appendingPathComponent("probe-\(i).jpg")
             try? jpeg.write(to: url)
-            samples.append(Sample(index: i + 1, url: url))
+            samples.append(Sample(index: i + 1, name: "photo-\(i + 1)", url: url))
         }
     }
 

@@ -14,6 +14,9 @@ targets:
       - path: Sources
       - path: ../../data/rubric/v1.json
         buildPhase: resources
+      - path: ../../fixtures/photos
+        buildPhase: resources
+        optional: true
     info:
       path: Info.plist
       properties:

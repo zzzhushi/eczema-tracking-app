@@ -19,7 +19,7 @@ struct ContentView: View {
                     PhotosPicker("Choose photos", selection: $picks, maxSelectionCount: 12, matching: .images)
                     ForEach($probe.samples) { $s in
                         VStack(alignment: .leading) {
-                            Text("Photo \(s.index)").font(.headline)
+                            Text("\(s.name) (#\(s.index))").font(.headline)
                             Picker("Area", selection: $s.area) { Text("hands").tag("hands"); Text("face").tag("face") }
                             Picker("Label", selection: $s.label) { Text("unlabeled").tag("unlabeled"); Text("clear").tag("clear"); Text("flare").tag("flare") }
                             Stepper("Minutes-apart group: \(s.group)", value: $s.group, in: 0...6)
