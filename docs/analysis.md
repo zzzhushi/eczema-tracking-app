@@ -49,7 +49,7 @@ Numbers may start provisional; the structural cases may not.
 
 ## Photo rubric and skin score (Release 1, M0 and M4)
 
-- The 0–3 scale follows the per-sign intensity scales of the clinical EASI and SCORAD scores (0 none, 1 mild, 2 moderate, 3 severe), which have been [validated on smartphone photos](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9907712/).
+- The 0–3 scale follows the per-sign intensity scales of the clinical EASI and SCORAD scores (0 none, 1 mild, 2 moderate, 3 severe), which have been [validated for dermatologists rating smartphone photos](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9907712/); that validation doesn't extend to AI ratings, which M0 evaluates.
 - The six-sign rubric, with a written definition for each level, is a versioned file delivered by the M0 issue.
 - A refused or unscorable sign is stored as unscored, never 0.
 - When an area has several photos on one day (one per hand, for example), the area's AI look is the worse photo's skin score, so a one-sided flare isn't averaged away. Each photo keeps its own scores, so the area can later be split.

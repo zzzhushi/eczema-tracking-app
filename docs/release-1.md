@@ -14,8 +14,8 @@ Product context is in [the spec](spec.md), every formula and threshold in [the a
 
 | # | Thin path | First acceptance check | Exit criterion |
 |---|---|---|---|
-| M0 | Photo-rating prototype on the phone: the six-sign rubric, a reference photo as a third image, and Apple's guardrails on skin photos | Manual: the same photo scored 5 times; two photos taken minutes apart; a refusal is recorded, not scored | Rubric v1 written; the viability criteria set in the M0 issue are met, or the failure and fallback are documented |
-| M1 | Project, test setup with CI, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | The app installs on the phone, keeps a saved day across relaunch and reinstall, its logs appear in Console with health data redacted, and CI runs the tests on every push |
+| M0 | Photo-rating prototype on the phone: the six-sign rubric, a reference photo as a third image, and Apple's guardrails on skin photos | Manual, on the iPhone: the same photo scored 5 times; two photos taken minutes apart; a clear photo scores below a flare photo; a refusal is recorded, not scored | Rubric v1 written; the viability criteria set in the M0 issue are met, or the failure and fallback are documented |
+| M1 | Project, test setup with CI, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | The app installs on the phone, keeps a saved day across relaunch and reinstall, its logs appear in Console with health data redacted, and CI runs the tests on a pull request |
 | M2 | Type a day's food; match it to the Tier 1 food names, with chemical levels unknown until researched; keep unrecognized words; edit or delete entries | A matched food without researched levels shows no data, never negligible; an unmatched word is kept | A day's food is logged on the phone in under a minute, and every Tier 1 food name matches |
 | M3 | Check-in for hands and face (feel and look); edit past days; record the rounded location at app open | An area without ratings is unknown, not a good day | Both areas are rated on the phone in under 30 seconds, and skipped ratings stay unknown |
 | M4 | A photo per area, stored in the app with a framing overlay, rated on the six signs; skin score computed | A rating stores its rating version; the skin score is not stored | Each area is photographed and rated on the phone, and a refusal shows as unscored |
@@ -35,7 +35,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | OBS-02 | The app shall provide one logging and timing-signpost convention that every feature uses. | Must |
 | OBS-03 | The app shall collect crash and hang diagnostics on the phone without sending them anywhere. | Must |
 | OBS-05 | Each automated test shall name the requirement IDs it verifies. | Must |
-| CI-01 | Every push and pull request shall run the logic and storage tests on a macOS runner, and a failing run shall block merging. | Must |
+| CI-01 | Pull requests and pushes to the default branch shall run the logic and storage tests on a macOS runner; the latest run shall pass before merging. | Must |
 
 ### M2: Food logging
 
