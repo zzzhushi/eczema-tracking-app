@@ -16,11 +16,18 @@ def rubric_table(rubric, sources):
     for sign in rubric["signs"]:
         lv = sign["levels"]
         lines.append(f"| {sign['name']} | {lv['0']} | {lv['1']} | {lv['2']} | {lv['3']} |")
-    lines += ["", rubric["scoring"], "", rubric["unscored"], "", "Sources:"]
-    for ref in rubric["sources"]:
+    lines += ["", rubric["scoring"], "", rubric["unscored"]]
+    for sign in rubric["signs"]:
+        if sign.get("lookFor"):
+            lines += ["", f"{sign['name']}, look for: {sign['lookFor']}"]
+    lines += ["", "Sources:"]
+    refs = [(None, ref) for ref in rubric["sources"]]
+    refs += [(sign["name"], ref) for sign in rubric["signs"] for ref in sign.get("sources", [])]
+    for sign_name, ref in refs:
         s = names[ref["sourceId"]]
         authors = s["authors"][0].split(",")[0] + (" et al." if len(s["authors"]) > 1 else "")
-        lines.append(f"- {ref['relationship']}: {authors} ({s['year']}), {s['journal']}, [{s['doi']}]({s['url']})"
+        scope = f" ({sign_name})" if sign_name else ""
+        lines.append(f"- {ref['relationship']}{scope}: {authors} ({s['year']}), {s['journal']}, [{s['doi']}]({s['url']})"
                      + (f" — {ref['note']}" if ref.get("note") else ""))
     return "\n".join(lines)
 
