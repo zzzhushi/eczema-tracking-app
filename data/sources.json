@@ -1,0 +1,63 @@
+[
+  {
+    "id": "easi-2001",
+    "type": "journal-article",
+    "title": "The eczema area and severity index (EASI): assessment of reliability in atopic dermatitis",
+    "authors": [
+      "Hanifin, J. M.",
+      "Thurston, M.",
+      "Omoto, M.",
+      "Cherill, R.",
+      "Tofte, S. J.",
+      "Graeber, M.",
+      "The EASI Evaluator Group"
+    ],
+    "year": 2001,
+    "journal": "Experimental Dermatology",
+    "doi": "10.1034/j.1600-0625.2001.100102.x",
+    "url": "https://doi.org/10.1034/j.1600-0625.2001.100102.x",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "scorad-1993",
+    "type": "journal-article",
+    "title": "Severity scoring of atopic dermatitis: the SCORAD index",
+    "authors": [
+      "European Task Force on Atopic Dermatitis"
+    ],
+    "year": 1993,
+    "journal": "Dermatology",
+    "doi": "10.1159/000247298",
+    "url": "https://doi.org/10.1159/000247298",
+    "accessedOn": "2026-10-07",
+    "note": "Crossref lists 2009 for the digitized record; the report was published in 1993."
+  },
+  {
+    "id": "ali-2022",
+    "type": "journal-article",
+    "title": "Mild to moderate atopic dermatitis severity can be reliably assessed using smartphone-photographs taken by the patient at home: A validation study",
+    "authors": [
+      "Ali, Zarqa",
+      "Chiriac, Andrei",
+      "Bjerre-Christensen, Theis",
+      "Isberg, Ari Pall",
+      "Dahiya, Priyanka",
+      "Manole, Ionela",
+      "Dutei, Ana-Maria",
+      "Deaconescu, Irina",
+      "Serban, Adina",
+      "Suru, Alina",
+      "Agner, Tove",
+      "Kamstrup, Maria Rørbæk",
+      "Togsverd-Bo, Katrine",
+      "Zibert, John Robert",
+      "Thomsen, Simon Francis",
+      "Andersen, Anders Daniel"
+    ],
+    "year": 2022,
+    "journal": "Skin Research and Technology",
+    "doi": "10.1111/srt.13136",
+    "url": "https://doi.org/10.1111/srt.13136",
+    "accessedOn": "2026-10-07"
+  }
+]

@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "scale": {
+    "min": 0,
+    "max": 3,
+    "meaning": {
+      "0": "none",
+      "1": "mild",
+      "2": "moderate",
+      "3": "severe"
+    }
+  },
+  "unscored": "A sign that cannot be scored, or a refused rating, is stored as unscored, never as 0.",
+  "signs": [
+    {
+      "id": "redness",
+      "name": "Redness",
+      "levels": {
+        "0": "Skin tone is normal",
+        "1": "Faint pink, barely visible",
+        "2": "Clearly red",
+        "3": "Deep red or purple"
+      }
+    },
+    {
+      "id": "dryness-flaking",
+      "name": "Dryness or flaking",
+      "levels": {
+        "0": "Smooth",
+        "1": "Slight roughness, no visible flakes",
+        "2": "Visible flaking or scaling",
+        "3": "Heavy scaling or large flakes"
+      }
+    },
+    {
+      "id": "bumps-blisters",
+      "name": "Bumps or blisters",
+      "levels": {
+        "0": "None",
+        "1": "A few small bumps",
+        "2": "Many bumps or small blisters",
+        "3": "Clustered blisters or large raised areas"
+      }
+    },
+    {
+      "id": "cracks-broken-skin",
+      "name": "Cracks or broken skin",
+      "levels": {
+        "0": "None",
+        "1": "Fine lines, skin intact",
+        "2": "Visible cracks or scratch marks",
+        "3": "Deep cracks, open or bleeding skin"
+      }
+    },
+    {
+      "id": "thickening",
+      "name": "Thickening",
+      "levels": {
+        "0": "Normal skin texture",
+        "1": "Slightly rougher",
+        "2": "Visibly thicker, accentuated skin lines",
+        "3": "Leathery, deeply lined"
+      }
+    },
+    {
+      "id": "oozing-crusting",
+      "name": "Oozing or crusting",
+      "levels": {
+        "0": "None",
+        "1": "A little shine or moisture",
+        "2": "Visible moisture or thin crust",
+        "3": "Weeping or thick crust"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "sourceId": "easi-2001",
+      "relationship": "scale-basis"
+    },
+    {
+      "sourceId": "scorad-1993",
+      "relationship": "scale-basis"
+    },
+    {
+      "sourceId": "ali-2022",
+      "relationship": "validation-context",
+      "note": "Validates dermatologists rating smartphone photos; it does not validate AI ratings or the wording of these definitions."
+    }
+  ]
+}
