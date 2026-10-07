@@ -104,6 +104,18 @@ _Avoid_: Control diet, safe list
 A food suggested because it isolates one food chemical on the path to a goal food.
 _Avoid_: Challenge food, test food
 
+**Nutrient source**:
+A food that supplies a nutrient at the good (10–19% of the daily value) or excellent (20% or more) level in a typical serving.
+_Avoid_: Rich food, nutrient amount
+
+**Covered day**:
+A logged day that included one excellent or two good sources of a given nutrient.
+_Avoid_: Nutrient day, intake day
+
+**Nutrient gap**:
+A nutrient covered on fewer than half of the last 30 logged days; a prompt to consider testing, never a diagnosis.
+_Avoid_: Deficiency, shortfall
+
 ### Products
 
 **Product**:

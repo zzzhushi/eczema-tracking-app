@@ -23,6 +23,8 @@ The analysis answers four questions, built in this order:
 
 Alongside these, the app grades natural tests (new or reintroduced exposures) as clean or muddied, infers the user's safe baseline, and suggests stepping stones toward goal foods such as soy sauce and mushrooms.
 
+At the lowest priority, a nutrient gap checker shows which nutrients the user's logged foods rarely supply, as a prompt to discuss testing with a doctor or dietitian.
+
 ## User Stories
 
 ### Daily check-in
@@ -130,6 +132,16 @@ Alongside these, the app grades natural tests (new or reintroduced exposures) as
 80. As the user, I want to export a full backup and a one-row-per-day spreadsheet, so that I can restore the app and analyze my data externally.
 81. As the user, I want to import a backup, so that a new phone or a deleted app can be fully restored.
 
+### Nutrient gaps
+
+82. As the user, I want to see which of eleven eczema- and diet-relevant nutrients my logged foods rarely supply, so that a restricted diet doesn't quietly leave gaps.
+83. As the user, I want a nutrient counted only from foods that are good or excellent sources in a typical serving, so that a pinch of a spice doesn't count as a source.
+84. As the user, I want a gap shown as "covered on N of my last 30 logged days", so that I can check it against my own logs.
+85. As the user, I want no gap shown before 14 logged days and unlogged days ignored, so that missing logs never look like a missing nutrient.
+86. As the user, I want gaps worded as "your logs rarely include…" with a suggestion to ask a doctor or dietitian about testing, so that the app never claims I'm deficient.
+87. As the user, I want vitamin D shown with my daylight time, so that I remember sun is its main source.
+88. As the user, I want gaps shown only as an Insights card, without badges or notifications, so that a slow and uncertain signal never interrupts me.
+
 ## Implementation Decisions
 
 ### Platform and constraints
@@ -156,6 +168,7 @@ Alongside these, the app grades natural tests (new or reintroduced exposures) as
 - **Export and import.** A full backup as JSON (restorable) plus a one-row-per-day CSV for external analysis. Photos are exported separately and only on request.
 - **Weekly refresh command.** A script on the user's Mac that builds and reinstalls the app on the connected phone and copies the latest backup out of the app's data container.
 - **Notifications.** The evening check-in reminder and the signing-expiry reminder one day ahead.
+- **Nutrient gap checker.** Lowest priority. Tags each catalog food as a good or excellent source of eleven nutrients (vitamins D, E, B12, and C, zinc, selenium, calcium, magnesium, potassium, fibre, omega-3 ALA) per typical serving, using U.S. food-label definitions (10–19% and 20% or more of the daily value) and USDA FoodData Central values; tags are generated from that data without manual review. A logged day is covered for a nutrient by one excellent or two good sources. A nutrient is flagged when covered on fewer than half of the last 30 logged days, never before 14 logged days. It is not a factor in the trigger analysis.
 
 ### Key data rules
 
@@ -170,7 +183,7 @@ Food chemicals (six), allergen tags (nine), eating out, not fresh, products and 
 
 ### Screens
 
-Four tabs: Today (meals, routine summary, automatic data, the check-in and photo ratings), Insights (flare investigations, trends, suspects, natural tests, next experiment), Library (foods, products, background products, product checks and candidate comparisons), and Data (backup, export, import, signing expiry). Mockups were reviewed during the design session.
+Four tabs: Today (meals, routine summary, automatic data, the check-in and photo ratings), Insights (flare investigations, trends, suspects, natural tests, next experiment, nutrient gaps), Library (foods, products, background products, product checks and candidate comparisons), and Data (backup, export, import, signing expiry). Mockups were reviewed during the design session.
 
 ### Build order
 
@@ -179,6 +192,7 @@ Four tabs: Today (meals, routine summary, automatic data, the check-in and photo
 2. Logging: check-in, food parsing, products and routines, Health and weather import, export and import, the weekly refresh command, and notifications, so that data collection starts. The food catalog and common-trigger reference are researched in parallel from the user's starting list.
 3. Product check and flare investigation.
 4. Trends, ranked suspects, natural tests, safe baseline, and stepping stones.
+5. Nutrient gap checker.
 
 ## Testing Decisions
 
@@ -204,10 +218,13 @@ Four tabs: Today (meals, routine summary, automatic data, the check-in and photo
 - Cloud sync, iCloud backup, and photo backup.
 - Siri and Shortcuts capture, widgets, Apple Watch check-in, Face ID lock, and a dermatologist summary (later).
 - App Store or TestFlight distribution, and support for users other than the primary user.
+- Supplements, nutrient intake quantities, and iodine.
+- Food suggestions for nutrient gaps, nutrient influence on stepping stones, and nutrient badges or notifications.
 
 ## Further Notes
 
 - **Evidence and framing.** A 2025 meta-analysis estimates salicylate, amine, and histamine intolerance among people with atopic dermatitis at roughly 53%, 32%, and 31%, with low certainty. Dietary elimination for atopic dermatitis shows only slight benefit in trials, and long restrictive diets may raise the risk of developing IgE-mediated food allergy. The app therefore favors reintroduction and expanding the diet, says when formal challenges are best done with a dietitian, and presents suspects with confidence levels rather than verdicts.
 - **RPAH licensing.** The RPAH Elimination Diet Handbook is a copyrighted commercial book. Bundled chemical levels come from the published studies the field relies on (for salicylates, Swain et al. 1985 and later measurements), with RPAH used only to decide which foods to include first. The user's own overrides stay on their phone.
 - **Weather terms.** Open-Meteo is free for non-commercial use. A future paid release would need its commercial plan or WeatherKit with a paid developer account.
+- **Nutrients.** Vitamin D supplementation reduced eczema severity in a meta-analysis of 11 randomized trials; smaller trials suggest benefit from vitamins E and B12; zinc and selenium deficiency may worsen eczema. Low-salicylate diets at lower calorie intakes can fall short on several nutrients, which is why the checker includes diet-safety nutrients alongside eczema-linked ones. Nutrient status changes over weeks to months and only a blood test confirms a deficiency, so the checker reports how rarely sources appear and never diagnoses. USDA FoodData Central is public domain (CC0) and asks to be cited as the source.
 - **Storage estimates.** Downscaled photos at two areas per day are about 150–220 MB per year; structured data is a few MB per year.
