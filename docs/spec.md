@@ -6,7 +6,7 @@ The product, its scope, and the decisions that hold across releases. The active 
 
 The user has eczema on their face and hands with several suspected triggers: food chemicals (salicylates noticeably flare their hands), chemical sunscreen filters (which flared their face), sun, sweat, and weather. They once found a sunscreen trigger by hand, comparing ingredient lists of products that flared them against ones that didn't. That worked, but it was manual and couldn't take in food, sleep, activity, or weather.
 
-Nothing puts what they eat, what touches their skin, and their environment next to how their skin actually looked and felt each day. Food apps demand searching for every item, and health data sits unconnected in Apple Health. So they can't tell which exposure preceded a flare, or systematically expand the foods they eat safely. They are currently on a restricted, low-chemical (RPAH-style) diet.
+Nothing puts what they eat, what touches their skin, and their environment next to how their skin actually looked and felt each day. Food apps demand searching for every item, and health data sits unconnected in Apple Health. So they can't tell which exposure preceded a flare, or systematically expand the foods they eat safely.
 
 ## Solution
 
@@ -14,14 +14,14 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 ## Key journeys
 
-1. **Log food**: type or dictate what I ate and glance at what the app matched, with unknown words kept.
-2. **Check in**: each evening, rate feel and look for my hands and face and take a photo; the AI rates the photo on six visible signs.
-3. **See what food does to my skin**: rank foods and food chemicals by how my ratings change after eating them (Release 1).
-4. **Investigate a flare**: see what was different in the days before it, including sun, sweat, and new products.
-5. **Check before trying**: paste a product's ingredients or pick a food and see what my history and common triggers say.
-6. **Track recovery**: compare my skin against a normal I'm aiming for, with a reference photo of my best day.
-7. **Expand my diet**: reintroduce foods one chemical at a time toward goal foods like soy sauce and mushrooms.
-8. **Keep my data**: export it, and later back it up to my Mac and restore it.
+1. **Log food**: the user types what they ate and glances at what the app matched, with unknown words kept.
+2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI rates the photo on six visible signs.
+3. **See what food does to the skin**: foods and food chemicals are ranked by how the user's ratings change after eating them (Release 1).
+4. **Investigate a flare**: the user sees what was different in the days before it, including sun, sweat, and new products.
+5. **Check before trying**: the user pastes a product's ingredients or picks a food and sees what their history and common triggers say.
+6. **Track recovery**: the user compares their skin against a normal they're aiming for, with a reference photo of their best day.
+7. **Expand the diet**: the user reintroduces foods one chemical at a time toward goal foods like soy sauce and mushrooms.
+8. **Keep the data**: the user exports it, and later backs it up to their Mac and restores it.
 
 ## Scope
 
@@ -54,25 +54,25 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 - Unknown is never zero: an unknown chemical level, a day without a check-in, and a day without food entries are unknown and excluded from evidence, never counted as absent.
 - Raw inputs (typed text, ratings, photos, routine changes) are stored as entered; derived values are recomputed, so changing a rule never needs a data migration.
 - The store's schema, the export format, the catalog, and photo ratings each carry a version.
-- A day is a calendar day ending at midnight in the phone's local time zone.
+- A day is the local calendar date shown on the phone when an entry is logged; each entry records its time zone, and dates are never derived from UTC.
 
 ### Food catalog
 
 - Each food has a coarse level (negligible to very high) per food chemical with a citation, or a research status when the level isn't known; plus allergen tags and aliases. Coarse levels reflect how much published measurements disagree.
 - Levels are resolved when the analysis runs, so research added later applies to every past day. Research proceeds in two tiers (foods eaten now, then reintroduction candidates) and never blocks a milestone.
-- Levels come from published studies, not the RPAH handbook ([ADR 0002](adr/0002-chemical-levels-from-published-studies.md)). The user's own overrides stay on the phone.
+- Levels come from published studies. The user's own overrides stay on the phone.
 
 ### Photos and ratings
 
-- The AI scores six signs on 0–3 using a versioned rubric; the user's look rating and the AI's are stored separately.
-- Each area gets a reference photo of its best state, replaced only when the user confirms a better one.
+- The AI scores six signs on 0–3 using a versioned rubric (scale source in [the analysis rules](analysis.md)); the user's look rating and the AI's are stored separately.
+- Each area gets a reference photo of its best state, replaced only when the user confirms a better one (Release 3).
 
 ## Observability
 
 Everything stays on the phone or the user's Mac; no third-party service receives logs.
 
 - **Logging**: Apple's unified logging, with health data marked private.
-- **Timing**: signposts around meal parsing, photo rating, and analysis.
+- **Timing**: signposts mark the start and end of meal parsing, photo rating, and analysis, so Instruments shows how long each took.
 - **Diagnostics**: crash and hang reports collected on the phone.
 - **Provenance**: every analysis result links to the day records, foods, and ratings it came from, and AI explanations rest on that trail.
 - **Requirement traceability**: each automated test names the requirement IDs it verifies.
@@ -93,4 +93,3 @@ Everything stays on the phone or the user's Mac; no third-party service receives
 ## Further notes
 
 - **Weather terms**: Open-Meteo is free for non-commercial use; a public release would need its commercial plan or WeatherKit.
-- **Storage**: structured data is a few MB per year; photos about 150–220 MB per year.

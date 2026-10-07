@@ -4,7 +4,7 @@
 
 ## Context
 
-The user requires that health data and skin photos never go to a cloud. The app runs under a free developer account that must be reinstalled from a Mac every 7 days.
+The user requires that the app never transfers health data or skin photos to a cloud on its own; the only exception is an export the user explicitly starts. The app runs under a free developer account that must be reinstalled from a Mac every 7 days.
 
 ## Decision
 

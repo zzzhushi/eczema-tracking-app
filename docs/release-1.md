@@ -19,7 +19,7 @@ Product context is in [the spec](spec.md), every formula and threshold in [the a
 | M2 | Type a day's food; match it to the Tier 1 food names, with chemical levels unknown until researched; keep unrecognized words; edit or delete entries | A matched food without researched levels shows no data, never negligible; an unmatched word is kept | A day's food is logged on the phone in under a minute, and every Tier 1 food name matches |
 | M3 | Check-in for hands and face (feel and look); edit past days; record the rounded location at app open | An area without ratings is unknown, not a good day | Both areas are rated on the phone in under 30 seconds, and skipped ratings stay unknown |
 | M4 | A photo per area, stored in the app with a framing overlay, rated on the six signs; skin score computed | A rating stores its rating version; the skin score is not stored | Each area is photographed and rated on the phone, and a refusal shows as unscored |
-| M5 | Food-to-skin ranking per area, with confidence, data coverage, and links back to source days; export to a file | High-salicylate days followed by worse hand ratings rank salicylates above an unrelated chemical; a day with an unknown food is excluded | The ranking for the hands shows on the phone with its data coverage, and an export opens on the Mac |
+| M5 | Food-to-skin ranking per area, with confidence, data coverage, and links back to source days; export to a file | High-salicylate days followed by worse hand ratings rank salicylates above an unrelated chemical; a day of rice plus a food with unknown salicylates is excluded for salicylates, while a day with a known high-salicylate food stays high with breadth marked as a lower bound | The ranking for the hands shows on the phone with its data coverage, and an export opens on the Mac |
 
 Expect "too early to tell" for the first weeks; with a stable diet, most signal will come from reintroduced foods. Analysis focuses on the hands. Face results note that sun and products aren't tracked yet; later releases re-run the analysis with that context.
 
@@ -29,20 +29,20 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 
 | ID | Requirement | Pri |
 |---|---|---|
-| DATA-07 | The store shall carry a schema version, and every schema change shall migrate existing data or wipe it with a visible notice, never silently. | Must |
+| DATA-07 | The store shall carry a schema version. From M2 on, every schema change shall ship with a written migration plan and a migration test, and existing data shall never be wiped. | Must |
 | FAIL-04 | Every feature other than weather shall work without a network connection. | Must |
 | OBS-01 | The app shall log through Apple's unified logging with health data marked private. | Must |
-| OBS-02 | The app shall mark meal parsing, photo rating, and analysis with timing signposts. | Must |
-| OBS-03 | The app shall collect crash and hang diagnostics on the phone without sending them anywhere. | Should |
+| OBS-02 | The app shall provide one logging and timing-signpost convention that every feature uses. | Must |
+| OBS-03 | The app shall collect crash and hang diagnostics on the phone without sending them anywhere. | Must |
 | OBS-05 | Each automated test shall name the requirement IDs it verifies. | Must |
 
 ### M2: Food logging
 
 | ID | Requirement | Pri |
 |---|---|---|
-| FOOD-02 | The user shall be able to enter a meal by typing or dictating text. | Must |
+| FOOD-02 | The user shall be able to enter a day's food by typing text. | Must |
 | FOOD-03 | The app shall split meal text into food names on-device and match each name to the catalog without the AI model. | Must |
-| FOOD-04 | The app shall show the meal's text beside the matched foods, with each food's chemical levels and allergen tags. | Must |
+| FOOD-04 | The app shall show the typed text beside the foods it matched, so the user can confirm the parsing. | Must |
 | FOOD-05 | Words that match no food shall be kept as unrecognized entries in the meal and shown as such. | Must |
 | FOOD-12 | A day with at least one food entry shall count as a logged day. | Must |
 | FOOD-13 | The user shall be able to edit or delete any food entry. | Must |
@@ -51,6 +51,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | CAT-03 | The first catalog shall contain the names and aliases of the foods the user eats now, with levels unknown until researched and reviewed. | Must |
 | CAT-05 | Levels shall be resolved at analysis time, so a catalog update applies to past days. | Must |
 | FAIL-01 | When the on-device model is unavailable, meal text shall be matched to the catalog by keyword. | Must |
+| OBS-06 | Meal parsing shall be marked with a timing signpost. | Must |
 
 ### M3: Skin check-in
 
@@ -59,7 +60,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | SET-01 | On first launch, the app shall state that it finds patterns in the user's own data and does not give medical advice. | Must |
 | SET-03 | The app shall request location access only while in use, never always. | Must |
 | SET-06 | The app shall start with two areas, face and hands. | Must |
-| CHK-01 | The app shall keep one day record per calendar day in the phone's local time zone. | Must |
+| CHK-01 | Each entry shall be filed under the local calendar date shown on the phone when it is logged, with its time zone recorded; dates are never derived from UTC. | Must |
 | CHK-02 | For each active area, the check-in shall record feel (0–10) and look (0–10). | Must |
 | CHK-03 | Every check-in field shall stay editable; the latest value is the day's value, with no submit step. | Must |
 | CHK-04 | The user shall be able to open and edit any past day. | Must |
@@ -74,36 +75,46 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | SET-04 | The app shall request camera access only when the user first takes a photo or captures an ingredient list. | Must |
 | PHO-01 | The user shall be able to take zero or more photos per area per day. | Must |
 | PHO-02 | The camera shall show a framing guide for the selected area. | Should |
-| PHO-03 | The app shall store photos only inside the app, downscaled to about 1600 px, encrypted at rest, excluded from device backups, and never written to the Photos library. | Must |
+| PHO-03 | The app shall store photos only inside its own storage. | Must |
+| PHO-13 | Stored photos shall be downscaled to about 1600 px on the long edge. | Must |
+| PHO-14 | Stored photos shall be encrypted at rest. | Must |
+| PHO-15 | Stored photos shall be excluded from device and cloud backups. | Must |
+| PHO-16 | The app shall never write photos to the Photos library. | Must |
 | PHO-04 | The app shall score each photo on six signs from 0 to 3 using the versioned rubric; a refused or unscorable sign is stored as unscored, never as 0. | Must |
 | PHO-05 | The app shall compute a 1–10 skin score from sign scores by the mapping in the analysis rules and shall not store it. | Must |
 | PHO-07 | Every photo rating shall store its rating version. | Must |
 | PHO-11 | The user shall be able to delete a photo, which removes the file and its ratings. | Must |
 | FAIL-02 | When the on-device model is unavailable, photos shall be stored unrated and rated once it is available. | Must |
+| OBS-07 | Photo rating shall be marked with a timing signpost. | Must |
 
 ### M5: Food-to-skin ranking
 
 | ID | Requirement | Pri |
 |---|---|---|
 | ANA-09 | Food chemicals shall use a look-back window of 0–2 days. | Must |
-| ANA-10 | Every result shall show a confidence and its data coverage. | Must |
+| ANA-10 | Every result shall show its confidence (strong, suggestive, or too early to tell) and its data coverage (how many logged days it rests on). | Must |
 | ANA-14 | The app shall compute each day's peak, breadth, and unknown count per food chemical, following the analysis rules. | Must |
 | ANA-20 | For each area, the app shall rank foods and food chemicals by the food-to-skin ranking rule in the analysis rules, with confidence and data coverage. | Must |
 | ANA-22 | Release 1 results for the face shall note that sun and products are not yet tracked. | Should |
 | DATA-01 | The app shall export a structured-data backup as one JSON file that excludes photos, to a destination the user picks; a cloud destination shows a warning first. | Must |
 | DATA-08 | Exports shall carry a format version. | Should |
 | OBS-04 | Every analysis result shall link to the day records, foods, and ratings it was computed from, viewable by the user. | Must |
+| OBS-08 | Analysis runs shall be marked with a timing signpost. | Must |
+
+## Before a milestone starts
+
+Its GitHub issue lists every path the milestone adds, each with an acceptance check, and the open questions that block it.
 
 ## Exit criteria for every milestone
 
 - All Must requirements are satisfied; each Should is done or explicitly cut.
-- Automated tests pass.
-- Required manual checks are recorded on the iPhone.
+- Every path is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on. Automated tests pass.
 - The milestone's exit criterion above is met and the end-to-end path is demonstrated on the phone.
-- Storage changes include migration coverage once real data matters (after M5); before that, an explicit wipe is allowed.
+- From M2 on, storage changes ship with a migration plan and a migration test.
 - Relevant unavailable and offline paths are checked.
-- Known limitations are recorded in the milestone's issue.
-- Open questions are resolved or explicitly moved to a later milestone.
+- Known limitations are recorded in the issue.
+- Open questions are answered in the owning doc, or moved to a later milestone's issue with a link.
+- Docs touched by the milestone are updated, and stale docs and issues are removed.
 
 ## Decide before the milestone
 
@@ -126,4 +137,4 @@ Each question moves into its milestone's GitHub issue and is deleted from here o
 
 ## Cut line
 
-First to cut if time runs short, in order: crash and hang diagnostics (OBS-03), export format versioning (DATA-08), the face-results note (ANA-22), and the framing overlay (PHO-02). Cutting the overlay costs the most, since inconsistent photos can be re-rated but not re-taken.
+First to cut if time runs short, in order: export format versioning (DATA-08), the face-results note (ANA-22), and the framing overlay (PHO-02). Cutting the overlay costs the most, since inconsistent photos can be re-rated but not re-taken.

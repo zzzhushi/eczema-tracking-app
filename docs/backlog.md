@@ -1,6 +1,6 @@
 # eXzema: backlog
 
-Later releases as outcomes. Decisions already made are kept as one line each so they don't need re-deciding; detailed requirements are written when a release is planned, using what Release 1 teaches. Rules and thresholds live in [the analysis rules](analysis.md).
+Later releases as outcomes, until they are tracked as GitHub issues. Decisions already made are kept as one line each so they don't need re-deciding; detailed requirements are written when a release is planned, using what Release 1 teaches. Rules and thresholds live in [the analysis rules](analysis.md).
 
 ## Release 2: fuller logging
 
@@ -14,7 +14,6 @@ Later releases as outcomes. Decisions already made are kept as one line each so 
 - **Ingredient entry**: paste a list, or photograph a label or screen, shown side by side for correction.
 - **Background products**: recorded once with start and stop dates, never logged daily (psyllium husk and creatine daily; collagen powder stopped October 6, 2026).
 - **Backup**: full backup and restore, the weekly refresh command on the Mac with an optional photo archive, a reminder one day before signing expires, and import of every earlier export format.
-- **Screens**: four tabs (Today, Insights, Library, Data or Settings) are provisional.
 
 ## Release 3: explain and decide
 
@@ -57,8 +56,8 @@ Tracked in case the app is ever published; none of it applies to personal use.
 ## Tabled
 
 - **Patch testing support**: testing a new product on a small spot (near the jawline, behind the ear, or the inner forearm) for 7–14 days, with a daily check feeding product suspicion. Clinical patch testing by an allergist is a separate option.
-- **Tabs**: decided after Release 1.
+- **Tabs**: four tabs (Today, Insights, Library, Data or Settings) are provisional and decided after Release 1.
 
 ## Out of scope
 
-Barcode lookup; food additives and packaged-food ingredient inference; serving sizes and raw versus cooked; dried spices (for now); face sub-areas; explicitly declared tests; named product recommendations; importing past reactions; best-fit look-back windows; mood logs, steps, and cardio fitness; supplements in the nutrient checker, and iodine; nutrient food suggestions and nutrient notifications; original-resolution photos; cloud sync and iCloud backup; Siri and Shortcuts capture, widgets, and an Apple Watch check-in; a Face ID lock; a dermatologist summary.
+Voice dictation (the keyboard's built-in dictation still works); barcode lookup; food additives and packaged-food ingredient inference; serving sizes and raw versus cooked; dried spices (for now); face sub-areas; explicitly declared tests; named product recommendations; importing past reactions; best-fit look-back windows; mood logs, steps, and cardio fitness; supplements in the nutrient checker, and iodine; nutrient food suggestions and nutrient notifications; original-resolution photos; cloud sync and iCloud backup; Siri and Shortcuts capture, widgets, and an Apple Watch check-in; a Face ID lock; a dermatologist summary.
