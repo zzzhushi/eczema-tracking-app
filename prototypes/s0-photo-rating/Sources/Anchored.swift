@@ -7,7 +7,7 @@ import Vision
 
 /// Experiment variants that rate a photo relative to a reference photo of the same person's clear skin.
 enum Variant: String, CaseIterable {
-    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel, flakeDensity, latency
+    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel, flakeDensity, latency, batching
 }
 
 private let coverageLevels = ["none", "small area", "some", "most", "nearly all"]
@@ -186,6 +186,16 @@ struct SignLevel {
     var description: String
     @Guide(description: "Level", .range(0...3))
     var level: Int
+}
+
+@Generable
+struct ThickeningRelative {
+    @Guide(description: "How the skin lines look in the new photo compared with the reference, in one sentence")
+    var description: String
+    @Guide(description: "Thickening, with skin lines exaggerated, compared with the reference", .anyOf(["same", "slightly more", "clearly more", "much more"]))
+    var thickening: String
+
+    var level: Int { relativeLevels.firstIndex(of: thickening) ?? -1 }
 }
 
 @Generable

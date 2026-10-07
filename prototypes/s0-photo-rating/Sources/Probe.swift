@@ -379,6 +379,68 @@ final class Probe {
                     }
                     parts += ["fiveSequential=\(String(format: "%.1f", sequential))(failed \(sequentialFailed))", "fiveConcurrent=\(String(format: "%.1f", concurrent))(failed \(concurrentFailed))"]
                     emit("\(head) \(parts.joined(separator: " "))")
+                case .batching:
+                    let clock = ContinuousClock()
+                    func seconds(_ d: Duration) -> Double { Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18 }
+                    var sampler = rater
+                    sampler.greedy = false
+                    let sampling = sampler
+                    let refImage = boosted(ref.url), photoImage = boosted(s.url)
+                    let pair = rater.anchoredPrompt(reference: refImage, photo: photoImage, referenceFirst: true)
+                    let single = rater.ratePrompt(photo: photoImage)
+                    let rubricInstructions = rubric.absoluteInstructions
+                    var times: [String: [Double]] = [:], failed: [String: Int] = [:], answers: [String: [String]] = [:]
+                    func note(_ name: String, seconds: Double, failure: Bool, answer: String) {
+                        if failure { failed[name, default: 0] += 1 } else { times[name, default: []].append(seconds); answers[name, default: []].append(answer) }
+                    }
+                    for _ in 1...3 {
+                        // Three separate requests, one after another.
+                        let t0 = clock.now
+                        let a = await sampling.ask(SignScoresV2.self, instructions: rubricInstructions, prompt: single)
+                        let b = await sampling.ask(RelativeSigns7.self, instructions: AnchoredPrompts.relative2, prompt: pair)
+                        let c = await sampling.ask(RednessOnly.self, instructions: AnchoredPrompts.rednessOnly, prompt: pair)
+                        let separateSeconds = seconds(clock.now - t0)
+                        note("separate", seconds: separateSeconds, failure: a.0 == nil || b.0 == nil || c.0 == nil,
+                             answer: "red \(a.0?.values[0] ?? -1)/\(c.0?.level ?? -1) dry \(b.0?.levels[1] ?? -1) thick \(b.0?.levels[4] ?? -1)")
+
+                        // One request that answers every sign.
+                        let t1 = clock.now
+                        let d = await sampling.ask(RelativeSigns7.self, instructions: AnchoredPrompts.relative2, prompt: pair)
+                        note("oneCombinedRequest", seconds: seconds(clock.now - t1), failure: d.0 == nil,
+                             answer: "red \(d.0?.levels[0] ?? -1) dry \(d.0?.levels[1] ?? -1) thick \(d.0?.levels[4] ?? -1)")
+
+                        // One session: the photos once, then follow-up questions in the same conversation.
+                        let t2 = clock.now
+                        var sessionFailed = false
+                        var red = -1, dry = -1, thick = -1
+                        do {
+                            let session = LanguageModelSession(instructions: AnchoredPrompts.relative2)
+                            red = try await session.respond(to: pair, generating: RednessOnly.self).content.level
+                            dry = try await session.respond(to: Prompt { "Using the same two photos, how much more dryness, flaking, or scaling does the new photo show than the reference?" }, generating: DrynessRelative.self).content.level
+                            thick = try await session.respond(to: Prompt { "Using the same two photos, how much more thickening, with exaggerated skin lines, does the new photo show than the reference?" }, generating: ThickeningRelative.self).content.level
+                        } catch { sessionFailed = true; failed["sessionError: \(Failure.classify(error))", default: 0] += 1 }
+                        note("oneSessionFollowUps", seconds: seconds(clock.now - t2), failure: sessionFailed, answer: "red \(red) dry \(dry) thick \(thick)")
+
+                        // The three separate requests at the same time.
+                        let t3 = clock.now
+                        let results = await withTaskGroup(of: Bool.self) { group -> [Bool] in
+                            group.addTask { await sampling.ask(SignScoresV2.self, instructions: rubricInstructions, prompt: single).0 == nil }
+                            group.addTask { await sampling.ask(RelativeSigns7.self, instructions: AnchoredPrompts.relative2, prompt: pair).0 == nil }
+                            group.addTask { await sampling.ask(RednessOnly.self, instructions: AnchoredPrompts.rednessOnly, prompt: pair).0 == nil }
+                            var out: [Bool] = []
+                            for await failure in group { out.append(failure) }
+                            return out
+                        }
+                        note("separateAtTheSameTime", seconds: seconds(clock.now - t3), failure: results.contains(true), answer: "")
+                    }
+                    var parts: [String] = []
+                    for name in ["separate", "oneCombinedRequest", "oneSessionFollowUps", "separateAtTheSameTime"] {
+                        let t = times[name] ?? []
+                        let mean = t.isEmpty ? "-" : String(format: "%.1f", t.reduce(0, +) / Double(t.count))
+                        parts.append("\(name)=\(mean)s(failed \(failed[name] ?? 0) of 3; answers \((answers[name] ?? []).filter { !$0.isEmpty }.joined(separator: " | ")))")
+                    }
+                    for (key, value) in failed where key.hasPrefix("sessionError") { parts.append("\(key)=\(value)") }
+                    emit("\(head) \(parts.joined(separator: "; "))")
                 case .flakeDensity:
                     let clock = ContinuousClock()
                     let start = clock.now
