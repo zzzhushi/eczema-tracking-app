@@ -14,7 +14,7 @@ How the app is tested. Requirements for specific behavior live in the active rel
 |---|---|---|---|
 | Logic tests | Analysis rules, food matching, unknown handling, the day boundary | Hand-built day histories, including the worked examples in the analysis rules | Mac and CI, every build |
 | Storage tests | Save and reload, export format, migrations | Fixture stores, one per schema version | Mac and CI, every build |
-| AI evaluations | Photo-rating consistency and validity, refusals, meal-parsing accuracy | Committed real photos; synthetic meal texts | Mac or iPhone, when the rubric, prompt, or model changes |
+| AI evaluations | Photo-rating consistency and validity, refusals, meal-parsing accuracy | Local real photos; synthetic meal texts | Mac or iPhone, when the rubric, prompt, or model changes |
 | Manual checks | Camera, permissions, timing, look and feel | Real use | iPhone, per milestone |
 
 ## Fakes
@@ -24,17 +24,18 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 ## Test data
 
 - **Hand-built histories and fixture stores** live in the repository.
-- **Real photos**: a small curated set committed to the private repository, with location metadata stripped before committing, and described in a manifest (area, date, lighting, camera, and the user's own ratings).
-- **Meal texts**: synthetic days written in the user's style, with the foods they should match. They are not copied from real logs, so committed photos stay the only exception to the privacy boundary.
+- **Real photos**: a small curated set kept in a local folder that git ignores, described by a committed manifest (file name, area, date, lighting, camera, the user's own ratings, and which pairs should score as clear versus flare). Only AI evaluations use photos, and they never run in CI, so committing photos would gain nothing and would make them public permanently.
+- **Meal texts**: synthetic days written in the user's style, with the foods they should match, never copied from real logs.
 
 ## AI evaluations
 
-- Run on the Mac with Apple Intelligence enabled, or on the iPhone; never in CI, where the model isn't available.
+- A separate test set that never runs by default or in CI, where the model isn't available. Run on the Mac with Apple Intelligence enabled, or on the iPhone.
+- A photo listed in the manifest but missing on the machine is reported as skipped, not failed.
 - Run before the M0 decisions and whenever the rating version would change.
 - Measure the score spread for the same photo over 5 runs, the spread between photos taken minutes apart, the refusal rate, and meal-parsing accuracy.
 - Check validity as well as consistency, since a model can be consistently wrong: photos the user has labeled must score in the expected order (a clear photo below a flare photo) and within expected per-sign ranges.
 - Thresholds are set in the M0 issue and start provisional. Mac runs are for iteration; the M0 viability gate runs on the target iPhone.
-- Each run is saved as a short report with its rating version.
+- Each run is saved as a short report with its rating version. The report holds numbers only, never images, and is committed.
 
 ## Manual checks
 
