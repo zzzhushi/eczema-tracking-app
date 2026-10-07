@@ -108,3 +108,62 @@ extension Rater {
         }
     }
 }
+
+/// Prompt v3: rate on the user's 0–10 look scale against a photo of the same person's clear skin,
+/// so the model judges change from their own baseline instead of absolute colour and texture.
+@Generable
+struct AnchoredRating {
+    @Guide(description: "How the new photo differs from the reference photo, in one or two sentences")
+    var differences: String
+    @Guide(description: "Regions where the new photo looks different from the reference, such as forehead, eyelids, cheeks, around the mouth, back of hand, fingers, or knuckles. Empty if none.")
+    var regions: [String]
+    @Guide(description: "How much of the visible skin looks affected", .anyOf(["none", "small area", "some", "most", "nearly all"]))
+    var coverage: String
+    @Guide(description: "Overall rating from 0 to 10", .range(0...10))
+    var overall: Int
+}
+
+extension Rubric {
+    static let anchoredInstructions = """
+        You compare photos of one person's skin. The reference photo shows this person's clear skin: \
+        use it as their normal skin tone and texture. Rate the new photo from 0 to 10 by how much it \
+        differs from the reference.
+        0: looks like the reference.
+        1 to 2: slight. Faint redness or dryness in a small area.
+        3 to 4: mild. Clearly visible in one or two regions.
+        5 to 6: moderate. Clearly red, dry, or bumpy across several regions.
+        7 to 8: severe. Widespread redness with flaking, puffiness, or broken skin across most of the area.
+        9 to 10: extreme. Raw, oozing, cracked, or swollen across nearly all of the area.
+        First describe the differences and list the regions, then give the rating. Ignore lighting, \
+        makeup, hair, jewellery, and background. Do not give medical advice.
+        """
+}
+
+extension Rater {
+    func rateAgainst(reference: URL, photo: URL, referenceFirst: Bool) async -> (rating: AnchoredRating?, seconds: Double, failure: String?) {
+        let clock = ContinuousClock()
+        let start = clock.now
+        do {
+            let session = LanguageModelSession(instructions: Rubric.anchoredInstructions)
+            let prompt = Prompt {
+                if referenceFirst {
+                    "Reference photo of clear skin, rated 0:"
+                    Attachment(imageURL: reference)
+                    "New photo to rate:"
+                    Attachment(imageURL: photo)
+                } else {
+                    "New photo to rate:"
+                    Attachment(imageURL: photo)
+                    "Reference photo of clear skin, rated 0:"
+                    Attachment(imageURL: reference)
+                }
+                "Rate the new photo."
+            }
+            let options = greedy ? GenerationOptions(sampling: .greedy) : GenerationOptions()
+            let response = try await session.respond(to: prompt, generating: AnchoredRating.self, options: options)
+            return (response.content, seconds(since: start, clock), nil)
+        } catch {
+            return (nil, seconds(since: start, clock), Failure.classify(error))
+        }
+    }
+}

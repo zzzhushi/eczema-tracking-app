@@ -87,6 +87,10 @@ final class Probe {
         }
         print("AUTORUN start greedy=\(CommandLine.arguments.contains("-greedy")) model=\(availability) photos=\(samples.map(\.name).joined(separator: ","))")
         if CommandLine.arguments.contains("-compare") { await compareAll() }
+        if CommandLine.arguments.contains("-anchored") { await anchoredAll() }
+        if let arg = CommandLine.arguments.first(where: { $0.hasPrefix("-variants=") }) {
+            await variantRound(arg.dropFirst(10).split(separator: ",").compactMap { Variant(rawValue: String($0)) })
+        }
         if !CommandLine.arguments.contains("-noscore") { await runAll() }
         if !CommandLine.arguments.contains("-nocontext") { print("CONTEXT\n\(await contextTest())") }
         print("SUMMARY\n\(reportJSON())")
@@ -104,6 +108,104 @@ final class Probe {
             for (x, y) in [(sa, sb), (sb, sa)] {
                 let r = await rater.compare(first: x.url, second: y.url)
                 print("PAIR first=\(x.name) second=\(y.name) worse=\(r.judgment?.worse ?? "-") difference=\(r.judgment.map { String($0.difference) } ?? "-") seconds=\(String(format: "%.1f", r.seconds)) failure=\(r.failure ?? "none") obs=\(r.judgment?.observations ?? "")")
+            }
+        }
+    }
+
+    /// Rates each photo against the clear-skin reference for its area, with the reference shown
+    /// both before and after the photo so position bias shows up.
+    func anchoredAll() async {
+        let rater = Rater(rubric: rubric)
+        let references = ["face": "face_clear", "hands": "hand_normal_patch"]
+        for s in samples {
+            guard let refName = references[s.area], let ref = samples.first(where: { $0.name == refName }) else { continue }
+            for referenceFirst in [true, false] {
+                let r = await rater.rateAgainst(reference: ref.url, photo: s.url, referenceFirst: referenceFirst)
+                print("ANCHORED photo=\(s.name) referenceFirst=\(referenceFirst) overall=\(r.rating.map { String($0.overall) } ?? "-") coverage=\(r.rating?.coverage ?? "-") regions=\(r.rating?.regions.joined(separator: "|") ?? "-") seconds=\(String(format: "%.1f", r.seconds)) failure=\(r.failure ?? "none") obs=\(r.rating?.differences ?? "")")
+            }
+        }
+    }
+
+    /// Runs each variant on every photo against its area's clear-skin reference, in both orders,
+    /// and prints one line per call. Results are judged offline against the local manifest.
+    func variantRound(_ variants: [Variant]) async {
+        let rater = Rater(rubric: rubric)
+        let references = ["face": "face_clear", "hands": "hand_normal_patch"]
+        func clean(_ text: String) -> String { text.replacingOccurrences(of: "\n", with: " ") }
+        for variant in variants {
+            for s in samples {
+                guard let refName = references[s.area], let ref = samples.first(where: { $0.name == refName }) else { continue }
+                let head = "V variant=\(variant.rawValue) photo=\(s.name)"
+                switch variant {
+                case .perception:
+                    let (r, t, f) = await rater.ask(Perception.self, instructions: AnchoredPrompts.perception, prompt: rater.describePrompt(photo: s.url))
+                    print("\(head) bodyPart=\(r?.bodyPart ?? "-") anyRedness=\(r.map { String($0.anyRedness) } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.description ?? ""))")
+                case .relative2Sampled:
+                    var sampler = rater
+                    sampler.greedy = false
+                    var sums: [Int] = []
+                    for _ in 1...5 {
+                        let (r, _, _) = await sampler.ask(RelativeSigns.self, instructions: AnchoredPrompts.relative2, prompt: rater.anchoredPrompt(reference: ref.url, photo: s.url, referenceFirst: true))
+                        if let r { sums.append(r.levels.reduce(0, +)) }
+                    }
+                    let mean = sums.isEmpty ? -1 : Double(sums.reduce(0, +)) / Double(sums.count)
+                    print("\(head) refFirst=true sums=\(sums.map(String.init).joined(separator: ",")) mean=\(String(format: "%.1f", mean)) obs=")
+                case .relative2BoostSampled:
+                    var sampler = rater
+                    sampler.greedy = false
+                    var maxes: [Int] = []
+                    for _ in 1...5 {
+                        let (r, _, _) = await sampler.ask(RelativeSigns.self, instructions: AnchoredPrompts.relative2, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: true))
+                        if let r { maxes.append(r.levels.max() ?? 0) }
+                    }
+                    let mean = maxes.isEmpty ? -1 : Double(maxes.reduce(0, +)) / Double(maxes.count)
+                    print("\(head) refFirst=true maxes=\(maxes.map(String.init).joined(separator: ",")) mean=\(String(format: "%.1f", mean)) obs=")
+                case .identical:
+                    for other in [ref, s] {
+                        let (r, t, f) = await rater.ask(Identity.self, instructions: AnchoredPrompts.identical, prompt: rater.anchoredPrompt(reference: ref.url, photo: other.url, referenceFirst: true))
+                        print("\(head) against=\(other.name) samePhoto=\(r.map { String($0.samePhoto) } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))")
+                    }
+                case .tiles:
+                    var ratings: [String] = []
+                    var notes: [String] = []
+                    var total = 0.0
+                    for tile in quadrantTiles(of: s.url) {
+                        let (r, t, f) = await rater.ask(Overall3.self, instructions: AnchoredPrompts.tile, prompt: rater.anchoredPrompt(reference: ref.url, photo: tile, referenceFirst: true, noun: "part"))
+                        ratings.append(r.map { String($0.overall) } ?? (f ?? "-"))
+                        notes.append(clean(r?.differences ?? ""))
+                        total += t
+                    }
+                    print("\(head) refFirst=true tiles=\(ratings.joined(separator: ",")) seconds=\(String(format: "%.1f", total)) obs=\(notes.joined(separator: " / "))")
+                default:
+                    for referenceFirst in [true, false] {
+                        let prompt = rater.anchoredPrompt(reference: ref.url, photo: s.url, referenceFirst: referenceFirst)
+                        let line: String
+                        switch variant {
+                        case .overall3:
+                            let (r, t, f) = await rater.ask(Overall3.self, instructions: AnchoredPrompts.overall3, prompt: prompt)
+                            line = "overall=\(r.map { String($0.overall) } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))"
+                        case .relative2Boost:
+                            let (r, t, f) = await rater.ask(RelativeSigns.self, instructions: AnchoredPrompts.relative2, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: referenceFirst))
+                            line = "levels=\(r.map { $0.levels.map(String.init).joined(separator: ",") } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))"
+                        case .rednessBoost:
+                            let (r, t, f) = await rater.ask(RednessOnly.self, instructions: AnchoredPrompts.rednessOnly, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: referenceFirst))
+                            line = "score=\(r.map { String($0.level) } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))"
+                        case .direct3:
+                            let (r, t, f) = await rater.ask(Direct3.self, instructions: AnchoredPrompts.direct3, prompt: prompt)
+                            line = "overall=\(r.map { String($0.overall) } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs="
+                        case .relative2:
+                            let (r, t, f) = await rater.ask(RelativeSigns.self, instructions: AnchoredPrompts.relative2, prompt: prompt)
+                            line = "levels=\(r.map { $0.levels.map(String.init).joined(separator: ",") } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))"
+                        case .checklist:
+                            let (r, t, f) = await rater.ask(Checklist.self, instructions: AnchoredPrompts.checklist, prompt: prompt)
+                            line = "signs=\(r.map { $0.signs.map { $0 ? "1" : "0" }.joined() } ?? "-") coverage=\(r?.coverage ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))"
+                        default:
+                            let (r, t, f) = await rater.ask(RelativeSigns.self, instructions: AnchoredPrompts.relative, prompt: prompt)
+                            line = "levels=\(r.map { $0.levels.map(String.init).joined(separator: ",") } ?? "-") seconds=\(String(format: "%.1f", t)) failure=\(f ?? "none") obs=\(clean(r?.differences ?? ""))"
+                        }
+                        print("\(head) refFirst=\(referenceFirst) \(line)")
+                    }
+                }
             }
         }
     }

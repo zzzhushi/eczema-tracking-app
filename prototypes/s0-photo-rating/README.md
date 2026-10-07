@@ -29,3 +29,14 @@ Select the iPhone, set a signing team, and run.
 - Clear scores below flare, comparing the sum of signs scored in both
 - Refusal rate (limit under 10%) and mean latency (about 10 seconds)
 - Whether a third image fits in the context window
+
+## Experiments from the Mac
+
+The probe can run without interaction and print one line per result to the console. With the iPhone connected:
+
+```
+xcrun devicectl device process launch --device <udid> --console --terminate-existing \
+  com.zzzhushi.exzema.s0probe -- -autorun -greedy -noscore -nocontext -variants=relative2BoostSampled
+```
+
+`-variants=` takes a comma-separated list of the cases in `Variant` (`Anchored.swift`). Each variant compares a photo with the clear-skin reference for its area: `face_clear` for the face and `hand_normal_patch` for hands. The experiment log, with the prompts and results, is on the S0 issue.
