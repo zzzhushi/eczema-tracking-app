@@ -7,6 +7,7 @@ The single home for every formula, threshold, and missing-data rule. Other docs 
 How a food's level for one food chemical is derived from its evidence. The catalog stores the level; the evidence says where it came from.
 
 - **Scale**: negligible, low, moderate, high, very high.
+- **Amines**: the sum of tyramine, putrescine, cadaverine, tryptamine, and β-phenylethylamine. Histamine is its own food chemical, and spermidine and spermine, which occur in all foods, are excluded.
 - **Normalization**: a source that rates on the same five levels is used as is. A coarser source maps through its chemical's table below and can yield only the levels its bands allow. Negligible requires a source that says so or a measured value near zero. A level is never inferred from a similar food.
 - **Basis**: a level describes the food as usually eaten, per typical serving: the FDA reference amount customarily consumed where one exists, otherwise a USDA household measure. A value measured dry, raw, or per 100 g is converted to that serving. Cooking loss that sources don't measure is not subtracted, so a converted level can be too high and never too low.
 - **Source strength**: measurement, then review, then guidance, then list. Only the strongest kind present decides the level; weaker evidence that disagrees goes in the note.
