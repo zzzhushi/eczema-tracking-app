@@ -15,7 +15,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 ## Key journeys
 
 1. **Log food**: the user types what they ate and glances at what the app matched, with unknown words kept.
-2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI rates the photo on six visible signs.
+2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI rates the photo on seven visible signs.
 3. **See what food does to the skin**: foods and food chemicals are ranked by how the user's ratings change after eating them (Release 1).
 4. **Investigate a flare**: the user sees what was different in the days before it, including sun, sweat, and new products.
 5. **Check before trying**: the user pastes a product's ingredients or picks a food and sees what their history and common triggers say.
@@ -64,7 +64,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 ### Photos and ratings
 
-- The AI scores six signs on 0–3 using a versioned rubric (scale source in [the analysis rules](analysis.md)); the user's look rating and the AI's are stored separately.
+- The AI scores seven signs on 0–3 using a versioned rubric (scale source in [the analysis rules](analysis.md)); the user's look rating and the AI's are stored separately.
 - Each area gets a reference photo of its best state, replaced only when the user confirms a better one (Release 3).
 
 ## Observability

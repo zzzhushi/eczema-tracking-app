@@ -37,7 +37,7 @@ Each chemical has one assessment: a result, plus the evidence behind it.
 
 ## Validation
 
-Tests load the whole dataset and check that IDs and aliases are unique, every enum decodes, every known result has evidence, every cited source exists, every food has every chemical and allergen field, and every rubric has the six signs with levels 0–3.
+Tests load the whole dataset and check that IDs and aliases are unique, every enum decodes, every known result has evidence, every cited source exists, every food has every chemical and allergen field, and every rubric has the seven signs with levels 0–3.
 
 ## Review
 

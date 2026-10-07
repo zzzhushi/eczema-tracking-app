@@ -71,6 +71,16 @@
         "2": "Visible moisture or thin crust",
         "3": "Weeping or thick crust"
       }
+    },
+    {
+      "id": "swelling",
+      "name": "Swelling",
+      "levels": {
+        "0": "No swelling; normal contours",
+        "1": "Slight puffiness, barely visible",
+        "2": "Clearly puffy, contours softened",
+        "3": "Marked swelling that distorts contours, such as narrowing an eyelid opening"
+      }
     }
   ],
   "sources": [
