@@ -25,7 +25,7 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 
 - **Hand-built histories and fixture stores** live in the repository.
 - **Real photos**: a small curated set kept in a local folder that git ignores, together with their manifest (file name, area, date, lighting, camera, the user's own ratings, and which pairs should score as clear versus flare) and raw evaluation reports. Only AI evaluations use photos, and they never run in CI, so committing them would gain nothing and would make them public permanently. The repository holds only an example manifest showing the format.
-- Raw health-derived labels (dates, ratings, per-photo scores) never go into the repository, PRs, issues, CI logs, or artifacts.
+- No image of the user, in any form (a photo, crop, thumbnail, screenshot, or rendering), ever goes into the repository, PRs, issues, CI logs, or artifacts. Ratings and scores per photo may be recorded there, labeled only by opaque IDs.
 - **Meal texts**: synthetic days written in the user's style, with the foods they should match, never copied from real logs.
 
 ## AI evaluations
@@ -38,7 +38,7 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 - Fix pass criteria before running, and state them per photo and per sign, not only as averages. Compare every result with a constant guess (the same number for every photo): a sign whose labeled photos all have one value can't be validated, and a result that doesn't beat the guess shows no skill.
 - Keep tuning photos apart from validation photos. Prompts, thresholds, and methods may change while tuning; a rating recipe counts as validated only when it passes unchanged on photos taken on other days that it was never tuned on.
 - Thresholds are set in the S0 issue and start provisional. Mac runs are for iteration; the S0 viability gate runs on the target iPhone.
-- Each run is saved locally as a report with its rating version. Only the S0 decision is committed, as an aggregated summary using opaque photo IDs.
+- Each run is saved locally as a report with its rating version. The S0 decision is committed as a summary using opaque photo IDs; raw reports stay local.
 
 ## Manual checks
 

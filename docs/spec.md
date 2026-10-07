@@ -15,7 +15,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 ## Key journeys
 
 1. **Log food**: the user types what they ate and glances at what the app matched, with unknown words kept.
-2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI gives an experimental second opinion on seven visible signs.
+2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI gives a second opinion on seven visible signs.
 3. **See what food does to the skin**: foods and food chemicals are ranked by how the user's ratings change after eating them (Release 1).
 4. **Investigate a flare**: the user sees what was different in the days before it, including sun, sweat, and new products.
 5. **Check before trying**: the user pastes a product's ingredients or picks a food and sees what their history and common triggers say.
@@ -41,7 +41,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 - Native iOS app on iOS 27, built with Xcode 27, for an iPhone 15 Pro or newer with Apple Intelligence enabled.
 - Personal use under a free developer account: reinstalled from Xcode every 7 days; data survives reinstalls as long as the bundle identifier and Apple ID stay the same.
-- No custom model training. Apple's on-device model handles language (splitting food text, explanations) and vision (an experimental second opinion on photos). Every conclusion comes from deterministic analysis over the user's own ratings and data and bundled reference data.
+- No custom model training. Apple's on-device model handles language (splitting food text, explanations) and vision (a second opinion on photos). Every conclusion comes from deterministic analysis over the user's ratings and data, and the AI's photo ratings once they are validated, and bundled reference data.
 
 ### Privacy boundary
 
@@ -64,7 +64,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 ### Photos and ratings
 
-- The user's own look and feel ratings are the measure: the analysis uses them. The AI's rating of a photo is an experimental second opinion, stored separately and shown beside the user's look rating. It joins the analysis only if it passes the promotion criteria in [the analysis rules](analysis.md) ([ADR 0002](adr/0002-user-rating-is-the-measure.md)).
+- The user's own look and feel ratings are the measure for now: the analysis uses them. The AI's rating of a photo is stored separately and shown beside the user's look rating while it is validated, and it joins the analysis once it passes the promotion criteria in [the analysis rules](analysis.md). The limit is data, not a known flaw ([ADR 0002](adr/0002-user-rating-is-the-measure.md)).
 - The AI rates seven signs on 0–3 using a versioned rubric (scale source in [the analysis rules](analysis.md)), relative to the area's reference photo. A sign the model can't rate reliably is measured in code from the photo or left to the user's rating; it isn't shown as an AI value.
 - Each area has a reference photo of its best state so far, which the AI rates against. The user can replace it at any time; the app proposing a better one comes later (Release 3).
 

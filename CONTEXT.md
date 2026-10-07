@@ -21,7 +21,7 @@ The user's 0–10 rating of how an area's skin feels: itch, burning, tightness.
 _Avoid_: Itch score, symptoms
 
 **Look**:
-A 0–10 rating of how an area's skin appears, given by the user. The AI's estimate from a photo is the skin score, not a look.
+A 0–10 rating of how an area's skin appears, given by the user. The AI's estimate from a photo is the skin score, which counts as a look only once it is validated.
 _Avoid_: Severity
 
 **Sign**:
@@ -29,7 +29,7 @@ One visible feature scored 0–3 on a photo: redness, dryness or flaking, bumps 
 _Avoid_: Symptom
 
 **Skin score**:
-The 1–10 indicator computed from a photo's sign scores: the AI's experimental second opinion, shown beside the user's look and not used by the analysis.
+The 1–10 indicator computed from a photo's sign scores: the AI's second opinion, shown beside the user's look and used by the analysis only once validated.
 _Avoid_: Severity score
 
 **Rating version**:
