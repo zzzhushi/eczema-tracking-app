@@ -2,13 +2,18 @@ import Foundation
 
 public struct Catalog: Sendable {
     public var manifest: CatalogManifest
-    public var sources: [String: Source]
+    public var sourceList: [Source]
     public var foods: [Food]
 
     public init(manifest: CatalogManifest, sources: [Source], foods: [Food]) {
         self.manifest = manifest
-        self.sources = Dictionary(sources.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
+        self.sourceList = sources
         self.foods = foods
+    }
+
+    /// Sources by ID. The first record wins when IDs repeat; `validate()` reports the repeat.
+    public var sources: [String: Source] {
+        Dictionary(sourceList.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
     }
 
     /// Reads the shared `sources.json` from `dataDirectory`, and `catalog/manifest.json` and every
@@ -34,15 +39,13 @@ public struct Catalog: Sendable {
 public enum LevelDerivation {
     /// Returns nil when there is no evidence to derive from.
     ///
-    /// Unconverted evidence outranks converted evidence; within a group the strongest source
-    /// kind decides. Levels within one step take the highest; a wider spread is a conflict.
-    public static func result(from evidence: [Evidence], sourceKinds: [String: SourceKind]) -> ChemicalResult? {
-        guard !evidence.isEmpty else { return nil }
-        let unconverted = evidence.filter { !$0.isConverted }
-        let pool = unconverted.isEmpty ? evidence : unconverted
-        let kinds = pool.compactMap { sourceKinds[$0.sourceId] }
-        guard let strongest = kinds.min() else { return nil }
-        let levels = pool.filter { sourceKinds[$0.sourceId] == strongest }.map(\.level)
+    /// Only the evidence with the closest match to the food and form counts, and within it the
+    /// strongest source kind. Levels within one step take the highest; a wider spread is a conflict.
+    public static func result(from evidence: [Evidence]) -> ChemicalResult? {
+        guard let closest = evidence.map(\.matchTier).min() else { return nil }
+        let nearest = evidence.filter { $0.matchTier == closest }
+        guard let strongest = nearest.map(\.kind).min() else { return nil }
+        let levels = nearest.filter { $0.kind == strongest }.map(\.level)
         guard let highest = levels.max(), let lowest = levels.min() else { return nil }
         let steps = ChemicalLevel.allCases.firstIndex(of: highest)! - ChemicalLevel.allCases.firstIndex(of: lowest)!
         return steps > 1 ? .unknown(.sourcesConflict) : .known(highest)
@@ -61,11 +64,13 @@ extension Catalog {
     public func validate() -> [CatalogIssue] {
         var issues: [CatalogIssue] = []
         func issue(_ food: String?, _ message: String) { issues.append(CatalogIssue(foodID: food, message: message)) }
-        let kinds = sources.compactMapValues(\.kind)
+        let index = sources
+
+        var seenSources = Set<String>()
+        for source in sourceList where !seenSources.insert(source.id).inserted { issue(nil, "duplicate source id \(source.id)") }
 
         var seenIDs = Set<String>()
         var aliasOwner: [String: String] = [:]
-        var citedSources = Set<String>()
 
         for food in foods {
             if !seenIDs.insert(food.id).inserted { issue(food.id, "duplicate id") }
@@ -76,19 +81,23 @@ extension Catalog {
             }
             if food.varieties.filter(\.isDefault).count > 1 { issue(food.id, "more than one default variety") }
 
+            if let serving = food.serving {
+                if serving.origin != .estimate {
+                    if serving.sourceId == nil || serving.locator == nil { issue(food.id, "serving needs a source and locator") }
+                }
+                for id in [serving.sourceId, serving.weightSourceId].compactMap({ $0 }) where index[id] == nil {
+                    issue(food.id, "serving cites unknown source \(id)")
+                }
+            }
+
             var anyKnown = false
             for chemical in FoodChemical.allCases {
                 guard let assessment = food.chemicals[chemical] else {
                     issue(food.id, "missing \(chemical.rawValue)")
                     continue
                 }
-                for evidence in assessment.evidence {
-                    citedSources.insert(evidence.sourceId)
-                    if sources[evidence.sourceId] == nil {
-                        issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
-                    } else if kinds[evidence.sourceId] == nil {
-                        issue(food.id, "\(chemical.rawValue) cites source \(evidence.sourceId) that has no kind")
-                    }
+                for evidence in assessment.evidence where index[evidence.sourceId] == nil {
+                    issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
                 }
                 switch assessment.result {
                 case .known:
@@ -99,14 +108,12 @@ extension Catalog {
                 case .unknown:
                     break
                 }
-                if let derived = LevelDerivation.result(from: assessment.evidence, sourceKinds: kinds), derived != assessment.result {
+                if let derived = LevelDerivation.result(from: assessment.evidence), derived != assessment.result {
                     issue(food.id, "\(chemical.rawValue) is \(assessment.result) but its evidence gives \(derived)")
                 }
             }
             if anyKnown && food.serving == nil { issue(food.id, "has known levels but no serving") }
         }
-
-        for id in kinds.keys where !citedSources.contains(id) { issue(nil, "source \(id) has a kind but no evidence cites it") }
         return issues.sorted { ($0.foodID ?? "", $0.message) < ($1.foodID ?? "", $1.message) }
     }
 }

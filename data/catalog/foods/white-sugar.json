@@ -12,7 +12,9 @@
   "serving": {
     "description": "8 g",
     "grams": 8,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Sugar: 8 g"
   },
   "chemicals": {
     "salicylates": {
@@ -25,18 +27,21 @@
           "sourceId": "salicylates-sjhc",
           "locator": "Sweets: White Sugar",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-mfm",
           "locator": "Sweeteners: White Sugar",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Sweets, white sugar",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -51,12 +56,14 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Sugar",
           "basis": "1 tsp, 0 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Sweeteners: Sugar, granulated",
           "basis": "1 tsp, 0.0 mg, directly measured",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -71,18 +78,21 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Sweets, sugar",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Sweets: Sugar",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Sweeteners: Sugar",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -97,6 +107,7 @@
           "sourceId": "sighi-foodlist",
           "locator": "Sweeteners: sugar (beet sugar, cane sugar)",
           "basis": "compatibility score 0",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -111,6 +122,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Sugars and syrups: Sugar white, brown, caster, pure icing",
           "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -126,6 +138,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Sweeteners: Sugar, white",
           "basis": "0.07 µg per 4 g, 71 samples; about 0.14 µg at 8 g",
+          "kind": "list",
           "level": "negligible"
         }
       ]

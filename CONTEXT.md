@@ -63,7 +63,7 @@ Something eaten, as identified in the food catalog.
 _Avoid_: Ingredient (reserved for products)
 
 **Food chemical**:
-One of the naturally occurring substances rated per food: salicylates, oxalates, amines, histamine, glutamates, nickel.
+One of the naturally occurring substances rated per food: salicylates, oxalates, amines, histamine, glutamates, nickel. Histamine is rated as histamine load, the tolerance score that also reflects liberators and enzyme blockers.
 _Avoid_: Compound, nutrient
 
 **Chemical level**:
@@ -87,7 +87,7 @@ A cited source and the place in it that supports a chemical level.
 _Avoid_: Reference, proof
 
 **Source kind**:
-How strongly a source supports a level, from measurement through review and guidance to list.
+How strongly one piece of evidence supports a level, from measurement through review and guidance to list; set on the evidence, not on the source.
 _Avoid_: Quality, grade
 
 **Allergen tag**:

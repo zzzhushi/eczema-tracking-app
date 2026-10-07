@@ -13,7 +13,9 @@
   "serving": {
     "description": "85 g",
     "grams": 85,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Tofu, tempeh: 85 g"
   },
   "chemicals": {
     "salicylates": {
@@ -26,12 +28,14 @@
           "sourceId": "salicylates-sjhc",
           "locator": "Dairy and soy: Tofu",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Dairy, soy and eggs, tofu",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -46,6 +50,7 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Meat Alternatives: Tofu",
           "basis": "3.5 oz, 13 mg (sheet serving); about 11 mg at 85 g",
+          "kind": "list",
           "level": "high",
           "note": "The sheet rates 3.5 oz as very high."
         },
@@ -53,6 +58,7 @@
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Beans and Lentils: Tofu, soft",
           "basis": "3.5 oz, 10.6 mg, directly measured; about 9.0 mg at 85 g",
+          "kind": "list",
           "level": "moderate"
         }
       ]
@@ -67,12 +73,14 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Dairy and soy, tofu",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Dairy Foods and Soy Products: Tofu",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -87,6 +95,7 @@
           "sourceId": "sighi-foodlist",
           "locator": "Legumes and soy: tofu",
           "basis": "compatibility score 2",
+          "kind": "list",
           "level": "high"
         }
       ]
@@ -101,6 +110,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Legumes and soy foods: Tofu plain, unflavoured, silken, soft, firm",
           "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -116,6 +126,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Legumes: Tofu",
           "basis": "101.99 µg per 85 g, 7 samples; about 102 µg at 85 g",
+          "kind": "list",
           "level": "very high"
         }
       ]

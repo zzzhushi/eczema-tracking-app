@@ -10,7 +10,12 @@
   "serving": {
     "description": "1 tbsp",
     "grams": 14,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Butter, margarine, oil, shortening: 1 tbsp (15 mL)",
+    "weightSourceId": "usda-fdc",
+    "weightLocator": "Oil, avocado (fdcId 173573): 1 tbsp = 14.0 g",
+    "note": "The FDA row gives no weight for oil."
   },
   "chemicals": {
     "salicylates": {
@@ -23,6 +28,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Fats and oils: Avocado oil",
           "basis": "overall Very High column, S and A symbols",
+          "kind": "list",
           "level": "very high"
         }
       ],
@@ -46,12 +52,14 @@
           "sourceId": "failsafe-dvd",
           "locator": "Fats and oils: Avocado oil",
           "basis": "overall Very High column, S and A symbols",
+          "kind": "list",
           "level": "very high"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Fats and oils: Avocado oil",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "very high"
         }
       ],
@@ -82,6 +90,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Fats and oils: Avocado oil",
           "basis": "0.64 µg per 10 g, 11 samples; about 0.9 µg at 14 g",
+          "kind": "list",
           "level": "negligible"
         }
       ]

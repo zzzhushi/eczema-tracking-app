@@ -10,7 +10,9 @@
   "serving": {
     "description": "85 g fresh",
     "grams": 85,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
   },
   "chemicals": {
     "salicylates": {
@@ -23,24 +25,28 @@
           "sourceId": "salicylates-rbh",
           "locator": "Vegetables: cabbage",
           "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Vegetables: Cabbage (green or white)",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-mfm",
           "locator": "Vegetables: Cabbage",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Vegetables, cabbage (green or white)",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -55,12 +61,14 @@
           "sourceId": "salgado-2023",
           "locator": "Table 5: cabbage, raw",
           "basis": "fresh weight, not detected",
+          "kind": "review",
           "level": "negligible"
         },
         {
           "sourceId": "salgado-2023",
           "locator": "Table 5: Savoy cabbage, boiled",
           "basis": "fresh weight, 3.5 mg per 100 g total; about 3.0 mg at 85 g",
+          "kind": "review",
           "level": "low",
           "note": "Savoy cabbage stands in for cooked green cabbage."
         },
@@ -68,12 +76,14 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Vegetables: Cabbage",
           "basis": "1/2 cup, 1 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Vegetables: Cabbage, boiled, drained, unsalted",
           "basis": "1/2 cup boiled, 1.4 mg, directly measured",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -88,18 +98,21 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Vegetables, cabbage",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Vegetables: Cabbage",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Vegetables: Cabbage",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -114,6 +127,7 @@
           "sourceId": "sighi-foodlist",
           "locator": "Vegetables: cabbage, green or white",
           "basis": "compatibility score 0",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -128,6 +142,7 @@
           "sourceId": "andeal-umami",
           "locator": "Table 1: Cabbage",
           "basis": "50 mg free glutamate per 100 g; about 42 mg at 85 g",
+          "kind": "guidance",
           "level": "low"
         }
       ]
@@ -142,12 +157,14 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Vegetables: Cabbage",
           "basis": "4.8 µg per 85 g, 59 samples; about 4.8 µg at 85 g",
+          "kind": "list",
           "level": "low"
         },
         {
           "sourceId": "rebelytics-nickel",
           "locator": "Vegetables: Cabbage, cooked",
           "basis": "3.62 µg per 130 g, 65 samples; about 2.4 µg at 85 g",
+          "kind": "list",
           "level": "low"
         }
       ]

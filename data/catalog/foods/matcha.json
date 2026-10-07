@@ -4,15 +4,15 @@
   "description": "Powdered green tea.",
   "aliases": [
     "matcha",
-    "matcha tea",
-    "matcha latte"
+    "matcha tea"
   ],
   "varieties": [],
   "allergens": [],
   "serving": {
     "description": "1 tsp powder",
     "grams": 2,
-    "origin": "usda-household"
+    "origin": "estimate",
+    "note": "No FDA or USDA reference amount exists; about 2 g is a typical teaspoon of matcha powder."
   },
   "chemicals": {
     "salicylates": {
@@ -25,24 +25,28 @@
           "sourceId": "salicylates-sjhc",
           "locator": "Beverages: all teas",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "high"
         },
         {
           "sourceId": "salicylates-mfm",
           "locator": "Beverages: All other teas",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "very high"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Beverages, tea",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "very high"
         },
         {
           "sourceId": "failsafe-dvd",
           "locator": "Drinks: Tea black, chai, fennel, green, herbal, matcha, oolong, peppermint, white",
           "basis": "overall Very High column, S symbol",
+          "kind": "list",
           "level": "very high"
         }
       ],
@@ -66,18 +70,21 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Beverages, tea",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Beverages: Tea",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Beverages: Tea",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ],
@@ -92,8 +99,12 @@
         {
           "sourceId": "sighi-foodlist",
           "locator": "Tea: green tea",
-          "basis": "compatibility score 1 (markers: B)",
+          "basis": "compatibility score 1",
+          "kind": "list",
           "level": "moderate",
+          "markers": [
+            "B"
+          ],
           "note": "B marks a blocker of diamine oxidase."
         }
       ],
@@ -109,8 +120,9 @@
           "sourceId": "andeal-umami",
           "locator": "Table 1: Green tea",
           "basis": "668 mg free glutamate per 100 g; about 13 mg at 2 g",
+          "kind": "guidance",
           "level": "negligible",
-          "converted": true,
+          "formMatch": "converted",
           "note": "The figure is probably for dried leaf; matcha powder is not listed."
         }
       ]
@@ -125,8 +137,9 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Beverages: Green tea, leaves",
           "basis": "18.09 µg per 3 g, 4 samples; about 12 µg at 2 g",
+          "kind": "list",
           "level": "moderate",
-          "converted": true,
+          "formMatch": "converted",
           "note": "Matcha is not listed; whole green tea leaves stand in because the leaf is consumed."
         }
       ]

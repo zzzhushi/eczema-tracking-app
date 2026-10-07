@@ -35,7 +35,9 @@
   "serving": {
     "description": "85 g cooked",
     "grams": 85,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked"
   },
   "chemicals": {
     "salicylates": {
@@ -48,6 +50,7 @@
           "sourceId": "keszycka-2021",
           "locator": "2.3. Dietary Intervention: salicylate-free products",
           "basis": "diet instruction, no measured value",
+          "kind": "guidance",
           "level": "negligible",
           "note": "Lists fish generically."
         },
@@ -55,18 +58,21 @@
           "sourceId": "salicylates-rbh",
           "locator": "Meat, seafood, milk and eggs: fish",
           "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Meat, fish, poultry: Fish",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Meat, Fish, Poultry, fish",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -81,42 +87,49 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Fish: Cod, pacific",
           "basis": "3 oz or 1 fillet, 0 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "uchicago-oxalate",
           "locator": "Fish: Haddock",
           "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "uchicago-oxalate",
           "locator": "Fish: Pollock",
           "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Cod, Atlantic and Pacific, dry heat cooked",
           "basis": "4 oz, 0.0 mg, directly measured",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Haddock, dry heat cooked",
           "basis": "4 oz, 0.1 mg, directly measured",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Pollock, Atlantic, dry heat cooked",
           "basis": "4 oz, 0.0 mg, directly measured",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Tilapia, dry heat cooked",
           "basis": "4 oz, 0.0 mg",
+          "kind": "list",
           "level": "negligible"
         }
       ],
@@ -132,12 +145,14 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Fish (fresh, white)",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Meat, Chicken, Fish and Eggs: Fish (white meat)",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "low",
           "note": "Buy fresh and eat within two days."
         },
@@ -145,6 +160,7 @@
           "sourceId": "amines-wellington",
           "locator": "Meat: White Fish",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -159,15 +175,25 @@
         {
           "sourceId": "sighi-foodlist",
           "locator": "Fish: fish (freshly caught or frozen)",
-          "basis": "compatibility score 0 (markers: H! A)",
-          "level": "negligible"
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "H!",
+            "A"
+          ]
         },
         {
           "sourceId": "sighi-foodlist",
           "locator": "Fish: fish (in the shop in the cooling rack or on ice)",
-          "basis": "compatibility score 3 (markers: H! A)",
+          "basis": "compatibility score 3",
+          "kind": "list",
           "level": "very high",
-          "converted": true,
+          "formMatch": "converted",
+          "markers": [
+            "H!",
+            "A"
+          ],
           "note": "Describes fish that has aged on ice; the Not fresh meal label covers aged fish."
         }
       ],
@@ -183,12 +209,14 @@
           "sourceId": "fsanz-msg-2003",
           "locator": "Table 1: Cod",
           "basis": "9 mg free glutamate per 100 g; about 7.7 mg at 85 g",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "andeal-umami",
           "locator": "Table 1: Cod",
           "basis": "44 mg free glutamate per 100 g; about 37 mg at 85 g",
+          "kind": "guidance",
           "level": "low"
         }
       ],
@@ -204,6 +232,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Fish: Fish, cooked",
           "basis": "5.25 µg per 100 g, 389 samples; about 4.5 µg at 85 g",
+          "kind": "list",
           "level": "low",
           "note": "The source reports no difference between species."
         }

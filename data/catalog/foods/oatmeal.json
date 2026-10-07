@@ -25,9 +25,12 @@
   ],
   "allergens": [],
   "serving": {
-    "description": "1 cup prepared",
-    "grams": 234,
-    "origin": "fda-racc"
+    "description": "1 cup prepared (40 g dry)",
+    "grams": 40,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Breakfast cereals (hot cereal type): 1 cup prepared; 40 g plain dry cereal",
+    "note": "Grams are the dry weight."
   },
   "chemicals": {
     "salicylates": {
@@ -40,24 +43,28 @@
           "sourceId": "salicylates-rbh",
           "locator": "Cereals: oats",
           "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Grains: Oats (plain)",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Grains, oats",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Grains, oats, rolled",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -73,6 +80,7 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Cereals: Oatmeal Cereal",
           "basis": "1 cup, 0 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible",
           "note": "Oat variety not specified."
         },
@@ -80,6 +88,7 @@
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Hot cereal: Oats, regular quick instant, cooked with water, no salt",
           "basis": "1 cup cooked, 0.0 mg",
+          "kind": "list",
           "level": "negligible",
           "note": "Rolled and instant; steel-cut not listed."
         }
@@ -95,12 +104,14 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Grains, rolled oats",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Grains: Oats",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         }
       ]
@@ -115,6 +126,7 @@
           "sourceId": "sighi-foodlist",
           "locator": "Cereals: oats, oat flakes, oatmeal",
           "basis": "compatibility score 0",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -129,6 +141,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Cereals: Oats, Oat Milk",
           "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -144,6 +157,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Grains: Oats, raw",
           "basis": "53.62 µg per 40 g, 13 samples; about 54 µg at 40 g",
+          "kind": "list",
           "level": "very high",
           "note": "Serving is one cup prepared, about 40 g dry."
         }

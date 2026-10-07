@@ -65,15 +65,32 @@ extension ChemicalResult: Codable {
     }
 }
 
+/// How closely the evidence's food matches the catalog food.
+public enum FoodMatch: String, Codable, Sendable {
+    case exact, related
+}
+
+/// Whether the evidence measured the form the catalog entry describes.
+public enum FormMatch: String, Codable, Sendable {
+    case exact, converted
+}
+
 public struct Evidence: Codable, Equatable, Sendable {
     public var sourceId: String
     public var locator: String
     public var basis: String
+    public var kind: SourceKind
     public var level: ChemicalLevel
-    public var converted: Bool?
+    public var foodMatch: FoodMatch?
+    public var formMatch: FormMatch?
+    public var markers: [String]?
     public var note: String?
 
-    public var isConverted: Bool { converted ?? false }
+    /// 0 for the exact food in the exact form, 1 for a converted form, 2 for a related food.
+    public var matchTier: Int {
+        if foodMatch == .related { return 2 }
+        return formMatch == .converted ? 1 : 0
+    }
 }
 
 public struct ChemicalAssessment: Codable, Equatable, Sendable {
@@ -85,12 +102,18 @@ public struct ChemicalAssessment: Codable, Equatable, Sendable {
 public enum ServingOrigin: String, Codable, Sendable {
     case fdaRacc = "fda-racc"
     case usdaHousehold = "usda-household"
+    case estimate
 }
 
 public struct Serving: Codable, Equatable, Sendable {
     public var description: String
     public var grams: Double
     public var origin: ServingOrigin
+    public var sourceId: String?
+    public var locator: String?
+    public var weightSourceId: String?
+    public var weightLocator: String?
+    public var note: String?
 }
 
 public struct Variety: Codable, Equatable, Sendable {
@@ -100,10 +123,9 @@ public struct Variety: Codable, Equatable, Sendable {
     public var isDefault: Bool { `default` ?? false }
 }
 
-/// A bibliography entry. `kind` is present only on sources the catalog's evidence cites.
+/// A bibliography entry; how strongly it supports a claim is recorded on the evidence that cites it.
 public struct Source: Codable, Equatable, Sendable {
     public var id: String
-    public var kind: SourceKind?
     public var type: String
     public var title: String
     public var authors: [String]?

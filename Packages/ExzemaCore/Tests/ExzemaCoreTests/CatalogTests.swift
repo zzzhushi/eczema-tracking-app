@@ -6,11 +6,11 @@ private let dataDirectory = URL(fileURLWithPath: #filePath)
     .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
     .appending(path: "data", directoryHint: .isDirectory)
 
-private func evidence(_ source: String, _ level: ChemicalLevel, converted: Bool = false) -> Evidence {
-    Evidence(sourceId: source, locator: "row", basis: "basis", level: level, converted: converted ? true : nil, note: nil)
+private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatch? = nil, form: FormMatch? = nil,
+                      source: String = "s") -> Evidence {
+    Evidence(sourceId: source, locator: "row", basis: "basis", kind: kind, level: level,
+             foodMatch: food, formMatch: form, markers: nil, note: nil)
 }
-
-private let kinds: [String: SourceKind] = ["m": .measurement, "r": .review, "g": .guidance, "l": .list]
 
 @Suite struct CatalogDataTests {
     @Test func shippedCatalogLoadsAndHasNoIssues() throws {
@@ -28,37 +28,41 @@ private let kinds: [String: SourceKind] = ["m": .measurement, "r": .review, "g":
 
 @Suite struct LevelDerivationTests {
     @Test func levelsOneStepApartTakeTheHigher() {
-        let result = LevelDerivation.result(from: [evidence("g", .low), evidence("g", .moderate)], sourceKinds: kinds)
-        #expect(result == .known(.moderate))
+        #expect(LevelDerivation.result(from: [evidence(.guidance, .low), evidence(.guidance, .moderate)]) == .known(.moderate))
     }
 
     @Test func levelsMoreThanOneStepApartConflict() {
-        let result = LevelDerivation.result(from: [evidence("g", .negligible), evidence("g", .moderate)], sourceKinds: kinds)
+        let result = LevelDerivation.result(from: [evidence(.guidance, .negligible), evidence(.guidance, .moderate)])
         #expect(result == .unknown(.sourcesConflict))
     }
 
     @Test func strongerSourceKindDecidesAndWeakerDisagreementIsIgnored() {
-        let result = LevelDerivation.result(from: [evidence("m", .low), evidence("l", .veryHigh)], sourceKinds: kinds)
+        #expect(LevelDerivation.result(from: [evidence(.measurement, .low), evidence(.list, .veryHigh)]) == .known(.low))
+    }
+
+    @Test func exactFormOutranksConvertedFormEvenFromAWeakerKind() {
+        let result = LevelDerivation.result(from: [evidence(.review, .moderate, form: .converted), evidence(.list, .low)])
         #expect(result == .known(.low))
     }
 
-    @Test func unconvertedEvidenceOutranksConvertedEvidenceOfAStrongerKind() {
-        let result = LevelDerivation.result(
-            from: [evidence("r", .moderate, converted: true), evidence("l", .low)], sourceKinds: kinds)
+    @Test func convertedFormOutranksARelatedFood() {
+        let result = LevelDerivation.result(from: [evidence(.list, .high, food: .related), evidence(.list, .low, form: .converted)])
         #expect(result == .known(.low))
     }
 
-    @Test func convertedEvidenceCountsWhenItIsAllThereIs() {
-        let result = LevelDerivation.result(from: [evidence("l", .high, converted: true)], sourceKinds: kinds)
-        #expect(result == .known(.high))
+    @Test func relatedFoodCountsWhenItIsAllThereIs() {
+        #expect(LevelDerivation.result(from: [evidence(.list, .high, food: .related)]) == .known(.high))
     }
 
     @Test func noEvidenceDerivesNothing() {
-        #expect(LevelDerivation.result(from: [], sourceKinds: kinds) == nil)
+        #expect(LevelDerivation.result(from: []) == nil)
     }
 }
 
 @Suite struct CatalogValidationTests {
+    private let racc = Serving(description: "1 cup", grams: 100, origin: .fdaRacc, sourceId: "s", locator: "row",
+                               weightSourceId: nil, weightLocator: nil, note: nil)
+
     private func food(id: String = "rice", aliases: [String] = ["rice"], result: ChemicalResult = .unknown(.notYetResearched),
                       evidence: [Evidence] = [], serving: Serving? = nil) -> Food {
         let assessment = ChemicalAssessment(result: result, evidence: evidence, note: nil)
@@ -66,10 +70,13 @@ private let kinds: [String: SourceKind] = ["m": .measurement, "r": .review, "g":
                     chemicals: Dictionary(uniqueKeysWithValues: FoodChemical.allCases.map { ($0, assessment) }))
     }
 
-    private func catalog(_ foods: [Food]) -> Catalog {
-        let source = Source(id: "l", kind: .list, type: "web-page", title: "t", authors: nil, journal: nil, publisher: nil,
-                            year: nil, doi: nil, url: nil, accessedOn: "2026-10-07", note: nil)
-        return Catalog(manifest: CatalogManifest(schemaVersion: 1, catalogVersion: 1), sources: [source], foods: foods)
+    private func source(_ id: String) -> Source {
+        Source(id: id, type: "web-page", title: "t", authors: nil, journal: nil, publisher: nil, year: nil, doi: nil,
+               url: nil, accessedOn: "2026-10-07", note: nil)
+    }
+
+    private func catalog(_ foods: [Food], sources: [Source]? = nil) -> Catalog {
+        Catalog(manifest: CatalogManifest(schemaVersion: 2, catalogVersion: 1), sources: sources ?? [source("s")], foods: foods)
     }
 
     @Test func aliasSharedByTwoFoodsIsReported() {
@@ -78,29 +85,48 @@ private let kinds: [String: SourceKind] = ["m": .measurement, "r": .review, "g":
     }
 
     @Test func uppercaseAliasIsReported() {
-        let issues = catalog([food(aliases: ["Rice"])]).validate()
-        #expect(issues.contains { $0.message.contains("not lowercase") })
+        #expect(catalog([food(aliases: ["Rice"])]).validate().contains { $0.message.contains("not lowercase") })
     }
 
     @Test func knownLevelWithoutEvidenceIsReported() {
-        let issues = catalog([food(result: .known(.low))]).validate()
-        #expect(issues.contains { $0.message.contains("known without evidence") })
+        #expect(catalog([food(result: .known(.low))]).validate().contains { $0.message.contains("known without evidence") })
     }
 
     @Test func knownLevelNeedsAServing() {
-        let e = [evidence("l", .low)]
-        let issues = catalog([food(result: .known(.low), evidence: e)]).validate()
+        let issues = catalog([food(result: .known(.low), evidence: [evidence(.list, .low)])]).validate()
         #expect(issues.contains { $0.message.contains("no serving") })
     }
 
     @Test func resultThatContradictsItsEvidenceIsReported() {
-        let serving = Serving(description: "1 cup", grams: 100, origin: .fdaRacc)
-        let issues = catalog([food(result: .known(.high), evidence: [evidence("l", .low)], serving: serving)]).validate()
+        let issues = catalog([food(result: .known(.high), evidence: [evidence(.list, .low)], serving: racc)]).validate()
         #expect(issues.contains { $0.message.contains("but its evidence gives") })
     }
 
     @Test func evidenceCitingAnUnknownSourceIsReported() {
-        let issues = catalog([food(evidence: [evidence("missing", .low)])]).validate()
+        let issues = catalog([food(evidence: [evidence(.list, .low, source: "missing")])]).validate()
         #expect(issues.contains { $0.message.contains("unknown source missing") })
+    }
+
+    @Test func duplicateSourceIDsAreReported() {
+        let issues = catalog([food()], sources: [source("s"), source("s")]).validate()
+        #expect(issues.contains { $0.message.contains("duplicate source id s") })
+    }
+
+    @Test func servingFromAReferenceNeedsASourceAndLocator() {
+        let bare = Serving(description: "1 cup", grams: 100, origin: .fdaRacc, sourceId: nil, locator: nil,
+                           weightSourceId: nil, weightLocator: nil, note: nil)
+        #expect(catalog([food(serving: bare)]).validate().contains { $0.message.contains("serving needs a source") })
+    }
+
+    @Test func estimatedServingNeedsNoSource() {
+        let estimate = Serving(description: "1 tsp", grams: 2, origin: .estimate, sourceId: nil, locator: nil,
+                               weightSourceId: nil, weightLocator: nil, note: "typical")
+        #expect(catalog([food(serving: estimate)]).validate().isEmpty)
+    }
+
+    @Test func servingCitingAnUnknownWeightSourceIsReported() {
+        var serving = racc
+        serving.weightSourceId = "missing"
+        #expect(catalog([food(serving: serving)]).validate().contains { $0.message.contains("serving cites unknown source missing") })
     }
 }

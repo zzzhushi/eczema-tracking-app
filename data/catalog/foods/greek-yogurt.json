@@ -15,7 +15,9 @@
   "serving": {
     "description": "170 g",
     "grams": 170,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Yogurt: 170 g"
   },
   "chemicals": {
     "salicylates": {
@@ -28,18 +30,21 @@
           "sourceId": "salicylates-rbh",
           "locator": "Meat, seafood, milk and eggs: plain yoghurt",
           "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Dairy: Yoghurt (natural)",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Dairy, yoghurt (natural)",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -54,6 +59,7 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Yogurt Products: Plain Yogurt",
           "basis": "1 cup, 2 mg (sheet serving); about 1.4 mg at 170 g",
+          "kind": "list",
           "level": "negligible",
           "note": "Nonfat Greek style not listed separately."
         },
@@ -61,6 +67,7 @@
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Yogurt: Greek, plain, nonfat/lowfat",
           "basis": "5.3 oz, 0.6 mg; about 0.7 mg at 170 g",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -75,18 +82,21 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Dairy and soy, yoghurt (plain)",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Dairy Foods and Soy Products: Yoghurt (plain)",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Dairy and Soy Products: Plain Yoghurt",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         }
       ]
@@ -100,8 +110,13 @@
         {
           "sourceId": "sighi-foodlist",
           "locator": "Dairy: yoghurt (natural yoghurt)",
-          "basis": "compatibility score 1 (markers: H ?)",
+          "basis": "compatibility score 1",
+          "kind": "list",
           "level": "moderate",
+          "markers": [
+            "H",
+            "?"
+          ],
           "note": "Greek style is not listed; natural yoghurt stands in. Varies by product."
         }
       ]
@@ -116,6 +131,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Dairy foods: Yoghurt natural, Greek",
           "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -131,6 +147,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Dairy: Yogurt",
           "basis": "4.01 µg per 175 g, 139 samples; about 3.9 µg at 170 g",
+          "kind": "list",
           "level": "low"
         }
       ]

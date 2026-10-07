@@ -13,7 +13,10 @@
   "serving": {
     "description": "85 g fresh",
     "grams": 85,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen",
+    "note": "Treated as a vegetable, not the 4 g garnish row, because garlic chives are eaten as a vegetable."
   },
   "chemicals": {
     "salicylates": {
@@ -26,6 +29,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Garnishes: Chives, Garlic chives",
           "basis": "overall Low column, no salicylate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -41,6 +45,7 @@
           "sourceId": "salgado-2023",
           "locator": "Table 5: 'leek' (Allium tuberosum), raw",
           "basis": "fresh weight, 48.6 mg per 100 g total, 45.1 soluble; about 41 mg at 85 g",
+          "kind": "review",
           "level": "very high",
           "note": "The review labels this row leek; the species is garlic chives. One survey of Korean vegetables."
         }
@@ -57,6 +62,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Garnishes: Chives, Garlic chives",
           "basis": "overall Low column, no amine symbol",
+          "kind": "list",
           "level": "low"
         }
       ]
@@ -71,8 +77,9 @@
           "sourceId": "sighi-foodlist",
           "locator": "Vegetables: chives",
           "basis": "compatibility score 1",
+          "kind": "list",
           "level": "moderate",
-          "converted": true,
+          "foodMatch": "related",
           "note": "Common chives stand in for garlic chives. Incompatible in large quantities."
         }
       ],
@@ -88,6 +95,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Garnishes: Chives, Garlic chives",
           "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -103,8 +111,9 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Herbs: Chives, 1.5 g",
           "basis": "0.75 µg per 1.5 g, 2 samples; about 43 µg at 85 g",
+          "kind": "list",
           "level": "high",
-          "converted": true,
+          "foodMatch": "related",
           "note": "Common chives stand in for garlic chives. Two samples only."
         }
       ],

@@ -42,27 +42,34 @@ CHEMICALS = ["salicylates", "oxalates", "amines", "histamine", "glutamates", "ni
 STATUS_SHORT = {"sources-conflict": "conflict", "researched-no-data": "no data", "not-yet-researched": "not yet"}
 
 
-def catalog_cell(assessment, kinds):
+def match_tier(evidence):
+    """0 for the exact food in the exact form, 1 for a converted form, 2 for a related food."""
+    if evidence.get("foodMatch") == "related":
+        return 2
+    return 1 if evidence.get("formMatch") == "converted" else 0
+
+
+def catalog_cell(assessment):
     result = assessment["result"]
     if result["kind"] == "unknown":
         return STATUS_SHORT[result["reason"]]
     evidence = assessment["evidence"]
-    pool = [e for e in evidence if not e.get("converted")] or evidence
-    strongest = min(KIND_ORDER.index(kinds[e["sourceId"]]) for e in pool)
-    stand_in = "*" if all(e.get("converted") for e in evidence) else ""
+    closest = min(match_tier(e) for e in evidence)
+    deciding = [e for e in evidence if match_tier(e) == closest]
+    strongest = min(KIND_ORDER.index(e["kind"]) for e in deciding)
+    stand_in = "*" if closest else ""
     return f"{LEVEL_SHORT[result['level']]} {KIND_CODE[KIND_ORDER[strongest]]}{stand_in}"
 
 
-def catalog_table(directory, sources):
-    kinds = {s["id"]: s["kind"] for s in sources if "kind" in s}
+def catalog_table(directory):
     foods = [json.load(open(path)) for path in sorted(glob.glob(os.path.join(directory, "foods", "*.json")))]
     lines = ["| Food | Serving | " + " | ".join(c.capitalize() for c in CHEMICALS) + " |", "|---|---|" + "---|" * len(CHEMICALS)]
     for food in foods:
         serving = food["serving"]["description"] if food.get("serving") else "none"
-        cells = " | ".join(catalog_cell(food["chemicals"][c], kinds) for c in CHEMICALS)
+        cells = " | ".join(catalog_cell(food["chemicals"][c]) for c in CHEMICALS)
         lines.append(f"| {food['name']} | {serving} | {cells} |")
-    lines += ["", "The letter after each level is the strongest source behind it: M measurement, R review, G guidance, L list.",
-              "An asterisk means the level rests only on stand-in or converted evidence."]
+    lines += ["", "The letter after each level is the strongest evidence behind it: M measurement, R review, G guidance, L list.",
+              "An asterisk means the deciding evidence is a converted form or a related food."]
     return "\n".join(lines)
 
 
@@ -70,7 +77,7 @@ if __name__ == "__main__":
     path = sys.argv[1]
     sources = json.load(open("data/sources.json"))
     if os.path.isdir(path):
-        print(catalog_table(path, sources))
+        print(catalog_table(path))
         sys.exit(0)
     data = json.load(open(path))
     if "signs" in data:

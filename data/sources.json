@@ -145,7 +145,6 @@
   {
     "id": "amines-coleman",
     "type": "web-page",
-    "kind": "list",
     "title": "MMC Fact Sheet 907: Amine content of foods",
     "authors": [
       "Richard J Coleman"
@@ -157,7 +156,6 @@
   {
     "id": "amines-wellington",
     "type": "web-page",
-    "kind": "list",
     "title": "Amine Food List",
     "publisher": "Total Health Chiropractic, Wellington",
     "url": "https://www.wellingtonchiropractor.co.nz/amine-food-list/",
@@ -166,7 +164,6 @@
   {
     "id": "andeal-umami",
     "type": "report",
-    "kind": "guidance",
     "title": "Umami in Foods: What is Umami and how do I Explain It? (free glutamic acid table)",
     "authors": [
       "Kristi Crowe"
@@ -178,7 +175,6 @@
   {
     "id": "failsafe-dvd",
     "type": "web-page",
-    "kind": "list",
     "title": "Food Chemical List (FAILSAFE diet; overall Low to Very High columns with S, A, G symbols)",
     "publisher": "Diet v.s. Disease",
     "url": "https://www.dietvsdisease.org/wp-content/uploads/2021/10/Food-Chemical-Intolerance-List-Failsafe-Diet.pdf",
@@ -187,7 +183,6 @@
   {
     "id": "fsanz-msg-2003",
     "type": "report",
-    "kind": "guidance",
     "title": "Monosodium Glutamate: A Safety Assessment, Technical Report Series No. 20",
     "publisher": "Food Standards Australia New Zealand, June 2003",
     "url": "https://www.foodstandards.gov.au/sites/default/files/publications/Documents/MSG%20Technical%20Report.pdf",
@@ -196,7 +191,6 @@
   {
     "id": "harvard-oxalate-renNu",
     "type": "web-page",
-    "kind": "list",
     "title": "Harvard Oxalate Table 2023",
     "publisher": "Ren-Nu (reproduction of the Harvard oxalate table; marks directly measured values)",
     "url": "https://ren-nu.org/harvard-oxalate-table-2023/",
@@ -205,7 +199,6 @@
   {
     "id": "keszycka-2021",
     "type": "journal-article",
-    "kind": "guidance",
     "title": "Effectiveness of Personalized Low Salicylate Diet in the Management of Salicylates Hypersensitive Patients: Interventional Study",
     "authors": [
       "Paulina K Kęszycka",
@@ -221,7 +214,6 @@
   {
     "id": "meat-chilled-2018",
     "type": "journal-article",
-    "kind": "measurement",
     "title": "Quality Assessment of Fresh Meat from Several Species Based on Free Amino Acid and Biogenic Amine Contents during Chilled Storage",
     "year": 2018,
     "journal": "Foods",
@@ -232,7 +224,6 @@
   {
     "id": "nat-food-lists",
     "type": "web-page",
-    "kind": "list",
     "title": "Salicylates, Amines and Glutamates in food (five-level food lists)",
     "publisher": "Natural Allergy Treatment (Health & Wellness Australia)",
     "url": "https://naturalallergytreatment.com.au/wp-content/uploads/2023/08/Salicylates-Amines-and-Glutamates-merged.pdf",
@@ -241,7 +232,6 @@
   {
     "id": "rebelytics-nickel",
     "type": "database",
-    "kind": "list",
     "title": "Nickel in Foods: Data-Based Advice (summary tables, unweighted, version 9.1.1, September 2025)",
     "publisher": "Rebelytics",
     "url": "https://rebelytics.ca/nickelinfoods.html",
@@ -250,7 +240,6 @@
   {
     "id": "salgado-2023",
     "type": "journal-article",
-    "kind": "review",
     "title": "Oxalate in Foods: Extraction Conditions, Analytical Methods, Occurrence, and Health Implications",
     "authors": [
       "Neuza Salgado",
@@ -268,7 +257,6 @@
   {
     "id": "salicylates-mfm",
     "type": "web-page",
-    "kind": "list",
     "title": "Eat: Salicylates in foods fact sheet (five-level)",
     "publisher": "Melbourne Functional Medicine, 2021",
     "url": "https://optimise.mfm.au/wp-content/uploads/documents/Eat-Salicylates-in-foods-Fact-Sheet.pdf",
@@ -277,7 +265,6 @@
   {
     "id": "salicylates-rbh",
     "type": "web-page",
-    "kind": "guidance",
     "title": "Salicylate sensitivity (patient leaflet; per-portion bands: low 0.01-0.09, medium 0.1-0.5, high over 0.5 mg)",
     "publisher": "Royal Berkshire NHS Foundation Trust, ENT, September 2024",
     "url": "https://www.royalberkshire.nhs.uk/media/epcpx1bo/salicylate-sensitivity_sep24.pdf",
@@ -286,7 +273,6 @@
   {
     "id": "salicylates-sjhc",
     "type": "web-page",
-    "kind": "guidance",
     "title": "Salicylate-Free Diet Food Guide (five-level patient food guide)",
     "publisher": "St. Joseph's Health Care London",
     "url": "https://www.sjhc.london.on.ca/media/2890/download",
@@ -295,7 +281,6 @@
   {
     "id": "sighi-foodlist",
     "type": "web-page",
-    "kind": "list",
     "title": "Food Compatibility List, histamine, alphabetical with categories (as of 2024-08-29)",
     "publisher": "Swiss Interest Group Histamine Intolerance (SIGHI)",
     "url": "https://www.mastzellaktivierung.info/downloads/foodlist/SIGHI-FoodList_EN_Histamin_alphabetisch_inKategorien.pdf",
@@ -304,7 +289,6 @@
   {
     "id": "uchicago-oxalate",
     "type": "web-page",
-    "kind": "list",
     "title": "Updated table of oxalate foods",
     "authors": [
       "Fred Coe",
@@ -312,6 +296,22 @@
     ],
     "publisher": "University of Chicago Kidney Stones Program",
     "url": "https://kidneystones.uchicago.edu/how-to-eat-a-low-oxalate-diet/",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "fda-21cfr101-12",
+    "type": "regulation",
+    "title": "21 CFR 101.12: Reference amounts customarily consumed per eating occasion",
+    "publisher": "U.S. Food and Drug Administration, Code of Federal Regulations",
+    "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-101/subpart-A/section-101.12",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "usda-fdc",
+    "type": "database",
+    "title": "FoodData Central, SR Legacy household measures",
+    "publisher": "U.S. Department of Agriculture",
+    "url": "https://fdc.nal.usda.gov/",
     "accessedOn": "2026-10-07"
   }
 ]

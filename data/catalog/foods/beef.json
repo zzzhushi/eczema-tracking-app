@@ -27,7 +27,10 @@
   "serving": {
     "description": "85 g cooked",
     "grams": 85,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
   },
   "chemicals": {
     "salicylates": {
@@ -40,18 +43,21 @@
           "sourceId": "salicylates-rbh",
           "locator": "Meat, seafood, milk and eggs: fresh meat",
           "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Meat, fish, poultry: Beef",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Meat, Fish, Poultry, beef / veal",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -66,6 +72,7 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Meats: Ground Beef",
           "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible",
           "note": "Only ground beef is listed."
         }
@@ -81,12 +88,14 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Beef",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Meat, Chicken, Fish and Eggs: Beef",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "low",
           "note": "Buy fresh and eat within two days."
         },
@@ -94,6 +103,7 @@
           "sourceId": "amines-wellington",
           "locator": "Meat: Beef (fresh)",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -108,8 +118,12 @@
         {
           "sourceId": "sighi-foodlist",
           "locator": "Meat: beef (fresh)",
-          "basis": "compatibility score 0 (markers: H!)",
+          "basis": "compatibility score 0",
+          "kind": "list",
           "level": "negligible",
+          "markers": [
+            "H!"
+          ],
           "note": "H! marks highly perishable food with rapid histamine formation."
         }
       ],
@@ -125,6 +139,7 @@
           "sourceId": "meat-chilled-2018",
           "locator": "Table 3: Beef leg, glutamic acid, day 0",
           "basis": "4.4 mg free glutamate per 100 g; about 3.8 mg at 85 g",
+          "kind": "measurement",
           "level": "negligible",
           "note": "Free glutamate in chilled beef leg rises to 65 mg per 100 g by day 10."
         },
@@ -132,12 +147,14 @@
           "sourceId": "fsanz-msg-2003",
           "locator": "Table 1: Beef",
           "basis": "33 mg free glutamate per 100 g; about 28 mg at 85 g",
+          "kind": "guidance",
           "level": "low"
         },
         {
           "sourceId": "andeal-umami",
           "locator": "Table 1: Beef",
           "basis": "10 mg free glutamate per 100 g; about 8.5 mg at 85 g",
+          "kind": "guidance",
           "level": "negligible"
         }
       ]
@@ -152,6 +169,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Meat: Beef, cooked",
           "basis": "6.92 µg per 100 g, 192 samples; about 5.9 µg at 85 g",
+          "kind": "list",
           "level": "low",
           "note": "Cooked ground beef and pork averages about 18 µg per 100 g and is not used."
         }

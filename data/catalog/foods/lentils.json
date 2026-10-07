@@ -23,9 +23,12 @@
   ],
   "allergens": [],
   "serving": {
-    "description": "35 g dry",
+    "description": "35 g dry (about 90 g cooked)",
     "grams": 35,
-    "origin": "fda-racc"
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Beans, plain or in sauce: 90 g prepared; 35 g dry",
+    "note": "Grams are the dry weight."
   },
   "chemicals": {
     "salicylates": {
@@ -38,30 +41,35 @@
           "sourceId": "salicylates-sjhc",
           "locator": "Legumes: Lentils (brown)",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Legumes: Lentils (red)",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-mfm",
           "locator": "Vegetables: Lentils, brown",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "salicylates-mfm",
           "locator": "Vegetables: Lentils, red",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Legumes, lentils (brown, red)",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -76,27 +84,31 @@
           "sourceId": "salgado-2023",
           "locator": "Table 5: lentil, brown",
           "basis": "dry weight, 24.0 mg per 100 g total; about 8.4 mg at 35 g dry",
+          "kind": "review",
           "level": "moderate",
-          "converted": true
+          "formMatch": "converted"
         },
         {
           "sourceId": "salgado-2023",
           "locator": "Table 5: lentil, red",
           "basis": "dry weight, 13.8 mg per 100 g total; about 4.8 mg at 35 g dry",
+          "kind": "review",
           "level": "low",
-          "converted": true
+          "formMatch": "converted"
         },
         {
           "sourceId": "salgado-2023",
           "locator": "Table 5: lentil, dried",
           "basis": "dry weight, 13.3 mg per 100 g total; about 4.7 mg at 35 g dry",
+          "kind": "review",
           "level": "low",
-          "converted": true
+          "formMatch": "converted"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Beans and Lentils: Lentils, boiled, unsalted",
           "basis": "1/2 cup boiled, 2.4 mg, directly measured; about 2.2 mg at the 35 g dry equivalent",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -112,6 +124,7 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Legumes, lentils",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         }
       ],
@@ -126,8 +139,13 @@
         {
           "sourceId": "sighi-foodlist",
           "locator": "Legumes: lentils",
-          "basis": "compatibility score 2 (markers: A L)",
-          "level": "high"
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "A",
+            "L"
+          ]
         }
       ],
       "note": "The score reflects other amines and mast cell liberator effects; a 2018 survey measured no detectable histamine in lentils."
@@ -142,6 +160,7 @@
           "sourceId": "failsafe-dvd",
           "locator": "Legumes: Lentils brown, chana, dal, green, red, urid dal",
           "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
           "level": "low"
         }
       ],
@@ -157,14 +176,16 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Legumes: Beans, lentil, cooked",
           "basis": "68.08 µg per 80 g, 4 samples; about 77 µg at 90 g",
+          "kind": "list",
           "level": "very high"
         },
         {
           "sourceId": "rebelytics-nickel",
           "locator": "Legumes: Beans, lentil, canned",
           "basis": "28.6 µg per 80 g, 2 samples; about 32 µg at 90 g",
+          "kind": "list",
           "level": "high",
-          "converted": true,
+          "formMatch": "converted",
           "note": "Canned lentils are a different form."
         }
       ],

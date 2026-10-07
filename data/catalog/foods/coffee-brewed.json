@@ -10,9 +10,12 @@
   "varieties": [],
   "allergens": [],
   "serving": {
-    "description": "1 cup",
-    "grams": 240,
-    "origin": "usda-household"
+    "description": "1 cup (8 fl oz)",
+    "grams": 237,
+    "origin": "usda-household",
+    "sourceId": "usda-fdc",
+    "locator": "Beverages, coffee, brewed, prepared with tap water (fdcId 171890): 1 cup = 237 g",
+    "note": "The FDA table has a reference amount only for flavored and sweetened coffee."
   },
   "chemicals": {
     "salicylates": {
@@ -25,30 +28,35 @@
           "sourceId": "salicylates-rbh",
           "locator": "Beverages: Coffee",
           "basis": "over 0.5 mg per portion (mug)",
+          "kind": "guidance",
           "level": "high"
         },
         {
           "sourceId": "salicylates-sjhc",
           "locator": "Beverages: regular coffee",
           "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
           "level": "high"
         },
         {
           "sourceId": "salicylates-mfm",
           "locator": "Beverages: Regular Coffee, all brands",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "moderate"
         },
         {
           "sourceId": "nat-food-lists",
           "locator": "Salicylates: Beverages, coffee",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "moderate"
         },
         {
           "sourceId": "failsafe-dvd",
           "locator": "Drinks: Coffee instant, ground",
           "basis": "overall High column, S symbol",
+          "kind": "list",
           "level": "high"
         }
       ]
@@ -63,12 +71,14 @@
           "sourceId": "uchicago-oxalate",
           "locator": "Beverages: Coffee",
           "basis": "1 cup, 1 mg (sheet serving)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Beverages: Coffee, brewed",
           "basis": "8 oz, 1.7 mg, directly measured",
+          "kind": "list",
           "level": "negligible"
         }
       ]
@@ -83,18 +93,21 @@
           "sourceId": "nat-food-lists",
           "locator": "Amines in food: Beverages, coffee",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-coleman",
           "locator": "Beverages: Coffee",
           "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
           "level": "negligible"
         },
         {
           "sourceId": "amines-wellington",
           "locator": "Beverages: Coffee",
           "basis": "five-level rating, serving not stated",
+          "kind": "list",
           "level": "moderate"
         }
       ],
@@ -110,6 +123,7 @@
           "sourceId": "sighi-foodlist",
           "locator": "Beverages: coffee",
           "basis": "compatibility score 1",
+          "kind": "list",
           "level": "moderate",
           "note": "Caffeine stimulates nerves and bowel, which may be mast cell activating."
         }
@@ -132,6 +146,7 @@
           "sourceId": "rebelytics-nickel",
           "locator": "Beverages: Coffee, brewed",
           "basis": "3.57 µg per 250 g, 145 samples; about 3.4 µg at 240 g",
+          "kind": "list",
           "level": "low"
         }
       ]
