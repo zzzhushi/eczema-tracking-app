@@ -19,6 +19,7 @@ struct RunResult: Codable {
     var scores: [Int?]
     var seconds: Double
     var promptTokens: Int?
+    var tokenError: String?
     var failure: String?
 }
 
@@ -35,6 +36,7 @@ enum Failure {
 
 struct Rater {
     let rubric: Rubric
+    var greedy = CommandLine.arguments.contains("-greedy")
 
     var availability: String {
         switch SystemLanguageModel.default.availability {
@@ -47,21 +49,23 @@ struct Rater {
         let clock = ContinuousClock()
         let start = clock.now
         var tokens: Int?
+        var tokenError: String?
         do {
             let session = LanguageModelSession(instructions: rubric.instructions)
             let prompt = Prompt {
                 "Rate the skin in the first photo using the rubric."
                 for url in imageURLs { Attachment(imageURL: url) }
             }
-            tokens = try? await SystemLanguageModel.default.tokenCount(for: prompt)
-            let response = try await session.respond(to: prompt, generating: SignScores.self)
+            do { tokens = try await SystemLanguageModel.default.tokenCount(for: prompt) } catch { tokenError = String(describing: error) }
+            let options = greedy ? GenerationOptions(sampling: .greedy) : GenerationOptions()
+            let response = try await session.respond(to: prompt, generating: SignScores.self, options: options)
             let ids = ["redness", "dryness-flaking", "bumps-blisters", "cracks-broken-skin", "thickening", "oozing-crusting"]
             let scores = zip(ids, response.content.values).map { id, value in
                 response.content.unscorableSigns.contains(id) ? nil : value
             }
-            return RunResult(scores: scores, seconds: seconds(since: start, clock), promptTokens: tokens, failure: nil)
+            return RunResult(scores: scores, seconds: seconds(since: start, clock), promptTokens: tokens, tokenError: tokenError, failure: nil)
         } catch {
-            return RunResult(scores: [], seconds: seconds(since: start, clock), promptTokens: tokens, failure: Failure.classify(error))
+            return RunResult(scores: [], seconds: seconds(since: start, clock), promptTokens: tokens, tokenError: tokenError, failure: Failure.classify(error))
         }
     }
 
