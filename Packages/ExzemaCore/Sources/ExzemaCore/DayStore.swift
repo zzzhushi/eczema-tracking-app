@@ -12,6 +12,7 @@ public final class DayStore: Sendable {
     public static let currentSchemaVersion = 1
 
     private let database: DatabaseQueue
+    private let log: CategoryLogger
 
     /// Open the store at `url`, creating or migrating it to the current schema.
     ///
@@ -19,6 +20,7 @@ public final class DayStore: Sendable {
     /// database creates beside the store are excluded too.
     /// Throws `DayStoreError.newerSchema` without writing anything when the file comes from a newer schema.
     public init(at url: URL, log: CategoryLogger = Log.storage) throws {
+        self.log = log
         database = try DatabaseQueue(path: url.path)
 
         let found = try database.read { try Int.fetchOne($0, sql: "PRAGMA user_version") ?? 0 }
@@ -46,6 +48,20 @@ public final class DayStore: Sendable {
                 arguments: [day.date.isoString, day.timeZoneIdentifier]
             )
         }
+    }
+
+    /// Remove the day with `date`; a date that was never saved is left alone.
+    public func delete(_ date: LocalDate) throws {
+        try database.write { try $0.execute(sql: "DELETE FROM day WHERE date = ?", arguments: [date.isoString]) }
+    }
+
+    /// Remove every day. The store keeps its schema and stays usable.
+    public func deleteAll() throws {
+        let count = try database.write { db -> Int in
+            try db.execute(sql: "DELETE FROM day")
+            return db.changesCount
+        }
+        log.notice("days.cleared", public: ["count": .int(count)])
     }
 
     /// Return every stored day, newest date first.

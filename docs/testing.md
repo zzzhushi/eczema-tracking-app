@@ -47,11 +47,11 @@ Each slice's issue lists its manual checks as steps with an expected result. The
 Log redaction is lifted while a debugger is attached, so a redaction check runs on a build launched from the home screen. To read logs afterwards, pull them with the phone connected and filter to the app:
 
 ```bash
-/usr/bin/log collect --device --last 1d --output ~/exzema-logs.logarchive
+sudo /usr/bin/log collect --device --last 1d --output ~/exzema-logs.logarchive
 /usr/bin/log show ~/exzema-logs.logarchive --predicate 'subsystem == "com.zzzhushi.exzema"'
 ```
 
-The archive covers the whole phone; keep it out of the repository and delete it after use.
+Collecting from a device needs root. The archive covers the whole phone; keep it out of the repository and delete it after use. To watch logs live without root, select the phone in Console.app and filter on the subsystem.
 
 ## Continuous integration
 

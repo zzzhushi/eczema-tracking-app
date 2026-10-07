@@ -37,6 +37,20 @@ final class AppModel {
         reload()
     }
 
+    #if DEBUG
+    func clearToday() {
+        guard let store else { return }
+        try? store.delete(Day(loggedAt: Date(), in: .current).date)
+        reload()
+    }
+
+    func clearAll() {
+        guard let store else { return }
+        try? store.deleteAll()
+        reload()
+    }
+    #endif
+
     private func reload() {
         days = (try? store?.days()) ?? []
     }

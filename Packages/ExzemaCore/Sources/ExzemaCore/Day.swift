@@ -16,8 +16,8 @@ public struct LocalDate: Hashable, Comparable, Sendable {
         (lhs.year, lhs.month, lhs.day) < (rhs.year, rhs.month, rhs.day)
     }
 
-    /// The date as `YYYY-MM-DD`, which sorts in calendar order.
-    var isoString: String {
+    /// The date as `YYYY-MM-DD`: unambiguous, sorts in calendar order, and never digit-grouped like "2,026".
+    public var isoString: String {
         String(format: "%04d-%02d-%02d", year, month, day)
     }
 
