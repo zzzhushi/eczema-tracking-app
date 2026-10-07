@@ -1,0 +1,9 @@
+#!/bin/sh
+# Refuses commits that contain personal photos or anything under fixtures/.
+bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -i -E '^fixtures/|\.(heic|heif|jpe?g)$')
+if [ -n "$bad" ]; then
+  echo "Commit blocked: photos or fixtures are staged:" >&2
+  echo "$bad" | sed 's/^/  /' >&2
+  echo "Unstage them with: git restore --staged <path>" >&2
+  exit 1
+fi
