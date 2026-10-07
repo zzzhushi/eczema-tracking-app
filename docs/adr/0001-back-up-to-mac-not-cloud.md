@@ -1,7 +1,15 @@
 # Back up to the user's Mac, not the cloud
 
-The user requires that health data and skin photos never go to a cloud, and the app runs under a free developer account that must be reinstalled from a Mac every 7 days. So the weekly refresh command both reinstalls the app and copies the latest structured-data backup off the phone to the Mac, instead of relying on iCloud Backup. Photos stay on the phone, excluded from device and cloud backups, and are copied to the Mac only when the user asks for a photo archive.
+**Status**: accepted
+
+## Context
+
+The user requires that health data and skin photos never go to a cloud. The app runs under a free developer account that must be reinstalled from a Mac every 7 days.
+
+## Decision
+
+The weekly refresh command reinstalls the app and copies the latest structured-data backup to the Mac, instead of relying on iCloud Backup. Photos are excluded from device and cloud backups and copied to the Mac only when the user asks. The app never sends data off the phone on its own; exports the user starts go where the user picks, with a warning for cloud destinations.
 
 ## Consequences
 
-If a weekly refresh is skipped, data since the last one exists only on the phone. Photos are lost if the phone is lost or the app is deleted, unless an archive was made first.
+If a weekly refresh is skipped, data since the last one exists only on the phone. Photos are lost with the phone or the app unless an archive was made. A public release would need to revisit cloud destinations for other users.
