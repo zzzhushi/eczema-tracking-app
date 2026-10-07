@@ -7,7 +7,7 @@ import Vision
 
 /// Experiment variants that rate a photo relative to a reference photo of the same person's clear skin.
 enum Variant: String, CaseIterable {
-    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel, flakeDensity
+    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel, flakeDensity, latency
 }
 
 private let coverageLevels = ["none", "small area", "some", "most", "nearly all"]
@@ -644,4 +644,17 @@ func flakeDensity(of url: URL) -> FlakeDensity? {
     }
     let megapixels = Double(w * h) / 1e6
     return FlakeDensity(specks: specks, perMegapixel: Double(specks) / megapixels, areaPermille: 1000 * Double(speckArea) / Double(w * h))
+}
+
+/// Writes a downscaled copy of the image whose longest side is at most `maxSide` pixels.
+func resized(_ url: URL, maxSide: Int) -> URL {
+    let out = FileManager.default.temporaryDirectory.appendingPathComponent("\(url.deletingPathExtension().lastPathComponent)-\(maxSide).jpg")
+    let options: [CFString: Any] = [kCGImageSourceCreateThumbnailFromImageAlways: true,
+                                    kCGImageSourceThumbnailMaxPixelSize: maxSide,
+                                    kCGImageSourceCreateThumbnailWithTransform: true]
+    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+          let image = CGImageSourceCreateThumbnailAtIndex(source, 0, options as CFDictionary),
+          let dest = CGImageDestinationCreateWithURL(out as CFURL, UTType.jpeg.identifier as CFString, 1, nil) else { return url }
+    CGImageDestinationAddImage(dest, image, nil)
+    return CGImageDestinationFinalize(dest) ? out : url
 }

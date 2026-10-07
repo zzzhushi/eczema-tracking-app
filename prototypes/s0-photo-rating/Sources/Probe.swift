@@ -332,6 +332,53 @@ final class Probe {
                         rawOut.append(a.values.map(String.init).joined() + "/" + rel.levels.map { String(max(0, $0)) }.joined())
                     }
                     emit("\(head) refFirst=true eyes=\(opening) signs=\(runsOut.joined(separator: ";")) raw=\(rawOut.joined(separator: ";")) redrel=\(redRelOut.joined(separator: ",")) obs=")
+                case .latency:
+                    let clock = ContinuousClock()
+                    func wall(_ block: () async -> Void) async -> Double {
+                        let start = clock.now
+                        await block()
+                        let d = clock.now - start
+                        return Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
+                    }
+                    var sampler = rater
+                    sampler.greedy = false
+                    let sampling = sampler
+                    let instructions = rubric.signOnlyInstructions("redness")
+                    let small = resized(s.url, maxSide: 800), smallRef = resized(ref.url, maxSide: 800)
+                    var failures: [String: Int] = [:]
+                    var timings: [String: [Double]] = [:]
+                    func record(_ name: String, _ result: (seconds: Double, failure: String?)) {
+                        if let failure = result.failure { failures[name, default: 0] += 1; failures["last:" + name] = nil; _ = failure } else { timings[name, default: []].append(result.seconds) }
+                    }
+                    func level(_ image: URL) async -> (Double, String?) { let r = await sampling.ask(SignLevel.self, instructions: instructions, prompt: rater.ratePrompt(photo: image)); return (r.1, r.2) }
+                    func bare(_ image: URL) async -> (Double, String?) { let r = await sampling.ask(Direct3.self, instructions: instructions, prompt: rater.ratePrompt(photo: image)); return (r.1, r.2) }
+                    func seven(_ reference: URL, _ image: URL) async -> (Double, String?) { let r = await sampling.ask(RelativeSigns7.self, instructions: AnchoredPrompts.relative2, prompt: rater.anchoredPrompt(reference: reference, photo: image, referenceFirst: true)); return (r.1, r.2) }
+                    for _ in 1...3 {
+                        let a = await level(s.url); record("oneImage1600WithDescription", (a.0, a.1))
+                        let b = await bare(s.url); record("oneImage1600LevelOnly", (b.0, b.1))
+                        let c = await level(small); record("oneImage800WithDescription", (c.0, c.1))
+                        let d = await seven(ref.url, s.url); record("twoImages1600SevenSigns", (d.0, d.1))
+                        let e = await seven(smallRef, small); record("twoImages800SevenSigns", (e.0, e.1))
+                    }
+                    var parts: [String] = []
+                    for name in ["oneImage1600WithDescription", "oneImage1600LevelOnly", "oneImage800WithDescription", "twoImages1600SevenSigns", "twoImages800SevenSigns"] {
+                        let ok = timings[name] ?? []
+                        parts.append("\(name)=\(ok.isEmpty ? "-" : String(format: "%.1f", ok.reduce(0, +) / Double(ok.count)))(failed \(failures[name] ?? 0) of 3)")
+                    }
+                    let boostSeconds = await wall { _ = boosted(s.url); _ = boosted(ref.url) }
+                    parts.append("boostTwoImages=\(String(format: "%.2f", boostSeconds))")
+                    let url = s.url
+                    var sequentialFailed = 0
+                    let sequential = await wall { for _ in 1...5 { if await level(url).1 != nil { sequentialFailed += 1 } } }
+                    var concurrentFailed = 0
+                    let concurrent = await wall {
+                        await withTaskGroup(of: Bool.self) { group in
+                            for _ in 1...5 { group.addTask { await sampling.ask(SignLevel.self, instructions: instructions, prompt: sampling.ratePrompt(photo: url)).2 != nil } }
+                            for await failed in group where failed { concurrentFailed += 1 }
+                        }
+                    }
+                    parts += ["fiveSequential=\(String(format: "%.1f", sequential))(failed \(sequentialFailed))", "fiveConcurrent=\(String(format: "%.1f", concurrent))(failed \(concurrentFailed))"]
+                    emit("\(head) \(parts.joined(separator: " "))")
                 case .flakeDensity:
                     let clock = ContinuousClock()
                     let start = clock.now
