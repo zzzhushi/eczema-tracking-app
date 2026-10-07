@@ -25,7 +25,7 @@ A 0–10 rating of how an area's skin appears, given by the user or derived from
 _Avoid_: Severity
 
 **Sign**:
-One visible feature scored 0–3 on a photo: redness, dryness or flaking, bumps or blisters, cracks or broken skin, thickening, oozing or crusting.
+One visible feature scored 0–3 on a photo: redness, dryness or flaking, bumps or blisters, cracks or broken skin, thickening, oozing or crusting, swelling.
 _Avoid_: Symptom
 
 **Skin score**:
