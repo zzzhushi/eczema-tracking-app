@@ -18,7 +18,9 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 
 ## Requirements
 
-### M1: Foundation (#3)
+### M1: Foundation
+
+Issue: [#3](https://github.com/zzzhushi/eczema-tracking-app/issues/3)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -30,7 +32,9 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | OBS-05 | Each automated test shall name the requirement IDs it verifies. | Must |
 | CI-01 | Pull requests and pushes to the default branch shall run the logic and storage tests on a macOS runner, and branch protection shall block merging until the latest run passes. | Must |
 
-### M2: Food logging (#4)
+### M2: Food logging
+
+Issue: [#4](https://github.com/zzzhushi/eczema-tracking-app/issues/4)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -47,7 +51,9 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | FAIL-01 | When the on-device model is unavailable, meal text shall be matched to the catalog by keyword. | Must |
 | OBS-06 | Meal parsing shall be marked with a timing signpost. | Must |
 
-### M3: Skin check-in (#5)
+### M3: Skin check-in
+
+Issue: [#5](https://github.com/zzzhushi/eczema-tracking-app/issues/5)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -63,7 +69,9 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | ENV-04 | Locations shall be rounded to 0.1° (about 11 km) before they are stored. | Must |
 | ENV-05 | The app shall record the rounded location each time it is opened. | Must |
 
-### M4: Photos and rating (#6)
+### M4: Photos and rating
+
+Issue: [#6](https://github.com/zzzhushi/eczema-tracking-app/issues/6)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -82,7 +90,9 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | FAIL-02 | When the on-device model is unavailable, photos shall be stored unrated and rated once it is available. | Must |
 | OBS-07 | Photo rating shall be marked with a timing signpost. | Must |
 
-### M5: Food-to-skin ranking (#7)
+### M5: Food-to-skin ranking
+
+Issue: [#7](https://github.com/zzzhushi/eczema-tracking-app/issues/7)
 
 | ID | Requirement | Pri |
 |---|---|---|
