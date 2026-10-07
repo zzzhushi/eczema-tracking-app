@@ -5,7 +5,7 @@ How the app is tested. Requirements for specific behavior live in the active rel
 ## Principles
 
 - Every behavior change starts with a written acceptance check. Automate it at the highest stable seam (the analysis as a pure computation over day records) when possible; otherwise record a manual check on the iPhone. Prototypes are exempt from automated regression tests, but not from acceptance checks.
-- Test names state the behavior, and each test lists the requirement IDs it verifies.
+- Test names state the behavior, and tests are grouped into suites by capability (for example, food logging).
 - Tests that check an exact answer use hand-built data. Real data is used only to evaluate the on-device model.
 
 ## Layers
@@ -48,3 +48,16 @@ Each milestone's issue lists its manual checks as steps with an expected result.
 - Runs the logic and storage tests; branch protection on the default branch blocks merging until the latest run passes.
 - AI evaluations and manual checks are excluded.
 - GitHub's runner images can lag a new Xcode release.
+
+## Definition of done
+
+A milestone is done when all of these hold. Milestone issues link here instead of copying it.
+
+- Every path in the issue is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on.
+- The tests pass locally and in CI.
+- The issue's end-to-end path is demonstrated on the phone.
+- Relevant offline and unavailable-model paths are checked.
+- A change to the stored schema ships with a written migration plan and a migration test, and never wipes existing data.
+- The behavior docs the milestone touches are updated in the same pull request as the code, and anything it makes stale is deleted.
+- Known limitations are recorded in the issue.
+- Open questions are answered in the owning doc, or moved to a later issue with a link.

@@ -1,6 +1,6 @@
 # eXzema: spec
 
-The product, its scope, and the decisions that hold across releases. The active work is in [Release 1](release-1.md), every formula and threshold in [the analysis rules](analysis.md), later releases in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones), and terms in [the glossary](../CONTEXT.md).
+The product, its scope, and the decisions that hold across releases. Work is tracked in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones), every formula and threshold in [the analysis rules](analysis.md), later releases in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones), and terms in [the glossary](../CONTEXT.md).
 
 ## Problem
 
@@ -75,21 +75,31 @@ Everything stays on the phone or the user's Mac; no third-party service receives
 - **Timing**: signposts mark the start and end of meal parsing, photo rating, and analysis, so Instruments shows how long each took.
 - **Diagnostics**: crash and hang reports collected on the phone.
 - **Provenance**: every analysis result links to the day records, foods, and ratings it came from, and AI explanations rest on that trail.
-- **Requirement traceability**: each automated test names the requirement IDs it verifies.
 
 ## Non-functional requirements
 
-| ID | Requirement |
-|---|---|
-| NFR-01 | Privacy: the app never sends user data off the phone on its own; the only automatic network request is the weather and air-quality fetch with coordinates rounded to about 11 km. Exports the user starts go to a destination the user picks, with a warning for cloud destinations. Photos never reach the Photos library, device and cloud backups, or the repository. |
-| NFR-02 | Cost: no paid services and no per-use AI costs. |
-| NFR-03 | Ease of use: a typical day takes about a minute; an unchanged routine takes zero taps; anything that can be automatic is. |
-| NFR-04 | Data honesty: unknown is never treated as zero; raw inputs are stored and combinations computed; every result shows its confidence and data coverage. |
-| NFR-05 | Safety and framing: no medical advice, no diagnoses; suspects carry confidence levels. |
-| NFR-06 | Resilience: data survives relaunch and reinstall; a structured-data export exists from Release 1, and full backup and restore from Release 2. |
-| NFR-07 | Compatibility: iOS 27 on an iPhone 15 Pro or newer with Apple Intelligence enabled. |
-| NFR-08 | Storage: a few MB of structured data per year; photos about 150–220 MB per year. |
-| NFR-09 | Maintainability: reference data is bundled, versioned, cited, and replaceable without code changes. |
+- Privacy: the app never sends user data off the phone on its own; the only automatic network request is the weather and air-quality fetch with coordinates rounded to about 11 km. Exports the user starts go to a destination the user picks, with a warning for cloud destinations. Photos never reach the Photos library, device and cloud backups, or the repository.
+- Cost: no paid services and no per-use AI costs.
+- Ease of use: a typical day takes about a minute; an unchanged routine takes zero taps; anything that can be automatic is.
+- Data honesty: unknown is never treated as zero; raw inputs are stored and combinations computed; every result shows its confidence and data coverage.
+- Safety and framing: no medical advice, no diagnoses; suspects carry confidence levels.
+- Resilience: data survives relaunch and reinstall; a structured-data export exists from Release 1, and full backup and restore from Release 2.
+- Compatibility: iOS 27 on an iPhone 15 Pro or newer with Apple Intelligence enabled.
+- Storage: a few MB of structured data per year; photos about 150–220 MB per year.
+- Maintainability: reference data is bundled, versioned, cited, and replaceable without code changes.
+
+## Constraints and risks
+
+Limits of the platform that shape every area of the app.
+
+- **On-device model context**: 4K tokens for input and output together; images take a large share, so prompts stay small.
+- **Model guardrails**: the model may refuse skin photos or health wording. A refusal is logged and shown, never treated as a rating.
+- **Background limits**: iOS gives apps little background time, and the model may be rate-limited in the background. Work runs when the app is open or charging.
+- **Free signing**: the app expires every 7 days, a free account runs only a few sideloaded apps per device, and some capabilities are unavailable.
+- **Simulator gaps**: no camera, no real Health data, and model behavior may differ. Tests use fakes, and real behavior is checked on the phone.
+- **Model updates**: an iOS update can change the model's outputs; rating versions make this visible.
+- **Data, not compute**: the limit is how many days are logged, and some patterns will look real by coincidence.
+
 ## Further notes
 
 - **Weather terms**: Open-Meteo is free for non-commercial use; a public release would need its commercial plan or WeatherKit.

@@ -16,7 +16,6 @@ Planning Release 1 (food and skin). Next milestone: M0, the photo-rating prototy
 ## Docs
 
 - [Spec](docs/spec.md): the product and its lasting decisions
-- [Release 1](docs/release-1.md): the active release
 - [Analysis rules](docs/analysis.md): formulas, thresholds, and missing-data rules
 - [Testing](docs/testing.md): how the app is tested
 - [Roadmap](https://github.com/zzzhushi/eczema-tracking-app/milestones): releases, milestones, and the backlog as GitHub issues

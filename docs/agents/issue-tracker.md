@@ -49,3 +49,4 @@ Used by `/wayfinder`. The **map** is a single issue with **child** issues as tic
 - Each release is a GitHub milestone named "Release N: …"; the public-release checklist has its own milestone.
 - Each release milestone (M0, M1, …) and each backlog outcome is an issue in its release's GitHub milestone, holding its paths, acceptance checks, and open questions.
 - Parked items carry the `tabled` label and no milestone.
+- New milestone issues start from `.github/ISSUE_TEMPLATE/milestone.md`; the shared checklist is the definition of done in `docs/testing.md`.
