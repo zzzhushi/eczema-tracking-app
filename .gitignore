@@ -3,8 +3,7 @@ xcuserdata/
 DerivedData/
 *.xcuserstate
 *.xcresult
-fixtures/photos/
-fixtures/originals/
+fixtures/
 
 # Generated prototype projects
 prototypes/**/*.xcodeproj
