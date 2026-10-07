@@ -12,20 +12,13 @@ Product context is in [the spec](spec.md), every formula and threshold in [the a
 
 ## Milestones
 
-| # | Thin path | First acceptance check | Exit criterion |
-|---|---|---|---|
-| M0 | Photo-rating prototype on the phone: the six-sign rubric, a reference photo as a third image, and Apple's guardrails on skin photos | Manual, on the iPhone: the same photo scored 5 times; two photos taken minutes apart; a clear photo scores below a flare photo; a refusal is recorded, not scored | Rubric v1 written; the viability criteria set in the M0 issue are met, or the failure and fallback are documented |
-| M1 | Project, test setup with CI, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | The app installs on the phone, keeps a saved day across relaunch and reinstall, its logs appear in Console with health data redacted, and CI runs the tests on a pull request |
-| M2 | Type a day's food; match it to the Tier 1 food names, with chemical levels unknown until researched; keep unrecognized words; edit or delete entries | A matched food without researched levels shows no data, never negligible; an unmatched word is kept | A day's food is logged on the phone in under a minute, and every Tier 1 food name matches |
-| M3 | Check-in for hands and face (feel and look); edit past days; record the rounded location at app open | An area without ratings is unknown, not a good day | Both areas are rated on the phone in under 30 seconds, and skipped ratings stay unknown |
-| M4 | A photo per area, stored in the app with a framing overlay, rated on the six signs; skin score computed | A rating stores its rating version; the skin score is not stored | Each area is photographed and rated on the phone, and a refusal shows as unscored |
-| M5 | Food-to-skin ranking per area, with confidence, data coverage, and links back to source days; export to a file | High-salicylate days followed by worse hand ratings rank salicylates above an unrelated chemical; a day of rice plus a food with unknown salicylates is excluded for salicylates, while a day with a known high-salicylate food stays high with breadth marked as a lower bound | The ranking for the hands shows on the phone with its data coverage, and an export opens on the Mac |
+Each milestone's thin path, acceptance checks, open questions, and exit criterion live in its issue: [M0](https://github.com/zzzhushi/eczema-tracking-app/issues/2), [M1](https://github.com/zzzhushi/eczema-tracking-app/issues/3), [M2](https://github.com/zzzhushi/eczema-tracking-app/issues/4), [M3](https://github.com/zzzhushi/eczema-tracking-app/issues/5), [M4](https://github.com/zzzhushi/eczema-tracking-app/issues/6), [M5](https://github.com/zzzhushi/eczema-tracking-app/issues/7).
 
 Expect "too early to tell" for the first weeks; with a stable diet, most signal will come from reintroduced foods. Analysis focuses on the hands. Face results note that sun and products aren't tracked yet; later releases re-run the analysis with that context.
 
 ## Requirements
 
-### M1: Foundation
+### M1: Foundation (#3)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -37,7 +30,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | OBS-05 | Each automated test shall name the requirement IDs it verifies. | Must |
 | CI-01 | Pull requests and pushes to the default branch shall run the logic and storage tests on a macOS runner, and branch protection shall block merging until the latest run passes. | Must |
 
-### M2: Food logging
+### M2: Food logging (#4)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -54,7 +47,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | FAIL-01 | When the on-device model is unavailable, meal text shall be matched to the catalog by keyword. | Must |
 | OBS-06 | Meal parsing shall be marked with a timing signpost. | Must |
 
-### M3: Skin check-in
+### M3: Skin check-in (#5)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -70,7 +63,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | ENV-04 | Locations shall be rounded to 0.1° (about 11 km) before they are stored. | Must |
 | ENV-05 | The app shall record the rounded location each time it is opened. | Must |
 
-### M4: Photos and rating
+### M4: Photos and rating (#6)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -89,7 +82,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | FAIL-02 | When the on-device model is unavailable, photos shall be stored unrated and rated once it is available. | Must |
 | OBS-07 | Photo rating shall be marked with a timing signpost. | Must |
 
-### M5: Food-to-skin ranking
+### M5: Food-to-skin ranking (#7)
 
 | ID | Requirement | Pri |
 |---|---|---|
@@ -111,7 +104,7 @@ Its GitHub issue lists every path the milestone adds, each with an acceptance ch
 
 - All Must requirements are satisfied; each Should is done or explicitly cut.
 - Every path is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on. Automated tests pass locally and in CI.
-- The milestone's exit criterion above is met and the end-to-end path is demonstrated on the phone.
+- The exit criterion in the milestone's issue is met and the end-to-end path is demonstrated on the phone.
 - From M2 on, storage changes ship with a migration plan and a migration test.
 - Relevant unavailable and offline paths are checked.
 - Known limitations are recorded in the issue.
