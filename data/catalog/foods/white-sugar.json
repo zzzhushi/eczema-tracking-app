@@ -89,10 +89,17 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Sweeteners: sugar (beet sugar, cane sugar)",
+          "basis": "compatibility score 0",
+          "level": "negligible"
+        }
+      ]
     },
     "glutamates": {
       "result": {

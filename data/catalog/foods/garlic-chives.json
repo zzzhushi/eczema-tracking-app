@@ -51,9 +51,10 @@
     "histamine": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Only common chives are scored (1); they are a different plant."
     },
     "glutamates": {
       "result": {

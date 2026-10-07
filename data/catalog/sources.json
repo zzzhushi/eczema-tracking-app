@@ -110,6 +110,15 @@
       "accessedOn": "2026-10-07"
     },
     {
+      "id": "sighi-foodlist",
+      "kind": "list",
+      "type": "web-page",
+      "title": "Food Compatibility List, histamine, alphabetical with categories (as of 2024-08-29)",
+      "publisher": "Swiss Interest Group Histamine Intolerance (SIGHI)",
+      "url": "https://www.mastzellaktivierung.info/downloads/foodlist/SIGHI-FoodList_EN_Histamin_alphabetisch_inKategorien.pdf",
+      "accessedOn": "2026-10-07"
+    },
+    {
       "id": "uchicago-oxalate",
       "kind": "list",
       "type": "web-page",

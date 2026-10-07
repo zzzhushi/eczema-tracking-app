@@ -119,10 +119,18 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Legumes: lentils",
+          "basis": "compatibility score 2 (markers: A L)",
+          "level": "high"
+        }
+      ],
+      "note": "The score reflects other amines and mast cell liberator effects; a 2018 survey measured no detectable histamine in lentils."
     },
     "glutamates": {
       "result": {

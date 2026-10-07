@@ -100,10 +100,18 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Meat: beef (fresh)",
+          "basis": "compatibility score 0 (markers: H!)",
+          "level": "negligible",
+          "note": "H! marks highly perishable food with rapid histamine formation."
+        }
+      ]
     },
     "glutamates": {
       "result": {

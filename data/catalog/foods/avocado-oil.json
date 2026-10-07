@@ -40,9 +40,10 @@
     "histamine": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Avocado fruit is scored 2 (H L); the oil is not listed."
     },
     "glutamates": {
       "result": {

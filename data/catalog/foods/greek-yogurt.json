@@ -93,10 +93,18 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Dairy: yoghurt (natural yoghurt)",
+          "basis": "compatibility score 1 (markers: H ?)",
+          "level": "moderate",
+          "note": "Greek style is not listed; natural yoghurt stands in. Varies by product."
+        }
+      ]
     },
     "glutamates": {
       "result": {

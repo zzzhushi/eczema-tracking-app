@@ -79,10 +79,19 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Tea: green tea",
+          "basis": "compatibility score 1 (markers: B)",
+          "level": "moderate",
+          "note": "B marks a blocker of diamine oxidase."
+        }
+      ],
+      "note": "Whole-leaf powder is not rated separately from green tea."
     },
     "glutamates": {
       "result": {

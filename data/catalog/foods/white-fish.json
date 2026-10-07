@@ -153,9 +153,23 @@
     "histamine": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "sources-conflict"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Fish: fish (freshly caught or frozen)",
+          "basis": "compatibility score 0 (markers: H! A)",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Fish: fish (in the shop in the cooling rack or on ice)",
+          "basis": "compatibility score 3 (markers: H! A)",
+          "level": "very high"
+        }
+      ],
+      "note": "SIGHI scores fish by freshness and species, not by white fish; the two fish entries are 0 when freshly caught or frozen and 3 from the shop counter."
     },
     "glutamates": {
       "result": {

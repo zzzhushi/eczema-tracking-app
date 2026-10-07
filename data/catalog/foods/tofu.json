@@ -79,10 +79,17 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Legumes and soy: tofu",
+          "basis": "compatibility score 2",
+          "level": "high"
+        }
+      ]
     },
     "glutamates": {
       "result": {

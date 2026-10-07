@@ -65,9 +65,10 @@
     "histamine": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Plain salt is not listed; iodized table salt is scored 2 (liberator) because of its iodine additive."
     },
     "glutamates": {
       "result": {

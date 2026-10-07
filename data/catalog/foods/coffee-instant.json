@@ -90,10 +90,19 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Beverages: coffee",
+          "basis": "compatibility score 1",
+          "level": "moderate",
+          "note": "Caffeine stimulates nerves and bowel, which may be mast cell activating."
+        }
+      ],
+      "note": "SIGHI rates coffee in general, not instant coffee specifically."
     },
     "glutamates": {
       "result": {

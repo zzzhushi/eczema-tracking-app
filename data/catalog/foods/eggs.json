@@ -100,10 +100,18 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Eggs: eggs, chicken egg, whole egg",
+          "basis": "compatibility score 1 (markers: L)",
+          "level": "moderate",
+          "note": "Yolk is compatible; egg white is mast cell activating, raw or cooked."
+        }
+      ]
     },
     "glutamates": {
       "result": {
