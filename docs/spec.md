@@ -80,7 +80,7 @@ At the lowest priority, a nutrient gap checker shows which nutrients the user's 
 38. As the user, I want unknown levels shown as "no data" and never treated as negligible, so that missing data can't masquerade as a low-chemical day.
 39. As the user, I want each food tagged with the nine common allergens it contains, so that milk-, wheat-, or nut-containing foods can be analyzed together.
 40. As the user, I want every chemical level to cite its published source, so that I can review and trust the catalog.
-41. As the user, I want to provide my starting food list and review the researched levels before they ship, so that the catalog reflects foods I actually eat.
+41. As the user, I want to provide my starting food list and review researched levels as they are added, so that the catalog reflects foods I actually eat without logging having to wait for research.
 42. As the user, I want to override a food's level on my phone, so that I can apply what I trust from the RPAH handbook or my own experience.
 
 ### Products

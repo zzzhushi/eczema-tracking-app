@@ -84,7 +84,7 @@ Release 1 requirements are built to the Basic depth defined in the plan.
 |---|---|---|---|---|
 | CAT-01 | The app shall bundle a food catalog in which each food has aliases, a level for each of the six food chemicals or unknown, the nine allergen tags, and a citation per level. | Must | R1·M2 | 36, 37, 39, 40 |
 | CAT-02 | An unknown level shall display as "no data" and shall never be treated as negligible. | Must | R1·M2 | 38 |
-| CAT-03 | The first catalog shall contain the user's reviewed starting food list. | Must | R1·M2 | 41 |
+| CAT-03 | The first catalog shall contain the names and aliases of the foods the user eats now, with levels unknown until researched and reviewed. | Must | R1·M2 | 41 |
 | CAT-04 | The user shall be able to override a food's level on the phone; overrides shadow bundled values and are marked as the user's. | Should | Later | 42 |
 | CAT-05 | Levels shall be resolved at analysis time, so a catalog update applies to past days. | Must | R1·M2 | new |
 | CAT-06 | The app shall bundle a common-trigger reference of cosmetic ingredients with aliases and citations. | Must | Later | 62 |

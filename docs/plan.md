@@ -24,7 +24,11 @@ How the work is sliced and sequenced. What the app does is in [the spec](spec.md
 ## Prerequisites
 
 - iOS 27 on the phone, Xcode 27 on the Mac, Apple Intelligence enabled.
-- The starter food catalog: the user's food list, researched with citations and reviewed. This is on the critical path for M2.
+- The names of the foods the user eats now (Tier 1), for M2 to match against.
+
+## Food catalog research
+
+Chemical levels are researched with citations and reviewed in two tiers: Tier 1 is the foods the user eats now, Tier 2 the reintroduction candidates. Research is not on the critical path for any milestone. Logged food keeps its raw text and levels are resolved when the analysis runs, so a food without researched levels counts in food-level analysis and shows no data for chemicals; once its levels are reviewed, every past day gains them.
 
 ## Release 1: food and skin
 
@@ -34,7 +38,7 @@ How the work is sliced and sequenced. What the app does is in [the spec](spec.md
 |---|---|---|---|
 | M0 | Photo-rating prototype on the phone: the six-sign rubric, whether a reference photo fits as a third image, and whether Apple's guardrails refuse skin photos or health wording | Manual: the same photo scored 5 times; two photos taken minutes apart; a refusal is recorded, not scored | PHO-04 |
 | M1 | Foundation: project, test setup, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | OBS-01–03, OBS-05, DATA-07, FAIL-04 |
-| M2 | Type a day's food; match it to the starter catalog with all six chemicals; keep unrecognized words; edit or delete entries | A day with a high-salicylate food has a high salicylate peak; an unmatched word is kept | FOOD-02–05, FOOD-12–13, CAT-01–03, CAT-05, FAIL-01 |
+| M2 | Type a day's food; match it to the Tier 1 food names, with chemical levels unknown until researched; keep unrecognized words; edit or delete entries | A matched food without researched levels shows no data, never negligible; an unmatched word is kept | FOOD-02–05, FOOD-12–13, CAT-01–03, CAT-05, FAIL-01 |
 | M3 | Check-in for hands and face (feel and look); edit past days; record the rounded location at app open | An area without ratings is unknown, not a good day | SET-01, SET-03, SET-06, CHK-01–05, ENV-04–05 |
 | M4 | A photo per area, stored in the app with a framing overlay, rated on the six signs; skin score computed | A rating stores its rating version; the skin score is not stored | SET-04, PHO-01–05, PHO-07, PHO-11, FAIL-02 |
 | M5 | Food-to-skin correlation per area from each day's chemical peaks, the 0–2 day window, and both ratings, with confidence, data coverage, and links back to source days; export to Files | High-salicylate days followed by worse hand ratings rank salicylates above an unrelated chemical; a day with an unknown food is excluded | ANA-09–10, ANA-14, ANA-20, ANA-22, OBS-04, DATA-01, DATA-08 |
@@ -59,7 +63,7 @@ Goals only. Milestones are defined when a release is planned, using what Release
 - **Simulator gaps**: no camera, no real Health data, and on-device model behavior may differ from the phone. Tests use fakes; real behavior is checked on the phone.
 - **Model updates**: an iOS update can change the on-device model and its outputs; rating versions make this visible.
 - **Statistics, not compute**: storage and processing are tiny. The real limit is data: dozens of foods and six chemicals against a few months of days means most results stay weak until enough days are logged, and some patterns will look real by coincidence.
-- **The critical path is the user's time**: catalog research and review, and daily logging consistency.
+- **The critical path is the user's time**: mostly daily logging consistency. Catalog research and review run at the user's pace without blocking any milestone.
 
 ## Tabled
 
