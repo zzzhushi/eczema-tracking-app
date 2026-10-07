@@ -18,7 +18,7 @@ final class Probe {
     var samples: [Sample] = []
     var status = ""
     var running = false
-    let runsPerPhoto = 5
+    let runsPerPhoto = CommandLine.arguments.contains("-once") ? 1 : 5
     private let rubric = try! Rubric.load()
     var availability: String { Rater(rubric: rubric).availability }
 
@@ -68,9 +68,9 @@ final class Probe {
             samples[i].runs = []
             for run in 1...runsPerPhoto {
                 status = "Photo \(samples[i].index), run \(run) of \(runsPerPhoto)"
-                let result = await rater.rate(imageURLs: [samples[i].url])
+                let result = CommandLine.arguments.contains("-prompt2") ? await rater.rateV2(imageURLs: [samples[i].url]) : await rater.rate(imageURLs: [samples[i].url])
                 samples[i].runs.append(result)
-                print("RUN \(samples[i].name) run=\(run) scores=\(result.scores.map { $0.map(String.init) ?? "-" }.joined(separator: ",")) seconds=\(String(format: "%.1f", result.seconds)) tokens=\(result.promptTokens.map(String.init) ?? "?") tokenError=\(result.tokenError ?? "none") failure=\(result.failure ?? "none")")
+                print("RUN \(samples[i].name) run=\(run) scores=\(result.scores.map { $0.map(String.init) ?? "-" }.joined(separator: ",")) seconds=\(String(format: "%.1f", result.seconds)) tokens=\(result.promptTokens.map(String.init) ?? "?") failure=\(result.failure ?? "none") obs=\(result.observations ?? "")")
             }
         }
         status = "Done"
@@ -86,11 +86,26 @@ final class Probe {
             if parts.count == 2, let i = samples.firstIndex(where: { $0.name == parts[0] }) { samples[i].label = parts[1] }
         }
         print("AUTORUN start greedy=\(CommandLine.arguments.contains("-greedy")) model=\(availability) photos=\(samples.map(\.name).joined(separator: ","))")
-        await runAll()
-        print("CONTEXT\n\(await contextTest())")
+        if CommandLine.arguments.contains("-compare") { await compareAll() }
+        if !CommandLine.arguments.contains("-noscore") { await runAll() }
+        if !CommandLine.arguments.contains("-nocontext") { print("CONTEXT\n\(await contextTest())") }
         print("SUMMARY\n\(reportJSON())")
         print("AUTORUN done")
         exit(0)
+    }
+
+    /// Asks which of two photos is worse, in both orders so position bias shows up.
+    func compareAll() async {
+        let rater = Rater(rubric: rubric)
+        let pairs = [("face_clear", "face"), ("face", "face_flare"), ("face_clear", "face_flare"),
+                     ("hand_normal_patch", "right"), ("right", "right_time2"), ("right", "left"), ("left", "right_time2")]
+        for (a, b) in pairs {
+            guard let sa = samples.first(where: { $0.name == a }), let sb = samples.first(where: { $0.name == b }) else { continue }
+            for (x, y) in [(sa, sb), (sb, sa)] {
+                let r = await rater.compare(first: x.url, second: y.url)
+                print("PAIR first=\(x.name) second=\(y.name) worse=\(r.judgment?.worse ?? "-") difference=\(r.judgment.map { String($0.difference) } ?? "-") seconds=\(String(format: "%.1f", r.seconds)) failure=\(r.failure ?? "none") obs=\(r.judgment?.observations ?? "")")
+            }
+        }
     }
 
     func contextTest() async -> String {

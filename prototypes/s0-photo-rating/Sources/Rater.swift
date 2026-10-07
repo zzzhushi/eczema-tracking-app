@@ -21,6 +21,7 @@ struct RunResult: Codable {
     var promptTokens: Int?
     var tokenError: String?
     var failure: String?
+    var observations: String? = nil
 }
 
 enum Failure {
@@ -69,7 +70,7 @@ struct Rater {
         }
     }
 
-    private func seconds(since start: ContinuousClock.Instant, _ clock: ContinuousClock) -> Double {
+    func seconds(since start: ContinuousClock.Instant, _ clock: ContinuousClock) -> Double {
         let d = clock.now - start
         return Double(d.components.seconds) + Double(d.components.attoseconds) / 1e18
     }
