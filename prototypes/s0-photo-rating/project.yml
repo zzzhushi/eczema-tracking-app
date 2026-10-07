@@ -1,0 +1,27 @@
+name: PhotoRatingProbe
+options:
+  deploymentTarget:
+    iOS: "27.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  PhotoRatingProbe:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: ../../data/rubric/v1.json
+        buildPhase: resources
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: Rating Probe
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zzzhushi.exzema.s0probe
+        CODE_SIGN_STYLE: Automatic
+        GENERATE_INFOPLIST_FILE: NO
