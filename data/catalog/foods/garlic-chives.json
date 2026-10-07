@@ -19,9 +19,10 @@
     "salicylates": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Only common chives are rated (low) by every list; they are a different plant."
     },
     "oxalates": {
       "result": {
@@ -42,9 +43,10 @@
     "amines": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Only common chives are listed (negligible); they are a different plant."
     },
     "histamine": {
       "result": {

@@ -31,6 +31,24 @@
           "locator": "2.3. Dietary Intervention: salicylate-free products",
           "basis": "diet instruction, no measured value",
           "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: eggs",
+          "basis": "no salicylates, can be eaten freely",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Eggs and shellfish: Eggs",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Dairy, soy and eggs, eggs",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
         }
       ]
     },
@@ -56,10 +74,29 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Eggs",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Meat, Chicken, Fish and Eggs: Eggs",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Dairy and Soy Products: Eggs",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "histamine": {
       "result": {

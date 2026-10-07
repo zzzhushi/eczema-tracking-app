@@ -32,10 +32,29 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: fresh meat",
+          "basis": "no salicylates, can be eaten freely",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Meat, fish, poultry: Beef",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Meat, Fish, Poultry, beef / veal",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -54,10 +73,30 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Beef",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Meat, Chicken, Fish and Eggs: Beef",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "low",
+          "note": "Buy fresh and eat within two days."
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Meat: Beef (fresh)",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        }
+      ]
     },
     "histamine": {
       "result": {

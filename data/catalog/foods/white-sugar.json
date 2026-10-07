@@ -17,10 +17,29 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Sweets: White Sugar",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Sweeteners: White Sugar",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Sweets, white sugar",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -44,10 +63,29 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Sweets, sugar",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Sweets: Sugar",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Sweeteners: Sugar",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "histamine": {
       "result": {

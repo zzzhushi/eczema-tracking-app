@@ -16,10 +16,29 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Condiments: Salt",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Herbs, spices and condiments: Salt (sea)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Condiments, salt",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -38,9 +57,10 @@
     "amines": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "One list groups salt with herbs as low; no list rates salt on its own."
     },
     "histamine": {
       "result": {

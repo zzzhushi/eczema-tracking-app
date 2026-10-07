@@ -15,10 +15,35 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Vegetables: cabbage",
+          "basis": "no salicylates, can be eaten freely",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Vegetables: Cabbage (green or white)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Vegetables: Cabbage",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Vegetables, cabbage (green or white)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -55,10 +80,29 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Vegetables, cabbage",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Vegetables: Cabbage",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Vegetables: Cabbage",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "histamine": {
       "result": {

@@ -17,10 +17,35 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Beverages: Coffee",
+          "basis": "over 0.5 mg per portion (mug)",
+          "level": "high"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Beverages: regular coffee",
+          "basis": "five-level rating, serving not stated",
+          "level": "high"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Beverages: Regular Coffee, all brands",
+          "basis": "five-level rating, serving not stated",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Beverages, coffee",
+          "basis": "five-level rating, serving not stated",
+          "level": "moderate"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -45,9 +70,28 @@
     "amines": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "sources-conflict"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Beverages, coffee",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Beverages: Coffee",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Beverages: Coffee",
+          "basis": "five-level rating, serving not stated",
+          "level": "moderate"
+        }
+      ]
     },
     "histamine": {
       "result": {

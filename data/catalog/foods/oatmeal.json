@@ -32,10 +32,36 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Cereals: oats",
+          "basis": "no salicylates, can be eaten freely",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Grains: Oats (plain)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Grains, oats",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Grains, oats, rolled",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        }
+      ],
+      "note": "Rolled oats are rated low by one list and negligible by the hospital guides."
     },
     "oxalates": {
       "result": {
@@ -61,10 +87,23 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Grains, rolled oats",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Grains: Oats",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        }
+      ]
     },
     "histamine": {
       "result": {

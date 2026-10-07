@@ -18,10 +18,23 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Dairy and soy: Tofu",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Dairy, soy and eggs, tofu",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -46,10 +59,23 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Dairy and soy, tofu",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Dairy Foods and Soy Products: Tofu",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "negligible"
+        }
+      ]
     },
     "histamine": {
       "result": {

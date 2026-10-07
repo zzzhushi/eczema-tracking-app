@@ -26,6 +26,24 @@
           "basis": "diet instruction, no measured value",
           "level": "negligible",
           "note": "Lists poultry generically."
+        },
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: poultry",
+          "basis": "no salicylates, can be eaten freely",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Meat, fish, poultry: Chicken",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Meat, Fish, Poultry, chicken",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
         }
       ]
     },
@@ -52,10 +70,30 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Chicken (no skin)",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Meat, Chicken, Fish and Eggs: Chicken (No Skin)",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "low",
+          "note": "Buy fresh and eat within two days."
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Meat: Chicken (skinless)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "histamine": {
       "result": {

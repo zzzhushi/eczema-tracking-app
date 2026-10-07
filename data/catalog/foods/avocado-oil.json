@@ -16,9 +16,10 @@
     "salicylates": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Avocado fruit is rated high or very high; the oil is not listed."
     },
     "oxalates": {
       "result": {
@@ -31,9 +32,10 @@
     "amines": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "One list rates avocado oil very high without a measurement; refined oils carry little protein and no measured data was found."
     },
     "histamine": {
       "result": {

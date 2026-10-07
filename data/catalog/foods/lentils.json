@@ -30,10 +30,41 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Legumes: Lentils (brown)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Legumes: Lentils (red)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Vegetables: Lentils, brown",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Vegetables: Lentils, red",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Legumes, lentils (brown, red)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -73,10 +104,18 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Legumes, lentils",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ],
+      "note": "A 2018 survey of plant foods found histamine and tyramine not detected in lentils and putrescine up to 21 mg/kg; measured values are not banded because no amine cutoffs exist yet."
     },
     "histamine": {
       "result": {

@@ -20,10 +20,29 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: plain yoghurt",
+          "basis": "no salicylates, can be eaten freely",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Dairy: Yoghurt (natural)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Dairy, yoghurt (natural)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
@@ -48,10 +67,29 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Dairy and soy, yoghurt (plain)",
+          "basis": "five-level rating, serving not stated",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Dairy Foods and Soy Products: Yoghurt (plain)",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Dairy and Soy Products: Plain Yoghurt",
+          "basis": "five-level rating, serving not stated",
+          "level": "low"
+        }
+      ]
     },
     "histamine": {
       "result": {
