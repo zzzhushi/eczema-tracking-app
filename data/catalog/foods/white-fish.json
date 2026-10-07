@@ -1,7 +1,7 @@
 {
   "id": "white-fish",
   "name": "White fish",
-  "description": "Fresh.",
+  "description": "Frozen, or fresh and kept cold.",
   "aliases": [
     "white fish",
     "whitefish",
@@ -152,8 +152,8 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "sources-conflict"
+        "kind": "known",
+        "level": "negligible"
       },
       "evidence": [
         {
@@ -166,10 +166,12 @@
           "sourceId": "sighi-foodlist",
           "locator": "Fish: fish (in the shop in the cooling rack or on ice)",
           "basis": "compatibility score 3 (markers: H! A)",
-          "level": "very high"
+          "level": "very high",
+          "converted": true,
+          "note": "Describes fish that has aged on ice; the Not fresh meal label covers aged fish."
         }
       ],
-      "note": "SIGHI scores fish by freshness and species, not by white fish; the two fish entries are 0 when freshly caught or frozen and 3 from the shop counter."
+      "note": "SIGHI scores fish by freshness and species, not by white fish: 0 when freshly caught or frozen, 3 from the shop counter."
     },
     "glutamates": {
       "result": {

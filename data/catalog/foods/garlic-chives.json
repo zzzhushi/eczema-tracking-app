@@ -63,11 +63,20 @@
     },
     "histamine": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": [],
-      "note": "Only common chives are scored (1); they are a different plant."
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Vegetables: chives",
+          "basis": "compatibility score 1",
+          "level": "moderate",
+          "converted": true,
+          "note": "Common chives stand in for garlic chives. Incompatible in large quantities."
+        }
+      ],
+      "note": "Only common chives are scored; they stand in for garlic chives, a related Allium."
     },
     "glutamates": {
       "result": {
@@ -86,11 +95,20 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "high"
       },
-      "evidence": [],
-      "note": "Only common chives are listed (1.5 g, 2 samples); they are a different plant."
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Herbs: Chives, 1.5 g",
+          "basis": "0.75 µg per 1.5 g, 2 samples; about 43 µg at 85 g",
+          "level": "high",
+          "converted": true,
+          "note": "Common chives stand in for garlic chives. Two samples only."
+        }
+      ],
+      "note": "The level follows the 85 g vegetable serving; at a herb-sized portion of about 10 g it would be low."
     }
   }
 }
