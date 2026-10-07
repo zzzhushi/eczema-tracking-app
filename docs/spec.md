@@ -1,6 +1,6 @@
 # eXzema: spec
 
-The product, its scope, and the decisions that hold across releases. Work is tracked in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones), every formula and threshold in [the analysis rules](analysis.md), later releases in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones), and terms in [the glossary](../CONTEXT.md).
+The product, its scope, and the decisions that hold across releases. Releases are tracked as [GitHub milestones](https://github.com/zzzhushi/eczema-tracking-app/milestones) and their slices as issues; every formula and threshold lives in [the analysis rules](analysis.md), and terms in [the glossary](../CONTEXT.md).
 
 ## Problem
 
@@ -59,7 +59,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 ### Food catalog
 
 - Each food has a coarse level (negligible to very high) per food chemical with a citation, or a research status when the level isn't known; plus allergen tags and aliases. Coarse levels reflect how much published measurements disagree.
-- Levels are resolved when the analysis runs, so research added later applies to every past day. Research proceeds in two tiers (foods eaten now, then reintroduction candidates) and never blocks a slice.
+- Levels are resolved when the analysis runs, so research added later applies to every past day. Research proceeds in two tiers (foods eaten now, then reintroduction candidates). It never blocks logging, but it gates the analysis that needs those levels.
 - Levels come from published studies. The user's own overrides stay on the phone.
 
 ### Photos and ratings

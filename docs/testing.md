@@ -1,6 +1,6 @@
 # eXzema: testing
 
-How the app is tested. Requirements for specific behavior live in the active release doc; rules being tested live in [the analysis rules](analysis.md).
+How the app is tested. Current behavior lives in `docs/behavior`, proposed behavior and acceptance live in slice issues, and formulas and thresholds live in [the analysis rules](analysis.md).
 
 ## Principles
 
@@ -53,11 +53,12 @@ Each slice's issue lists its manual checks as steps with an expected result. The
 
 A slice is done when all of these hold. Slice issues link here instead of copying it.
 
+- Every Must item in the issue is done, and every Should item is done or explicitly cut in the issue.
+- The issue's exit criterion is met, and its end-to-end path is demonstrated on the phone.
 - Every path in the issue is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on.
 - The tests pass locally and in CI.
-- The issue's end-to-end path is demonstrated on the phone.
 - Relevant offline and unavailable-model paths are checked.
 - A change to the stored schema ships with a written migration plan and a migration test, and never wipes existing data.
-- the behavior docs the slice touches are updated in the same pull request as the code, and anything it makes stale is deleted.
+- The behavior docs the slice touches are updated in the same pull request as the code, and anything it makes stale is deleted.
 - Known limitations are recorded in the issue.
 - Open questions are answered in the owning doc, or moved to a later issue with a link.

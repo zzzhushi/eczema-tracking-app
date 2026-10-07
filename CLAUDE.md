@@ -14,17 +14,17 @@ Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/age
 
 ## Development approach
 
-- **Ownership.** Repository docs describe what the merged app currently does; issues describe the change being proposed or built. Don't copy the same behavior into an issue, a doc, and a test name.
-  - `docs/spec.md`: principles, constraints, safety, privacy, non-functional requirements.
+- **Ownership.** Behavior docs own merged behavior, issues own proposed changes, and the spec and analysis rules own durable principles and rules. Other artifacts may summarize or verify a rule but must defer to its canonical owner. A decision about unbuilt behavior stays in its issue until the implementation pull request updates the behavior doc.
+  - `docs/spec.md`: durable product intent, principles, constraints, safety, privacy, non-functional requirements.
   - `docs/behavior/*.md`: current behavior by stable capability, one short file each, created in the pull request that first ships that capability. No IDs, no release labels.
-  - `docs/analysis.md`: formulas, thresholds, and missing-data rules.
+  - `docs/analysis.md`: formulas, thresholds, and missing-data rules, including provisional ones for later releases.
   - `docs/testing.md`: how the app is tested, and the definition of done.
-  - Tests and fixtures: executable examples and edge cases.
+  - Tests and fixtures: executable examples and edge cases; tests are named by behavior.
   - Slice issues: the proposed change, open questions, and end-to-end acceptance.
   - `docs/adr/`: cross-cutting, hard-to-reverse decisions.
   - Reference data files: the actual food lists and levels.
   - `CONTEXT.md`: terms.
-- Releases are GitHub milestones; each slice (S0, S1, …), backlog outcome, and tabled item is an issue.
+- Vocabulary: a **release** is a GitHub milestone; a **slice** is a thin end-to-end issue within a release (S0, S1, …); a **future outcome** is a brief issue for a later release that becomes slices when that release is planned. Tabled items are issues with the `tabled` label.
 - Update the behavior docs in the same pull request as the code, and delete what the change makes stale. Close or prune stale issues the same way.
 - Define a rule once, in the doc that owns it; summaries elsewhere defer to it.
 - Build in vertical slices: each slice is a thin, working path through every layer, usable on the phone.

@@ -1,6 +1,6 @@
 # Issue tracker: GitHub
 
-Issues and specs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
+Work tracking for this repo lives in GitHub issues; durable product and behavior documentation lives in the repository. Use the `gh` CLI for all operations.
 
 ## Conventions
 
@@ -47,6 +47,7 @@ Used by `/wayfinder`. The **map** is a single issue with **child** issues as tic
 ## Conventions in this repo
 
 - Each release is a GitHub milestone named "Release N: …"; the public-release checklist has its own milestone.
-- Each slice (S0, S1, …) and each backlog outcome is an issue in its release's GitHub milestone, holding its paths, acceptance checks, and open questions.
+- Each slice (S0, S1, …) and each future outcome is an issue in its release's GitHub milestone.
+- Planned slices carry affected behavior docs, decisions, acceptance, and an exit criterion. Future outcome issues stay brief until their release is planned and split into slices.
 - Parked items carry the `tabled` label and no milestone.
 - New slice issues start from `.github/ISSUE_TEMPLATE/slice.md`; the shared checklist is the definition of done in `docs/testing.md`.

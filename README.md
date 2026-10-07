@@ -18,5 +18,5 @@ Planning Release 1 (food and skin). Next slice: S0, the photo-rating prototype.
 - [Spec](docs/spec.md): the product and its lasting decisions
 - [Analysis rules](docs/analysis.md): formulas, thresholds, and missing-data rules
 - [Testing](docs/testing.md): how the app is tested
-- [Roadmap](https://github.com/zzzhushi/eczema-tracking-app/milestones): releases, milestones, and the backlog as GitHub issues
+- [Roadmap](https://github.com/zzzhushi/eczema-tracking-app/milestones): releases as GitHub milestones; slices and future outcomes as issues
 - [Glossary](CONTEXT.md): project terms
