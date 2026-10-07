@@ -38,7 +38,7 @@ At the lowest priority, a nutrient gap checker shows which nutrients the user's 
 7. As the user, I want days without a check-in treated as unknown rather than good, so that skipped days never create false evidence.
 8. As the user, I want a short "what was used" line under each category in the check-in, so that I can confirm the day at a glance.
 9. As the user, I want to record treatments only on days I use them, so that a medicated cream isn't silently carried forward.
-10. As the user, I want treated days marked in the analysis, so that improvement from a cream isn't credited to something else.
+10. As the user, I want treated days and the 3 days after left out of that area's suspect evidence and marked on trends, so that improvement or rebound around a treatment isn't credited to something else.
 11. As the user, I want a free-text note for one-off activities like painting or cleaning, so that unusual exposures are captured without forms.
 12. As the user, I want to note pool, ocean, or hot-tub time in free text, so that water exposure is recorded even without a workout.
 
@@ -129,13 +129,13 @@ At the lowest priority, a nutrient gap checker shows which nutrients the user's 
 77. As the user, I want everything stored only on my phone, so that my health data never goes to a cloud.
 78. As the user, I want a weekly refresh command on my Mac that reinstalls the app and copies the latest backup off the phone, so that the free signing never lapses unnoticed and my data lives on two of my devices.
 79. As the user, I want a notification a day before the app's signing expires, so that the weekly refresh doesn't catch me by surprise.
-80. As the user, I want to export a full backup and a one-row-per-day spreadsheet, so that I can restore the app and analyze my data externally.
-81. As the user, I want to import a backup, so that a new phone or a deleted app can be fully restored.
+80. As the user, I want to export a structured-data backup and a one-row-per-day spreadsheet, plus an optional photo archive with a spreadsheet of date, area, and ratings, so that I can restore the app and analyze my data and photos externally.
+81. As the user, I want to import a backup, so that a new phone or a deleted app is restored, including photos when I included them.
 
 ### Nutrient gaps
 
 82. As the user, I want to see which of eleven eczema- and diet-relevant nutrients my logged foods rarely supply, so that a restricted diet doesn't quietly leave gaps.
-83. As the user, I want a nutrient counted only from foods that are good or excellent sources in a typical serving, so that a pinch of a spice doesn't count as a source.
+83. As the user, I want a nutrient counted when a food is a good or excellent source in a typical serving, accepting that presence-only logging treats a pinch of a seasoning like a serving, so that gaps stay a simple heuristic I can check against my logs.
 84. As the user, I want a gap shown as "covered on N of my last 30 logged days", so that I can check it against my own logs.
 85. As the user, I want no gap shown before 14 logged days and unlogged days ignored, so that missing logs never look like a missing nutrient.
 86. As the user, I want gaps worded as "your logs rarely include…" with a suggestion to ask a doctor or dietitian about testing, so that the app never claims I'm deficient.
@@ -161,12 +161,12 @@ At the lowest priority, a nutrient gap checker shows which nutrients the user's 
 - **Ingredient reader.** Turns pasted text or on-device text recognition of a photo into a normalized ingredient list with alias matching.
 - **Photo rater.** Rates a photo against the six-sign rubric and compares it with the previous photo of the same area, behind an interface that hides the model. Records the rating version with every result. Re-rates stored photos when the version changes. The skin score is computed from sign scores, never stored as the source of truth.
 - **Health importer.** Reads daily summaries from HealthKit on each app open, filling any days since the last import, including workout routes for outdoor workouts and swims.
-- **Weather importer.** Fetches daily weather, UV, humidity, and air quality from Open-Meteo for each location the day involved: the place the app was opened and the routes of outdoor workouts. A backfilled day uses the most recent known location, which the user can change.
+- **Weather importer.** Fetches daily weather, UV, humidity, and air quality from Open-Meteo for each location the day involved: the place the app was opened and the routes of outdoor workouts. Locations are rounded to about 11 km (0.1° of latitude), and workout routes override the day's place. A day without a recorded location takes the neighbouring location when the nearest recorded days on both sides are the same place (within about 25 km); when they differ, it takes the user's home location, inferred as the most common recorded place. The inferred location is shown on the day with a one-tap change. When a day involves several places, weather is fetched per place and combined by time, never by averaging coordinates.
 - **Analysis engine.** A pure computation over day records and reference data, producing product checks, flare investigations, trends, ranked suspects, natural-test grades, the safe baseline, and stepping-stone suggestions. Default look-back windows: sweat and heat 0–1 days, food chemicals 0–2 days, contact products 1–4 days, weather and handwashing build-up over 3 days; all editable. Tests only core factors. Every result carries a confidence (strong, suggestive, too early to tell) and its data coverage.
 - **Product suspicion.** Per-ingredient suspicion levels that rise when a product containing the ingredient precedes a flare and fall when one is tolerated, adjusted by area and concentration cues. Product candidates are scored as safest (no current suspects) or most informative (splits the current suspects most evenly).
 - **Narrator.** The on-device model turns analysis-engine output into plain-language explanations and the daily "signs of strain" note. It receives only the engine's results and never states facts absent from them.
-- **Export and import.** A full backup as JSON (restorable) plus a one-row-per-day CSV for external analysis. Photos are exported separately and only on request.
-- **Weekly refresh command.** A script on the user's Mac that builds and reinstalls the app on the connected phone and copies the latest backup out of the app's data container.
+- **Export and import.** A structured-data backup as JSON (restorable, excluding photos) plus a one-row-per-day CSV for external analysis. An optional photo archive holds the stored, downscaled photos with a spreadsheet of date, area, and ratings, and import restores it. Originals are never kept.
+- **Weekly refresh command.** A script on the user's Mac that builds and reinstalls the app on the connected phone and copies the latest backup out of the app's data container. An option also copies the photos; it is off by default.
 - **Notifications.** The evening check-in reminder and the signing-expiry reminder one day ahead.
 - **Nutrient gap checker.** Lowest priority. Tags each catalog food as a good or excellent source of eleven nutrients (vitamins D, E, B12, and C, zinc, selenium, calcium, magnesium, potassium, fibre, omega-3 ALA) per typical serving, using U.S. food-label definitions (10–19% and 20% or more of the daily value) and USDA FoodData Central values; tags are generated from that data without manual review. A logged day is covered for a nutrient by one excellent or two good sources. A nutrient is flagged when covered on fewer than half of the last 30 logged days, never before 14 logged days. It is not a factor in the trigger analysis.
 
@@ -175,11 +175,13 @@ At the lowest priority, a nutrient gap checker shows which nutrients the user's 
 - Unknown is never zero: an unknown chemical level, a day without a check-in, and a day without a food entry are unknown and are excluded from evidence rather than counted as absent.
 - Raw inputs are stored and combinations are computed: the user's look and the AI's look are stored separately; written foods and accepted suggested foods are distinguishable; the not-fresh label is its own weaker factor rather than a modifier of food levels.
 - Routines are product-and-area pairs with start and stop dates. Treatments are never carried forward.
-- Natural tests are inferred from first-time or reintroduced exposures relative to the safe baseline and graded clean or muddied by what else changed in the window, including eaten-out meals.
+- Natural tests are inferred from first-time or reintroduced exposures relative to the safe baseline. Another discrete logged event inside the window muddies a test: another new or reintroduced food, a new product, ingredient, or routine change, a background-product change, an eaten-out meal, a treatment, or a one-off activity note. Weather, sleep, heart rate variability, sweat load, and water exposure never muddy a test; they appear beside the result as context, and water exposure is its own factor. A window containing a day with no food entry is unknown, not clean.
+- Day-level chemical exposure: for each day and food chemical the engine stores the peak level among the day's foods, the breadth (foods at moderate or higher, banded as 1, 2–3, or 4 or more), and the number of foods with an unknown level, beside how many foods the day logged and how many meals were eaten out. Peak decides first. A known high stays high despite unknown foods, but a negligible, low, or moderate peak needs every food known, otherwise the day is unknown for that chemical. Breadth separates days only when they share a peak and enough days have it, and is ignored when it tracks the number of foods logged. On days with an eaten-out meal, breadth is a lower bound.
+- Treatments are adjustment markers, not ranked factors. A treated day and the 3 days after are left out of the suspect evidence for the treated area (an oral medicine applies to every area) and stay on trends, marked as treated. The app may describe an area's look before and after a treatment starts, without advice.
 
 ### Core factors
 
-Food chemicals (six), allergen tags (nine), eating out, not fresh, products and their ingredients, makeup, background-product changes, treatments, UV, temperature, humidity, air quality, daylight time, sleep, heart rate variability, resting heart rate, wrist temperature, menstrual cycle, sweat load, handwashing, water exposure.
+Food chemicals (six), allergen tags (nine), eating out, not fresh, products and their ingredients, makeup, background-product changes, UV, temperature, humidity, air quality, daylight time, sleep, heart rate variability, resting heart rate, wrist temperature, menstrual cycle, sweat load, handwashing, water exposure. Treatments are adjustment markers, not core factors.
 
 ### Screens
 
@@ -198,6 +200,7 @@ Four tabs: Today (meals, routine summary, automatic data, the check-in and photo
 
 - A good test exercises external behavior through the highest available seam: given day records and reference data, assert the findings. Tests never assert on internal data structures or the wording of AI output.
 - **Primary seam: the analysis engine as a pure function** from day records and reference data to findings. Most behavior is tested here with hand-built day histories, for example "unknown chemical levels never produce a low-load day", "a flare after two changes is reported as muddied", "a tolerated product lowers but does not clear an ingredient's suspicion".
+- **Day-level exposure oracle:** a day of oatmeal, banana, chicken, rice, cheddar, and tomato has its salicylate peak from tomato; a day of rice plus one food with an unknown salicylate level is unknown, not low; two days with the same peak are separated by breadth only when breadth is not tracking the number of foods logged. Levels in these tests are fixtures, not catalog values.
 - **Model seam: the photo rater and food parser sit behind interfaces**, so tests substitute a fake model and check the surrounding logic (deterministic catalog matching, unrecognized entries, rating-version handling, re-rating).
 - **Reference-data validation:** every chemical level decodes, every level has a citation, slugs and aliases are unique, and aliases resolve, so a typo can't ship as a silent unknown.
 - **Export round-trip:** export then import reproduces identical day records.
@@ -215,7 +218,7 @@ Four tabs: Today (meals, routine summary, automatic data, the check-in and photo
 - Importing past history or known reactions.
 - Best-fit look-back windows (a later exploratory feature).
 - Mood logs, steps, and cardio fitness as factors.
-- Cloud sync, iCloud backup, and photo backup.
+- Cloud sync, iCloud backup, and automatic photo backup; photos are copied to the user's Mac only when requested.
 - Siri and Shortcuts capture, widgets, Apple Watch check-in, Face ID lock, and a dermatologist summary (later).
 - App Store or TestFlight distribution, and support for users other than the primary user.
 - Supplements, nutrient intake quantities, and iodine.
@@ -226,5 +229,5 @@ Four tabs: Today (meals, routine summary, automatic data, the check-in and photo
 - **Evidence and framing.** A 2025 meta-analysis estimates salicylate, amine, and histamine intolerance among people with atopic dermatitis at roughly 53%, 32%, and 31%, with low certainty. Dietary elimination for atopic dermatitis shows only slight benefit in trials, and long restrictive diets may raise the risk of developing IgE-mediated food allergy. The app therefore favors reintroduction and expanding the diet, says when formal challenges are best done with a dietitian, and presents suspects with confidence levels rather than verdicts.
 - **RPAH licensing.** The RPAH Elimination Diet Handbook is a copyrighted commercial book. Bundled chemical levels come from the published studies the field relies on (for salicylates, Swain et al. 1985 and later measurements), with RPAH used only to decide which foods to include first. The user's own overrides stay on their phone.
 - **Weather terms.** Open-Meteo is free for non-commercial use. A future paid release would need its commercial plan or WeatherKit with a paid developer account.
-- **Nutrients.** Vitamin D supplementation reduced eczema severity in a meta-analysis of 11 randomized trials; smaller trials suggest benefit from vitamins E and B12; zinc and selenium deficiency may worsen eczema. Low-salicylate diets at lower calorie intakes can fall short on several nutrients, which is why the checker includes diet-safety nutrients alongside eczema-linked ones. Nutrient status changes over weeks to months and only a blood test confirms a deficiency, so the checker reports how rarely sources appear and never diagnoses. USDA FoodData Central is public domain (CC0) and asks to be cited as the source.
+- **Nutrients.** Vitamin D supplementation reduced eczema severity in a meta-analysis of 11 randomized trials; smaller trials suggest benefit from vitamins E and B12; zinc and selenium deficiency may worsen eczema. Low-salicylate diets at lower calorie intakes can fall short on several nutrients, which is why the checker includes diet-safety nutrients alongside eczema-linked ones. Nutrient status changes over weeks to months and only a blood test confirms a deficiency, so the checker reports how rarely sources appear and never diagnoses. USDA FoodData Central is public domain (CC0) and asks to be cited as the source. Because logging records presence only, a pinch of a seasoning counts like a serving, so gaps are a food-presence heuristic.
 - **Storage estimates.** Downscaled photos at two areas per day are about 150–220 MB per year; structured data is a few MB per year.

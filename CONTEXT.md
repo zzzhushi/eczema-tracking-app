@@ -47,7 +47,7 @@ The combination of model, rubric, and prompt that produced a photo rating; ratin
 _Avoid_: Model version
 
 **Treatment**:
-A medicated cream or medicine used in response to a flare, recorded on each day it is used.
+A medicated cream or medicine used in response to a flare, recorded on each day it is used; an adjustment marker, never a ranked factor.
 _Avoid_: Medication product, routine item
 
 ### Food
@@ -83,6 +83,14 @@ _Avoid_: Compound, nutrient, trace chemical
 **Chemical level**:
 A food's coarse rating for one food chemical: negligible, low, moderate, high, very high, or unknown; unknown is never treated as negligible.
 _Avoid_: Amount, mg value, score
+
+**Peak**:
+The highest chemical level among a day's foods for one food chemical, or unknown.
+_Avoid_: Maximum, daily level
+
+**Breadth**:
+How many of a day's foods sit at moderate or higher for one food chemical, banded as 1, 2–3, or 4 or more.
+_Avoid_: Count, load
 
 **Allergen tag**:
 The presence of one of nine common food allergens in a food: milk, egg, wheat, soy, peanut, tree nuts, fish, shellfish, sesame.
@@ -160,6 +168,10 @@ _Avoid_: Variable, feature, metric
 A factor chosen in advance for testing; only core factors appear in ranked results.
 _Avoid_: Main factor, primary metric
 
+**Adjustment marker**:
+A record such as a treatment that changes how nearby days are used as evidence rather than being tested as a suspect.
+_Avoid_: Confounder, control factor
+
 **Sweat load**:
 A day's workout minutes weighted by intensity and adjusted for the heat and humidity at the time and place.
 _Avoid_: Exercise level, activity score
@@ -171,6 +183,10 @@ _Avoid_: Swimming flag
 **Note**:
 Free text about a day's one-off activities, such as painting or cleaning, surfaced in flare investigations.
 _Avoid_: Comment, misc field
+
+**Home location**:
+The user's most common recorded place, used for days without a reliable location.
+_Avoid_: Home city, default location
 
 **Signs of strain**:
 The daily health summary of sleep, heart rate variability, and resting heart rate; a curiosity, never a factor.
@@ -207,8 +223,12 @@ A natural test in which the tested exposure was the only new thing and no meal w
 _Avoid_: Valid, controlled
 
 **Muddied**:
-A natural test in which something else changed during its window; it still counts, as weaker evidence.
+A natural test in which another discrete logged event fell inside its window; it still counts, as weaker evidence.
 _Avoid_: Invalid, failed, contaminated
+
+**Unknown test**:
+A natural test whose window includes a day with no food entry, so nothing can be said about what else changed.
+_Avoid_: Incomplete test
 
 **Product check**:
 The "should I try this?" assessment of a product's ingredients against suspects and common triggers.
