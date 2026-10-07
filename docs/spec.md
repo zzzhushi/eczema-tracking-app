@@ -1,5 +1,7 @@
 # eXzema: spec
 
+Requirements with IDs, priorities, releases, and the cut line are in [requirements.md](requirements.md).
+
 ## Problem Statement
 
 The user has eczema on their face and hands with several suspected triggers: food chemicals (salicylates noticeably flare their hands), chemical sunscreen filters (which flared their face), sun, sweat, and weather. They previously identified a sunscreen trigger by hand: comparing ingredient lists of products that flared them against ones that didn't, with a general-purpose chatbot's help. That worked, but it was manual, lived in a chat history, and couldn't take in food, sleep, activity, or weather.
