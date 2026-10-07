@@ -38,29 +38,38 @@
     "oxalates": {
       "result": {
         "kind": "known",
-        "level": "moderate"
+        "level": "low"
       },
       "evidence": [
         {
           "sourceId": "salgado-2023",
           "locator": "Table 5: lentil, brown",
           "basis": "dry weight, 24.0 mg per 100 g total; about 8.4 mg at 35 g dry",
-          "level": "moderate"
+          "level": "moderate",
+          "converted": true
         },
         {
           "sourceId": "salgado-2023",
           "locator": "Table 5: lentil, red",
           "basis": "dry weight, 13.8 mg per 100 g total; about 4.8 mg at 35 g dry",
-          "level": "low"
+          "level": "low",
+          "converted": true
         },
         {
           "sourceId": "salgado-2023",
           "locator": "Table 5: lentil, dried",
           "basis": "dry weight, 13.3 mg per 100 g total; about 4.7 mg at 35 g dry",
+          "level": "low",
+          "converted": true
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Beans and Lentils: Lentils, boiled, unsalted",
+          "basis": "1/2 cup boiled, 2.4 mg, directly measured; about 2.2 mg at the 35 g dry equivalent",
           "level": "low"
         }
       ],
-      "note": "Cooking loss is not subtracted."
+      "note": "Salgado values are dry weight; cooking removes much of the oxalate, so the as-eaten measurement decides."
     },
     "amines": {
       "result": {

@@ -42,6 +42,13 @@
           "basis": "1 cup cooked, 4 mg (sheet serving); about 3.5 mg at 140 g",
           "level": "low",
           "note": "Jasmine and short-grain not listed separately."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Grains: Rice, white, cooked, long grain",
+          "basis": "1 cup cooked, 3.8 mg, directly measured; about 3.4 mg at 140 g",
+          "level": "low",
+          "note": "Jasmine and short-grain not listed separately."
         }
       ]
     },

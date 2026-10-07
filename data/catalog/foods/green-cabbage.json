@@ -44,6 +44,12 @@
           "locator": "Vegetables: Cabbage",
           "basis": "1/2 cup, 1 mg (sheet serving)",
           "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Cabbage, boiled, drained, unsalted",
+          "basis": "1/2 cup boiled, 1.4 mg, directly measured",
+          "level": "negligible"
         }
       ]
     },

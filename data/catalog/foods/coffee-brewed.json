@@ -33,6 +33,12 @@
           "locator": "Beverages: Coffee",
           "basis": "1 cup, 1 mg (sheet serving)",
           "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Beverages: Coffee, brewed",
+          "basis": "8 oz, 1.7 mg, directly measured",
+          "level": "negligible"
         }
       ]
     },

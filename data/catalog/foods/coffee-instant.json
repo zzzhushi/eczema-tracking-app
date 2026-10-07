@@ -22,11 +22,18 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": [],
-      "note": "Secondary reports with inconsistent units were found; the primary article is not yet read."
+      "evidence": [
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Beverages: Coffee, prepared instant decaf",
+          "basis": "8 oz, 2.2 mg, directly measured",
+          "level": "low",
+          "note": "Only decaffeinated instant coffee is listed."
+        }
+      ]
     },
     "amines": {
       "result": {

@@ -76,6 +76,30 @@
           "locator": "Fish: Pollock",
           "basis": "3 oz, 0 mg (sheet serving)",
           "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fish: Cod, Atlantic and Pacific, dry heat cooked",
+          "basis": "4 oz, 0.0 mg, directly measured",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fish: Haddock, dry heat cooked",
+          "basis": "4 oz, 0.1 mg, directly measured",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fish: Pollock, Atlantic, dry heat cooked",
+          "basis": "4 oz, 0.0 mg, directly measured",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fish: Tilapia, dry heat cooked",
+          "basis": "4 oz, 0.0 mg",
+          "level": "negligible"
         }
       ],
       "note": "Tilapia and basa are not listed."

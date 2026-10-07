@@ -35,6 +35,12 @@
           "basis": "3.5 oz, 13 mg (sheet serving); about 11 mg at 85 g",
           "level": "high",
           "note": "The sheet rates 3.5 oz as very high."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Beans and Lentils: Tofu, soft",
+          "basis": "3.5 oz, 10.6 mg, directly measured; about 9.0 mg at 85 g",
+          "level": "moderate"
         }
       ]
     },

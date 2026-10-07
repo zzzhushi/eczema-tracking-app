@@ -41,6 +41,12 @@
           "basis": "3 oz, 0 mg (sheet serving)",
           "level": "negligible",
           "note": "Cut, skin, and cooking not specified."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Poultry: Chicken, roasted meat",
+          "basis": "3 oz, 0.0 mg, directly measured",
+          "level": "negligible"
         }
       ]
     },

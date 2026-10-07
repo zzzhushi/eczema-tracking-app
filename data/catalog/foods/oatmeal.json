@@ -49,6 +49,13 @@
           "basis": "1 cup, 0 mg (sheet serving)",
           "level": "negligible",
           "note": "Oat variety not specified."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Hot cereal: Oats, regular quick instant, cooked with water, no salt",
+          "basis": "1 cup cooked, 0.0 mg",
+          "level": "negligible",
+          "note": "Rolled and instant; steel-cut not listed."
         }
       ]
     },

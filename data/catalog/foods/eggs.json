@@ -45,6 +45,12 @@
           "locator": "Eggs: Eggs",
           "basis": "1 medium, 0 mg (sheet serving)",
           "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Eggs: Egg, raw whole",
+          "basis": "one egg, 0.0 mg",
+          "level": "negligible"
         }
       ]
     },

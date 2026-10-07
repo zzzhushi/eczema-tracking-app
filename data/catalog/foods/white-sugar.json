@@ -33,6 +33,12 @@
           "locator": "Sugar",
           "basis": "1 tsp, 0 mg (sheet serving)",
           "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Sweeteners: Sugar, granulated",
+          "basis": "1 tsp, 0.0 mg, directly measured",
+          "level": "negligible"
         }
       ]
     },

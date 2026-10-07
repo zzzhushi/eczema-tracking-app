@@ -1,6 +1,15 @@
 {
   "sources": [
     {
+      "id": "harvard-oxalate-renNu",
+      "kind": "list",
+      "type": "web-page",
+      "title": "Harvard Oxalate Table 2023",
+      "publisher": "Ren-Nu (reproduction of the Harvard oxalate table; marks directly measured values)",
+      "url": "https://ren-nu.org/harvard-oxalate-table-2023/",
+      "accessedOn": "2026-10-07"
+    },
+    {
       "id": "keszycka-2021",
       "kind": "guidance",
       "type": "journal-article",
