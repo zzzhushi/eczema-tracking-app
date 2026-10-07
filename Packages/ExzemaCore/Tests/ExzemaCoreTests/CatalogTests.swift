@@ -2,9 +2,9 @@ import Foundation
 import Testing
 @testable import ExzemaCore
 
-private let catalogDirectory = URL(fileURLWithPath: #filePath)
+private let dataDirectory = URL(fileURLWithPath: #filePath)
     .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-    .appending(path: "data/catalog", directoryHint: .isDirectory)
+    .appending(path: "data", directoryHint: .isDirectory)
 
 private func evidence(_ source: String, _ level: ChemicalLevel, converted: Bool = false) -> Evidence {
     Evidence(sourceId: source, locator: "row", basis: "basis", level: level, converted: converted ? true : nil, note: nil)
@@ -14,14 +14,14 @@ private let kinds: [String: SourceKind] = ["m": .measurement, "r": .review, "g":
 
 @Suite struct CatalogDataTests {
     @Test func shippedCatalogLoadsAndHasNoIssues() throws {
-        let catalog = try Catalog.load(from: catalogDirectory)
+        let catalog = try Catalog.load(dataDirectory: dataDirectory)
         #expect(catalog.foods.count == 18)
         let issues = catalog.validate()
         #expect(issues.isEmpty, "\(issues.map(\.description).joined(separator: "\n"))")
     }
 
     @Test func everyAllergenTagIsOnTheFixedList() throws {
-        let catalog = try Catalog.load(from: catalogDirectory)
+        let catalog = try Catalog.load(dataDirectory: dataDirectory)
         #expect(catalog.foods.flatMap(\.allergens).allSatisfy { Allergen.allCases.contains($0) })
     }
 }
@@ -67,8 +67,8 @@ private let kinds: [String: SourceKind] = ["m": .measurement, "r": .review, "g":
     }
 
     private func catalog(_ foods: [Food]) -> Catalog {
-        let source = Source(id: "l", kind: .list, type: "web-page", title: "t", authors: nil, publisher: nil, year: nil,
-                            doi: nil, url: nil, accessedOn: "2026-10-07")
+        let source = Source(id: "l", kind: .list, type: "web-page", title: "t", authors: nil, journal: nil, publisher: nil,
+                            year: nil, doi: nil, url: nil, accessedOn: "2026-10-07", note: nil)
         return Catalog(manifest: CatalogManifest(schemaVersion: 1, catalogVersion: 1), sources: [source], foods: foods)
     }
 

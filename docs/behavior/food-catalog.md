@@ -4,11 +4,11 @@ The bundled reference data that says what each food is, what it is called, and h
 
 ## Contents
 
-`data/catalog/` holds the only copy of every food, alias, allergen tag, level, and citation. Other docs link to it and never restate it.
+`data/catalog/` holds the only copy of every food, alias, allergen tag, level, and citation reference. Other docs link to it and never restate it.
 
-- `foods/<id>.json`: one file per food.
-- `sources.json`: one record per cited source.
-- `manifest.json`: `schemaVersion` changes with the file format; `catalogVersion` increases in any change to foods, aliases, or levels.
+- `catalog/foods/<id>.json`: one file per food.
+- `data/sources.json`: the shared bibliography, one record per source; the sources the catalog cites carry a `kind`.
+- `catalog/manifest.json`: `schemaVersion` changes with the file format; `catalogVersion` increases in any change to foods, aliases, or levels.
 
 ## Food file
 
@@ -30,7 +30,7 @@ Evidence is a list of entries, each with a `sourceId`, a `locator` inside the so
 
 ## Sources
 
-Each record has an `id`, a `kind`, bibliographic fields (title, authors, year, publisher, DOI or URL), and the date accessed. The kind is the strength of the source:
+Each record in `data/sources.json` has an `id`, bibliographic fields (title, authors, year, journal or publisher, DOI or URL), and the date accessed. A source the catalog cites also has a `kind`. The kind is the strength of the source:
 
 1. `measurement`: a paper or monitoring data that measured the food.
 2. `review`: a peer-reviewed compilation that cites measurements.

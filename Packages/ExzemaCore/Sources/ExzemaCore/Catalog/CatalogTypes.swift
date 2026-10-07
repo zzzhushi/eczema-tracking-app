@@ -100,17 +100,20 @@ public struct Variety: Codable, Equatable, Sendable {
     public var isDefault: Bool { `default` ?? false }
 }
 
+/// A bibliography entry. `kind` is present only on sources the catalog's evidence cites.
 public struct Source: Codable, Equatable, Sendable {
     public var id: String
-    public var kind: SourceKind
+    public var kind: SourceKind?
     public var type: String
     public var title: String
     public var authors: [String]?
+    public var journal: String?
     public var publisher: String?
     public var year: Int?
     public var doi: String?
     public var url: String?
     public var accessedOn: String
+    public var note: String?
 }
 
 public struct CatalogManifest: Codable, Equatable, Sendable {

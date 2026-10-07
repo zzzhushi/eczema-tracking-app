@@ -11,15 +11,16 @@ public struct Catalog: Sendable {
         self.foods = foods
     }
 
-    /// Reads `manifest.json`, `sources.json`, and every file in `foods/` under `directory`.
-    public static func load(from directory: URL) throws -> Catalog {
+    /// Reads the shared `sources.json` from `dataDirectory`, and `catalog/manifest.json` and every
+    /// file in `catalog/foods/` beneath it.
+    public static func load(dataDirectory: URL) throws -> Catalog {
         let decoder = JSONDecoder()
         func read<T: Decodable>(_ type: T.Type, _ url: URL) throws -> T {
             try decoder.decode(type, from: Data(contentsOf: url))
         }
-        struct SourceFile: Decodable { var sources: [Source] }
+        let directory = dataDirectory.appending(path: "catalog", directoryHint: .isDirectory)
         let manifest = try read(CatalogManifest.self, directory.appending(path: "manifest.json"))
-        let sources = try read(SourceFile.self, directory.appending(path: "sources.json")).sources
+        let sources = try read([Source].self, dataDirectory.appending(path: "sources.json"))
         let foodsDirectory = directory.appending(path: "foods", directoryHint: .isDirectory)
         let foodFiles = try FileManager.default.contentsOfDirectory(at: foodsDirectory, includingPropertiesForKeys: nil)
             .filter { $0.pathExtension == "json" }
@@ -60,7 +61,7 @@ extension Catalog {
     public func validate() -> [CatalogIssue] {
         var issues: [CatalogIssue] = []
         func issue(_ food: String?, _ message: String) { issues.append(CatalogIssue(foodID: food, message: message)) }
-        let kinds = sources.mapValues(\.kind)
+        let kinds = sources.compactMapValues(\.kind)
 
         var seenIDs = Set<String>()
         var aliasOwner: [String: String] = [:]
@@ -83,7 +84,11 @@ extension Catalog {
                 }
                 for evidence in assessment.evidence {
                     citedSources.insert(evidence.sourceId)
-                    if kinds[evidence.sourceId] == nil { issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)") }
+                    if sources[evidence.sourceId] == nil {
+                        issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
+                    } else if kinds[evidence.sourceId] == nil {
+                        issue(food.id, "\(chemical.rawValue) cites source \(evidence.sourceId) that has no kind")
+                    }
                 }
                 switch assessment.result {
                 case .known:
@@ -101,7 +106,7 @@ extension Catalog {
             if anyKnown && food.serving == nil { issue(food.id, "has known levels but no serving") }
         }
 
-        for id in sources.keys where !citedSources.contains(id) { issue(nil, "source \(id) is never cited") }
+        for id in kinds.keys where !citedSources.contains(id) { issue(nil, "source \(id) has a kind but no evidence cites it") }
         return issues.sorted { ($0.foodID ?? "", $0.message) < ($1.foodID ?? "", $1.message) }
     }
 }
