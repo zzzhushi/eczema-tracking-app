@@ -257,5 +257,5 @@ _Avoid_: Complete day, finished day
 ### Operations
 
 **Weekly refresh**:
-The command run on the user's Mac that reinstalls the app before its free signing expires and copies the latest backup off the phone.
+The command run on the user's Mac that reinstalls the app before its free signing expires and copies the latest backup off the phone, optionally with photos.
 _Avoid_: Re-sign, redeploy, sync
