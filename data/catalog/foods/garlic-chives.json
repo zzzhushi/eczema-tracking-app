@@ -25,11 +25,19 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "very high"
       },
-      "evidence": [],
-      "note": "Only common chives are listed in the sources found, and they are a different plant."
+      "evidence": [
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: 'leek' (Allium tuberosum), raw",
+          "basis": "fresh weight, 48.6 mg per 100 g total, 45.1 soluble; about 41 mg at 85 g",
+          "level": "very high",
+          "note": "The review labels this row leek; the species is garlic chives. One survey of Korean vegetables."
+        }
+      ],
+      "note": "A typical serving of garlic chives may be smaller than 85 g, which would lower the level."
     },
     "amines": {
       "result": {

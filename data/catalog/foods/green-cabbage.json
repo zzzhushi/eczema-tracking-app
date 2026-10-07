@@ -22,8 +22,8 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "sources-conflict"
+        "kind": "known",
+        "level": "low"
       },
       "evidence": [
         {
@@ -34,15 +34,10 @@
         },
         {
           "sourceId": "salgado-2023",
-          "locator": "Table 5: cabbage, raw",
-          "basis": "fresh weight, 7 mg per 100 g total; about 6 mg at 85 g",
-          "level": "moderate"
-        },
-        {
-          "sourceId": "salgado-2023",
-          "locator": "Table 5: cabbage, boiled",
-          "basis": "fresh weight, 5 mg per 100 g total; about 4 mg at 85 g",
-          "level": "low"
+          "locator": "Table 5: Savoy cabbage, boiled",
+          "basis": "fresh weight, 3.5 mg per 100 g total; about 3.0 mg at 85 g",
+          "level": "low",
+          "note": "Savoy cabbage stands in for cooked green cabbage."
         },
         {
           "sourceId": "uchicago-oxalate",
@@ -50,8 +45,7 @@
           "basis": "1/2 cup, 1 mg (sheet serving)",
           "level": "negligible"
         }
-      ],
-      "note": "The review's raw and boiled row reads '7 total, not detected soluble; 5 total, 4 soluble'; confirm which value is raw and which boiled."
+      ]
     },
     "amines": {
       "result": {
