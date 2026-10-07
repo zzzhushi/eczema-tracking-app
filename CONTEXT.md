@@ -125,7 +125,7 @@ The set of product-and-area pairs carried forward each day until the user change
 _Avoid_: Regimen
 
 **Background product**:
-A product or supplement in constant use, such as shampoo or creatine, recorded once with start and stop dates and never logged daily.
+A product or supplement in constant use, such as shampoo or a daily supplement, recorded once with start and stop dates and never logged daily.
 _Avoid_: Shower routine
 
 ### Analysis
