@@ -6,7 +6,7 @@ A personal iPhone app for tracking eczema. It relates what the user eats, applie
 
 ## Status
 
-Planning Release 1 (food and skin). Next task: T0, the photo-rating prototype.
+Planning Release 1 (food and skin). Next slice: S0, the photo-rating prototype.
 
 ## Constraints
 

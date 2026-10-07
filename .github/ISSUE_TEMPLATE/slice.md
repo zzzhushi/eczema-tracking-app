@@ -1,5 +1,5 @@
 ---
-name: Task
+name: Slice
 about: A thin end-to-end slice of the app
 labels: []
 ---
@@ -11,7 +11,7 @@ labels: []
 ## Decisions before coding
 
 ## Acceptance
-- [ ] Task-specific end-to-end checks
+- [ ] Slice-specific end-to-end checks
 
 ## Before closing
 - [ ] The [definition of done](../blob/main/docs/testing.md#definition-of-done) is met

@@ -59,7 +59,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 ### Food catalog
 
 - Each food has a coarse level (negligible to very high) per food chemical with a citation, or a research status when the level isn't known; plus allergen tags and aliases. Coarse levels reflect how much published measurements disagree.
-- Levels are resolved when the analysis runs, so research added later applies to every past day. Research proceeds in two tiers (foods eaten now, then reintroduction candidates) and never blocks a task.
+- Levels are resolved when the analysis runs, so research added later applies to every past day. Research proceeds in two tiers (foods eaten now, then reintroduction candidates) and never blocks a slice.
 - Levels come from published studies. The user's own overrides stay on the phone.
 
 ### Photos and ratings

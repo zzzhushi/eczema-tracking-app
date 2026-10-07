@@ -47,6 +47,6 @@ Used by `/wayfinder`. The **map** is a single issue with **child** issues as tic
 ## Conventions in this repo
 
 - Each release is a GitHub milestone named "Release N: …"; the public-release checklist has its own milestone.
-- Each task (T0, T1, …) and each backlog outcome is an issue in its release's GitHub milestone, holding its paths, acceptance checks, and open questions.
+- Each slice (S0, S1, …) and each backlog outcome is an issue in its release's GitHub milestone, holding its paths, acceptance checks, and open questions.
 - Parked items carry the `tabled` label and no milestone.
-- New task issues start from `.github/ISSUE_TEMPLATE/task.md`; the shared checklist is the definition of done in `docs/testing.md`.
+- New slice issues start from `.github/ISSUE_TEMPLATE/slice.md`; the shared checklist is the definition of done in `docs/testing.md`.
