@@ -123,7 +123,7 @@ Release 1 requirements are built to the Basic depth defined in the plan.
 | ENV-10 | The app shall compute a daily sweat load from workout heart-rate intensity and the heat and humidity at the workout's time and place. | Should | Later | 60 |
 | ENV-11 | The app shall write a daily "signs of strain" note from sleep, heart rate variability, and resting heart rate, kept out of the analysis. | Could | Later | 61 |
 
-### Analysis: decide (ANA, R2)
+### Analysis: decide (ANA)
 
 | ID | Requirement | Pri | When | Stories |
 |---|---|---|---|---|
@@ -139,7 +139,7 @@ Release 1 requirements are built to the Basic depth defined in the plan.
 | ANA-10 | Every result shall show a confidence and its data coverage. | Must | R1·M5 | 70 |
 | ANA-11 | Explanations shall be written only from analysis output. | Should | Later | 76 |
 
-### Analysis: learn (ANA, R3)
+### Analysis: learn (ANA)
 
 | ID | Requirement | Pri | When | Stories |
 |---|---|---|---|---|
@@ -155,7 +155,7 @@ Release 1 requirements are built to the Basic depth defined in the plan.
 | ANA-21 | Each area shall have a normal level set by the user, and the app shall propose lowering it after a week sustained below it. | Should | Later | new |
 | ANA-22 | Release 1 results for the face shall note that sun and products are not yet tracked. | Should | R1·M5 | new |
 
-### Nutrient gaps (NUT, R4)
+### Nutrient gaps (NUT)
 
 | ID | Requirement | Pri | When | Stories |
 |---|---|---|---|---|
