@@ -3,7 +3,9 @@ import SwiftUI
 
 struct DayListView: View {
     let model: AppModel
+    #if DEBUG
     @State private var confirmingClearAll = false
+    #endif
 
     var body: some View {
         NavigationStack {
@@ -22,6 +24,10 @@ struct DayListView: View {
                         }
                     }
                 }
+                Section {
+                } footer: {
+                    Text(BuildInfo(stamp: BuildStamp.value).label)
+                }
                 #if DEBUG
                 Section("Debug") {
                     Button("Save today") { model.saveToday() }
@@ -33,9 +39,11 @@ struct DayListView: View {
                 #endif
             }
             .navigationTitle("eXzema")
+            #if DEBUG
             .confirmationDialog("Delete every saved day?", isPresented: $confirmingClearAll, titleVisibility: .visible) {
                 Button("Delete all days", role: .destructive) { model.clearAll() }
             }
+            #endif
         }
     }
 }

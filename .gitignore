@@ -17,3 +17,6 @@ Local.xcconfig
 # Swift package build output
 .build/
 .swiftpm/
+
+# Build stamp generated at build time
+App/Generated/

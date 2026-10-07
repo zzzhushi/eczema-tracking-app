@@ -13,7 +13,7 @@ final class AppModel {
     private let diagnostics = DiagnosticsSubscriber()
 
     init() {
-        Log.app.notice("app.launched")
+        Log.app.notice("app.launched", public: ["build": .int(BuildInfo(stamp: BuildStamp.value).number ?? 0)])
         do {
             let directory = try AppPaths.applicationSupport().appendingPathComponent("Store", isDirectory: true)
             try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
