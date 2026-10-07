@@ -15,7 +15,7 @@ How the app is tested. Requirements for specific behavior live in the active rel
 | Logic tests | Analysis rules, food matching, unknown handling, the day boundary | Hand-built day histories, including the worked examples in the analysis rules | Mac and CI, every build |
 | Storage tests | Save and reload, export format, migrations | Fixture stores, one per schema version | Mac and CI, every build |
 | AI evaluations | Photo-rating consistency and validity, refusals, meal-parsing accuracy | Local real photos; synthetic meal texts | Mac or iPhone, when the rubric, prompt, or model changes |
-| Manual checks | Camera, permissions, timing, look and feel | Real use | iPhone, per milestone |
+| Manual checks | Camera, permissions, timing, look and feel | Real use | iPhone, per task |
 
 ## Fakes
 
@@ -32,15 +32,15 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 
 - A separate test set that never runs by default or in CI, where the model isn't available. Run on the Mac with Apple Intelligence enabled, or on the iPhone.
 - A photo listed in the manifest but missing on the machine is reported as skipped, not failed.
-- Run before the M0 decisions and whenever the rating version would change.
+- Run before the T0 decisions and whenever the rating version would change.
 - Measure the score spread for the same photo over 5 runs, the spread between photos taken minutes apart, the refusal rate, and meal-parsing accuracy.
 - Check validity as well as consistency, since a model can be consistently wrong: photos the user has labeled must score in the expected order (a clear photo below a flare photo) and within expected per-sign ranges.
-- Thresholds are set in the M0 issue and start provisional. Mac runs are for iteration; the M0 viability gate runs on the target iPhone.
-- Each run is saved locally as a report with its rating version. Only the M0 decision is committed, as an aggregated summary using opaque photo IDs.
+- Thresholds are set in the T0 issue and start provisional. Mac runs are for iteration; the T0 viability gate runs on the target iPhone.
+- Each run is saved locally as a report with its rating version. Only the T0 decision is committed, as an aggregated summary using opaque photo IDs.
 
 ## Manual checks
 
-Each milestone's issue lists its manual checks as steps with an expected result. They are run on the iPhone and ticked with the build they ran on.
+Each task's issue lists its manual checks as steps with an expected result. They are run on the iPhone and ticked with the build they ran on.
 
 ## Continuous integration
 
@@ -51,13 +51,13 @@ Each milestone's issue lists its manual checks as steps with an expected result.
 
 ## Definition of done
 
-A milestone is done when all of these hold. Milestone issues link here instead of copying it.
+A task is done when all of these hold. Task issues link here instead of copying it.
 
 - Every path in the issue is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on.
 - The tests pass locally and in CI.
 - The issue's end-to-end path is demonstrated on the phone.
 - Relevant offline and unavailable-model paths are checked.
 - A change to the stored schema ships with a written migration plan and a migration test, and never wipes existing data.
-- The behavior docs the milestone touches are updated in the same pull request as the code, and anything it makes stale is deleted.
+- the behavior docs the task touches are updated in the same pull request as the code, and anything it makes stale is deleted.
 - Known limitations are recorded in the issue.
 - Open questions are answered in the owning doc, or moved to a later issue with a link.

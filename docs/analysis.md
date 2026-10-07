@@ -2,14 +2,14 @@
 
 The single home for every formula, threshold, and missing-data rule. Other docs link here instead of restating. Numbers marked provisional are recalibrated once real data exists; the worked examples are test oracles.
 
-## Day-level chemical exposure (Release 1, M5)
+## Day-level chemical exposure (Release 1, T5)
 
 For each day and food chemical:
 
 - **Analysis levels** are negligible, low, moderate, and high. A catalog level of very high counts as high, so a known high is never understated by an unknown food.
 - **Peak** is the highest level among the day's foods. A known high is the peak even if other foods are unknown. A negligible, low, or moderate peak requires every food to have a known level for that chemical; otherwise the peak is unknown.
 - **Breadth** is the number of foods at moderate or higher, banded as 1, 2–3, or 4 or more. If any food that day has an unknown level, or a meal was eaten out, breadth is a lower bound ("at least").
-- Breadth separates days only when they share a peak and enough days have it, and is ignored when it tracks the number of foods logged per day. The thresholds for both are set before M5 (provisional).
+- Breadth separates days only when they share a peak and enough days have it, and is ignored when it tracks the number of foods logged per day. The thresholds for both are set before T5 (provisional).
 - Stored beside each day: foods logged and meals eaten out.
 
 ### Worked examples
@@ -33,9 +33,9 @@ Levels here are fixtures, not catalog values.
 
 All windows are editable. Release 1 uses only the food window.
 
-## Food-to-skin ranking (Release 1, M5)
+## Food-to-skin ranking (Release 1, T5)
 
-To be defined in the M5 issue before M5 coding. The rule must specify:
+To be defined in the T5 issue before T5 coding. The rule must specify:
 
 - **Outcome**: look, feel, or both, and whether it's the level or the change.
 - **Comparator**: days without the exposure, or the days before it.
@@ -47,13 +47,13 @@ To be defined in the M5 issue before M5 coding. The rule must specify:
 
 Numbers may start provisional; the structural cases may not.
 
-## Photo rubric and skin score (Release 1, M0 and M4)
+## Photo rubric and skin score (Release 1, T0 and T4)
 
-- The 0–3 scale follows the per-sign intensity scales of the clinical EASI and SCORAD scores (0 none, 1 mild, 2 moderate, 3 severe), which have been [validated for dermatologists rating smartphone photos](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9907712/); that validation doesn't extend to AI ratings, which M0 evaluates.
-- The six-sign rubric, with a written definition for each level, is a versioned file delivered by the M0 issue.
+- The 0–3 scale follows the per-sign intensity scales of the clinical EASI and SCORAD scores (0 none, 1 mild, 2 moderate, 3 severe), which have been [validated for dermatologists rating smartphone photos](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9907712/); that validation doesn't extend to AI ratings, which T0 evaluates.
+- The six-sign rubric, with a written definition for each level, is a versioned file delivered by the T0 issue.
 - A refused or unscorable sign is stored as unscored, never 0.
 - When an area has several photos on one day (one per hand, for example), the area's AI look is the worse photo's skin score, so a one-sided flare isn't averaged away. Each photo keeps its own scores, so the area can later be split.
-- The mapping from sign scores (0–18) to the 1–10 skin score, its rounding, how unscored signs affect it, and whether it is the AI's look value are defined in the M4 issue.
+- The mapping from sign scores (0–18) to the 1–10 skin score, its rounding, how unscored signs affect it, and whether it is the AI's look value are defined in the T4 issue.
 
 ## Later releases (provisional)
 
