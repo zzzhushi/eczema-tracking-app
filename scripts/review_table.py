@@ -16,7 +16,7 @@ def rubric_table(rubric, sources):
     for sign in rubric["signs"]:
         lv = sign["levels"]
         lines.append(f"| {sign['name']} | {lv['0']} | {lv['1']} | {lv['2']} | {lv['3']} |")
-    lines += ["", rubric["unscored"], "", "Sources:"]
+    lines += ["", rubric["scoring"], "", rubric["unscored"], "", "Sources:"]
     for ref in rubric["sources"]:
         s = names[ref["sourceId"]]
         authors = s["authors"][0].split(",")[0] + (" et al." if len(s["authors"]) > 1 else "")

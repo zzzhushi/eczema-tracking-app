@@ -11,6 +11,7 @@
     }
   },
   "unscored": "A sign that cannot be scored, or a refused rating, is stored as unscored, never as 0.",
+  "scoring": "Score each sign at the patch where that sign is strongest. A patch is at least about the size of a fingertip; smaller isolated spots are ignored. Different signs may be scored on different patches. How much of the area is affected is not part of the sign scores.",
   "signs": [
     {
       "id": "redness",
