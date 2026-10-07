@@ -68,11 +68,29 @@ final class Probe {
             samples[i].runs = []
             for run in 1...runsPerPhoto {
                 status = "Photo \(samples[i].index), run \(run) of \(runsPerPhoto)"
-                samples[i].runs.append(await rater.rate(imageURLs: [samples[i].url]))
+                let result = await rater.rate(imageURLs: [samples[i].url])
+                samples[i].runs.append(result)
+                print("RUN \(samples[i].name) run=\(run) scores=\(result.scores.map { $0.map(String.init) ?? "-" }.joined(separator: ",")) seconds=\(String(format: "%.1f", result.seconds)) tokens=\(result.promptTokens.map(String.init) ?? "?") failure=\(result.failure ?? "none")")
             }
         }
         status = "Done"
         running = false
+    }
+
+    /// Runs the whole evaluation without interaction, prints every result, and exits. Labels come
+    /// from launch arguments of the form `label:<name>=clear|flare`.
+    func autorun() async {
+        UIApplication.shared.isIdleTimerDisabled = true
+        for arg in CommandLine.arguments where arg.hasPrefix("label:") {
+            let parts = arg.dropFirst(6).split(separator: "=").map(String.init)
+            if parts.count == 2, let i = samples.firstIndex(where: { $0.name == parts[0] }) { samples[i].label = parts[1] }
+        }
+        print("AUTORUN start model=\(availability) photos=\(samples.map(\.name).joined(separator: ","))")
+        await runAll()
+        print("CONTEXT\n\(await contextTest())")
+        print("SUMMARY\n\(reportJSON())")
+        print("AUTORUN done")
+        exit(0)
     }
 
     func contextTest() async -> String {

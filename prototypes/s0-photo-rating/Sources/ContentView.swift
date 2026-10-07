@@ -43,6 +43,7 @@ struct ContentView: View {
             }
             .navigationTitle("Rating probe")
             .onChange(of: picks) { Task { await probe.load(picks) } }
+            .task { if CommandLine.arguments.contains("-autorun") { await probe.autorun() } }
         }
     }
 }
