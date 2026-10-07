@@ -15,7 +15,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 ## Key journeys
 
 1. **Log food**: the user types what they ate and glances at what the app matched, with unknown words kept.
-2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI rates the photo on seven visible signs.
+2. **Check in**: each evening, the user rates feel and look for their hands and face and takes a photo; the AI gives a second opinion on seven visible signs.
 3. **See what food does to the skin**: foods and food chemicals are ranked by how the user's ratings change after eating them (Release 1).
 4. **Investigate a flare**: the user sees what was different in the days before it, including sun, sweat, and new products.
 5. **Check before trying**: the user pastes a product's ingredients or picks a food and sees what their history and common triggers say.
@@ -41,7 +41,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 - Native iOS app on iOS 27, built with Xcode 27, for an iPhone 15 Pro or newer with Apple Intelligence enabled.
 - Personal use under a free developer account: reinstalled from Xcode every 7 days; data survives reinstalls as long as the bundle identifier and Apple ID stay the same.
-- No custom model training. Apple's on-device model handles language (splitting food text, explanations) and vision (photo ratings). Every conclusion comes from deterministic analysis over the user's data and bundled reference data.
+- No custom model training. Apple's on-device model handles language (splitting food text, explanations) and vision (a second opinion on photos). Every conclusion comes from deterministic analysis over the user's ratings and data, and the AI's photo ratings once they are validated, and bundled reference data.
 
 ### Privacy boundary
 
@@ -64,8 +64,9 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 ### Photos and ratings
 
-- The AI scores seven signs on 0–3 using a versioned rubric (scale source in [the analysis rules](analysis.md)); the user's look rating and the AI's are stored separately.
-- Each area gets a reference photo of its best state, replaced only when the user confirms a better one (Release 3).
+- The user's own look and feel ratings are the measure for now: the analysis uses them. The AI's rating of a photo is stored separately and shown beside the user's look rating while it is validated, and it joins the analysis once it passes the promotion criteria in [the analysis rules](analysis.md). The limit is data, not a known flaw ([ADR 0002](adr/0002-user-rating-is-the-measure.md)).
+- The AI rates seven signs on 0–3 using a versioned rubric (scale source in [the analysis rules](analysis.md)), relative to the area's reference photo. A sign the model can't rate reliably is measured in code from the photo or left to the user's rating; it isn't shown as an AI value.
+- Each area has a reference photo of its best state so far, which the AI rates against. The user can replace it at any time; the app proposing a better one comes later (Release 3).
 
 ## Observability
 
@@ -94,6 +95,7 @@ Limits of the platform that shape every area of the app.
 
 - **On-device model context**: 4K tokens for input and output together; images take a large share, so prompts stay small.
 - **Model guardrails**: the model may refuse skin photos or health wording. A refusal is logged and shown, never treated as a rating.
+- **Photo rating quality**: the model sees large changes, such as a flare against clear skin, but not small ones or fine detail, and one run varies by about a point. A rating therefore averages several runs, takes about a minute per photo, and runs in the background. Its quality has only been checked on a few of the user's own photos.
 - **Background limits**: iOS gives apps little background time, and the model may be rate-limited in the background. Work runs when the app is open or charging.
 - **Free signing**: the app expires every 7 days, a free account runs only a few sideloaded apps per device, and some capabilities are unavailable.
 - **Simulator gaps**: no camera, no real Health data, and model behavior may differ. Tests use fakes, and real behavior is checked on the phone.
