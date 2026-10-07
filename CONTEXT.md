@@ -23,8 +23,20 @@ A 0–10 rating of how an area's skin appears, given either by the user or deriv
 _Avoid_: Severity, appearance score
 
 **Flare**:
-A period in which an area's ratings rise above its usual level.
+A period in which an area's look or feel stays 2 or more points above its normal.
 _Avoid_: Breakout, outbreak, episode
+
+**Flare onset**:
+The start of a worsening: look or feel rising 2 or more points above the previous 7 days, even during a long flare.
+_Avoid_: New flare, spike
+
+**Normal**:
+The level an area is aiming for, set by the user and lowered as the skin recovers.
+_Avoid_: Baseline (reserved for the safe baseline), target
+
+**Reference photo**:
+The photo of an area chosen to show its best state so far, replaced only when the user confirms a better one.
+_Avoid_: Anchor, best photo
 
 **Sign**:
 One visible feature of eczema scored 0–3 in a photo rating: redness, dryness or flaking, bumps or blisters, cracks or broken skin, thickening, oozing or crusting.

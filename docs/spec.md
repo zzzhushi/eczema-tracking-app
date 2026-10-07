@@ -1,6 +1,6 @@
 # eXzema: spec
 
-Requirements with IDs, priorities, releases, and the cut line are in [requirements.md](requirements.md).
+Requirements with IDs and priorities are in [requirements.md](requirements.md); releases, milestones, and sequencing are in [plan.md](plan.md).
 
 ## Problem Statement
 
@@ -176,6 +176,9 @@ At the lowest priority, a nutrient gap checker shows which nutrients the user's 
 
 - Unknown is never zero: an unknown chemical level, a day without a check-in, and a day without a food entry are unknown and are excluded from evidence rather than counted as absent.
 - Raw inputs are stored and combinations are computed: the user's look and the AI's look are stored separately; written foods and accepted suggested foods are distinguishable; the not-fresh label is its own weaker factor rather than a modifier of food levels.
+- A day is a calendar day ending at midnight in the phone's local time zone.
+- Each area has a normal level set by the user. An area is in a flare while look or feel is 2 or more points above normal; a flare onset is a rise of 2 or more points above the previous 7 days, and onsets work before a normal is set. The app proposes lowering normal after a week sustained below it.
+- Each area has a reference photo. The app proposes a better-rated photo as the new reference with a before-and-after view and switches only when the user confirms; the user may also pin or import one. The reference is for viewing, not for setting the scale.
 - Routines are product-and-area pairs with start and stop dates. Treatments are never carried forward.
 - Natural tests are inferred from first-time or reintroduced exposures relative to the safe baseline. Another discrete logged event inside the window muddies a test: another new or reintroduced food, a new product, ingredient, or routine change, a background-product change, an eaten-out meal, a treatment, or a one-off activity note. Weather, sleep, heart rate variability, sweat load, and water exposure never muddy a test; they appear beside the result as context, and water exposure is its own factor. A window containing a day with no food entry is unknown, not clean.
 - Day-level chemical exposure: for each day and food chemical the engine stores the peak level among the day's foods, the breadth (foods at moderate or higher, banded as 1, 2–3, or 4 or more), and the number of foods with an unknown level, beside how many foods the day logged and how many meals were eaten out. Peak decides first. A known high stays high despite unknown foods, but a negligible, low, or moderate peak needs every food known, otherwise the day is unknown for that chemical. Breadth separates days only when they share a peak and enough days have it, and is ignored when it tracks the number of foods logged. On days with an eaten-out meal, breadth is a lower bound.
@@ -189,17 +192,32 @@ Food chemicals (six), allergen tags (nine), eating out, not fresh, products and 
 
 Four tabs: Today (meals, routine summary, automatic data, the check-in and photo ratings), Insights (flare investigations, trends, suspects, natural tests, next experiment, nutrient gaps), Library (foods, products, background products, product checks and candidate comparisons), and Data (backup, export, import, signing expiry). Mockups were reviewed during the design session.
 
+### Data versioning
+
+- Raw inputs (typed text, ratings, photos, routine changes) are stored as entered; derived values (peaks, skin scores, suspects) are recomputed, so a change to how things are derived never needs a data migration.
+- The store carries a schema version. Every schema change ships with a migration and a test that migrates a fixture store from the previous version. During early development a change may instead wipe data, but only explicitly and visibly.
+- Exports carry a format version, and import accepts every earlier format.
+- Catalog and rating versions are recorded, as described above.
+
 ### Build order
 
-0. Prerequisites: iOS 27 on the phone, Xcode 27 on the Mac, Apple Intelligence enabled, the watch's Handwashing Timer enabled.
-1. A throwaway photo-rating prototype on the phone, answering whether the six-sign rubric and photo comparison work within the on-device model's 4K-token context on an iPhone 15 Pro.
-2. Logging: check-in, food parsing, products and routines, Health and weather import, export and import, the weekly refresh command, and notifications, so that data collection starts. The food catalog and common-trigger reference are researched in parallel from the user's starting list.
-3. Product check and flare investigation.
-4. Trends, ranked suspects, natural tests, safe baseline, and stepping stones.
-5. Nutrient gap checker.
+Releases, milestones, depth levels, and the development approach are in [plan.md](plan.md).
+
+## Observability
+
+Everything stays on the phone or the user's Mac; no third-party service receives logs.
+
+- **Logging**: Apple's unified logging, with health data marked private so it never appears in readable logs.
+- **Timing**: signposts around meal parsing, photo rating, and analysis, viewable in Instruments.
+- **Diagnostics**: crash and hang reports collected on the phone.
+- **Provenance**: every analysis result links to the day records, foods, and ratings it came from, so the user can always see why the app says something, and AI explanations rest on that trail.
+- **Requirement traceability**: each automated test names the requirement IDs it verifies.
 
 ## Testing Decisions
 
+- Development is test-driven: every task starts with a failing test (see the plan).
+- Each test names the requirement IDs it verifies.
+- Every schema change is tested by migrating a fixture store from the previous version.
 - A good test exercises external behavior through the highest available seam: given day records and reference data, assert the findings. Tests never assert on internal data structures or the wording of AI output.
 - **Primary seam: the analysis engine as a pure function** from day records and reference data to findings. Most behavior is tested here with hand-built day histories, for example "unknown chemical levels never produce a low-load day", "a flare after two changes is reported as muddied", "a tolerated product lowers but does not clear an ingredient's suspicion".
 - **Day-level exposure oracle:** a day of oatmeal, banana, chicken, rice, cheddar, and tomato has its salicylate peak from tomato; a day of rice plus one food with an unknown salicylate level is unknown, not low; two days with the same peak are separated by breadth only when breadth is not tracking the number of foods logged. Levels in these tests are fixtures, not catalog values.
@@ -224,6 +242,8 @@ Four tabs: Today (meals, routine summary, automatic data, the check-in and photo
 - Siri and Shortcuts capture, widgets, Apple Watch check-in, Face ID lock, and a dermatologist summary (later).
 - App Store or TestFlight distribution, and support for users other than the primary user.
 - Supplements, nutrient intake quantities, and iodine.
+- Speed targets and accessibility requirements, until a store release.
+- Patch testing support (tabled in the plan).
 - Food suggestions for nutrient gaps, nutrient influence on stepping stones, and nutrient badges or notifications.
 
 ## Further Notes
