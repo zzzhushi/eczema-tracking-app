@@ -93,10 +93,18 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Legumes and soy foods: Tofu plain, unflavoured, silken, soft, firm",
+          "basis": "overall Low column, no glutamate symbol",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
     },
     "nickel": {
       "result": {

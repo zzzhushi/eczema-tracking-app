@@ -42,6 +42,12 @@
           "locator": "Salicylates: Beverages, coffee",
           "basis": "five-level rating, serving not stated",
           "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Drinks: Coffee instant, ground",
+          "basis": "overall High column, S symbol",
+          "level": "high"
         }
       ],
       "note": "The lists rate coffee in general, not instant coffee specifically."
@@ -86,7 +92,7 @@
           "level": "moderate"
         }
       ],
-      "note": "The lists rate coffee in general, not instant coffee specifically."
+      "note": "The lists rate coffee in general, not instant coffee specifically. One list (Failsafe) tags coffee for salicylates only, not amines."
     },
     "histamine": {
       "result": {

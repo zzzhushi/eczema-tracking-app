@@ -34,6 +34,15 @@
       "accessedOn": "2026-10-07"
     },
     {
+      "id": "failsafe-dvd",
+      "kind": "list",
+      "type": "web-page",
+      "title": "Food Chemical List (FAILSAFE diet; overall Low to Very High columns with S, A, G symbols)",
+      "publisher": "Diet v.s. Disease",
+      "url": "https://www.dietvsdisease.org/wp-content/uploads/2021/10/Food-Chemical-Intolerance-List-Failsafe-Diet.pdf",
+      "accessedOn": "2026-10-07"
+    },
+    {
       "id": "fsanz-msg-2003",
       "kind": "guidance",
       "type": "report",

@@ -47,7 +47,8 @@
           "basis": "five-level rating, serving not stated",
           "level": "negligible"
         }
-      ]
+      ],
+      "note": "One list rates jasmine, basmati, wild, and black rice moderate for salicylates and white, brown, short, medium, and long-grain rice low."
     },
     "oxalates": {
       "result": {
@@ -107,10 +108,18 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals: Rice white, brown, short, medium, long grain",
+          "basis": "overall Low column, no glutamate symbol",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
     },
     "nickel": {
       "result": {

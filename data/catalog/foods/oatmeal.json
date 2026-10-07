@@ -121,10 +121,18 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Cereals: Oats, Oat Milk",
+          "basis": "overall Low column, no glutamate symbol",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
     },
     "nickel": {
       "result": {

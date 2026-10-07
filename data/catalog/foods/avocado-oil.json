@@ -15,11 +15,18 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "very high"
       },
-      "evidence": [],
-      "note": "Avocado fruit is rated high or very high; the oil is not listed."
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "overall Very High column, S and A symbols",
+          "level": "very high"
+        }
+      ],
+      "note": "Avocado fruit is rated high or very high by every list; one list rates the oil very high as well, with no measured value."
     },
     "oxalates": {
       "result": {
@@ -31,11 +38,24 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "very high"
       },
-      "evidence": [],
-      "note": "One list rates avocado oil very high without a measurement; refined oils carry little protein and no measured data was found."
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "overall Very High column, S and A symbols",
+          "level": "very high"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "five-level rating, serving not stated",
+          "level": "very high"
+        }
+      ],
+      "note": "Two lists rate avocado oil very high; neither gives a measured value."
     },
     "histamine": {
       "result": {

@@ -18,11 +18,18 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": [],
-      "note": "Only common chives are rated (low) by every list; they are a different plant."
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Garnishes: Chives, Garlic chives",
+          "basis": "overall Low column, no salicylate symbol",
+          "level": "low"
+        }
+      ],
+      "note": "The list names garlic chives; other lists rate common chives low."
     },
     "oxalates": {
       "result": {
@@ -42,11 +49,17 @@
     },
     "amines": {
       "result": {
-        "kind": "unknown",
-        "reason": "researched-no-data"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": [],
-      "note": "Only common chives are listed (negligible); they are a different plant."
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Garnishes: Chives, Garlic chives",
+          "basis": "overall Low column, no amine symbol",
+          "level": "low"
+        }
+      ]
     },
     "histamine": {
       "result": {
@@ -58,10 +71,18 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Garnishes: Chives, Garlic chives",
+          "basis": "overall Low column, no glutamate symbol",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
     },
     "nickel": {
       "result": {

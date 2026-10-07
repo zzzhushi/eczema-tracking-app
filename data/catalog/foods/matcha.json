@@ -38,6 +38,12 @@
           "locator": "Salicylates: Beverages, tea",
           "basis": "five-level rating, serving not stated",
           "level": "very high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Drinks: Tea black, chai, fennel, green, herbal, matcha, oolong, peppermint, white",
+          "basis": "overall Very High column, S symbol",
+          "level": "very high"
         }
       ],
       "note": "The lists rate brewed tea; whole-leaf powder is not rated and may be higher. The leaflet that lists black tea as medium is not used because it does not cover green tea."
