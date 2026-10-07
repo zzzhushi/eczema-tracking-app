@@ -32,7 +32,7 @@ How the work is sliced and sequenced. What the app does is in [the spec](spec.md
 
 | # | Thin path | First failing test | Requirements |
 |---|---|---|---|
-| M0 | Photo-rating prototype on the phone: the six-sign rubric, and whether a reference photo fits as a third image | Manual: the same photo scored 5 times; two photos taken minutes apart | PHO-04 |
+| M0 | Photo-rating prototype on the phone: the six-sign rubric, whether a reference photo fits as a third image, and whether Apple's guardrails refuse skin photos or health wording | Manual: the same photo scored 5 times; two photos taken minutes apart; a refusal is recorded, not scored | PHO-04 |
 | M1 | Foundation: project, test setup, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | OBS-01–03, OBS-05, DATA-07, FAIL-04 |
 | M2 | Type a day's food; match it to the starter catalog with all six chemicals; keep unrecognized words; edit or delete entries | A day with a high-salicylate food has a high salicylate peak; an unmatched word is kept | FOOD-02–05, FOOD-12–13, CAT-01–03, CAT-05, FAIL-01 |
 | M3 | Check-in for hands and face (feel and look); edit past days; record the rounded location at app open | An area without ratings is unknown, not a good day | SET-01, SET-03, SET-06, CHK-01–05, ENV-04–05 |
