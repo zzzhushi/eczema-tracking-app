@@ -58,10 +58,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Condiments: Salt",
+          "basis": "0.05 µg per 1 g, 28 samples; about 0.075 µg at 1.5 g",
+          "level": "negligible"
+        }
+      ]
     }
   }
 }

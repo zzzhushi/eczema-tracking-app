@@ -75,10 +75,18 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat: Beef, cooked",
+          "basis": "6.92 µg per 100 g, 192 samples; about 5.9 µg at 85 g",
+          "level": "low",
+          "note": "Cooked ground beef and pork averages about 18 µg per 100 g and is not used."
+        }
+      ]
     }
   }
 }

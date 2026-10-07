@@ -69,10 +69,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Dairy: Yogurt",
+          "basis": "4.01 µg per 175 g, 139 samples; about 3.9 µg at 170 g",
+          "level": "low"
+        }
+      ]
     }
   }
 }

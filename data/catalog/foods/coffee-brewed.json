@@ -65,10 +65,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Beverages: Coffee, brewed",
+          "basis": "3.57 µg per 250 g, 145 samples; about 3.4 µg at 240 g",
+          "level": "low"
+        }
+      ]
     }
   }
 }

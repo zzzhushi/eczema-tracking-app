@@ -73,10 +73,18 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat: Chicken, turkey and other poultry, cooked",
+          "basis": "4.66 µg per 100 g, 486 samples; about 4 µg at 85 g",
+          "level": "low",
+          "note": "Poultry in general."
+        }
+      ]
     }
   }
 }

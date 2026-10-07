@@ -75,10 +75,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Grains: Rice, white, cooked",
+          "basis": "7.04 µg per 140 g, 101 samples; about 7 µg at 140 g",
+          "level": "low"
+        }
+      ]
     }
   }
 }

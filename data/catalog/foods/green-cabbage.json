@@ -76,10 +76,23 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables: Cabbage",
+          "basis": "4.8 µg per 85 g, 59 samples; about 4.8 µg at 85 g",
+          "level": "low"
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables: Cabbage, cooked",
+          "basis": "3.62 µg per 130 g, 65 samples; about 2.4 µg at 85 g",
+          "level": "low"
+        }
+      ]
     }
   }
 }

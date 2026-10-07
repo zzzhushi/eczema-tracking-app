@@ -65,10 +65,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Sweeteners: Sugar, white",
+          "basis": "0.07 µg per 4 g, 71 samples; about 0.14 µg at 8 g",
+          "level": "negligible"
+        }
+      ]
     }
   }
 }

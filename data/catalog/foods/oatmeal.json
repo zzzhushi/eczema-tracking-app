@@ -82,10 +82,18 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "very high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Grains: Oats, raw",
+          "basis": "53.62 µg per 40 g, 13 samples; about 54 µg at 40 g",
+          "level": "very high",
+          "note": "Serving is one cup prepared, about 40 g dry."
+        }
+      ]
     }
   }
 }

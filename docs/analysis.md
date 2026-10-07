@@ -24,6 +24,18 @@ How a food's level for one food chemical is derived from its evidence. The catal
 | high | 10–12 |
 | very high | 13 or more |
 
+### Nickel cutoffs (µg per serving, provisional)
+
+| Level | µg |
+|---|---|
+| negligible | under 1 |
+| low | 1–9.9 |
+| moderate | 10–19.9 |
+| high | 20–49.9 |
+| very high | 50 or more |
+
+Low, moderate, and high follow a published low-nickel scoring, which spreads a 150 µg daily limit over about 15 servings. The negligible and very high bands extend it.
+
 The other chemicals' tables are added with their first coarse source.
 
 ## Day-level chemical exposure (Release 1, S5)

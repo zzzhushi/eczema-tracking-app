@@ -67,10 +67,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "very high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Legumes: Tofu",
+          "basis": "101.99 µg per 85 g, 7 samples; about 102 µg at 85 g",
+          "level": "very high"
+        }
+      ]
     }
   }
 }

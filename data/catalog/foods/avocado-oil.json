@@ -51,10 +51,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "0.64 µg per 10 g, 11 samples; about 0.9 µg at 14 g",
+          "level": "negligible"
+        }
+      ]
     }
   }
 }

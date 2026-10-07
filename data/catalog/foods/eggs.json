@@ -77,10 +77,17 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat and eggs: Egg",
+          "basis": "2.09 µg per 100 g, 41 samples; about 1 µg at 50 g",
+          "level": "low"
+        }
+      ]
     }
   }
 }

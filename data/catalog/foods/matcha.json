@@ -53,10 +53,19 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Beverages: Green tea, leaves",
+          "basis": "18.09 µg per 3 g, 4 samples; about 12 µg at 2 g",
+          "level": "moderate",
+          "converted": true,
+          "note": "Matcha is not listed; whole green tea leaves stand in because the leaf is consumed."
+        }
+      ]
     }
   }
 }

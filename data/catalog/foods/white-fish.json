@@ -127,10 +127,18 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish: Fish, cooked",
+          "basis": "5.25 µg per 100 g, 389 samples; about 4.5 µg at 85 g",
+          "level": "low",
+          "note": "The source reports no difference between species."
+        }
+      ]
     }
   }
 }

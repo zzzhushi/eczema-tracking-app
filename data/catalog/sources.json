@@ -26,6 +26,15 @@
       "accessedOn": "2026-10-07"
     },
     {
+      "id": "rebelytics-nickel",
+      "kind": "list",
+      "type": "database",
+      "title": "Nickel in Foods: Data-Based Advice (summary tables, unweighted, version 9.1.1, September 2025)",
+      "publisher": "Rebelytics",
+      "url": "https://rebelytics.ca/nickelinfoods.html",
+      "accessedOn": "2026-10-07"
+    },
+    {
       "id": "salgado-2023",
       "kind": "review",
       "type": "journal-article",

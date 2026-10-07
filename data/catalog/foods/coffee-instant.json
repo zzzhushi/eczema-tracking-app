@@ -58,10 +58,18 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Beverages: Instant coffee powder",
+          "basis": "1.74 µg per 3 g, 10 samples; about 1.7 µg at 3 g",
+          "level": "low",
+          "note": "One cup uses about 3 g of powder."
+        }
+      ]
     }
   }
 }

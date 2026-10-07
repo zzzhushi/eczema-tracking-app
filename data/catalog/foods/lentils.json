@@ -94,10 +94,26 @@
     },
     "nickel": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "very high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Legumes: Beans, lentil, cooked",
+          "basis": "68.08 µg per 80 g, 4 samples; about 77 µg at 90 g",
+          "level": "very high"
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Legumes: Beans, lentil, canned",
+          "basis": "28.6 µg per 80 g, 2 samples; about 32 µg at 90 g",
+          "level": "high",
+          "converted": true,
+          "note": "Canned lentils are a different form."
+        }
+      ],
+      "note": "Few samples; the serving of 35 g dry is about 90 g cooked."
     }
   }
 }

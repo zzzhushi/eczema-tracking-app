@@ -63,9 +63,10 @@
     "nickel": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Only common chives are listed (1.5 g, 2 samples); they are a different plant."
     }
   }
 }
