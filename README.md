@@ -6,7 +6,7 @@ A personal iPhone app for tracking eczema. It relates what the user eats, applie
 
 ## Status
 
-Planning Release 1 (food and skin). Next milestone: M0, the photo-rating prototype.
+Planning Release 1 (food and skin). Next slice: S0, the photo-rating prototype.
 
 ## Constraints
 
@@ -16,8 +16,7 @@ Planning Release 1 (food and skin). Next milestone: M0, the photo-rating prototy
 ## Docs
 
 - [Spec](docs/spec.md): the product and its lasting decisions
-- [Release 1](docs/release-1.md): the active release
 - [Analysis rules](docs/analysis.md): formulas, thresholds, and missing-data rules
 - [Testing](docs/testing.md): how the app is tested
-- [Backlog](docs/backlog.md): later releases
+- [Roadmap](https://github.com/zzzhushi/eczema-tracking-app/milestones): releases as GitHub milestones; slices and future outcomes as issues
 - [Glossary](CONTEXT.md): project terms

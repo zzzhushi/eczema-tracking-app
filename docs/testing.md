@@ -1,11 +1,11 @@
 # eXzema: testing
 
-How the app is tested. Requirements for specific behavior live in the active release doc; rules being tested live in [the analysis rules](analysis.md).
+How the app is tested. Current behavior lives in `docs/behavior`, proposed behavior and acceptance live in slice issues, and formulas and thresholds live in [the analysis rules](analysis.md).
 
 ## Principles
 
 - Every behavior change starts with a written acceptance check. Automate it at the highest stable seam (the analysis as a pure computation over day records) when possible; otherwise record a manual check on the iPhone. Prototypes are exempt from automated regression tests, but not from acceptance checks.
-- Test names state the behavior, and each test lists the requirement IDs it verifies.
+- Test names state the behavior, and tests are grouped into suites by capability (for example, food logging).
 - Tests that check an exact answer use hand-built data. Real data is used only to evaluate the on-device model.
 
 ## Layers
@@ -15,7 +15,7 @@ How the app is tested. Requirements for specific behavior live in the active rel
 | Logic tests | Analysis rules, food matching, unknown handling, the day boundary | Hand-built day histories, including the worked examples in the analysis rules | Mac and CI, every build |
 | Storage tests | Save and reload, export format, migrations | Fixture stores, one per schema version | Mac and CI, every build |
 | AI evaluations | Photo-rating consistency and validity, refusals, meal-parsing accuracy | Local real photos; synthetic meal texts | Mac or iPhone, when the rubric, prompt, or model changes |
-| Manual checks | Camera, permissions, timing, look and feel | Real use | iPhone, per milestone |
+| Manual checks | Camera, permissions, timing, look and feel | Real use | iPhone, per slice |
 
 ## Fakes
 
@@ -32,15 +32,15 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 
 - A separate test set that never runs by default or in CI, where the model isn't available. Run on the Mac with Apple Intelligence enabled, or on the iPhone.
 - A photo listed in the manifest but missing on the machine is reported as skipped, not failed.
-- Run before the M0 decisions and whenever the rating version would change.
+- Run before the S0 decisions and whenever the rating version would change.
 - Measure the score spread for the same photo over 5 runs, the spread between photos taken minutes apart, the refusal rate, and meal-parsing accuracy.
 - Check validity as well as consistency, since a model can be consistently wrong: photos the user has labeled must score in the expected order (a clear photo below a flare photo) and within expected per-sign ranges.
-- Thresholds are set in the M0 issue and start provisional. Mac runs are for iteration; the M0 viability gate runs on the target iPhone.
-- Each run is saved locally as a report with its rating version. Only the M0 decision is committed, as an aggregated summary using opaque photo IDs.
+- Thresholds are set in the S0 issue and start provisional. Mac runs are for iteration; the S0 viability gate runs on the target iPhone.
+- Each run is saved locally as a report with its rating version. Only the S0 decision is committed, as an aggregated summary using opaque photo IDs.
 
 ## Manual checks
 
-Each milestone's issue lists its manual checks as steps with an expected result. They are run on the iPhone and ticked with the build they ran on.
+Each slice's issue lists its manual checks as steps with an expected result. They are run on the iPhone and ticked with the build they ran on.
 
 ## Continuous integration
 
@@ -48,3 +48,17 @@ Each milestone's issue lists its manual checks as steps with an expected result.
 - Runs the logic and storage tests; branch protection on the default branch blocks merging until the latest run passes.
 - AI evaluations and manual checks are excluded.
 - GitHub's runner images can lag a new Xcode release.
+
+## Definition of done
+
+A slice is done when all of these hold. Slice issues link here instead of copying it.
+
+- Every Must item in the issue is done, and every Should item is done or explicitly cut in the issue.
+- The issue's exit criterion is met, and its end-to-end path is demonstrated on the phone.
+- Every path in the issue is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on.
+- The tests pass locally and in CI.
+- Relevant offline and unavailable-model paths are checked.
+- A change to the stored schema ships with a written migration plan and a migration test, and never wipes existing data.
+- The behavior docs the slice touches are updated in the same pull request as the code, and anything it makes stale is deleted.
+- Known limitations are recorded in the issue.
+- Open questions are answered in the owning doc, or moved to a later issue with a link.
