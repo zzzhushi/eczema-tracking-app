@@ -3,7 +3,7 @@
 Reference content the app reads. Each fact lives in one hand-edited file; nothing here is copied into docs, and review tables are generated, never committed.
 
 - `sources.json`: bibliography entries (title, authors, year, journal, DOI, URL, accessed date), written once and referenced by ID.
-- `rubric/v1.json`: the photo-rating rubric. One file per version; a change to a definition, sign, or the scale creates a new version.
+- `rubric/v1.json`: the photo-rating rubric. One file per version. Once a version has rated stored photos, a change to a definition, sign, the scale, or the scoring rule creates a new version; until then the version is edited in place.
 - `catalog/foods.json`: the food catalog (added with the first catalog research).
 
 Nothing personal goes in this folder: the user's own overrides, routines, and logs live in the app on the phone.
@@ -37,7 +37,7 @@ Each chemical has one assessment: a result, plus the evidence behind it.
 
 ## Validation
 
-Tests load the whole dataset and check that IDs and aliases are unique, every enum decodes, every known result has evidence, every cited source exists, every food has every chemical and allergen field, and every rubric has the seven signs with levels 0–3.
+Tests load the whole dataset and check that IDs and aliases are unique, every enum decodes, every known result has evidence, every cited source exists, every food has every chemical and allergen field, and every rubric has a scoring rule and the seven signs with levels 0–3.
 
 ## Review
 
