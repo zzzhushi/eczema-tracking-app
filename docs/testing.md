@@ -44,12 +44,21 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 
 Each slice's issue lists its manual checks as steps with an expected result. They are run on the iPhone and ticked with the build they ran on.
 
+Log redaction is lifted while a debugger is attached, so a redaction check runs on a build launched from the home screen. To read logs afterwards, pull them with the phone connected and filter to the app:
+
+```bash
+/usr/bin/log collect --device --last 1d --output ~/exzema-logs.logarchive
+/usr/bin/log show ~/exzema-logs.logarchive --predicate 'subsystem == "com.zzzhushi.exzema"'
+```
+
+The archive covers the whole phone; keep it out of the repository and delete it after use.
+
 ## Continuous integration
 
-- GitHub Actions on a macOS runner, on pull requests and on pushes to the default branch.
-- Runs the logic and storage tests; branch protection on the default branch blocks merging until the latest run passes.
+- GitHub Actions on pull requests and on pushes to the default branch, in one `test` job on the `xcode-27` runner label (`macos-latest` still has an older Xcode).
+- Runs the core package's tests, the pre-commit hook's test, and an unsigned build of the app for the iOS simulator; branch protection on the default branch blocks merging until the latest run passes.
 - AI evaluations and manual checks are excluded.
-- GitHub's runner images can lag a new Xcode release.
+- GitHub's runner images can lag a new Xcode release. If the `xcode-27` label breaks, fall back to `macos-latest` running only the core package's tests, which must then avoid Xcode 27-only APIs.
 
 ## Definition of done
 

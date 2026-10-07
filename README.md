@@ -6,7 +6,18 @@ A personal iPhone app for tracking eczema. It relates what the user eats, applie
 
 ## Status
 
-Planning Release 1 (food and skin). Next slice: S0, the photo-rating prototype.
+Building Release 1 (food and skin). Current slice: S1, the foundation.
+
+## Setup
+
+```bash
+git config core.hooksPath .githooks
+cp Local.xcconfig.example Local.xcconfig   # then set your Apple team ID
+xcodegen generate
+swift test --package-path Packages/ExzemaCore
+```
+
+`Local.xcconfig` and the generated `eXzema.xcodeproj` are git-ignored.
 
 ## Constraints
 

@@ -1,0 +1,33 @@
+name: eXzema
+options:
+  bundleIdPrefix: com.zzzhushi
+  createIntermediateGroups: true
+  deploymentTarget:
+    iOS: "27.0"
+packages:
+  ExzemaCore:
+    path: Packages/ExzemaCore
+configs:
+  Debug: debug
+  Release: release
+configFiles:
+  Debug: Config/Base.xcconfig
+  Release: Config/Base.xcconfig
+targets:
+  eXzema:
+    type: application
+    platform: iOS
+    sources: [App]
+    dependencies:
+      - package: ExzemaCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zzzhushi.exzema
+        PRODUCT_NAME: eXzema
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_VERSION: "6.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: eXzema
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait
