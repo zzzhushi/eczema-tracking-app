@@ -1,0 +1,80 @@
+{
+  "id": "white-fish",
+  "name": "White fish",
+  "description": "Fresh.",
+  "aliases": [
+    "white fish",
+    "whitefish",
+    "cod",
+    "haddock",
+    "pollock",
+    "tilapia",
+    "basa",
+    "pangasius"
+  ],
+  "varieties": [
+    {
+      "name": "cod"
+    },
+    {
+      "name": "haddock"
+    },
+    {
+      "name": "pollock"
+    },
+    {
+      "name": "tilapia"
+    },
+    {
+      "name": "basa"
+    }
+  ],
+  "allergens": [
+    "fish"
+  ],
+  "serving": null,
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

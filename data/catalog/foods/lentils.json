@@ -1,0 +1,70 @@
+{
+  "id": "lentils",
+  "name": "Lentils",
+  "description": "Cooked from dry.",
+  "aliases": [
+    "lentils",
+    "lentil",
+    "green lentils",
+    "red lentils",
+    "brown lentils"
+  ],
+  "varieties": [
+    {
+      "name": "green lentils",
+      "default": true
+    },
+    {
+      "name": "red lentils"
+    },
+    {
+      "name": "brown lentils"
+    }
+  ],
+  "allergens": [],
+  "serving": null,
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

@@ -74,6 +74,30 @@ _Avoid_: Amount, mg value
 Why a chemical level is unknown: not yet researched, researched with no data, or sources conflict.
 _Avoid_: Missing, blank
 
+**Alias**:
+A lowercase word that matches a food in typed text.
+_Avoid_: Synonym, keyword
+
+**Variety**:
+A specific kind of a food, such as rolled or steel-cut oats, researched under the food and never chosen when logging.
+_Avoid_: Type, subtype
+
+**Evidence**:
+A cited source and the place in it that supports a chemical level.
+_Avoid_: Reference, proof
+
+**Source kind**:
+How strongly a source supports a level, from measurement through review and guidance to list.
+_Avoid_: Quality, grade
+
+**Allergen tag**:
+One of nine fixed labels marking that a food is or contains an allergen.
+_Avoid_: Allergy
+
+**Serving basis**:
+The typical serving, in grams, that a food's chemical levels describe.
+_Avoid_: Portion
+
 **Peak**:
 The highest chemical level among a day's foods for one food chemical, or unknown.
 _Avoid_: Maximum, daily level

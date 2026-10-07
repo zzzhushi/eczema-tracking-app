@@ -1,0 +1,62 @@
+{
+  "id": "eggs",
+  "name": "Eggs",
+  "description": "Chicken eggs.",
+  "aliases": [
+    "egg",
+    "eggs",
+    "boiled egg",
+    "fried egg",
+    "poached egg",
+    "scrambled eggs"
+  ],
+  "varieties": [],
+  "allergens": [
+    "egg"
+  ],
+  "serving": null,
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

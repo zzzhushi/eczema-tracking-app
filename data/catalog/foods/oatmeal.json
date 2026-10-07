@@ -1,0 +1,72 @@
+{
+  "id": "oatmeal",
+  "name": "Oatmeal",
+  "description": "Oats cooked as porridge.",
+  "aliases": [
+    "oatmeal",
+    "oats",
+    "porridge",
+    "rolled oats",
+    "steel-cut oats",
+    "instant oats",
+    "instant oatmeal"
+  ],
+  "varieties": [
+    {
+      "name": "rolled oats",
+      "default": true
+    },
+    {
+      "name": "steel-cut oats"
+    },
+    {
+      "name": "instant oats"
+    }
+  ],
+  "allergens": [],
+  "serving": null,
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

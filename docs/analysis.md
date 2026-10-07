@@ -2,6 +2,29 @@
 
 The single home for every formula, threshold, and missing-data rule. Other docs link here instead of restating. Numbers marked provisional are recalibrated once real data exists; the worked examples are test oracles.
 
+## Catalog levels (Release 1)
+
+How a food's level for one food chemical is derived from its evidence. The catalog stores the level; the evidence says where it came from.
+
+- **Scale**: negligible, low, moderate, high, very high.
+- **Normalization**: a source that rates on the same five levels is used as is. A coarser source maps through its chemical's table below and can yield only the levels its bands allow. Negligible requires a source that says so or a measured value near zero. A level is never inferred from a similar food.
+- **Basis**: a level describes the food as usually eaten, per typical serving: the FDA reference amount customarily consumed where one exists, otherwise a USDA household measure. A value measured dry, raw, or per 100 g is converted to that serving. Cooking loss that sources don't measure is not subtracted, so a converted level can be too high and never too low.
+- **Source strength**: measurement, then review, then guidance, then list. Only the strongest kind present decides the level; weaker evidence that disagrees goes in the note.
+- **Agreement**: entries of the strongest kind within one level of each other give the highest of them. Entries further apart give the research status "sources conflict".
+- **Varieties**: varieties within one level of each other share one food at the highest level. Varieties more than one level apart become separate foods, and the plain word matches the default variety. Provisional until several foods have been researched.
+
+### Oxalate cutoffs (mg per serving, provisional)
+
+| Level | mg |
+|---|---|
+| negligible | under 2 |
+| low | 2–4 |
+| moderate | 5–9 |
+| high | 10–12 |
+| very high | 13 or more |
+
+The other chemicals' tables are added with their first coarse source.
+
 ## Day-level chemical exposure (Release 1, S5)
 
 For each day and food chemical:
