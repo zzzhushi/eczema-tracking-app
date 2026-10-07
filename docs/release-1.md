@@ -15,7 +15,7 @@ Product context is in [the spec](spec.md), every formula and threshold in [the a
 | # | Thin path | First acceptance check | Exit criterion |
 |---|---|---|---|
 | M0 | Photo-rating prototype on the phone: the six-sign rubric, a reference photo as a third image, and Apple's guardrails on skin photos | Manual: the same photo scored 5 times; two photos taken minutes apart; a refusal is recorded, not scored | Rubric v1 written; the viability criteria set in the M0 issue are met, or the failure and fallback are documented |
-| M1 | Project, test setup, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | The app installs on the phone, keeps a saved day across relaunch and reinstall, and its logs appear in Console with health data redacted |
+| M1 | Project, test setup with CI, observability, versioned store that survives relaunch and reinstall | A saved day reads back identically after reloading the store | The app installs on the phone, keeps a saved day across relaunch and reinstall, its logs appear in Console with health data redacted, and CI runs the tests on every push |
 | M2 | Type a day's food; match it to the Tier 1 food names, with chemical levels unknown until researched; keep unrecognized words; edit or delete entries | A matched food without researched levels shows no data, never negligible; an unmatched word is kept | A day's food is logged on the phone in under a minute, and every Tier 1 food name matches |
 | M3 | Check-in for hands and face (feel and look); edit past days; record the rounded location at app open | An area without ratings is unknown, not a good day | Both areas are rated on the phone in under 30 seconds, and skipped ratings stay unknown |
 | M4 | A photo per area, stored in the app with a framing overlay, rated on the six signs; skin score computed | A rating stores its rating version; the skin score is not stored | Each area is photographed and rated on the phone, and a refusal shows as unscored |
@@ -35,6 +35,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | OBS-02 | The app shall provide one logging and timing-signpost convention that every feature uses. | Must |
 | OBS-03 | The app shall collect crash and hang diagnostics on the phone without sending them anywhere. | Must |
 | OBS-05 | Each automated test shall name the requirement IDs it verifies. | Must |
+| CI-01 | Every push and pull request shall run the logic and storage tests on a macOS runner, and a failing run shall block merging. | Must |
 
 ### M2: Food logging
 
@@ -109,7 +110,7 @@ Its GitHub issue lists every path the milestone adds, each with an acceptance ch
 ## Exit criteria for every milestone
 
 - All Must requirements are satisfied; each Should is done or explicitly cut.
-- Every path is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on. Automated tests pass.
+- Every path is checked: automated where possible, otherwise a manual check run on the iPhone and ticked in the issue with the build it ran on. Automated tests pass locally and in CI.
 - The milestone's exit criterion above is met and the end-to-end path is demonstrated on the phone.
 - From M2 on, storage changes ship with a migration plan and a migration test.
 - Relevant unavailable and offline paths are checked.
@@ -133,6 +134,7 @@ Each question moves into its milestone's GitHub issue and is deleted from here o
 - **Background limits**: iOS gives apps little background time, and the model may be rate-limited in the background. Work runs when the app is open or charging.
 - **Free signing**: the app expires every 7 days; a free account runs only a few sideloaded apps per device; some capabilities are unavailable.
 - **Simulator gaps**: no camera, no real Health data, and model behavior may differ. Tests use fakes; real behavior is checked on the phone.
+- **CI**: runner images can lag a new Xcode release, and the model isn't available in CI, so AI evaluations run locally (see [testing](testing.md)).
 - **Model updates**: an iOS update can change the model's outputs; rating versions make this visible.
 - **Data, not compute**: the limit is how many days are logged, and some patterns will look real by coincidence.
 
