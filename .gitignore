@@ -4,3 +4,6 @@ DerivedData/
 *.xcuserstate
 *.xcresult
 fixtures/
+
+# Generated prototype projects
+prototypes/**/*.xcodeproj

@@ -30,14 +30,14 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 
 ## AI evaluations
 
-- A separate test set that never runs by default or in CI, where the model isn't available. Run on the Mac with Apple Intelligence enabled, or on the iPhone.
+- A separate test set that never runs by default or in CI, where the model isn't available. Run on the iPhone (or on a Mac running macOS 27) with Apple Intelligence enabled.
 - A photo listed in the manifest but missing on the machine is reported as skipped, not failed.
 - Run before the S0 decisions and whenever the rating version would change.
 - Measure the score spread for the same photo over 5 runs, the spread between photos taken minutes apart, the refusal rate, and meal-parsing accuracy.
 - Check validity as well as consistency, since a model can be consistently wrong: photos the user has labeled must score in the expected order (a clear photo below a flare photo) and within expected per-sign ranges.
 - Fix pass criteria before running, and state them per photo and per sign, not only as averages. Compare every result with a constant guess (the same number for every photo): a sign whose labeled photos all have one value can't be validated, and a result that doesn't beat the guess shows no skill.
 - Keep tuning photos apart from validation photos. Prompts, thresholds, and methods may change while tuning; a rating recipe counts as validated only when it passes unchanged on photos taken on other days that it was never tuned on.
-- Thresholds are set in the S0 issue and start provisional. Mac runs are for iteration; the S0 viability gate runs on the target iPhone.
+- Thresholds are set in the S0 issue and start provisional. Image input needs iOS 27 or macOS 27, so the evaluations run on the iPhone until the Mac runs macOS 27.
 - Each run is saved locally as a report with its rating version. The S0 decision is committed as a summary using opaque photo IDs; raw reports stay local.
 
 ## Manual checks
