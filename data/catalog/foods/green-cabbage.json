@@ -120,10 +120,17 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Cabbage",
+          "basis": "50 mg free glutamate per 100 g; about 42 mg at 85 g",
+          "level": "low"
+        }
+      ]
     },
     "nickel": {
       "result": {

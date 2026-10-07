@@ -95,10 +95,19 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Green tea",
+          "basis": "668 mg free glutamate per 100 g; about 13 mg at 2 g",
+          "level": "negligible",
+          "converted": true,
+          "note": "The figure is probably for dried leaf; matcha powder is not listed."
+        }
+      ]
     },
     "nickel": {
       "result": {

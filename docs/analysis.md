@@ -37,6 +37,18 @@ How a food's level for one food chemical is derived from its evidence. The catal
 
 Low, moderate, and high follow a published low-nickel scoring, which spreads a 150 µg daily limit over about 15 servings. The negligible and very high bands extend it.
 
+### Glutamate cutoffs (mg of free glutamate per serving, provisional)
+
+| Level | mg |
+|---|---|
+| negligible | under 14 |
+| low | 14–139 |
+| moderate | 140–279 |
+| high | 280–699 |
+| very high | 700 or more |
+
+The bands use the nickel table's shares of a daily limit, applied to the 30 mg per kg body weight a day European limit for glutamate, about 2.1 g for a 70 kg adult. That limit is set for glutamate as an additive, so the anchor is a judgment.
+
 The other chemicals' tables are added with their first coarse source.
 
 ## Day-level chemical exposure (Release 1, S5)

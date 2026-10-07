@@ -22,6 +22,27 @@
       "accessedOn": "2026-10-07"
     },
     {
+      "id": "andeal-umami",
+      "kind": "guidance",
+      "type": "report",
+      "title": "Umami in Foods: What is Umami and how do I Explain It? (free glutamic acid table)",
+      "authors": [
+        "Kristi Crowe"
+      ],
+      "publisher": "Academy of Nutrition and Dietetics Evidence Analysis Library workgroup, 2013",
+      "url": "https://www.andeal.org/vault/2440/web/Umami%20in%20Foods%20White%20Paper.pdf",
+      "accessedOn": "2026-10-07"
+    },
+    {
+      "id": "fsanz-msg-2003",
+      "kind": "guidance",
+      "type": "report",
+      "title": "Monosodium Glutamate: A Safety Assessment, Technical Report Series No. 20",
+      "publisher": "Food Standards Australia New Zealand, June 2003",
+      "url": "https://www.foodstandards.gov.au/sites/default/files/publications/Documents/MSG%20Technical%20Report.pdf",
+      "accessedOn": "2026-10-07"
+    },
+    {
       "id": "harvard-oxalate-renNu",
       "kind": "list",
       "type": "web-page",
@@ -44,6 +65,17 @@
       "year": 2021,
       "doi": "10.3390/nu13030991",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8003553/",
+      "accessedOn": "2026-10-07"
+    },
+    {
+      "id": "meat-chilled-2018",
+      "kind": "measurement",
+      "type": "journal-article",
+      "title": "Quality Assessment of Fresh Meat from Several Species Based on Free Amino Acid and Biogenic Amine Contents during Chilled Storage",
+      "publisher": "Foods",
+      "year": 2018,
+      "doi": "10.3390/foods7090132",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6163562/",
       "accessedOn": "2026-10-07"
     },
     {

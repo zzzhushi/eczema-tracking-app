@@ -96,7 +96,8 @@
           "basis": "five-level rating, serving not stated",
           "level": "low"
         }
-      ]
+      ],
+      "note": "Measured in chilled beef leg: tyramine 0.3 mg/kg on day 0 and 1.6 mg/kg by day 10."
     },
     "histamine": {
       "result": {
@@ -111,14 +112,35 @@
           "level": "negligible",
           "note": "H! marks highly perishable food with rapid histamine formation."
         }
-      ]
+      ],
+      "note": "Measured histamine in chilled beef leg is not detected on day 0 and 0.5 mg/kg by day 10."
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "meat-chilled-2018",
+          "locator": "Table 3: Beef leg, glutamic acid, day 0",
+          "basis": "4.4 mg free glutamate per 100 g; about 3.8 mg at 85 g",
+          "level": "negligible",
+          "note": "Free glutamate in chilled beef leg rises to 65 mg per 100 g by day 10."
+        },
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Beef",
+          "basis": "33 mg free glutamate per 100 g; about 28 mg at 85 g",
+          "level": "low"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Beef",
+          "basis": "10 mg free glutamate per 100 g; about 8.5 mg at 85 g",
+          "level": "negligible"
+        }
+      ]
     },
     "nickel": {
       "result": {

@@ -93,7 +93,8 @@
           "basis": "five-level rating, serving not stated",
           "level": "negligible"
         }
-      ]
+      ],
+      "note": "Measured in chilled chicken breast: tyramine not detected on day 0 and about 35 mg/kg by day 10; histamine 0.5 mg/kg on day 0, rising to 2.1."
     },
     "histamine": {
       "result": {
@@ -108,14 +109,35 @@
           "level": "negligible",
           "note": "H! marks highly perishable food with rapid histamine formation."
         }
-      ]
+      ],
+      "note": "Measured histamine in chilled chicken breast is 0.5 mg/kg on day 0 and 2.1 mg/kg on day 10."
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "meat-chilled-2018",
+          "locator": "Table 3: Chicken breast, glutamic acid, day 0",
+          "basis": "21 mg free glutamate per 100 g; about 18 mg at 85 g",
+          "level": "low",
+          "note": "Free glutamate in chilled chicken breast rises from 21 mg per 100 g on day 0 to about 52 on day 6, so not-fresh chicken is higher."
+        },
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Chicken",
+          "basis": "44 mg free glutamate per 100 g; about 37 mg at 85 g",
+          "level": "low"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Chicken",
+          "basis": "1.5–22 (upper end) mg free glutamate per 100 g; about 19 mg at 85 g",
+          "level": "low"
+        }
+      ]
     },
     "nickel": {
       "result": {

@@ -115,10 +115,23 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Eggs",
+          "basis": "23 mg free glutamate per 100 g; about 12 mg at 50 g",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Whole chicken egg",
+          "basis": "15 mg free glutamate per 100 g; about 7.5 mg at 50 g",
+          "level": "negligible"
+        }
+      ]
     },
     "nickel": {
       "result": {

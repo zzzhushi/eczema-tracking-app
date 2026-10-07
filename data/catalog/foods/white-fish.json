@@ -173,10 +173,24 @@
     },
     "glutamates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Cod",
+          "basis": "9 mg free glutamate per 100 g; about 7.7 mg at 85 g",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Cod",
+          "basis": "44 mg free glutamate per 100 g; about 37 mg at 85 g",
+          "level": "low"
+        }
+      ],
+      "note": "Cod is the only white fish listed, and the two sources disagree (9 and 44 mg per 100 g)."
     },
     "nickel": {
       "result": {
