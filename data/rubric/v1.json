@@ -11,7 +11,7 @@
     }
   },
   "unscored": "A sign that cannot be scored, or a refused rating, is stored as unscored, never as 0.",
-  "scoring": "Score each sign at the patch where that sign is strongest. A patch is at least about the size of a fingertip; smaller isolated spots are ignored. Different signs may be scored on different patches. How much of the area is affected is not part of the sign scores.",
+  "scoring": "Score each sign at the patch where that sign is strongest. A patch is at least about the size of a fingertip; a single small spot is ignored, but many small spots close together count as a patch. Different signs may be scored on different patches. If no patch shows a sign, score it 0. How much of the area is affected is not part of the sign scores.",
   "signs": [
     {
       "id": "redness",
@@ -26,12 +26,20 @@
     {
       "id": "dryness-flaking",
       "name": "Dryness or flaking",
+      "lookFor": "White or light flakes and scales lifting from the surface. Skin lines alone are not dryness, even when deepened; deepened lines are thickening.",
       "levels": {
-        "0": "Smooth",
-        "1": "Slight roughness, no visible flakes",
-        "2": "Visible flaking or scaling",
-        "3": "Heavy scaling or large flakes"
-      }
+        "0": "Smooth, no flakes; only normal skin lines",
+        "1": "Dull, slightly rough surface, with faint fine scaling seen only up close",
+        "2": "Clearly visible small white flakes, with a few larger ones; a whitish look",
+        "3": "Larger scales or peeling across the patch, often with redness or small cracks"
+      },
+      "sources": [
+        {
+          "sourceId": "serup-1995",
+          "relationship": "definition-basis",
+          "note": "Levels adapted from the 0–4 Overall Dry Skin Score: its grades 1 and 2 map to 1 and 2, and grades 3 and 4 merge into 3."
+        }
+      ]
     },
     {
       "id": "bumps-blisters",
@@ -48,9 +56,9 @@
       "name": "Cracks or broken skin",
       "levels": {
         "0": "None",
-        "1": "Fine lines, skin intact",
-        "2": "Visible cracks or scratch marks",
-        "3": "Deep cracks, open or bleeding skin"
+        "1": "One or two small splits or scratch marks",
+        "2": "Several cracks or scratch marks, some open",
+        "3": "Deep or bleeding cracks, or open skin"
       }
     },
     {
