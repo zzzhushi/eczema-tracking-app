@@ -18,10 +18,17 @@
       "name": "Redness",
       "levels": {
         "0": "Skin tone is normal",
-        "1": "Faint pink, barely visible",
-        "2": "Clearly red",
-        "3": "Deep red or purple"
-      }
+        "1": "Barely perceptible; light pink on lighter skin",
+        "2": "Dull red, clearly distinguishable",
+        "3": "Deep, dark, or fiery bright red"
+      },
+      "sources": [
+        {
+          "sourceId": "hanifin-2022",
+          "relationship": "definition-basis",
+          "note": "EASI erythema levels."
+        }
+      ]
     },
     {
       "id": "dryness-flaking",
@@ -32,44 +39,71 @@
         "1": "Dull, slightly rough surface, with faint fine scaling seen only up close",
         "2": "Clearly visible small white flakes, with a few larger ones; a whitish look",
         "3": "Larger scales or peeling across the patch, often with redness or small cracks"
-      },
-      "sources": [
-        {
-          "sourceId": "serup-1995",
-          "relationship": "definition-basis",
-          "note": "Levels adapted from the 0–4 Overall Dry Skin Score: its grades 1 and 2 map to 1 and 2, and grades 3 and 4 merge into 3."
-        }
-      ]
+      }
     },
     {
       "id": "bumps-blisters",
       "name": "Bumps or blisters",
+      "lookFor": "Separate small raised bumps or fluid-filled blisters, including tiny deep blisters on the fingers and palms that look like grains under the skin. Judge how many there are and how large. Puffiness without separate bumps is swelling, not this sign.",
       "levels": {
         "0": "None",
-        "1": "A few small bumps",
-        "2": "Many bumps or small blisters",
-        "3": "Clustered blisters or large raised areas"
-      }
+        "1": "Fewer than 2 per area the size of a small fingernail",
+        "2": "2 to 8 per area the size of a small fingernail",
+        "3": "More than 8 per area the size of a small fingernail, or large blisters"
+      },
+      "sources": [
+        {
+          "sourceId": "held-2005",
+          "relationship": "definition-basis",
+          "note": "HECSI scores blisters separately from swelling."
+        },
+        {
+          "sourceId": "brands-2026",
+          "relationship": "definition-basis",
+          "note": "HECSI rater instructions: blisters are judged by size and density."
+        },
+        {
+          "sourceId": "vocks-1999",
+          "relationship": "definition-basis",
+          "note": "DASI blister density grades per square centimetre."
+        }
+      ]
     },
     {
-      "id": "cracks-broken-skin",
-      "name": "Cracks or broken skin",
+      "id": "scratch-marks",
+      "name": "Scratch marks",
+      "lookFor": "Lines, scrapes, or small wounds from scratching. Cracks from dry skin belong to dryness.",
       "levels": {
         "0": "None",
-        "1": "One or two small splits or scratch marks",
-        "2": "Several cracks or scratch marks, some open",
-        "3": "Deep or bleeding cracks, or open skin"
-      }
+        "1": "A few superficial scratch marks, spread out",
+        "2": "Many superficial scratch marks, or a few deeper ones",
+        "3": "Dense, deep scratch damage"
+      },
+      "sources": [
+        {
+          "sourceId": "hanifin-2022",
+          "relationship": "definition-basis",
+          "note": "EASI excoriation levels."
+        }
+      ]
     },
     {
       "id": "thickening",
       "name": "Thickening",
+      "lookFor": "Skin that is thicker and tougher, so its natural lines are exaggerated into a criss-cross pattern. It builds up over weeks and does not look puffy.",
       "levels": {
         "0": "Normal skin texture",
-        "1": "Slightly rougher",
-        "2": "Visibly thicker, accentuated skin lines",
-        "3": "Leathery, deeply lined"
-      }
+        "1": "Slight thickening, skin lines only slightly exaggerated",
+        "2": "Clearly thickened, with exaggerated skin lines",
+        "3": "Thickened skin lines that form deep furrows"
+      },
+      "sources": [
+        {
+          "sourceId": "hanifin-2022",
+          "relationship": "definition-basis",
+          "note": "EASI lichenification levels."
+        }
+      ]
     },
     {
       "id": "oozing-crusting",
@@ -79,17 +113,37 @@
         "1": "A little shine or moisture",
         "2": "Visible moisture or thin crust",
         "3": "Weeping or thick crust"
-      }
+      },
+      "sources": [
+        {
+          "sourceId": "scorad-1993",
+          "relationship": "scale-basis",
+          "note": "SCORAD names this sign but publishes no level wording; the levels are this project's own."
+        }
+      ]
     },
     {
       "id": "swelling",
       "name": "Swelling",
+      "lookFor": "Puffiness from fluid under the skin: the area looks fuller than the same area on a clear day, the skin looks smooth or stretched, and creases and fine lines fade. It can appear anywhere. Separate raised bumps are not swelling.",
       "levels": {
         "0": "No swelling; normal contours",
         "1": "Slight puffiness, barely visible",
-        "2": "Clearly puffy, contours softened",
-        "3": "Marked swelling that distorts contours, such as narrowing an eyelid opening"
-      }
+        "2": "Clearly puffy; creases fade and outlines look rounder",
+        "3": "Marked swelling that changes the shape of the area"
+      },
+      "sources": [
+        {
+          "sourceId": "held-2005",
+          "relationship": "definition-basis",
+          "note": "HECSI scores swelling as its own sign."
+        },
+        {
+          "sourceId": "brands-2026",
+          "relationship": "definition-basis",
+          "note": "HECSI rater instructions compare the area with the same area when clear. The level wording is this project's own."
+        }
+      ]
     }
   ],
   "sources": [
