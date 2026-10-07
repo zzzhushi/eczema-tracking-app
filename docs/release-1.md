@@ -62,6 +62,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | SET-06 | The app shall start with two areas, face and hands. | Must |
 | CHK-01 | Each entry shall be filed under the local calendar date shown on the phone when it is logged, with its time zone recorded; dates are never derived from UTC. | Must |
 | CHK-02 | For each active area, the check-in shall record feel (0–10) and look (0–10). | Must |
+| CHK-12 | Each rating shall show its description (feel: itch, burning, tightness, pain; look: redness, dryness, cracks, bumps) and anchors (0 clear, 3 mild, 6 moderate, 10 worst ever). | Must |
 | CHK-03 | Every check-in field shall stay editable; the latest value is the day's value, with no submit step. | Must |
 | CHK-04 | The user shall be able to open and edit any past day. | Must |
 | CHK-05 | A day or area without check-in values shall be stored as unknown, never as a good day. | Must |
@@ -73,7 +74,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | ID | Requirement | Pri |
 |---|---|---|
 | SET-04 | The app shall request camera access only when the user first takes a photo or captures an ingredient list. | Must |
-| PHO-01 | The user shall be able to take zero or more photos per area per day. | Must |
+| PHO-01 | The user shall be able to take zero or more photos per area per day, such as one of each hand. | Must |
 | PHO-02 | The camera shall show a framing guide for the selected area. | Should |
 | PHO-03 | The app shall store photos only inside its own storage. | Must |
 | PHO-13 | Stored photos shall be downscaled to about 1600 px on the long edge. | Must |

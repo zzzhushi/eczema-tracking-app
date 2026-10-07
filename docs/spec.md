@@ -47,7 +47,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 - The app never sends user data off the phone on its own. The only automatic network request is the weather and air-quality fetch, with coordinates rounded to about 11 km.
 - Exports the user starts go to a destination the user picks; a cloud destination shows a warning first. For personal use, exports stay off the cloud.
-- Photos stay inside the app: downscaled to about 1600 px, encrypted at rest, never in the Photos library, excluded from device and cloud backups. They reach the user's Mac only on request.
+- Photos stay inside the app: downscaled to about 1600 px, encrypted at rest, never in the Photos library, excluded from device and cloud backups. They reach the user's Mac only on request. The one exception: a small set of photos the user chooses to commit to the private repository as test data, with location metadata removed.
 
 ### Data principles
 
@@ -81,7 +81,7 @@ Everything stays on the phone or the user's Mac; no third-party service receives
 
 | ID | Requirement |
 |---|---|
-| NFR-01 | Privacy: the app never sends user data off the phone on its own; the only automatic network request is the weather and air-quality fetch with coordinates rounded to about 11 km. Exports the user starts go to a destination the user picks, with a warning for cloud destinations. Photos never reach the Photos library or device and cloud backups. |
+| NFR-01 | Privacy: the app never sends user data off the phone on its own; the only automatic network request is the weather and air-quality fetch with coordinates rounded to about 11 km. Exports the user starts go to a destination the user picks, with a warning for cloud destinations. Photos never reach the Photos library or device and cloud backups; test photos the user commits to the private repository are the only exception. |
 | NFR-02 | Cost: no paid services and no per-use AI costs. |
 | NFR-03 | Ease of use: a typical day takes about a minute; an unchanged routine takes zero taps; anything that can be automatic is. |
 | NFR-04 | Data honesty: unknown is never treated as zero; raw inputs are stored and combinations computed; every result shows its confidence and data coverage. |
