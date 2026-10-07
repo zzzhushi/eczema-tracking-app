@@ -2,7 +2,7 @@
 
 **Goal**: log what I eat each day, photograph my skin, and see which foods and food chemicals go with worse ratings.
 
-Product context is in [the spec](spec.md), every formula and threshold in [the analysis rules](analysis.md), and later releases in [the backlog](backlog.md). Terms follow [the glossary](../CONTEXT.md).
+Product context is in [the spec](spec.md), every formula and threshold in [the analysis rules](analysis.md), and progress and later releases in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones). Each milestone below has its own issue. Terms follow [the glossary](../CONTEXT.md).
 
 ## How to read this
 
@@ -118,14 +118,9 @@ Its GitHub issue lists every path the milestone adds, each with an acceptance ch
 - Open questions are answered in the owning doc, or moved to a later milestone's issue with a link.
 - Docs touched by the milestone are updated, and stale docs and issues are removed.
 
-## Decide before the milestone
+## Open questions
 
-Each question moves into its milestone's GitHub issue and is deleted from here once decided.
-
-- **Before M0**: the six-sign rubric v1 (each level's written definition), the viability criteria (how much score variation is acceptable), and a provisional ordering rule for "a clear photo scores below a flare photo": for example, compare the sum of sign scores only when the same signs are scored in both, plus expected per-sign ranges.
-- **Before M2**: confirm the fallback when the on-device model is unavailable (FAIL-01: keyword matching).
-- **Before M4**: the mapping from six sign scores (0–18) to the 1–10 skin score, its rounding, whether any unscored sign makes the skin score unknown, and whether the skin score is the AI's look value.
-- **Before M5**: the food-to-skin ranking rule (see the analysis rules).
+Open questions live in each milestone's issue. When one is decided, the owning doc is updated and the question is ticked.
 
 ## Risks
 

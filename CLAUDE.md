@@ -14,7 +14,7 @@ Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/age
 
 ## Development approach
 
-- Docs: `docs/spec.md` (product and lasting decisions), `docs/release-1.md` (the active release), `docs/analysis.md` (formulas and thresholds), `docs/testing.md` (how the app is tested), `CONTEXT.md` (terms). Releases and the backlog are tracked long term as GitHub issues; `docs/backlog.md` holds later outcomes until those issues exist.
+- Docs: `docs/spec.md` (product and lasting decisions), `docs/release-1.md` (the active release), `docs/analysis.md` (formulas and thresholds), `docs/testing.md` (how the app is tested), `CONTEXT.md` (terms). GitHub issues are the source of truth for work: releases are GitHub milestones, and each release milestone (M0, M1, …), backlog outcome, and tabled item is an issue holding its paths, acceptance checks, and open questions. Docs hold what the system does and why.
 - A completed release document is frozen; the next active release gets a new file.
 - Define a rule once, in the doc that owns it; summaries elsewhere must defer to the owning doc.
 - Docs are part of every task: update what a change touches and delete what it makes stale, favoring removal. Close or prune stale GitHub issues the same way.

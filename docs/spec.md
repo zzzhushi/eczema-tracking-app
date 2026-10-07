@@ -1,6 +1,6 @@
 # eXzema: spec
 
-The product, its scope, and the decisions that hold across releases. The active work is in [Release 1](release-1.md), every formula and threshold in [the analysis rules](analysis.md), later releases in [the backlog](backlog.md), and terms in [the glossary](../CONTEXT.md).
+The product, its scope, and the decisions that hold across releases. The active work is in [Release 1](release-1.md), every formula and threshold in [the analysis rules](analysis.md), later releases in [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones), and terms in [the glossary](../CONTEXT.md).
 
 ## Problem
 
@@ -26,8 +26,8 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 ## Scope
 
 - **Active**: Release 1, food and skin.
-- **Later**: Releases 2–5 and a possible public release, as outcomes in the backlog.
-- **Out of scope**: listed in the backlog.
+- **Later**: Releases 2–5 and a possible public release, tracked as [GitHub milestones and issues](https://github.com/zzzhushi/eczema-tracking-app/milestones).
+- **Out of scope**: voice dictation (the keyboard's built-in dictation still works); barcode lookup; food additives and packaged-food ingredient inference; serving sizes and raw versus cooked; dried spices (for now); face sub-areas; explicitly declared tests; named product recommendations; importing past reactions; best-fit look-back windows; mood logs, steps, and cardio fitness; supplements in the nutrient checker, and iodine; nutrient food suggestions and nutrient notifications; original-resolution photos; cloud sync and iCloud backup; Siri and Shortcuts capture, widgets, and an Apple Watch check-in; a Face ID lock; a dermatologist summary.
 
 ## Safety and framing
 
