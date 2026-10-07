@@ -332,6 +332,13 @@ final class Probe {
                         rawOut.append(a.values.map(String.init).joined() + "/" + rel.levels.map { String(max(0, $0)) }.joined())
                     }
                     emit("\(head) refFirst=true eyes=\(opening) signs=\(runsOut.joined(separator: ";")) raw=\(rawOut.joined(separator: ";")) redrel=\(redRelOut.joined(separator: ",")) obs=")
+                case .flakeDensity:
+                    let clock = ContinuousClock()
+                    let start = clock.now
+                    let result = flakeDensity(of: s.url)
+                    let elapsed = clock.now - start
+                    let ms = Double(elapsed.components.seconds) * 1000 + Double(elapsed.components.attoseconds) / 1e15
+                    emit("\(head) specks=\(result.map { String($0.specks) } ?? "-") perMpx=\(result.map { String(format: "%.0f", $0.perMegapixel) } ?? "-") areaPermille=\(result.map { String(format: "%.2f", $0.areaPermille) } ?? "-") ms=\(String(format: "%.0f", ms))")
                 case .absoluteBoostSampled:
                     var sampler = rater
                     sampler.greedy = false

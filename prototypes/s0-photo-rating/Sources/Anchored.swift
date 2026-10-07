@@ -7,7 +7,7 @@ import Vision
 
 /// Experiment variants that rate a photo relative to a reference photo of the same person's clear skin.
 enum Variant: String, CaseIterable {
-    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel
+    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel, flakeDensity
 }
 
 private let coverageLevels = ["none", "small area", "some", "most", "nearly all"]
@@ -565,4 +565,83 @@ func swellingLevel(opening: Double, referenceOpening: Double) -> Int {
     case ..<0.22: return 2
     default: return 3
     }
+}
+
+struct FlakeDensity {
+    let specks: Int
+    let perMegapixel: Double
+    let areaPermille: Double
+}
+
+/// Measures flake-like specks: small areas brighter and less saturated than the skin around them.
+/// Window size and speck size scale with image width so crops at different sizes are comparable.
+/// Returns nil when the image cannot be read.
+func flakeDensity(of url: URL) -> FlakeDensity? {
+    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+          let image = CGImageSourceCreateImageAtIndex(source, 0, nil),
+          let space = CGColorSpace(name: CGColorSpace.sRGB) else { return nil }
+    let w = image.width, h = image.height
+    var pixels = [UInt8](repeating: 0, count: w * h * 4)
+    guard let context = CGContext(data: &pixels, width: w, height: h, bitsPerComponent: 8, bytesPerRow: w * 4,
+                                  space: space, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue) else { return nil }
+    context.draw(image, in: CGRect(x: 0, y: 0, width: w, height: h))
+
+    var luma = [Double](repeating: 0, count: w * h)
+    var saturation = [Double](repeating: 0, count: w * h)
+    for i in 0..<(w * h) {
+        let r = Double(pixels[i * 4]), g = Double(pixels[i * 4 + 1]), b = Double(pixels[i * 4 + 2])
+        luma[i] = 0.299 * r + 0.587 * g + 0.114 * b
+        let high = max(r, g, b), low = min(r, g, b)
+        saturation[i] = high > 0 ? (high - low) / high : 0
+    }
+    func integral(_ values: [Double]) -> [Double] {
+        var sums = [Double](repeating: 0, count: (w + 1) * (h + 1))
+        for y in 0..<h {
+            var row = 0.0
+            for x in 0..<w {
+                row += values[y * w + x]
+                sums[(y + 1) * (w + 1) + x + 1] = sums[y * (w + 1) + x + 1] + row
+            }
+        }
+        return sums
+    }
+    let lumaSums = integral(luma), saturationSums = integral(saturation)
+    let scale = Double(w) / 657
+    let radius = max(6, Int(14 * scale))
+    func boxMean(_ sums: [Double], _ x: Int, _ y: Int) -> Double {
+        let x0 = max(0, x - radius), x1 = min(w, x + radius + 1), y0 = max(0, y - radius), y1 = min(h, y + radius + 1)
+        let total = sums[y1 * (w + 1) + x1] - sums[y0 * (w + 1) + x1] - sums[y1 * (w + 1) + x0] + sums[y0 * (w + 1) + x0]
+        return total / Double((x1 - x0) * (y1 - y0))
+    }
+    var bright = [Bool](repeating: false, count: w * h)
+    for y in 0..<h {
+        for x in 0..<w {
+            let i = y * w + x
+            if luma[i] > 110, luma[i] - boxMean(lumaSums, x, y) > 16, saturation[i] < boxMean(saturationSums, x, y) - 0.03 {
+                bright[i] = true
+            }
+        }
+    }
+    let smallest = Int(4 * scale * scale), largest = Int(260 * scale * scale)
+    var visited = [Bool](repeating: false, count: w * h)
+    var specks = 0, speckArea = 0
+    for start in 0..<(w * h) where bright[start] && !visited[start] {
+        var stack = [start], area = 0
+        visited[start] = true
+        while let p = stack.popLast() {
+            area += 1
+            let x = p % w, y = p / w
+            for dy in -1...1 {
+                for dx in -1...1 {
+                    let nx = x + dx, ny = y + dy
+                    guard nx >= 0, nx < w, ny >= 0, ny < h, bright[ny * w + nx], !visited[ny * w + nx] else { continue }
+                    visited[ny * w + nx] = true
+                    stack.append(ny * w + nx)
+                }
+            }
+        }
+        if area >= smallest && area <= largest { specks += 1; speckArea += area }
+    }
+    let megapixels = Double(w * h) / 1e6
+    return FlakeDensity(specks: specks, perMegapixel: Double(specks) / megapixels, areaPermille: 1000 * Double(speckArea) / Double(w * h))
 }
