@@ -7,7 +7,11 @@
   ],
   "varieties": [],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -19,9 +23,35 @@
     "oxalates": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "sources-conflict"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: cabbage, raw",
+          "basis": "fresh weight, not detected",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: cabbage, raw",
+          "basis": "fresh weight, 7 mg per 100 g total; about 6 mg at 85 g",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: cabbage, boiled",
+          "basis": "fresh weight, 5 mg per 100 g total; about 4 mg at 85 g",
+          "level": "low"
+        },
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Cabbage",
+          "basis": "1/2 cup, 1 mg (sheet serving)",
+          "level": "negligible"
+        }
+      ],
+      "note": "The review's raw and boiled row reads '7 total, not detected soluble; 5 total, 4 soluble'; confirm which value is raw and which boiled."
     },
     "amines": {
       "result": {

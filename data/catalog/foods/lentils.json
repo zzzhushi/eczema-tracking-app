@@ -22,7 +22,11 @@
     }
   ],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "35 g dry",
+    "grams": 35,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -33,10 +37,30 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: lentil, brown",
+          "basis": "dry weight, 24.0 mg per 100 g total; about 8.4 mg at 35 g dry",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: lentil, red",
+          "basis": "dry weight, 13.8 mg per 100 g total; about 4.8 mg at 35 g dry",
+          "level": "low"
+        },
+        {
+          "sourceId": "salgado-2023",
+          "locator": "Table 5: lentil, dried",
+          "basis": "dry weight, 13.3 mg per 100 g total; about 4.7 mg at 35 g dry",
+          "level": "low"
+        }
+      ],
+      "note": "Cooking loss is not subtracted."
     },
     "amines": {
       "result": {

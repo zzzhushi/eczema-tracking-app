@@ -8,7 +8,11 @@
   ],
   "varieties": [],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "1/4 tsp",
+    "grams": 1.5,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -19,10 +23,17 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Salt",
+          "basis": "1 tsp, 0 mg (sheet serving)",
+          "level": "negligible"
+        }
+      ]
     },
     "amines": {
       "result": {

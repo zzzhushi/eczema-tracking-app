@@ -14,21 +14,39 @@
   "allergens": [
     "egg"
   ],
-  "serving": null,
+  "serving": {
+    "description": "50 g",
+    "grams": 50,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "keszycka-2021",
+          "locator": "2.3. Dietary Intervention: salicylate-free products",
+          "basis": "diet instruction, no measured value",
+          "level": "negligible"
+        }
+      ]
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Eggs: Eggs",
+          "basis": "1 medium, 0 mg (sheet serving)",
+          "level": "negligible"
+        }
+      ]
     },
     "amines": {
       "result": {

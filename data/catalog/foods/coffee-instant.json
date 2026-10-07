@@ -7,7 +7,11 @@
   ],
   "varieties": [],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "1 cup prepared",
+    "grams": 240,
+    "origin": "usda-household"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -21,7 +25,8 @@
         "kind": "unknown",
         "reason": "not-yet-researched"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Secondary reports with inconsistent units were found; the primary article is not yet read."
     },
     "amines": {
       "result": {

@@ -17,7 +17,11 @@
     }
   ],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "140 g prepared",
+    "grams": 140,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -28,10 +32,18 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "low"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Pastas, Rice & Grains: White Rice, cooked",
+          "basis": "1 cup cooked, 4 mg (sheet serving); about 3.5 mg at 140 g",
+          "level": "low",
+          "note": "Jasmine and short-grain not listed separately."
+        }
+      ]
     },
     "amines": {
       "result": {

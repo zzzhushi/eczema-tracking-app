@@ -9,7 +9,11 @@
   ],
   "varieties": [],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "1 tsp powder",
+    "grams": 2,
+    "origin": "usda-household"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -21,9 +25,10 @@
     "oxalates": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "Green tea infusions are measured; whole-leaf powder is not in the sources found."
     },
     "amines": {
       "result": {

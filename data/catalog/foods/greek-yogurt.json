@@ -12,7 +12,11 @@
   "allergens": [
     "milk"
   ],
-  "serving": null,
+  "serving": {
+    "description": "170 g",
+    "grams": 170,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -23,10 +27,18 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Yogurt Products: Plain Yogurt",
+          "basis": "1 cup, 2 mg (sheet serving); about 1.4 mg at 170 g",
+          "level": "negligible",
+          "note": "Nonfat Greek style not listed separately."
+        }
+      ]
     },
     "amines": {
       "result": {

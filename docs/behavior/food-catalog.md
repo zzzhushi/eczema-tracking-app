@@ -26,7 +26,7 @@ The bundled reference data that says what each food is, what it is called, and h
 
 A result is either `known` with a level (negligible, low, moderate, high, or very high) or `unknown` with a reason: `not-yet-researched`, `researched-no-data`, or `sources-conflict`.
 
-Evidence is a list of entries with a `sourceId`, a `locator` inside the source, the `basis` the source measured (for example "dry" or "raw, per 100 g"), and an optional `note` on how it was mapped to a level.
+Evidence is a list of entries, each with a `sourceId`, a `locator` inside the source, the `basis` the source measured (for example "dry weight, per 100 g"), the `level` that entry maps to, and an optional `note`. A source that gives no level for the food, such as a diet that merely allows or forbids it, is not evidence. A chemical may also carry a `note` explaining its result.
 
 ## Sources
 
@@ -46,6 +46,7 @@ The catalog loads only if all of these hold:
 - IDs are unique, and no alias belongs to two foods.
 - Every food has all six chemicals, and every allergen is on the fixed list.
 - A known result has at least one evidence entry, and a `sources-conflict` result has at least two.
+- A result follows from its evidence under [the catalog-level rules](../analysis.md#catalog-levels-release-1).
 - Every cited source exists.
 - A food with any known level has a serving.
 - The manifest decodes.

@@ -24,7 +24,11 @@
     }
   ],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "1 cup prepared",
+    "grams": 234,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -35,10 +39,18 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Cereals: Oatmeal Cereal",
+          "basis": "1 cup, 0 mg (sheet serving)",
+          "level": "negligible",
+          "note": "Oat variety not specified."
+        }
+      ]
     },
     "amines": {
       "result": {

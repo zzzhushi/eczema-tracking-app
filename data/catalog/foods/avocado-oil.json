@@ -7,7 +7,11 @@
   ],
   "varieties": [],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "1 tbsp",
+    "grams": 14,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -19,9 +23,10 @@
     "oxalates": {
       "result": {
         "kind": "unknown",
-        "reason": "not-yet-researched"
+        "reason": "researched-no-data"
       },
-      "evidence": []
+      "evidence": [],
+      "note": "No measurement found; refined oils are not listed in the sources used."
     },
     "amines": {
       "result": {

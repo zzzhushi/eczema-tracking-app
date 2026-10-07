@@ -1,3 +1,51 @@
 {
-  "sources": []
+  "sources": [
+    {
+      "id": "keszycka-2021",
+      "kind": "guidance",
+      "type": "journal-article",
+      "title": "Effectiveness of Personalized Low Salicylate Diet in the Management of Salicylates Hypersensitive Patients: Interventional Study",
+      "authors": [
+        "Paulina K Kęszycka",
+        "Ewa Lange",
+        "Danuta Gajewska"
+      ],
+      "publisher": "Nutrients",
+      "year": 2021,
+      "doi": "10.3390/nu13030991",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8003553/",
+      "accessedOn": "2026-10-07"
+    },
+    {
+      "id": "salgado-2023",
+      "kind": "review",
+      "type": "journal-article",
+      "title": "Oxalate in Foods: Extraction Conditions, Analytical Methods, Occurrence, and Health Implications",
+      "authors": [
+        "Neuza Salgado",
+        "Mafalda Alexandra Silva",
+        "Maria Eduardo Figueira",
+        "Helena S Costa",
+        "Tânia Gonçalves Albuquerque"
+      ],
+      "publisher": "Foods",
+      "year": 2023,
+      "doi": "10.3390/foods12173201",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10486698/",
+      "accessedOn": "2026-10-07"
+    },
+    {
+      "id": "uchicago-oxalate",
+      "kind": "list",
+      "type": "web-page",
+      "title": "Updated table of oxalate foods",
+      "authors": [
+        "Fred Coe",
+        "Jill Harris"
+      ],
+      "publisher": "University of Chicago Kidney Stones Program",
+      "url": "https://kidneystones.uchicago.edu/how-to-eat-a-low-oxalate-diet/",
+      "accessedOn": "2026-10-07"
+    }
+  ]
 }

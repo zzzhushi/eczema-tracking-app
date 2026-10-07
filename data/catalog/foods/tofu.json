@@ -10,7 +10,11 @@
   "allergens": [
     "soy"
   ],
-  "serving": null,
+  "serving": {
+    "description": "85 g",
+    "grams": 85,
+    "origin": "fda-racc"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -21,10 +25,18 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Meat Alternatives: Tofu",
+          "basis": "3.5 oz, 13 mg (sheet serving); about 11 mg at 85 g",
+          "level": "high",
+          "note": "The sheet rates 3.5 oz as very high."
+        }
+      ]
     },
     "amines": {
       "result": {

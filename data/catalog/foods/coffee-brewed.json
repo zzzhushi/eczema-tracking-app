@@ -9,7 +9,11 @@
   ],
   "varieties": [],
   "allergens": [],
-  "serving": null,
+  "serving": {
+    "description": "1 cup",
+    "grams": 240,
+    "origin": "usda-household"
+  },
   "chemicals": {
     "salicylates": {
       "result": {
@@ -20,10 +24,17 @@
     },
     "oxalates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "negligible"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Beverages: Coffee",
+          "basis": "1 cup, 1 mg (sheet serving)",
+          "level": "negligible"
+        }
+      ]
     },
     "amines": {
       "result": {
