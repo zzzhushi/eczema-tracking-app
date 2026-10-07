@@ -22,7 +22,7 @@ Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/age
   - Tests and fixtures: executable examples and edge cases; tests are named by behavior.
   - Slice issues: the proposed change, open questions, and end-to-end acceptance.
   - `docs/adr/`: cross-cutting, hard-to-reverse decisions.
-  - Reference data files: the actual food lists and levels.
+  - `data/`: reference data the app reads (rubric, sources, food catalog), one hand-edited home per fact, with citations as fields. See `data/README.md`.
   - `CONTEXT.md`: terms.
 - Vocabulary: a **release** is a GitHub milestone; a **slice** is a thin end-to-end issue within a release (S0, S1, …); a **future outcome** is a brief issue for a later release that becomes slices when that release is planned. Tabled items are issues with the `tabled` label.
 - Update the behavior docs in the same pull request as the code, and delete what the change makes stale. Close or prune stale issues the same way.

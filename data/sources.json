@@ -1,0 +1,145 @@
+[
+  {
+    "id": "easi-2001",
+    "type": "journal-article",
+    "title": "The eczema area and severity index (EASI): assessment of reliability in atopic dermatitis",
+    "authors": [
+      "Hanifin, J. M.",
+      "Thurston, M.",
+      "Omoto, M.",
+      "Cherill, R.",
+      "Tofte, S. J.",
+      "Graeber, M.",
+      "The EASI Evaluator Group"
+    ],
+    "year": 2001,
+    "journal": "Experimental Dermatology",
+    "doi": "10.1034/j.1600-0625.2001.100102.x",
+    "url": "https://doi.org/10.1034/j.1600-0625.2001.100102.x",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "scorad-1993",
+    "type": "journal-article",
+    "title": "Severity scoring of atopic dermatitis: the SCORAD index",
+    "authors": [
+      "European Task Force on Atopic Dermatitis"
+    ],
+    "year": 1993,
+    "journal": "Dermatology",
+    "doi": "10.1159/000247298",
+    "url": "https://doi.org/10.1159/000247298",
+    "accessedOn": "2026-10-07",
+    "note": "Crossref lists 2009 for the digitized record; the report was published in 1993."
+  },
+  {
+    "id": "ali-2022",
+    "type": "journal-article",
+    "title": "Mild to moderate atopic dermatitis severity can be reliably assessed using smartphone-photographs taken by the patient at home: A validation study",
+    "authors": [
+      "Ali, Zarqa",
+      "Chiriac, Andrei",
+      "Bjerre-Christensen, Theis",
+      "Isberg, Ari Pall",
+      "Dahiya, Priyanka",
+      "Manole, Ionela",
+      "Dutei, Ana-Maria",
+      "Deaconescu, Irina",
+      "Serban, Adina",
+      "Suru, Alina",
+      "Agner, Tove",
+      "Kamstrup, Maria Rørbæk",
+      "Togsverd-Bo, Katrine",
+      "Zibert, John Robert",
+      "Thomsen, Simon Francis",
+      "Andersen, Anders Daniel"
+    ],
+    "year": 2022,
+    "journal": "Skin Research and Technology",
+    "doi": "10.1111/srt.13136",
+    "url": "https://doi.org/10.1111/srt.13136",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "serup-1995",
+    "type": "journal-article",
+    "title": "EEMCO guidance for the assessment of dry skin (xerosis) and ichthyosis: clinical scoring systems",
+    "authors": [
+      "Serup, J.",
+      "EEMCO group"
+    ],
+    "year": 1995,
+    "journal": "Skin Research and Technology",
+    "doi": "10.1111/j.1600-0846.1995.tb00029.x",
+    "url": "https://doi.org/10.1111/j.1600-0846.1995.tb00029.x",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "hanifin-2022",
+    "type": "journal-article",
+    "title": "The Eczema Area and Severity Index—A Practical Guide",
+    "authors": [
+      "Hanifin, Jon M.",
+      "Baghoomian, Wenelia",
+      "Grinich, Erin",
+      "Leshem, Yael A.",
+      "Jacobson, Michael",
+      "Simpson, Eric Lawrence"
+    ],
+    "year": 2022,
+    "journal": "Dermatitis",
+    "doi": "10.1097/DER.0000000000000895",
+    "url": "https://doi.org/10.1097/DER.0000000000000895",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "held-2005",
+    "type": "journal-article",
+    "title": "The hand eczema severity index (HECSI): a scoring system for clinical assessment of hand eczema. A study of inter- and intraobserver reliability",
+    "authors": [
+      "Held, E.",
+      "Skoet, R.",
+      "Johansen, J. D.",
+      "Agner, T."
+    ],
+    "year": 2005,
+    "journal": "British Journal of Dermatology",
+    "doi": "10.1111/j.1365-2133.2004.06305.x",
+    "url": "https://doi.org/10.1111/j.1365-2133.2004.06305.x",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "brands-2026",
+    "type": "journal-article",
+    "title": "The Validity and Reliability of Patient-provided Photographs for Diagnosing and Assessing the Severity of Hand Eczema",
+    "authors": [
+      "Brands, Marjolein J.",
+      "Weisshaar, Elke",
+      "Politiek, Klaziena",
+      "Sloot, Manon M.",
+      "Bültmann, Ute",
+      "Loman, Laura",
+      "Schuttelaar, Marie L. A."
+    ],
+    "year": 2026,
+    "journal": "Acta Dermato-Venereologica",
+    "doi": "10.2340/actadv.v106.43718",
+    "url": "https://doi.org/10.2340/actadv.v106.43718",
+    "accessedOn": "2026-10-07"
+  },
+  {
+    "id": "vocks-1999",
+    "type": "journal-article",
+    "title": "The Dyshidrotic Eczema Area and Severity Index – A Score Developed for the Assessment of Dyshidrotic Eczema",
+    "authors": [
+      "Vocks, E.",
+      "Plötz, S. G.",
+      "Ring, J."
+    ],
+    "year": 1999,
+    "journal": "Dermatology",
+    "doi": "10.1159/000018127",
+    "url": "https://doi.org/10.1159/000018127",
+    "accessedOn": "2026-10-07"
+  }
+]
