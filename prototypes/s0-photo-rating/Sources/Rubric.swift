@@ -4,15 +4,24 @@ struct Rubric: Decodable {
     struct Sign: Decodable {
         let id: String
         let name: String
+        var lookFor: String?
         let levels: [String: String]
     }
     let version: Int
     let unscored: String
-    let signs: [Sign]
+    let scoring: String
+    var signs: [Sign]
 
     static func load() throws -> Rubric {
         let url = Bundle.main.url(forResource: "v1", withExtension: "json")!
-        return try JSONDecoder().decode(Rubric.self, from: Data(contentsOf: url))
+        var rubric = try JSONDecoder().decode(Rubric.self, from: Data(contentsOf: url))
+        if CommandLine.arguments.contains("-noPigmentNote"), let i = rubric.signs.firstIndex(where: { $0.id == "redness" }) {
+            rubric.signs[i].lookFor = nil
+        }
+        if CommandLine.arguments.contains("-scalingLookFor"), let i = rubric.signs.firstIndex(where: { $0.id == "dryness-flaking" }) {
+            rubric.signs[i].lookFor = "Fine scaling: the surface looks broken into small dull or whitish plates, like a mosaic, with scale edges lifting along the skin lines; or loose white flakes. Skin lines without scale are thickening, not dryness."
+        }
+        return rubric
     }
 
     var instructions: String {

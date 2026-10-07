@@ -109,6 +109,7 @@ final class Probe {
             await variantRound(arg.dropFirst(10).split(separator: ",").compactMap { Variant(rawValue: String($0)) })
         }
         if CommandLine.arguments.contains(where: { $0.hasPrefix("-pairs") }) { await pairRound() }
+        if CommandLine.arguments.contains("-swellingPairs") { await swellingPairRound() }
         if !CommandLine.arguments.contains("-noscore") { await runAll() }
         if !CommandLine.arguments.contains("-nocontext") { emit("CONTEXT\n\(await contextTest())") }
         emit("SUMMARY\n\(reportJSON())")
@@ -235,6 +236,102 @@ final class Probe {
                     let ok = levels.filter { $0 >= 0 }
                     let mean = ok.isEmpty ? -1 : Double(ok.reduce(0, +)) / Double(ok.count)
                     emit("\(head) levels=\(levels.map(String.init).joined(separator: ",")) mean=\(String(format: "%.1f", mean)) regions=\(regions.joined(separator: "|"))")
+                case .dryNoRef, .dryNoRefDetail, .dryRef, .dryTilesDetail, .flakeCheck:
+                    var sampler = rater
+                    sampler.greedy = false
+                    let runs = Int(CommandLine.arguments.first { $0.hasPrefix("-runs=") }?.dropFirst(6) ?? "") ?? 5
+                    var levels: [Int] = []
+                    var notes: [String] = []
+                    for _ in 1...runs {
+                        switch variant {
+                        case .dryNoRef, .dryNoRefDetail:
+                            let photo = variant == .dryNoRef ? boosted(s.url) : detailed(s.url)
+                            let (r, _, f) = await sampler.ask(DrynessAbsolute.self, instructions: rubric.drynessInstructions, prompt: rater.ratePrompt(photo: photo))
+                            levels.append(r?.level ?? -1); notes.append(r?.flakes ?? (f ?? ""))
+                        case .dryRef:
+                            let (r, _, f) = await sampler.ask(DrynessRelative.self, instructions: rubric.drynessRelativeInstructions, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: true))
+                            levels.append(r?.level ?? -1); notes.append(r?.flakes ?? (f ?? ""))
+                        case .flakeCheck:
+                            let (r, _, f) = await sampler.ask(FlakeCheck.self, instructions: rubric.flakeCheckInstructions, prompt: rater.ratePrompt(photo: detailed(s.url)))
+                            levels.append(r?.level ?? -1); notes.append(r?.flakes ?? (f ?? ""))
+                        default:
+                            var best = -1
+                            for tile in quadrantTiles(of: detailed(s.url)) {
+                                let (r, _, _) = await sampler.ask(DrynessAbsolute.self, instructions: rubric.drynessInstructions, prompt: rater.ratePrompt(photo: tile))
+                                best = max(best, r?.level ?? -1)
+                            }
+                            levels.append(best); notes.append("")
+                        }
+                    }
+                    let ok = levels.filter { $0 >= 0 }
+                    let mean = ok.isEmpty ? -1 : Double(ok.reduce(0, +)) / Double(ok.count)
+                    emit("\(head) levels=\(levels.map(String.init).joined(separator: ",")) mean=\(String(format: "%.1f", mean)) obs=\(clean(notes.joined(separator: " / ")))")
+                case .swellRubricRef, .swellCues:
+                    var sampler = rater
+                    sampler.greedy = false
+                    let runs = Int(CommandLine.arguments.first { $0.hasPrefix("-runs=") }?.dropFirst(6) ?? "") ?? 5
+                    var levels: [Int] = []
+                    var notes: [String] = []
+                    for _ in 1...runs {
+                        let prompt = rater.anchoredPrompt(reference: ref.url, photo: s.url, referenceFirst: true)
+                        if variant == .swellRubricRef {
+                            let (r, _, f) = await sampler.ask(SwellingRubric.self, instructions: rubric.swellingRubricInstructions, prompt: prompt)
+                            levels.append(r?.level ?? -1); notes.append(r?.description ?? (f ?? ""))
+                        } else {
+                            let (r, _, f) = await sampler.ask(SwellingCues.self, instructions: rubric.swellingCueInstructions, prompt: prompt)
+                            levels.append(r?.count ?? -1); notes.append(r?.description ?? (f ?? ""))
+                        }
+                    }
+                    let ok = levels.filter { $0 >= 0 }
+                    let mean = ok.isEmpty ? -1 : Double(ok.reduce(0, +)) / Double(ok.count)
+                    emit("\(head) levels=\(levels.map(String.init).joined(separator: ",")) mean=\(String(format: "%.1f", mean)) obs=\(clean(notes.joined(separator: " / ")))")
+                case .signOnly, .redRel:
+                    var sampler = rater
+                    sampler.greedy = false
+                    let runs = Int(CommandLine.arguments.first { $0.hasPrefix("-runs=") }?.dropFirst(6) ?? "") ?? 5
+                    let sign = CommandLine.arguments.first { $0.hasPrefix("-sign=") }.map { String($0.dropFirst(6)) } ?? "redness"
+                    var levels: [Int] = []
+                    for _ in 1...runs {
+                        if variant == .signOnly {
+                            let (r, _, _) = await sampler.ask(SignLevel.self, instructions: rubric.signOnlyInstructions(sign), prompt: rater.ratePrompt(photo: boosted(s.url)))
+                            levels.append(r?.level ?? -1)
+                        } else {
+                            let (r, _, _) = await sampler.ask(RednessOnly.self, instructions: AnchoredPrompts.rednessOnly, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: true))
+                            levels.append(r?.level ?? -1)
+                        }
+                    }
+                    let ok = levels.filter { $0 >= 0 }
+                    let mean = ok.isEmpty ? -1 : Double(ok.reduce(0, +)) / Double(ok.count)
+                    emit("\(head) sign=\(sign) levels=\(levels.map(String.init).joined(separator: ",")) mean=\(String(format: "%.1f", mean)) obs=")
+                case .recipe, .recipeB:
+                    var sampler = rater
+                    sampler.greedy = false
+                    let runs = Int(CommandLine.arguments.first { $0.hasPrefix("-runs=") }?.dropFirst(6) ?? "") ?? 5
+                    var measuredSwelling: Int?
+                    var opening = "-"
+                    if s.area == "face", let o = eyeOpening(of: s.url), let r = eyeOpening(of: ref.url) {
+                        measuredSwelling = swellingLevel(opening: o, referenceOpening: r)
+                        opening = String(format: "%.3f/%.3f", o, r)
+                    }
+                    var runsOut: [String] = []
+                    var rawOut: [String] = []
+                    var redRelOut: [String] = []
+                    for _ in 1...runs {
+                        let (a, _, _) = await sampler.ask(SignScoresV2.self, instructions: rubric.absoluteInstructions, prompt: rater.ratePrompt(photo: boosted(s.url)))
+                        let (rel, _, _) = await sampler.ask(RelativeSigns7.self, instructions: AnchoredPrompts.relative2, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: true))
+                        guard let a, let rel else { continue }
+                        var v = a.values
+                        v[1] = max(0, rel.levels[1])
+                        v[4] = max(0, rel.levels[4])
+                        if let measuredSwelling { v[6] = measuredSwelling }
+                        if variant == .recipeB {
+                            let (red, _, _) = await sampler.ask(RednessOnly.self, instructions: AnchoredPrompts.rednessOnly, prompt: rater.anchoredPrompt(reference: boosted(ref.url), photo: boosted(s.url), referenceFirst: true))
+                            redRelOut.append(String(max(0, red?.level ?? 0)))
+                        }
+                        runsOut.append(v.map(String.init).joined())
+                        rawOut.append(a.values.map(String.init).joined() + "/" + rel.levels.map { String(max(0, $0)) }.joined())
+                    }
+                    emit("\(head) refFirst=true eyes=\(opening) signs=\(runsOut.joined(separator: ";")) raw=\(rawOut.joined(separator: ";")) redrel=\(redRelOut.joined(separator: ",")) obs=")
                 case .absoluteBoostSampled:
                     var sampler = rater
                     sampler.greedy = false
@@ -318,6 +415,31 @@ final class Probe {
                     }
                     let (r, _, f) = await sampler.ask(PairBoost.self, instructions: AnchoredPrompts.pair, prompt: prompt)
                     answers.append(r?.worse ?? (f ?? "-"))
+                }
+                emit("P first=\(x.name) second=\(y.name) answers=\(answers.joined(separator: ","))")
+            }
+        }
+    }
+
+    /// Asks which of two face photos shows more swelling, in both orders.
+    func swellingPairRound() async {
+        var sampler = Rater(rubric: rubric)
+        sampler.greedy = false
+        let runs = Int(CommandLine.arguments.first { $0.hasPrefix("-pairRuns=") }?.dropFirst(10) ?? "") ?? 3
+        for (a, b) in [("face_clear", "face_flare"), ("face", "face_flare"), ("face_clear", "face")] {
+            guard let sa = samples.first(where: { $0.name == a }), let sb = samples.first(where: { $0.name == b }) else { continue }
+            for (x, y) in [(sa, sb), (sb, sa)] {
+                var answers: [String] = []
+                for _ in 1...runs {
+                    let prompt = Prompt {
+                        "First photo:"
+                        Attachment(imageURL: x.url)
+                        "Second photo:"
+                        Attachment(imageURL: y.url)
+                        "Which photo shows more swelling?"
+                    }
+                    let (r, _, f) = await sampler.ask(SwellingPair.self, instructions: rubric.swellingPairInstructions, prompt: prompt)
+                    answers.append(r?.more ?? (f ?? "-"))
                 }
                 emit("P first=\(x.name) second=\(y.name) answers=\(answers.joined(separator: ","))")
             }

@@ -7,7 +7,7 @@ import Vision
 
 /// Experiment variants that rate a photo relative to a reference photo of the same person's clear skin.
 enum Variant: String, CaseIterable {
-    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef
+    case overall3, checklist, relative, tiles, perception, relative2, direct3, identical, relative2Boost, rednessBoost, relative2Sampled, relative2BoostSampled, relative7BoostSampled, pairBoost, absoluteBoostSampled, swellingRef, swellingEyes, swellingNoRef, swellGeneralRef, swellRaisedRef, swellGeneralNoRef, swellRaisedNoRef, dryNoRef, dryNoRefDetail, dryRef, dryTilesDetail, flakeCheck, swellRubricRef, swellCues, recipe, recipeB, signOnly, redRel
 }
 
 private let coverageLevels = ["none", "small area", "some", "most", "nearly all"]
@@ -122,6 +122,70 @@ struct SwellingAnywhere {
     var swelling: String
 
     var level: Int { ["none", "slight", "clear", "marked"].firstIndex(of: swelling) ?? -1 }
+}
+
+@Generable
+struct DrynessAbsolute {
+    @Guide(description: "Any flakes or scales lifting from the skin and where they are, or none, in one sentence")
+    var flakes: String
+    @Guide(description: "Dryness level", .range(0...3))
+    var level: Int
+}
+
+@Generable
+struct DrynessRelative {
+    @Guide(description: "Flakes or scales in the new photo compared with the reference, in one sentence")
+    var flakes: String
+    @Guide(description: "Dryness compared with the reference", .anyOf(["same", "slightly more", "clearly more", "much more"]))
+    var dryness: String
+
+    var level: Int { relativeLevels.firstIndex(of: dryness) ?? -1 }
+}
+
+@Generable
+struct FlakeCheck {
+    @Guide(description: "Any flakes or scales lifting from the skin and where they are, or none, in one sentence")
+    var flakes: String
+    @Guide(description: "How many flakes or scales are visible", .anyOf(["none", "a few", "many"]))
+    var seen: String
+
+    var level: Int { ["none", "a few", "many"].firstIndex(of: seen) ?? -1 }
+}
+
+@Generable
+struct SwellingRubric {
+    @Guide(description: "Where the new photo looks puffier than the reference, or none, in one sentence")
+    var description: String
+    @Guide(description: "Swelling level", .range(0...3))
+    var level: Int
+}
+
+@Generable
+struct SwellingCues {
+    @Guide(description: "How the shape and surface of the skin differ from the reference, in one sentence")
+    var description: String
+    @Guide(description: "Some area looks fuller or puffier than the same area in the reference") var fuller: Bool
+    @Guide(description: "Creases or fine lines that show in the reference are faded or gone in the new photo") var creasesFaded: Bool
+    @Guide(description: "The skin looks smoother, stretched, or shinier than in the reference") var stretched: Bool
+    @Guide(description: "An outline or opening looks rounder, narrower, or changed in shape compared with the reference") var shapeChanged: Bool
+
+    var count: Int { [fuller, creasesFaded, stretched, shapeChanged].filter { $0 }.count }
+}
+
+@Generable
+struct SwellingPair {
+    @Guide(description: "How the puffiness of the skin differs between the two photos, in one sentence")
+    var description: String
+    @Guide(description: "Which photo shows more swelling", .anyOf(["first", "second", "same"]))
+    var more: String
+}
+
+@Generable
+struct SignLevel {
+    @Guide(description: "What you see for this sign and where, or none, in one sentence")
+    var description: String
+    @Guide(description: "Level", .range(0...3))
+    var level: Int
 }
 
 @Generable
@@ -269,14 +333,88 @@ extension Rubric {
             You rate a photo of skin for visible signs of eczema using the rubric below. Signs are \
             often 0. Give a level above 0 only if you can see a specific spot that matches its \
             definition. Describe what you see first, then score each sign from 0 to 3. List the id \
-            of a sign you cannot judge in unscorableSigns and give it 0. \(commonRules)
+            of a sign you cannot judge in unscorableSigns and give it 0. \(scoring) \(commonRules)
 
             """
         for sign in signs {
             text += "\n\(sign.id) (\(sign.name)):"
+            if let lookFor = sign.lookFor { text += " \(lookFor)" }
             for level in ["0", "1", "2", "3"] { text += "\n  \(level) = \(sign.levels[level] ?? "")" }
         }
         return text
+    }
+}
+
+extension Rubric {
+    private var dryness: Sign { signs.first { $0.id == "dryness-flaking" }! }
+    private var drynessLevels: String {
+        ["0", "1", "2", "3"].map { "\($0) = \(dryness.levels[$0] ?? "")" }.joined(separator: "\n")
+    }
+
+    var drynessInstructions: String {
+        """
+        You rate dryness of the skin in a photo. Look for: \(dryness.lookFor ?? "") \(scoring) Describe any \
+        flakes or scales first, then choose a level. If the image shows no skin, choose 0.
+        \(drynessLevels)
+        \(commonRules)
+        """
+    }
+
+    var drynessRelativeInstructions: String {
+        """
+        You compare dryness in a new photo of one person's skin with a reference photo of their clear skin. \
+        Look for: \(dryness.lookFor ?? "") The new photo is often the same as the reference. Answer same \
+        unless some patch in the new photo clearly shows more flakes or scales than the reference, then say \
+        slightly more, clearly more, or much more. Describe the flakes first. \(commonRules)
+        """
+    }
+
+    /// Instructions for rating one sign alone on its rubric levels.
+    func signOnlyInstructions(_ id: String) -> String {
+        let sign = signs.first { $0.id == id }!
+        return """
+            You rate one sign of eczema, \(sign.name.lowercased()), in a photo of skin.\(sign.lookFor.map { " Look for: \($0)" } ?? "") \
+            \(scoring) Describe what you see first, then choose a level.
+            \(["0", "1", "2", "3"].map { "\($0) = \(sign.levels[$0] ?? "")" }.joined(separator: "\n"))
+            \(commonRules)
+            """
+    }
+
+    private var swelling: Sign { signs.first { $0.id == "swelling" }! }
+
+    var swellingRubricInstructions: String {
+        """
+        You compare swelling in a new photo of one person's skin with a reference photo of the same area \
+        on a clear day. Look for: \(swelling.lookFor ?? "") Describe where the new photo looks puffier \
+        than the reference, then choose a level; choose 0 if it is no puffier than the reference.
+        \(["0", "1", "2", "3"].map { "\($0) = \(swelling.levels[$0] ?? "")" }.joined(separator: "\n"))
+        Ignore expression, angle, lighting, makeup, hair, and background. Do not give medical advice.
+        """
+    }
+
+    var swellingCueInstructions: String {
+        """
+        You compare the shape and surface of one person's skin in a new photo with a reference photo of \
+        the same area on a clear day. Swelling is \(swelling.lookFor ?? "") Describe the differences, then \
+        answer each question about the new photo compared with the reference. Ignore expression, angle, \
+        lighting, makeup, hair, and background. Do not give medical advice.
+        """
+    }
+
+    var swellingPairInstructions: String {
+        """
+        You compare swelling in two photos of the same area of one person's skin. Swelling is \
+        \(swelling.lookFor ?? "") Describe how the puffiness differs, then say which photo shows more \
+        swelling. Answer same unless one is clearly puffier. Ignore expression, angle, lighting, makeup, \
+        hair, and background. Do not give medical advice.
+        """
+    }
+
+    var flakeCheckInstructions: String {
+        """
+        You look for flakes and scales on the skin in a photo. Look for: \(dryness.lookFor ?? "") Describe \
+        what you see first, then say whether you see none, a few, or many. \(commonRules)
+        """
     }
 }
 
@@ -381,4 +519,50 @@ func eyeRegion(of url: URL) -> URL? {
     guard let dest = CGImageDestinationCreateWithURL(out as CFURL, UTType.jpeg.identifier as CFString, 1, nil) else { return nil }
     CGImageDestinationAddImage(dest, crop, nil)
     return CGImageDestinationFinalize(dest) ? out : nil
+}
+
+/// Writes a copy of the image sharpened with more local contrast, so fine light flakes stand out.
+func detailed(_ url: URL) -> URL {
+    let out = FileManager.default.temporaryDirectory.appendingPathComponent("\(url.deletingPathExtension().lastPathComponent)-detail.jpg")
+    guard let input = CIImage(contentsOf: url),
+          let sharpen = CIFilter(name: "CIUnsharpMask"), let controls = CIFilter(name: "CIColorControls") else { return url }
+    sharpen.setValue(input, forKey: kCIInputImageKey)
+    sharpen.setValue(3.0, forKey: kCIInputRadiusKey)
+    sharpen.setValue(1.0, forKey: kCIInputIntensityKey)
+    controls.setValue(sharpen.outputImage, forKey: kCIInputImageKey)
+    controls.setValue(1.2, forKey: kCIInputContrastKey)
+    let context = CIContext()
+    guard let output = controls.outputImage?.cropped(to: input.extent),
+          let space = CGColorSpace(name: CGColorSpace.sRGB),
+          (try? context.writeJPEGRepresentation(of: output, to: out, colorSpace: space)) != nil else { return url }
+    return out
+}
+
+/// Returns eye opening as the mean height-to-width ratio of both eye outlines, or nil without a face.
+func eyeOpening(of url: URL) -> Double? {
+    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
+          let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else { return nil }
+    let request = VNDetectFaceLandmarksRequest()
+    try? VNImageRequestHandler(cgImage: image).perform([request])
+    guard let landmarks = request.results?.first?.landmarks else { return nil }
+    let size = CGSize(width: image.width, height: image.height)
+    let ratios = [landmarks.leftEye, landmarks.rightEye].compactMap { region -> Double? in
+        guard let points = region?.pointsInImage(imageSize: size),
+              let x0 = points.map(\.x).min(), let x1 = points.map(\.x).max(),
+              let y0 = points.map(\.y).min(), let y1 = points.map(\.y).max(), x1 > x0 else { return nil }
+        return Double((y1 - y0) / (x1 - x0))
+    }
+    return ratios.isEmpty ? nil : ratios.reduce(0, +) / Double(ratios.count)
+}
+
+/// Maps the drop in eye opening against the reference photo to a swelling level. Provisional
+/// thresholds, set from a single flare photo.
+func swellingLevel(opening: Double, referenceOpening: Double) -> Int {
+    let drop = 1 - opening / referenceOpening
+    switch drop {
+    case ..<0.08: return 0
+    case ..<0.15: return 1
+    case ..<0.22: return 2
+    default: return 3
+    }
 }
