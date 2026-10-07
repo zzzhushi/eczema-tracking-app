@@ -43,6 +43,6 @@ Each milestone's issue lists its manual checks as steps with an expected result.
 ## Continuous integration
 
 - GitHub Actions on a macOS runner, on pull requests and on pushes to the default branch.
-- Runs the logic and storage tests; the latest run must pass before merging. GitHub Free can't enforce this on a private repository, so it is a working rule, not a technical block.
+- Runs the logic and storage tests; branch protection on the default branch blocks merging until the latest run passes.
 - AI evaluations and manual checks are excluded.
-- GitHub's runner images can lag a new Xcode release, and macOS minutes on a free private repository are limited, so the job stays lean.
+- GitHub's runner images can lag a new Xcode release.

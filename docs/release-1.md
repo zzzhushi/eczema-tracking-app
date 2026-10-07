@@ -35,7 +35,7 @@ Expect "too early to tell" for the first weeks; with a stable diet, most signal 
 | OBS-02 | The app shall provide one logging and timing-signpost convention that every feature uses. | Must |
 | OBS-03 | The app shall collect crash and hang diagnostics on the phone without sending them anywhere. | Must |
 | OBS-05 | Each automated test shall name the requirement IDs it verifies. | Must |
-| CI-01 | Pull requests and pushes to the default branch shall run the logic and storage tests on a macOS runner; the latest run shall pass before merging. | Must |
+| CI-01 | Pull requests and pushes to the default branch shall run the logic and storage tests on a macOS runner, and branch protection shall block merging until the latest run passes. | Must |
 
 ### M2: Food logging
 
