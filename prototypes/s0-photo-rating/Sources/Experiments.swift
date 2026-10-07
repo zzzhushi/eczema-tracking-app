@@ -13,10 +13,11 @@ struct SignScoresV2 {
     @Guide(description: "Cracks or broken skin", .range(0...3)) var cracksBrokenSkin: Int
     @Guide(description: "Thickening", .range(0...3)) var thickening: Int
     @Guide(description: "Oozing or crusting", .range(0...3)) var oozingCrusting: Int
+    @Guide(description: "Swelling", .range(0...3)) var swelling: Int
     @Guide(description: "Ids of signs that cannot be judged from the photo")
     var unscorableSigns: [String]
 
-    var values: [Int] { [redness, drynessFlaking, bumpsBlisters, cracksBrokenSkin, thickening, oozingCrusting] }
+    var values: [Int] { [redness, drynessFlaking, bumpsBlisters, cracksBrokenSkin, thickening, oozingCrusting, swelling] }
 }
 
 @Generable
@@ -43,7 +44,7 @@ extension Rubric {
         """
         You rate a photo of skin for visible signs of eczema using the rubric below. Work in two steps.
         First write observations: describe only what you can actually see, where it is, and how much of \
-        the area it covers. Mention swelling or puffiness if present, even though it has no score.
+        the area it covers. Swelling is one of the signs; score it like the others.
         Then score each sign from 0 to 3 for the most affected area, using exactly the written definitions.
         Rules: give 0 when a sign is not visible. Do not give several signs the same score by default. \
         Reserve 3 for severe findings. List the id of a sign you cannot judge in unscorableSigns and give \
@@ -75,7 +76,7 @@ extension Rater {
             }
             let options = greedy ? GenerationOptions(sampling: .greedy) : GenerationOptions()
             let response = try await session.respond(to: prompt, generating: SignScoresV2.self, options: options)
-            let ids = ["redness", "dryness-flaking", "bumps-blisters", "cracks-broken-skin", "thickening", "oozing-crusting"]
+            let ids = ["redness", "dryness-flaking", "bumps-blisters", "cracks-broken-skin", "thickening", "oozing-crusting", "swelling"]
             let scores = zip(ids, response.content.values).map { id, value in
                 response.content.unscorableSigns.contains(id) ? nil : value
             }

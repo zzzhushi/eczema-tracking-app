@@ -9,10 +9,11 @@ struct SignScores {
     @Guide(description: "Cracks or broken skin", .range(0...3)) var cracksBrokenSkin: Int
     @Guide(description: "Thickening", .range(0...3)) var thickening: Int
     @Guide(description: "Oozing or crusting", .range(0...3)) var oozingCrusting: Int
+    @Guide(description: "Swelling", .range(0...3)) var swelling: Int
     @Guide(description: "Ids of signs that cannot be judged from the photo")
     var unscorableSigns: [String]
 
-    var values: [Int] { [redness, drynessFlaking, bumpsBlisters, cracksBrokenSkin, thickening, oozingCrusting] }
+    var values: [Int] { [redness, drynessFlaking, bumpsBlisters, cracksBrokenSkin, thickening, oozingCrusting, swelling] }
 }
 
 struct RunResult: Codable {
@@ -60,7 +61,7 @@ struct Rater {
             do { tokens = try await SystemLanguageModel.default.tokenCount(for: prompt) } catch { tokenError = String(describing: error) }
             let options = greedy ? GenerationOptions(sampling: .greedy) : GenerationOptions()
             let response = try await session.respond(to: prompt, generating: SignScores.self, options: options)
-            let ids = ["redness", "dryness-flaking", "bumps-blisters", "cracks-broken-skin", "thickening", "oozing-crusting"]
+            let ids = ["redness", "dryness-flaking", "bumps-blisters", "cracks-broken-skin", "thickening", "oozing-crusting", "swelling"]
             let scores = zip(ids, response.content.values).map { id, value in
                 response.content.unscorableSigns.contains(id) ? nil : value
             }

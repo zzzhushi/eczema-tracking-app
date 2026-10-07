@@ -138,7 +138,7 @@ final class Probe {
         for s in samples {
             let ok = s.runs.filter { $0.failure == nil }
             var worst = 0
-            for sign in 0..<6 {
+            for sign in 0..<7 {
                 let v = ok.compactMap { $0.scores.indices.contains(sign) ? $0.scores[sign] : nil }
                 if let lo = v.min(), let hi = v.max() { worst = max(worst, hi - lo) }
             }
@@ -169,7 +169,7 @@ final class Probe {
 
     private func median(_ s: Sample) -> [Int?] {
         let ok = s.runs.filter { $0.failure == nil }
-        return (0..<6).map { sign in
+        return (0..<7).map { sign in
             let v = ok.compactMap { $0.scores.indices.contains(sign) ? $0.scores[sign] : nil }.sorted()
             return v.isEmpty ? nil : v[v.count / 2]
         }

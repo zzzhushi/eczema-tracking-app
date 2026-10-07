@@ -18,7 +18,7 @@ Select the iPhone, set a signing team, and run.
 
 1. Choose photos from the iPhone's Photos library (up to 12). They are downscaled to 1600 px into the app's temporary folder and never written anywhere else.
 2. For each photo, set the area, label it clear or flare, and give photos taken minutes apart the same non-zero group number.
-3. "Rate each photo 5 times" runs the rubric on every photo and shows the six sign scores per run, or the failure (refusal, guardrail, and so on).
+3. "Rate each photo 5 times" runs the rubric on every photo and shows the seven sign scores per run, or the failure (refusal, guardrail, and so on).
 4. "Context test" sends 1, 2, and 3 images in one prompt and reports prompt tokens, failures, and latency.
 5. The summary is numbers only, keyed by photo number. Share it to the Mac; it is the only thing that may be committed, and only as an aggregate.
 
