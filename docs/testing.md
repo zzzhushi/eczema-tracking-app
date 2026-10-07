@@ -24,7 +24,7 @@ The on-device model, HealthKit, location, weather, and the clock and time zone s
 ## Test data
 
 - **Hand-built histories and fixture stores** live in the repository.
-- **Real photos**: a small curated set kept in a local folder that git ignores, together with their manifest (file name, area, date, lighting, camera, the user's own ratings, and which pairs should score as clear versus flare) and raw evaluation reports. Only AI evaluations use photos, and they never run in CI, so committing them would gain nothing and would make them public permanently. The repository holds only an example manifest showing the format.
+- **Real photos**: a small curated set kept in a local folder that git ignores, together with their manifest (file name, area, date, lighting, camera, the user's own ratings, and which pairs should score as clear versus flare) and raw evaluation reports. Only AI evaluations use photos, and they never run in CI, so committing them would gain nothing and would make them public permanently. The repository holds only an example manifest showing the format. A pre-commit hook blocks staging the folder or any photo file; enable it once per clone with `git config core.hooksPath .githooks`.
 - No image of the user, in any form (a photo, crop, thumbnail, screenshot, or rendering), ever goes into the repository, PRs, issues, CI logs, or artifacts. Ratings and scores per photo may be recorded there, labeled only by opaque IDs.
 - **Meal texts**: synthetic days written in the user's style, with the foods they should match, never copied from real logs.
 
