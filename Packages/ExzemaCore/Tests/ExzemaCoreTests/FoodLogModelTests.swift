@@ -117,9 +117,104 @@ struct FoodLogModelTests {
         let noise = try #require(model.lines.first?.items.last)
         model.delete(noise)
         #expect(model.lines.first?.items.map(\.item.text) == ["rice"])
+        #expect(model.lines.first?.text == "rice", "the line text must not name a deleted item")
 
         model.delete(try #require(model.lines.last))
-        #expect(model.lines.map(\.text) == ["rice, dragonfruit"])
+        #expect(model.lines.map(\.text) == ["rice"])
+    }
+
+    @Test func aDeletedItemStaysDeletedWhenTheLineIsReopened() throws {
+        let model = try makeModel(for: day, store: makeStore())
+        model.updateDraft("rice and dragonfruit")
+        model.save()
+        model.delete(try #require(model.lines.first?.items.last))
+        let line = try #require(model.lines.first)
+
+        model.beginEditing(line)
+
+        #expect(line.text == "rice")
+        #expect(model.preview.map(\.text) == ["rice"])
+    }
+
+    @Test func deletingTheLineBeingEditedEndsTheEdit() throws {
+        let model = try makeModel(for: day, store: makeStore())
+        model.updateDraft("rice")
+        model.save()
+        let line = try #require(model.lines.first)
+        model.beginEditing(line)
+
+        model.delete(line)
+
+        #expect(model.editing == nil && model.draft.isEmpty && model.lines.isEmpty)
+    }
+
+    @Test func aFailedDeleteOfTheLineBeingEditedKeepsTheDraftAndSaysSo() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+        model.save()
+        let line = try #require(model.lines.first)
+        model.beginEditing(line)
+        model.updateDraft("rice and oatmeal")
+        try store.deleteFoodLine(line.id)
+
+        model.delete(line)
+
+        #expect(model.errorMessage != nil)
+        #expect(model.editing == line.id)
+        #expect(model.draft == "rice and oatmeal", "typed text must survive a failed delete")
+    }
+
+    @Test func deletingAnItemOfTheLineBeingEditedEndsTheEdit() throws {
+        let model = try makeModel(for: day, store: makeStore())
+        model.updateDraft("rice and dragonfruit")
+        model.save()
+        let line = try #require(model.lines.first)
+        model.beginEditing(line)
+
+        model.delete(try #require(line.items.last))
+
+        #expect(model.editing == nil && model.draft.isEmpty)
+        #expect(model.lines.first?.text == "rice")
+    }
+
+    @Test func movingToAnotherDayKeepsTheDraftAndSavesUnderTheNewDay() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+
+        model.show(yesterday)
+        #expect(model.draft == "rice")
+        model.save()
+
+        #expect(try store.foodLines(on: yesterday.date).map(\.text) == ["rice"])
+        #expect(try store.foodLines(on: day.date).isEmpty)
+    }
+
+    @Test func movingToAnotherDayShowsThatDaysLines() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+        model.save()
+
+        model.show(yesterday)
+        #expect(model.lines.isEmpty)
+        model.show(day)
+
+        #expect(model.lines.map(\.text) == ["rice"])
+    }
+
+    @Test func movingToAnotherDayEndsAnEditOfTheOldDaysLine() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+        model.save()
+        model.beginEditing(try #require(model.lines.first))
+
+        model.show(yesterday)
+
+        #expect(model.editing == nil && model.draft.isEmpty)
+        #expect(try store.foodLines(on: day.date).map(\.text) == ["rice"])
     }
 
     @Test func aFailedSaveKeepsTheTypedTextAndSaysSo() throws {

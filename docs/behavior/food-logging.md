@@ -4,7 +4,9 @@ How the user records what they ate. The catalog it matches against is in [the fo
 
 ## The screen
 
-- The app opens on today. A previous/next control steps one day at a time, back as far as the user likes and forward only up to today. A day left on screen as "today" follows the clock past midnight.
+- The app opens on today. A previous/next control steps one day at a time, back as far as the user likes and forward only up to today.
+- "Today" follows the clock: the screen moves to the new date when the calendar day or the time zone changes and when the app returns to the foreground. A day the user stepped back to stays where it is.
+- Text typed but not yet saved stays when the day on screen changes, and is saved under the day then showing.
 - The food section takes one day and nothing else, so the screen hosting it holds no food logic.
 - Looking at a day stores nothing; a day is stored by its first saved food.
 
@@ -26,7 +28,8 @@ How the user records what they ate. The catalog it matches against is in [the fo
 
 - Each saved piece of text is a line, kept as typed with its time zone, and a day can have several lines.
 - Each line keeps its parsed items, each with the catalog food it matched when saved, or none. The match is fixed at save time; chemical levels are looked up later from the food, so research added to the catalog applies to earlier days.
-- The user can reopen a line, change the text, and save again, which parses it afresh and replaces the line. They can delete a single item, or a whole line. Deleting a line's last item deletes the line.
+- The user can reopen a line, change the text, and save again, which parses it afresh and replaces the line. Changing the day on screen while a line is open ends the edit.
+- The user can delete a whole line, or a single item. Deleting an item rewrites the line's text from the items that remain, so the item does not come back when the line is reopened. Deleting a line's last item deletes the line, and deleting an item of the line being edited ends the edit.
 - A day with at least one item is a logged day; a day with none is unknown, never a day of eating nothing.
 
 ## What is not shown
@@ -36,10 +39,10 @@ Chemical levels are not shown on this screen. Looking up a food's level for a ch
 ## When it fails
 
 - If the catalog cannot be loaded, the screen says so and food logging is unavailable.
-- If a save or delete fails, the screen says so and keeps the typed text.
+- If a save or delete fails, the screen says so, keeps the typed text, and keeps an open edit open.
 
 ## Known limitations
 
-- Reopening a line parses it afresh, so an item the user deleted from it comes back.
-- A word such as "grilled" is an unrecognized item until the user deletes it, and an unrecognized item makes that day's peak unknown for analysis.
+- A line whose item was deleted no longer shows the wording the user originally typed; it shows the remaining items, separated by commas.
+- A word such as "grilled" is an unrecognized item until the user deletes it (reopening and saving the line brings it back), and an unrecognized item makes that day's peak unknown for analysis.
 - Words the user might type that are not aliases are unrecognized; mapping them to a food is a later change.

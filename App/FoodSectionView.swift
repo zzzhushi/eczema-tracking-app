@@ -12,7 +12,6 @@ struct FoodSectionView: View {
     var body: some View {
         if let store = services.store, let matching = services.matching {
             FoodSectionContent(day: day, store: store, matching: matching)
-                .id(day.date)
         } else {
             Section("Food") {
                 Text("Food logging is unavailable.").foregroundStyle(.secondary)
@@ -23,14 +22,22 @@ struct FoodSectionView: View {
 
 private struct FoodSectionContent: View {
     @State private var model: FoodLogModel
+    private let day: Day
     private let catalog: Catalog
 
     init(day: Day, store: DayStore, matching: FoodMatching) {
         _model = State(initialValue: FoodLogModel(day: day, store: store, matcher: matching.matcher))
+        self.day = day
         catalog = matching.catalog
     }
 
     var body: some View {
+        content
+            .onChange(of: day) { _, newDay in model.show(newDay) }
+    }
+
+    @ViewBuilder
+    private var content: some View {
         Section("Food") {
             TextField("What did you eat?", text: Binding(get: { model.draft }, set: { model.updateDraft($0) }), axis: .vertical)
                 .toolbar {

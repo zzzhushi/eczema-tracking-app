@@ -7,7 +7,7 @@ import Observation
 @MainActor
 @Observable
 public final class FoodLogModel {
-    public let day: Day
+    public private(set) var day: Day
     public private(set) var draft = ""
     public private(set) var preview: [ParsedItem] = []
     public private(set) var lines: [FoodLine] = []
@@ -64,13 +64,27 @@ public final class FoodLogModel {
         errorMessage = nil
     }
 
+    /// Deleting the line being edited ends the edit, but only once the delete has succeeded.
     public func delete(_ line: FoodLine) {
-        perform("foodLine.deleteFailed") { try store.deleteFoodLine(line.id) }
-        if editing == line.id { cancelEditing() }
+        guard perform("foodLine.deleteFailed", { try store.deleteFoodLine(line.id) }), editing == line.id else { return }
+        cancelEditing()
     }
 
+    /// Deleting an item changes its line's text, so an edit of that line ends once the delete has succeeded.
     public func delete(_ item: StoredFoodItem) {
-        perform("foodItem.deleteFailed") { try store.deleteFoodItem(item.id) }
+        let owner = lines.first { $0.items.contains { $0.id == item.id } }?.id
+        guard perform("foodItem.deleteFailed", { try store.deleteFoodItem(item.id) }), owner != nil, owner == editing else { return }
+        cancelEditing()
+    }
+
+    /// Show another day. The typed draft stays, so text typed across midnight or before stepping to another
+    /// day is saved under the day then showing; an edit of a line on the old day ends.
+    public func show(_ newDay: Day) {
+        let dateChanged = newDay.date != day.date
+        day = newDay
+        guard dateChanged else { return }
+        if editing != nil { cancelEditing() }
+        reload()
     }
 
     public func reload() {
@@ -83,14 +97,19 @@ public final class FoodLogModel {
         }
     }
 
-    private func perform(_ failureEvent: LogEvent, _ action: () throws -> Void) {
+    /// Runs a store change, reloads the lines, and returns whether the change succeeded.
+    @discardableResult
+    private func perform(_ failureEvent: LogEvent, _ action: () throws -> Void) -> Bool {
+        var succeeded = false
         do {
             try action()
             errorMessage = nil
+            succeeded = true
         } catch {
             errorMessage = "The change could not be saved."
             Log.foodLogging.error(failureEvent, private: ["error": String(describing: error)])
         }
         reload()
+        return succeeded
     }
 }

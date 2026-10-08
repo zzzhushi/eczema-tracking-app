@@ -1,16 +1,21 @@
 import ExzemaCore
 import SwiftUI
+import UIKit
 
 /// Opens on today and steps back through earlier days; the food section does all the food work.
+///
+/// The day on screen is refreshed when the calendar day or time zone changes and when the app returns to the
+/// foreground, so a screen left open past midnight moves to the new day.
 struct DayHostView: View {
     let model: AppModel
-    @State private var selection = DaySelection()
+    @State private var host = DayHostModel()
+    @Environment(\.scenePhase) private var scenePhase
     #if DEBUG
     @State private var confirmingClearAll = false
     #endif
 
     var body: some View {
-        let day = selection.day(now: Date(), in: .current)
+        let day = host.day
         NavigationStack {
             List {
                 if let failure = model.failure {
@@ -21,17 +26,17 @@ struct DayHostView: View {
                 }
                 Section {
                     HStack {
-                        Button { selection.goBack() } label: { Image(systemName: "chevron.left") }
+                        Button { host.goBack() } label: { Image(systemName: "chevron.left") }
                             .accessibilityLabel("Previous day")
                         Spacer()
                         VStack {
                             Text(day.date.isoString).font(.headline)
-                            Text(caption(for: selection)).font(.caption).foregroundStyle(.secondary)
+                            Text(caption).font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Button { selection.goForward() } label: { Image(systemName: "chevron.right") }
+                        Button { host.goForward() } label: { Image(systemName: "chevron.right") }
                             .accessibilityLabel("Next day")
-                            .disabled(!selection.canGoForward)
+                            .disabled(!host.canGoForward)
                     }
                     .buttonStyle(.borderless)
                 }
@@ -59,10 +64,16 @@ struct DayHostView: View {
             #endif
         }
         .environment(model.foodServices)
+        .onReceive(NotificationCenter.default.publisher(for: .NSCalendarDayChanged)) { _ in host.refresh() }
+        .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in host.refresh() }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.significantTimeChangeNotification)) { _ in host.refresh() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { host.refresh() }
+        }
     }
 
-    private func caption(for selection: DaySelection) -> String {
-        switch selection.daysBack {
+    private var caption: String {
+        switch host.daysBack {
         case 0: "Today"
         case 1: "Yesterday"
         case let days: "\(days) days ago"

@@ -27,6 +27,7 @@ public struct StoredFoodItem: Equatable, Sendable {
 public struct FoodLine: Equatable, Sendable {
     public let id: FoodLineID
     /// The text as typed, kept so the line can be reopened and so history survives later catalog changes.
+    /// Deleting an item rewrites it from the remaining items, so the text never names a deleted item.
     public let text: String
     public let timeZoneIdentifier: String
     public let items: [StoredFoodItem]
@@ -76,14 +77,26 @@ extension DayStore {
         log.notice("foodLine.deleted")
     }
 
-    /// Delete one item; the line goes with its last item, so no line is ever empty.
+    /// Delete one item and rewrite its line's text from the items that remain, so reopening the line cannot
+    /// bring the item back. The line goes with its last item, so no line is ever empty.
     public func deleteFoodItem(_ id: FoodItemID) throws {
         try database.write { db in
             guard let lineId = try Int64.fetchOne(db, sql: "SELECT lineId FROM food_item WHERE id = ?", arguments: [id.rawValue])
             else { throw DayStoreError.unknownFoodItem }
             try db.execute(sql: "DELETE FROM food_item WHERE id = ?", arguments: [id.rawValue])
-            let remaining = try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM food_item WHERE lineId = ?", arguments: [lineId]) ?? 0
-            if remaining == 0 { try db.execute(sql: "DELETE FROM food_line WHERE id = ?", arguments: [lineId]) }
+            let remaining = try String.fetchAll(
+                db,
+                sql: "SELECT text FROM food_item WHERE lineId = ? ORDER BY position",
+                arguments: [lineId]
+            )
+            if remaining.isEmpty {
+                try db.execute(sql: "DELETE FROM food_line WHERE id = ?", arguments: [lineId])
+            } else {
+                try db.execute(
+                    sql: "UPDATE food_line SET text = ? WHERE id = ?",
+                    arguments: [remaining.joined(separator: ", "), lineId]
+                )
+            }
         }
         log.notice("foodItem.deleted")
     }

@@ -140,6 +140,17 @@ struct FoodLogStoreTests {
         #expect(try store.foodLines(on: day.date).first?.items.map(\.item) == [oatmeal])
     }
 
+    @Test func deletingAnItemRewritesTheLineTextFromTheRemainingItems() throws {
+        let store = try openStore()
+        let items = [oatmeal, dragonfruit, ParsedItem(text: "chicken", resolution: .matched(foodID: "chicken-breast"))]
+        _ = try store.addFoodLine(text: "oatmeal with dragonfruit and chicken", items: items, on: day)
+        let noise = try #require(store.foodLines(on: day.date).first?.items[1])
+
+        try store.deleteFoodItem(noise.id)
+
+        #expect(try store.foodLines(on: day.date).first?.text == "oatmeal, chicken")
+    }
+
     @Test func deletingTheLastItemOfALineRemovesTheLine() throws {
         let store = try openStore()
         _ = try store.addFoodLine(text: "oatmeal", items: [oatmeal], on: day)
