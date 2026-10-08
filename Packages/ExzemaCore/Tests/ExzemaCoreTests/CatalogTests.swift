@@ -26,6 +26,20 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
     }
 }
 
+@Suite struct PlainWordDefaultTests {
+    @Test(arguments: [
+        ("chicken", "chicken-breast"),
+        ("coffee", "coffee-brewed"),
+        ("fish", "white-fish"),
+        ("cabbage", "green-cabbage"),
+    ])
+    func plainWordBelongsToItsDefaultFood(word: String, foodID: String) throws {
+        let catalog = try Catalog.load(dataDirectory: dataDirectory)
+        let owner = catalog.foods.first { $0.aliases.contains(word) }
+        #expect(owner?.id == foodID, "'\(word)' should belong to \(foodID), found \(owner?.id ?? "no food")")
+    }
+}
+
 @Suite struct LevelDerivationTests {
     @Test func levelsOneStepApartTakeTheHigher() {
         #expect(LevelDerivation.result(from: [evidence(.guidance, .low), evidence(.guidance, .moderate)]) == .known(.moderate))

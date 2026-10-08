@@ -16,7 +16,7 @@ The bundled reference data that says what each food is, what it is called, and h
 |---|---|
 | `id` | Stable kebab-case key, never reused. |
 | `name`, `description` | Display name and what the entry covers (form, freshness). |
-| `aliases` | Lowercase words that match the food in typed text, unique across the catalog. An alias names the food alone: a composite or prepared dish that adds other ingredients, such as a matcha latte or scrambled eggs, is not an alias. |
+| `aliases` | Lowercase words that match the food in typed text, unique across the catalog. An alias names the food alone: a composite or prepared dish that adds other ingredients, such as a matcha latte or scrambled eggs, is not an alias. A plain word that several foods share, such as "chicken" or "coffee", is an alias of the one default food. |
 | `varieties` | Kinds researched under this food, at most one `default`. A variety is never chosen when logging. |
 | `allergens` | From a fixed list: milk, egg, fish, crustacean-shellfish, tree-nuts, peanuts, wheat, soy, sesame. |
 | `serving` | The typical serving the levels describe. |
