@@ -114,6 +114,19 @@ struct LogFilesTests {
         #expect(!FileManager.default.fileExists(atPath: directory.path))
     }
 
+    @Test func aFolderThatCannotBeCreatedFailsLoudlyAndEnablesNothing() throws {
+        LogFiles.disable()
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        let blocker = directory.appendingPathComponent("blocker")
+        try Data().write(to: blocker)
+        defer { try? FileManager.default.removeItem(at: directory) }
+
+        #expect(throws: (any Error).self) { try LogFiles.enable(directory: blocker.appendingPathComponent("Logs")) }
+        CategoryLogger(.app).notice("files.test.after.failure")
+
+        #expect(LogFiles.sink == nil, "a failed enable must leave file logging off")
+    }
+
     @Test func theStandardLoggerWritesToTheFileOnceEnabledAndStopsWhenDisabled() throws {
         try LogFiles.enable(directory: directory)
         defer { LogFiles.disable() }
