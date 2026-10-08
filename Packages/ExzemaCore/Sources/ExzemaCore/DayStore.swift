@@ -42,12 +42,14 @@ public final class DayStore: Sendable {
 
     /// Record `day`; a date already stored keeps the time zone it was first logged in.
     public func save(_ day: Day) throws {
-        try database.write {
-            try $0.execute(
+        let inserted = try database.write { db -> Bool in
+            try db.execute(
                 sql: "INSERT OR IGNORE INTO day (date, timeZoneIdentifier) VALUES (?, ?)",
                 arguments: [day.date.isoString, day.timeZoneIdentifier]
             )
+            return db.changesCount > 0
         }
+        log.notice("day.saved", public: ["inserted": .bool(inserted)], private: ["date": day.date.isoString])
     }
 
     /// Remove the day with `date`; a date that was never saved is left alone.

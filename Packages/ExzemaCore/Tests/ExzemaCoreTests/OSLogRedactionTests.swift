@@ -8,17 +8,34 @@ import ExzemaCore
 /// Redaction is lifted while a debugger is attached, so these checks run only without one.
 @Suite("Unified log redaction", .enabled(if: !isDebuggerAttached()))
 struct OSLogRedactionTests {
-    @Test func privateFieldsAreRedactedAndPublicFieldsAreNot() async throws {
-        let marker = "marker-\(UUID().uuidString.prefix(8))"
+    @Test func privateFieldValuesAreRedactedWhileTheirNamesStayVisible() async throws {
+        let event = "rating.saved.\(UUID().uuidString.prefix(8))"
+        let secret = "secret-\(UUID().uuidString.prefix(8))"
         let log = CategoryLogger(.checkIn, sink: OSLogSink())
 
-        log.notice("rating.saved", public: ["schemaVersion": 1], private: ["feel": "7", "note": marker])
+        log.notice(event, public: ["schemaVersion": 1], private: ["feel": "7", "note": secret])
 
-        let message = try await composedMessage(containing: "rating.saved")
-        #expect(message.contains("schemaVersion=1"))
-        #expect(message.contains("<private>"))
-        #expect(!message.contains(marker), "a private field leaked into the unified log")
-        #expect(!message.contains("feel=7"), "a numeric private field leaked into the unified log")
+        let message = try await composedMessage(containing: event)
+        #expect(message == "\(event) schemaVersion=1 private=[feel,note] <private>")
+        #expect(!message.contains(secret), "a private value leaked into the unified log")
+        #expect(!message.contains("feel=7"), "a numeric private value leaked into the unified log")
+    }
+
+    @Test func eventWithoutPrivateFieldsShowsNoPrivatePlaceholder() async throws {
+        let event = "store.probe.\(UUID().uuidString.prefix(8))"
+        let log = CategoryLogger(.storage, sink: OSLogSink())
+
+        log.notice(event, public: ["schemaVersion": 1, "count": 3])
+
+        #expect(try await composedMessage(containing: event) == "\(event) count=3 schemaVersion=1")
+    }
+
+    @Test func eventWithNoFieldsIsJustItsName() async throws {
+        let event = "app.probe.\(UUID().uuidString.prefix(8))"
+
+        CategoryLogger(.app, sink: OSLogSink()).notice(event)
+
+        #expect(try await composedMessage(containing: event) == event)
     }
 
     private func composedMessage(containing text: String) async throws -> String {

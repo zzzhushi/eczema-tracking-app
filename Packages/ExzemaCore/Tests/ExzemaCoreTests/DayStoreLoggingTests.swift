@@ -40,6 +40,19 @@ struct DayStoreLoggingTests {
         ])
     }
 
+    @Test func savingADayLogsItsDateAsPrivateAndWhetherItWasNew() throws {
+        let store = try DayStore(at: storeURL, log: CategoryLogger(.storage, sink: sink))
+        let day = Day(date: LocalDate(year: 2026, month: 10, day: 7), timeZoneIdentifier: "America/Los_Angeles")
+
+        try store.save(day)
+        try store.save(day)
+
+        let saves = sink.records.filter { $0.event == "day.saved" }
+        #expect(saves.map(\.publicFields) == [["inserted": .bool(true)], ["inserted": .bool(false)]])
+        #expect(saves.map(\.privateFields) == [["date": "2026-10-07"], ["date": "2026-10-07"]], "the date is health-adjacent and must stay private")
+        #expect(saves.allSatisfy { $0.level == .notice })
+    }
+
     @Test func storeDirectoryIsExcludedSoSidecarFilesAreNeverBackedUp() throws {
         _ = try DayStore(at: storeURL)
 
