@@ -39,6 +39,7 @@ KIND_ORDER = ["measurement", "review", "guidance", "list"]
 KIND_CODE = {"measurement": "M", "review": "R", "guidance": "G", "list": "L"}
 LEVEL_SHORT = {"negligible": "negl", "low": "low", "moderate": "mod", "high": "high", "very high": "v.high"}
 CHEMICALS = ["salicylates", "oxalates", "amines", "histamine", "glutamates", "nickel"]
+HEADINGS = {"histamine": "Histamine load (SIGHI)"}
 STATUS_SHORT = {"sources-conflict": "conflict", "researched-no-data": "no data", "not-yet-researched": "not yet"}
 
 
@@ -63,7 +64,8 @@ def catalog_cell(assessment):
 
 def catalog_table(directory):
     foods = [json.load(open(path)) for path in sorted(glob.glob(os.path.join(directory, "foods", "*.json")))]
-    lines = ["| Food | Serving | " + " | ".join(c.capitalize() for c in CHEMICALS) + " |", "|---|---|" + "---|" * len(CHEMICALS)]
+    heads = [HEADINGS.get(c, c.capitalize()) for c in CHEMICALS]
+    lines = ["| Food | Serving | " + " | ".join(heads) + " |", "|---|---|" + "---|" * len(CHEMICALS)]
     for food in foods:
         serving = food["serving"]["description"] if food.get("serving") else "none"
         cells = " | ".join(catalog_cell(food["chemicals"][c]) for c in CHEMICALS)

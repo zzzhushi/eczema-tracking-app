@@ -75,6 +75,16 @@ public enum FormMatch: String, Codable, Sendable {
     case exact, converted
 }
 
+/// SIGHI's flags on a food; raw values are the codes the source prints.
+public enum EvidenceMarker: String, Codable, CaseIterable, Sendable {
+    case histamineContent = "H"
+    case perishableHistamine = "H!"
+    case otherAmines = "A"
+    case liberator = "L"
+    case enzymeBlocker = "B"
+    case ownAssessment = "?"
+}
+
 public struct Evidence: Codable, Equatable, Sendable {
     public var sourceId: String
     public var locator: String
@@ -83,7 +93,7 @@ public struct Evidence: Codable, Equatable, Sendable {
     public var level: ChemicalLevel
     public var foodMatch: FoodMatch?
     public var formMatch: FormMatch?
-    public var markers: [String]?
+    public var markers: [EvidenceMarker]?
     public var note: String?
 
     /// 0 for the exact food in the exact form, 1 for a converted form, 2 for a related food.

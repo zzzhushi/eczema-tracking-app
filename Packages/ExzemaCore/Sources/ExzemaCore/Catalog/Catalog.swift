@@ -16,22 +16,60 @@ public struct Catalog: Sendable {
         Dictionary(sourceList.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
     }
 
+    /// The catalog file format this code reads; a manifest with another `schemaVersion` is refused.
+    public static let supportedSchemaVersion = 2
+
     /// Reads the shared `sources.json` from `dataDirectory`, and `catalog/manifest.json` and every
-    /// file in `catalog/foods/` beneath it.
+    /// file in `catalog/foods/` beneath it. Refuses an unsupported schema version, and throws
+    /// `CatalogError.invalid` unless every check in `validate()` passes.
     public static func load(dataDirectory: URL) throws -> Catalog {
-        let decoder = JSONDecoder()
-        func read<T: Decodable>(_ type: T.Type, _ url: URL) throws -> T {
-            try decoder.decode(type, from: Data(contentsOf: url))
+        let manifest = try readManifest(dataDirectory: dataDirectory)
+        guard manifest.schemaVersion == supportedSchemaVersion else {
+            throw CatalogError.unsupportedSchema(found: manifest.schemaVersion, supported: supportedSchemaVersion)
         }
-        let directory = dataDirectory.appending(path: "catalog", directoryHint: .isDirectory)
-        let manifest = try read(CatalogManifest.self, directory.appending(path: "manifest.json"))
-        let sources = try read([Source].self, dataDirectory.appending(path: "sources.json"))
+        let catalog = try loadUnvalidated(dataDirectory: dataDirectory)
+        let issues = catalog.validate()
+        guard issues.isEmpty else { throw CatalogError.invalid(issues) }
+        return catalog
+    }
+
+    /// Decodes the catalog without running any check. Meant for tests of the checks themselves.
+    public static func loadUnvalidated(dataDirectory: URL) throws -> Catalog {
+        let directory = catalogDirectory(dataDirectory)
+        let manifest = try readManifest(dataDirectory: dataDirectory)
+        let sources = try decode([Source].self, dataDirectory.appending(path: "sources.json"))
         let foodsDirectory = directory.appending(path: "foods", directoryHint: .isDirectory)
         let foodFiles = try FileManager.default.contentsOfDirectory(at: foodsDirectory, includingPropertiesForKeys: nil)
             .filter { $0.pathExtension == "json" }
             .sorted { $0.lastPathComponent < $1.lastPathComponent }
-        let foods = try foodFiles.map { try read(Food.self, $0) }
+        let foods = try foodFiles.map { try decode(Food.self, $0) }
         return Catalog(manifest: manifest, sources: sources, foods: foods)
+    }
+
+    private static func catalogDirectory(_ dataDirectory: URL) -> URL {
+        dataDirectory.appending(path: "catalog", directoryHint: .isDirectory)
+    }
+
+    private static func readManifest(dataDirectory: URL) throws -> CatalogManifest {
+        try decode(CatalogManifest.self, catalogDirectory(dataDirectory).appending(path: "manifest.json"))
+    }
+
+    private static func decode<T: Decodable>(_ type: T.Type, _ url: URL) throws -> T {
+        try JSONDecoder().decode(type, from: Data(contentsOf: url))
+    }
+}
+
+public enum CatalogError: Error, Equatable, Sendable, CustomStringConvertible {
+    case unsupportedSchema(found: Int, supported: Int)
+    case invalid([CatalogIssue])
+
+    public var description: String {
+        switch self {
+        case .unsupportedSchema(let found, let supported):
+            "catalog schema version \(found) is not supported; this code reads version \(supported)"
+        case .invalid(let issues):
+            "catalog failed validation:\n" + issues.map(\.description).joined(separator: "\n")
+        }
     }
 }
 
@@ -82,8 +120,13 @@ extension Catalog {
             if food.varieties.filter(\.isDefault).count > 1 { issue(food.id, "more than one default variety") }
 
             if let serving = food.serving {
-                if serving.origin != .estimate {
-                    if serving.sourceId == nil || serving.locator == nil { issue(food.id, "serving needs a source and locator") }
+                if serving.origin == .estimate {
+                    if (serving.note ?? "").isEmpty { issue(food.id, "estimated serving needs a note") }
+                } else if serving.sourceId == nil || serving.locator == nil {
+                    issue(food.id, "serving needs a source and locator")
+                }
+                if (serving.weightSourceId == nil) != (serving.weightLocator == nil) {
+                    issue(food.id, "serving weight needs both a source and a locator")
                 }
                 for id in [serving.sourceId, serving.weightSourceId].compactMap({ $0 }) where index[id] == nil {
                     issue(food.id, "serving cites unknown source \(id)")
