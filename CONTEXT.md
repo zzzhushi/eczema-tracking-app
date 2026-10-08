@@ -78,6 +78,18 @@ _Avoid_: Missing, blank
 A lowercase word that matches a food in typed text.
 _Avoid_: Synonym, keyword
 
+**Food line**:
+One saved piece of typed food text for a day, with the items it was parsed into.
+_Avoid_: Entry, meal
+
+**Unrecognized item**:
+A piece of a food line that matched no catalog food, kept as typed.
+_Avoid_: Unknown food, error
+
+**Filler word**:
+A word typed between foods, such as "and", that matching drops instead of keeping.
+_Avoid_: Stop word
+
 **Variety**:
 A specific kind of a food, such as rolled or steel-cut oats, researched under the food and never chosen when logging.
 _Avoid_: Type, subtype
