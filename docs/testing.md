@@ -12,7 +12,7 @@ How the app is tested. Current behavior lives in `docs/behavior`, proposed behav
 
 | Layer | Checks | Data | Runs |
 |---|---|---|---|
-| Logic tests | Analysis rules, food matching, unknown handling, the day boundary | Hand-built day histories, including the worked examples in the analysis rules | Mac and CI, every build |
+| Logic tests | Analysis rules, food matching, unknown handling, the day boundary, catalog data validation | Hand-built day histories, including the worked examples in the analysis rules | Mac and CI, every build |
 | Storage tests | Save and reload, export format, migrations | Fixture stores, one per schema version | Mac and CI, every build |
 | AI evaluations | Photo-rating consistency and validity, refusals, meal-parsing accuracy | Local real photos; synthetic meal texts | Mac or iPhone, when the rubric, prompt, or model changes |
 | Manual checks | Camera, permissions, timing, look and feel | Real use | iPhone, per slice |

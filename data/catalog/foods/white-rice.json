@@ -1,0 +1,151 @@
+{
+  "id": "white-rice",
+  "name": "White rice",
+  "description": "Cooked.",
+  "aliases": [
+    "white rice",
+    "rice",
+    "jasmine rice",
+    "short grain rice"
+  ],
+  "varieties": [
+    {
+      "name": "jasmine rice"
+    },
+    {
+      "name": "short-grain rice"
+    }
+  ],
+  "allergens": [],
+  "serving": {
+    "description": "140 g prepared",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Grains, e.g., rice, barley, plain: 140 g prepared; 45 g dry"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Cereals: rice",
+          "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Grains: Rice",
+          "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Grains, rice (brown and white)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ],
+      "note": "One list rates jasmine, basmati, wild, and black rice moderate for salicylates and white, brown, short, medium, and long-grain rice low."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Pastas, Rice & Grains: White Rice, cooked",
+          "basis": "1 cup cooked, 4 mg (sheet serving); about 3.5 mg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "note": "Jasmine and short-grain not listed separately."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Grains: Rice, white, cooked, long grain",
+          "basis": "1 cup cooked, 3.8 mg, directly measured; about 3.4 mg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "note": "Jasmine and short-grain not listed separately."
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Grains, rice (brown or white)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Grains: White Rice",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Cereals: rice",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals: Rice white, brown, short, medium, long grain",
+          "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Grains: Rice, white, cooked",
+          "basis": "7.04 µg per 140 g, 101 samples; about 7 µg at 140 g",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    }
+  }
+}

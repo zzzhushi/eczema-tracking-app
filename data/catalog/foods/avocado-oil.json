@@ -1,0 +1,99 @@
+{
+  "id": "avocado-oil",
+  "name": "Avocado oil",
+  "description": "Refined or unrefined, as sold for cooking.",
+  "aliases": [
+    "avocado oil"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "1 tbsp",
+    "grams": 14,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Butter, margarine, oil, shortening: 1 tbsp (15 mL)",
+    "weightSourceId": "usda-fdc",
+    "weightLocator": "Oil, avocado (fdcId 173573): 1 tbsp = 14.0 g",
+    "note": "The FDA row gives no weight for oil."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "overall Very High column, S and A symbols",
+          "kind": "list",
+          "level": "very high"
+        }
+      ],
+      "note": "Avocado fruit is rated high or very high by every list; one list rates the oil very high as well, with no measured value."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "researched-no-data"
+      },
+      "evidence": [],
+      "note": "No measurement found; refined oils are not listed in the sources used."
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "overall Very High column, S and A symbols",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "very high"
+        }
+      ],
+      "note": "Two lists rate avocado oil very high; neither gives a measured value."
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "researched-no-data"
+      },
+      "evidence": [],
+      "note": "Avocado fruit is scored 2 (H L); the oil is not listed."
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fats and oils: Avocado oil",
+          "basis": "0.64 µg per 10 g, 11 samples; about 0.9 µg at 14 g",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": "eggs",
+  "name": "Eggs",
+  "description": "Chicken eggs.",
+  "aliases": [
+    "egg",
+    "eggs",
+    "boiled egg",
+    "poached egg"
+  ],
+  "varieties": [],
+  "allergens": [
+    "egg"
+  ],
+  "serving": {
+    "description": "50 g",
+    "grams": 50,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Egg and egg substitutes: eggs (all sizes): 50 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "keszycka-2021",
+          "locator": "2.3. Dietary Intervention: salicylate-free products",
+          "basis": "diet instruction, no measured value",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: eggs",
+          "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Eggs and shellfish: Eggs",
+          "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Dairy, soy and eggs, eggs",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Eggs: Eggs",
+          "basis": "1 medium, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Eggs: Egg, raw whole",
+          "basis": "one egg, 0.0 mg",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Eggs",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Meat, Chicken, Fish and Eggs: Eggs",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Dairy and Soy Products: Eggs",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Eggs: eggs, chicken egg, whole egg",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "L"
+          ],
+          "note": "Yolk is compatible; egg white is mast cell activating, raw or cooked."
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Eggs",
+          "basis": "23 mg free glutamate per 100 g; about 12 mg at 50 g",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Whole chicken egg",
+          "basis": "15 mg free glutamate per 100 g; about 7.5 mg at 50 g",
+          "kind": "guidance",
+          "level": "negligible"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat and eggs: Egg",
+          "basis": "2.09 µg per 100 g, 41 samples; about 1 µg at 50 g",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    }
+  }
+}

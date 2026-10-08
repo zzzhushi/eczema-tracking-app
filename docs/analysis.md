@@ -2,6 +2,55 @@
 
 The single home for every formula, threshold, and missing-data rule. Other docs link here instead of restating. Numbers marked provisional are recalibrated once real data exists; the worked examples are test oracles.
 
+## Catalog levels (Release 1)
+
+How a food's level for one food chemical is derived from its evidence. The catalog stores the level; the evidence says where it came from.
+
+- **Scale**: negligible, low, moderate, high, very high.
+- **Amines**: the sum of tyramine, putrescine, cadaverine, tryptamine, and β-phenylethylamine. Histamine is its own food chemical, and spermidine and spermine, which occur in all foods, are excluded.
+- **Histamine**: histamine load as the Swiss Interest Group Histamine Intolerance compatibility score gives it. The score combines histamine content, other amines, mast cell liberators, and enzyme blockers, which is why it is used: skin reacts to the total load, not to histamine content alone. It is a tolerance rating, not a measurement of histamine content. Score 0 is negligible, 1 moderate, 2 high, and 3 very high; low is unused. A score of "no general statement possible" or "insufficient information" gives the research status "researched with no data". The score's markers (H, H!, A, L, B) are kept on each evidence entry so a level shows what drives it, and measured histamine content goes in the note.
+- **Normalization**: a source that rates on the same five levels is used as is. A coarser source maps through its chemical's table below and can yield only the levels its bands allow. Negligible requires a source that says so or a measured value near zero. A level is never inferred from a similar food, except that a closely related plant of the same genus may stand in for a food that sources group with it (common chives for garlic chives); that evidence is recorded as a related food.
+- **Basis**: a level describes the food as usually eaten, per typical serving: the FDA reference amount customarily consumed where one exists, otherwise a USDA household measure. A value measured dry, raw, or per 100 g is converted to that serving. Cooking loss that sources don't measure is not subtracted, so a level taken from a different form can be too high and never too low. Arithmetic to the serving, such as per 100 g to the serving, does not weaken evidence.
+- **Match and strength**: evidence ranks first by how closely it matches the entry: the exact food in the exact form, then the exact food in a converted form (dry, canned, aged, leaf for powder), then a related food. Within the closest match present, measurement outranks review, then guidance, then list. Only that evidence decides the level; weaker evidence that disagrees goes in the note.
+- **Agreement**: entries of the deciding match and kind within one level of each other give the highest of them. Entries further apart give the research status "sources conflict".
+- **Varieties**: varieties within one level of each other share one food at the highest level. Varieties more than one level apart become separate foods, and the plain word matches the default variety. Provisional until several foods have been researched.
+
+### Oxalate cutoffs (mg per serving, provisional)
+
+| Level | mg |
+|---|---|
+| negligible | under 2 |
+| low | 2–4 |
+| moderate | 5–9 |
+| high | 10–12 |
+| very high | 13 or more |
+
+### Nickel cutoffs (µg per serving, provisional)
+
+| Level | µg |
+|---|---|
+| negligible | under 1 |
+| low | 1–9.9 |
+| moderate | 10–19.9 |
+| high | 20–49.9 |
+| very high | 50 or more |
+
+Low, moderate, and high follow a published low-nickel scoring, which spreads a 150 µg daily limit over about 15 servings. The negligible and very high bands extend it.
+
+### Glutamate cutoffs (mg of free glutamate per serving, provisional)
+
+| Level | mg |
+|---|---|
+| negligible | under 14 |
+| low | 14–139 |
+| moderate | 140–279 |
+| high | 280–699 |
+| very high | 700 or more |
+
+These bands are a project index for ranking foods against each other, not a safety threshold. They use the nickel table's shares of a daily amount, applied to 30 mg per kg body weight a day, about 2.1 g for a 70 kg adult. That figure is the [European Food Safety Authority's 2017 limit](https://www.efsa.europa.eu/en/press/news/170712) for glutamic acid and glutamates used as food additives; no limit exists for naturally occurring glutamate in food, so using it here is a judgment. A numeric field per serving, without bands, could replace the index if a defensible natural-glutamate basis turns up.
+
+The other chemicals' tables are added with their first coarse source.
+
 ## Day-level chemical exposure (Release 1, S5)
 
 For each day and food chemical:

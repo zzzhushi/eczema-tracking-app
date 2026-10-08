@@ -1,0 +1,167 @@
+{
+  "id": "oatmeal",
+  "name": "Oatmeal",
+  "description": "Oats cooked as porridge.",
+  "aliases": [
+    "oatmeal",
+    "oats",
+    "porridge",
+    "rolled oats",
+    "steel-cut oats",
+    "instant oats",
+    "instant oatmeal"
+  ],
+  "varieties": [
+    {
+      "name": "rolled oats",
+      "default": true
+    },
+    {
+      "name": "steel-cut oats"
+    },
+    {
+      "name": "instant oats"
+    }
+  ],
+  "allergens": [],
+  "serving": {
+    "description": "1 cup prepared (40 g dry)",
+    "grams": 40,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Breakfast cereals (hot cereal type): 1 cup prepared; 40 g plain dry cereal",
+    "note": "Grams are the dry weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Cereals: oats",
+          "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Grains: Oats (plain)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Grains, oats",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Grains, oats, rolled",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        }
+      ],
+      "note": "Rolled oats are rated low by one list and negligible by the hospital guides."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Cereals: Oatmeal Cereal",
+          "basis": "1 cup, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Oat variety not specified."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Hot cereal: Oats, regular quick instant, cooked with water, no salt",
+          "basis": "1 cup cooked, 0.0 mg",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Rolled and instant; steel-cut not listed."
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Grains, rolled oats",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Grains: Oats",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Cereals: oats, oat flakes, oatmeal",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Cereals: Oats, Oat Milk",
+          "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Grains: Oats, raw",
+          "basis": "53.62 µg per 40 g, 13 samples; about 54 µg at 40 g",
+          "kind": "list",
+          "level": "very high",
+          "note": "Serving is one cup prepared, about 40 g dry."
+        }
+      ]
+    }
+  }
+}

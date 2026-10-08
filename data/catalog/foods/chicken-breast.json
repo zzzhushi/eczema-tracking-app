@@ -1,0 +1,178 @@
+{
+  "id": "chicken-breast",
+  "name": "Chicken breast",
+  "description": "Boneless, skinless, fresh.",
+  "aliases": [
+    "chicken breast",
+    "chicken breasts"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "keszycka-2021",
+          "locator": "2.3. Dietary Intervention: salicylate-free products",
+          "basis": "diet instruction, no measured value",
+          "kind": "guidance",
+          "level": "negligible",
+          "note": "Lists poultry generically."
+        },
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: poultry",
+          "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Meat, fish, poultry: Chicken",
+          "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Meat, Fish, Poultry, chicken",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Meats: Chicken",
+          "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Cut, skin, and cooking not specified."
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Poultry: Chicken, roasted meat",
+          "basis": "3 oz, 0.0 mg, directly measured",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Chicken (no skin)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Meat, Chicken, Fish and Eggs: Chicken (No Skin)",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
+          "level": "low",
+          "note": "Buy fresh and eat within two days."
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Meat: Chicken (skinless)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ],
+      "note": "Measured in chilled chicken breast: tyramine not detected on day 0 and about 35 mg/kg by day 10; histamine 0.5 mg/kg on day 0, rising to 2.1."
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Meat: chicken",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "H!"
+          ],
+          "note": "H! marks highly perishable food with rapid histamine formation."
+        }
+      ],
+      "note": "Measured histamine in chilled chicken breast is 0.5 mg/kg on day 0 and 2.1 mg/kg on day 10."
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "meat-chilled-2018",
+          "locator": "Table 3: Chicken breast, glutamic acid, day 0",
+          "basis": "21 mg free glutamate per 100 g; about 18 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "note": "Free glutamate in chilled chicken breast rises from 21 mg per 100 g on day 0 to about 52 on day 6, so not-fresh chicken is higher."
+        },
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Chicken",
+          "basis": "44 mg free glutamate per 100 g; about 37 mg at 85 g",
+          "kind": "guidance",
+          "level": "low"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Chicken",
+          "basis": "1.5–22 (upper end) mg free glutamate per 100 g; about 19 mg at 85 g",
+          "kind": "guidance",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat: Chicken, turkey and other poultry, cooked",
+          "basis": "4.66 µg per 100 g, 486 samples; about 4 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "note": "Poultry in general."
+        }
+      ]
+    }
+  }
+}

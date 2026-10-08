@@ -1,0 +1,121 @@
+{
+  "id": "salt",
+  "name": "Salt",
+  "description": "Table salt.",
+  "aliases": [
+    "salt",
+    "table salt"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "1/4 tsp",
+    "grams": 1.5,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Salt, salt substitutes, seasoning salts: 1/4 tsp",
+    "weightSourceId": "usda-fdc",
+    "weightLocator": "Salt, table (fdcId 173468): 1 tsp = 6.0 g",
+    "note": "The FDA row gives no weight; 1/4 tsp is converted at 6.0 g per teaspoon."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Condiments: Salt",
+          "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-mfm",
+          "locator": "Herbs, spices and condiments: Salt (sea)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Condiments, salt",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Salt",
+          "basis": "1 tsp, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Condiments: Salt iodised, rock, sea, table",
+          "basis": "overall Low column, no amine symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "researched-no-data"
+      },
+      "evidence": [],
+      "note": "Plain salt is not listed; iodized table salt is scored 2 (liberator) because of its iodine additive."
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Condiments: Salt iodised, rock, sea, table",
+          "basis": "overall Low column, no glutamate symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ],
+      "note": "Rated only by the overall Low column of a food chemical list; no measured value."
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Condiments: Salt",
+          "basis": "0.05 µg per 1 g, 28 samples; about 0.075 µg at 1.5 g",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    }
+  }
+}

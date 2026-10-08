@@ -63,7 +63,7 @@ Something eaten, as identified in the food catalog.
 _Avoid_: Ingredient (reserved for products)
 
 **Food chemical**:
-One of the naturally occurring substances rated per food: salicylates, oxalates, amines, histamine, glutamates, nickel.
+One of the naturally occurring substances rated per food: salicylates, oxalates, amines, histamine, glutamates, nickel. Histamine is rated as histamine load, the tolerance score that also reflects liberators and enzyme blockers.
 _Avoid_: Compound, nutrient
 
 **Chemical level**:
@@ -73,6 +73,30 @@ _Avoid_: Amount, mg value
 **Research status**:
 Why a chemical level is unknown: not yet researched, researched with no data, or sources conflict.
 _Avoid_: Missing, blank
+
+**Alias**:
+A lowercase word that matches a food in typed text.
+_Avoid_: Synonym, keyword
+
+**Variety**:
+A specific kind of a food, such as rolled or steel-cut oats, researched under the food and never chosen when logging.
+_Avoid_: Type, subtype
+
+**Evidence**:
+A cited source and the place in it that supports a chemical level.
+_Avoid_: Reference, proof
+
+**Source kind**:
+How strongly one piece of evidence supports a level, from measurement through review and guidance to list; set on the evidence, not on the source.
+_Avoid_: Quality, grade
+
+**Allergen tag**:
+One of nine fixed labels marking that a food is or contains an allergen.
+_Avoid_: Allergy
+
+**Serving basis**:
+The typical serving, in grams, that a food's chemical levels describe.
+_Avoid_: Portion
 
 **Peak**:
 The highest chemical level among a day's foods for one food chemical, or unknown.

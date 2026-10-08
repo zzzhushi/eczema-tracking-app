@@ -1,0 +1,179 @@
+{
+  "id": "beef",
+  "name": "Beef",
+  "description": "Fresh cuts.",
+  "aliases": [
+    "beef",
+    "ground beef",
+    "steak",
+    "beef roast",
+    "stew beef"
+  ],
+  "varieties": [
+    {
+      "name": "ground beef"
+    },
+    {
+      "name": "steak"
+    },
+    {
+      "name": "roast"
+    },
+    {
+      "name": "stew meat"
+    }
+  ],
+  "allergens": [],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "salicylates-rbh",
+          "locator": "Meat, seafood, milk and eggs: fresh meat",
+          "basis": "no salicylates, can be eaten freely",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "salicylates-sjhc",
+          "locator": "Meat, fish, poultry: Beef",
+          "basis": "five-level rating, serving not stated",
+          "kind": "guidance",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Salicylates: Meat, Fish, Poultry, beef / veal",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Meats: Ground Beef",
+          "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Only ground beef is listed."
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "nat-food-lists",
+          "locator": "Amines in food: Beef",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "amines-coleman",
+          "locator": "Meat, Chicken, Fish and Eggs: Beef",
+          "basis": "five-level rating, 1 serve = 1 cup (250 ml)",
+          "kind": "list",
+          "level": "low",
+          "note": "Buy fresh and eat within two days."
+        },
+        {
+          "sourceId": "amines-wellington",
+          "locator": "Meat: Beef (fresh)",
+          "basis": "five-level rating, serving not stated",
+          "kind": "list",
+          "level": "low"
+        }
+      ],
+      "note": "Measured in chilled beef leg: tyramine 0.3 mg/kg on day 0 and 1.6 mg/kg by day 10."
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Meat: beef (fresh)",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "H!"
+          ],
+          "note": "H! marks highly perishable food with rapid histamine formation."
+        }
+      ],
+      "note": "Measured histamine in chilled beef leg is not detected on day 0 and 0.5 mg/kg by day 10."
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "meat-chilled-2018",
+          "locator": "Table 3: Beef leg, glutamic acid, day 0",
+          "basis": "4.4 mg free glutamate per 100 g; about 3.8 mg at 85 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "note": "Free glutamate in chilled beef leg rises to 65 mg per 100 g by day 10."
+        },
+        {
+          "sourceId": "fsanz-msg-2003",
+          "locator": "Table 1: Beef",
+          "basis": "33 mg free glutamate per 100 g; about 28 mg at 85 g",
+          "kind": "guidance",
+          "level": "low"
+        },
+        {
+          "sourceId": "andeal-umami",
+          "locator": "Table 1: Beef",
+          "basis": "10 mg free glutamate per 100 g; about 8.5 mg at 85 g",
+          "kind": "guidance",
+          "level": "negligible"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat: Beef, cooked",
+          "basis": "6.92 µg per 100 g, 192 samples; about 5.9 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "note": "Cooked ground beef and pork averages about 18 µg per 100 g and is not used."
+        }
+      ]
+    }
+  }
+}
