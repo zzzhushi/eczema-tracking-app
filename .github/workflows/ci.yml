@@ -22,13 +22,22 @@ jobs:
       - name: Test the pre-commit hook
         run: .githooks/test-pre-commit.sh
 
+      - name: Test the bundled-data check
+        run: scripts/test-check-bundled-data.sh
+
       - name: Generate the Xcode project
         run: |
           command -v xcodegen >/dev/null || brew install xcodegen
           xcodegen generate
 
       - name: Build the app for the iOS simulator
-        run: xcodebuild build -scheme eXzema -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+        run: xcodebuild build -scheme eXzema -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData/Debug
+
+      - name: Check the Debug app bundles the catalog
+        run: scripts/check_bundled_data.sh DerivedData/Debug/Build/Products/Debug-iphonesimulator/eXzema.app
 
       - name: Build the Release configuration, which excludes the debug tools
-        run: xcodebuild build -scheme eXzema -configuration Release -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO
+        run: xcodebuild build -scheme eXzema -configuration Release -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO -derivedDataPath DerivedData/Release
+
+      - name: Check the Release app bundles the catalog
+        run: scripts/check_bundled_data.sh DerivedData/Release/Build/Products/Release-iphonesimulator/eXzema.app

@@ -8,6 +8,9 @@ import Observation
 final class AppModel {
     private(set) var days: [Day] = []
     private(set) var failure: String?
+    private(set) var catalogFailure: String?
+    /// Nil when the bundled catalog failed to load; nothing parses food without it.
+    private(set) var foodMatching: FoodMatching?
 
     private let store: DayStore?
     private let diagnostics = DiagnosticsListener()
@@ -23,7 +26,23 @@ final class AppModel {
             failure = "The store could not be opened."
             Log.storage.fault("store.unavailable", private: ["error": String(describing: error)])
         }
+        loadCatalog()
         reload()
+    }
+
+    private func loadCatalog() {
+        do {
+            guard let directory = Bundle.main.resourceURL else { throw CocoaError(.fileNoSuchFile) }
+            let matching = try FoodMatching.load(dataDirectory: directory)
+            foodMatching = matching
+            Log.foodLogging.notice("catalog.loaded", public: [
+                "catalogVersion": .int(matching.catalog.manifest.catalogVersion),
+                "foods": .int(matching.catalog.foods.count),
+            ])
+        } catch {
+            catalogFailure = "The food catalog could not be loaded."
+            Log.foodLogging.fault("catalog.unavailable", private: ["error": String(describing: error)])
+        }
     }
 
     func saveToday() {

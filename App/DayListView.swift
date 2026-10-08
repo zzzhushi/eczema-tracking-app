@@ -13,6 +13,9 @@ struct DayListView: View {
                 if let failure = model.failure {
                     Text(failure).foregroundStyle(.red)
                 }
+                if let catalogFailure = model.catalogFailure {
+                    Text(catalogFailure).foregroundStyle(.red)
+                }
                 Section("Saved days") {
                     if model.days.isEmpty {
                         Text("No days saved yet").foregroundStyle(.secondary)

@@ -11,6 +11,10 @@ The bundled reference data that says what each food is, what it is called, and h
 - `catalog/filler-words.json`: words typed between foods, such as "and" and "with", that matching drops instead of keeping as unrecognized entries. One lowercase word each, never an alias.
 - `catalog/manifest.json`: `schemaVersion` changes with the file format; `catalogVersion` increases in any change to foods, aliases, or levels.
 
+## In the app
+
+The app bundles `data/catalog/` and `data/sources.json` from the repository, never a copy kept elsewhere, and loads them at launch through the loader, whose checks must pass. If the catalog cannot be loaded, the app says so on screen and logs a fault; it never continues with an empty catalog. CI compares the built app's bundled data with the repository's.
+
 ## Food file
 
 | Field | Meaning |

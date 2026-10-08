@@ -142,3 +142,18 @@ private func unrecognized(_ text: String) -> ParsedItem { ParsedItem(text: text,
         }
     }
 }
+
+@Suite struct FoodMatchingLoadTests {
+    @Test func loadsTheCatalogAndABuiltMatcherFromOneDirectory() throws {
+        let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
+
+        #expect(matching.catalog.foods.count == 18)
+        #expect(matching.matcher.parse("coffee").map(\.resolution) == [.matched(foodID: "coffee-brewed")])
+    }
+
+    @Test func aDirectoryWithoutTheCatalogThrowsInsteadOfGivingAnEmptyMatcher() {
+        let empty = FileManager.default.temporaryDirectory.appendingPathComponent("no-catalog-\(UUID().uuidString)")
+
+        #expect(throws: (any Error).self) { _ = try FoodMatching.load(dataDirectory: empty) }
+    }
+}
