@@ -2,10 +2,6 @@ import Foundation
 import Testing
 @testable import ExzemaCore
 
-private let dataDirectory = URL(fileURLWithPath: #filePath)
-    .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-    .appending(path: "data", directoryHint: .isDirectory)
-
 private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatch? = nil, form: FormMatch? = nil,
                       source: String = "s") -> Evidence {
     Evidence(sourceId: source, locator: "row", basis: "basis", kind: kind, level: level,
@@ -14,14 +10,14 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
 
 @Suite struct CatalogDataTests {
     @Test func shippedCatalogLoadsAndHasNoIssues() throws {
-        let catalog = try Catalog.load(dataDirectory: dataDirectory)
+        let catalog = try Catalog.load(dataDirectory: shippedDataDirectory)
         #expect(catalog.foods.count == 18)
         let issues = catalog.validate()
         #expect(issues.isEmpty, "\(issues.map(\.description).joined(separator: "\n"))")
     }
 
     @Test func everyAllergenTagIsOnTheFixedList() throws {
-        let catalog = try Catalog.load(dataDirectory: dataDirectory)
+        let catalog = try Catalog.load(dataDirectory: shippedDataDirectory)
         #expect(catalog.foods.flatMap(\.allergens).allSatisfy { Allergen.allCases.contains($0) })
     }
 }
@@ -34,7 +30,7 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
         ("cabbage", "green-cabbage"),
     ])
     func plainWordBelongsToItsDefaultFood(word: String, foodID: String) throws {
-        let catalog = try Catalog.load(dataDirectory: dataDirectory)
+        let catalog = try Catalog.load(dataDirectory: shippedDataDirectory)
         let owner = catalog.foods.first { $0.aliases.contains(word) }
         #expect(owner?.id == foodID, "'\(word)' should belong to \(foodID), found \(owner?.id ?? "no food")")
     }
@@ -214,7 +210,7 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
     }
 
     @Test func everyMarkerInTheShippedDataIsOnTheFixedSet() throws {
-        let catalog = try Catalog.load(dataDirectory: dataDirectory)
+        let catalog = try Catalog.load(dataDirectory: shippedDataDirectory)
         let markers = catalog.foods.flatMap { $0.chemicals.values.flatMap(\.evidence) }.flatMap { $0.markers ?? [] }
         #expect(markers.allSatisfy { EvidenceMarker.allCases.contains($0) })
     }

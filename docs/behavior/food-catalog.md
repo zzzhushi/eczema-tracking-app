@@ -8,6 +8,7 @@ The bundled reference data that says what each food is, what it is called, and h
 
 - `catalog/foods/<id>.json`: one file per food.
 - `data/sources.json`: the shared bibliography, one record per source.
+- `catalog/filler-words.json`: words typed between foods, such as "and" and "with", that matching drops instead of keeping as unrecognized entries. One lowercase word each, never an alias.
 - `catalog/manifest.json`: `schemaVersion` changes with the file format; `catalogVersion` increases in any change to foods, aliases, or levels.
 
 ## Food file
