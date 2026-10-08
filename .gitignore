@@ -4,3 +4,19 @@ DerivedData/
 *.xcuserstate
 *.xcresult
 fixtures/
+
+# Xcode project generated from project.yml
+*.xcodeproj/
+
+# Local signing configuration (the Apple team ID)
+Local.xcconfig
+
+# Log archives pulled from the phone
+*.logarchive
+
+# Swift package build output
+.build/
+.swiftpm/
+
+# Build stamp generated at build time
+App/Generated/

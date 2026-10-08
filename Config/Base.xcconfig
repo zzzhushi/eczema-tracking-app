@@ -1,0 +1,2 @@
+// Shared by every configuration. The signing team comes from the git-ignored Local.xcconfig when it exists.
+#include? "../Local.xcconfig"

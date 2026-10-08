@@ -1,9 +1,28 @@
 #!/bin/sh
-# Refuses commits that contain personal photos or anything under fixtures/.
+# Refuses commits that contain personal photos, anything under fixtures/, or the Apple signing team.
+status=0
+
 bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -i -E '^fixtures/|\.(heic|heif|jpe?g)$')
 if [ -n "$bad" ]; then
   echo "Commit blocked: photos or fixtures are staged:" >&2
   echo "$bad" | sed 's/^/  /' >&2
   echo "Unstage them with: git restore --staged <path>" >&2
-  exit 1
+  status=1
 fi
+
+local_config=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)Local\.xcconfig$')
+if [ -n "$local_config" ]; then
+  echo "Commit blocked: the local signing configuration is staged:" >&2
+  echo "$local_config" | sed 's/^/  /' >&2
+  echo "Unstage it with: git restore --staged <path>" >&2
+  status=1
+fi
+
+# A team ID is ten letters or digits; a variable reference such as $(DEVELOPMENT_TEAM) is allowed.
+team=$(git diff --cached -U0 | grep -v '^+++' | grep -E '^\+.*DEVELOPMENT_TEAM[[:space:]]*[:=][[:space:]]*"?[A-Za-z0-9]{10}"?')
+if [ -n "$team" ]; then
+  echo "Commit blocked: a signing team ID is staged. Keep it in the git-ignored Local.xcconfig." >&2
+  status=1
+fi
+
+exit $status
