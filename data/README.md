@@ -10,7 +10,7 @@ Nothing personal goes in this folder: the user's own overrides, routines, and lo
 
 ## Validation
 
-Tests in `ExzemaCore` load the whole dataset and check the catalog rules, that every cited source exists, and, once the rubric is loaded, that every rubric has a scoring rule and the seven signs with levels 0–3. Run them with `swift test --package-path ExzemaCore`.
+Tests in `ExzemaCore` load the whole dataset and check the catalog rules, that every cited source exists, and, once the rubric is loaded, that every rubric has a scoring rule and the seven signs with levels 0–3. Run them with `swift test --package-path Packages/ExzemaCore`.
 
 ## Review
 
