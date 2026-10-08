@@ -51,8 +51,6 @@ func writeFixtureStoreForCurrentSchema() throws {
                 at: DayStoreTestSupport.fixtureRatedAt,
                 in: TimeZone(identifier: DayStoreTestSupport.fixtureDay.timeZoneIdentifier)!
             )
-        }
-        if DayStore.currentSchemaVersion >= 4 {
             let id = try #require(try store.locationCaptures().first?.id)
             try store.setPlaceName("San Francisco", forCaptureID: id)
         }

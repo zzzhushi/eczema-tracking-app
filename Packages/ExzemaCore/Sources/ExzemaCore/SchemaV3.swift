@@ -26,7 +26,8 @@ extension DayStore {
                     localDate TEXT NOT NULL,
                     timeZoneIdentifier TEXT NOT NULL,
                     latitudeTenths INTEGER NOT NULL,
-                    longitudeTenths INTEGER NOT NULL
+                    longitudeTenths INTEGER NOT NULL,
+                    placeName TEXT
                 );
                 CREATE INDEX location_capture_capturedAt ON location_capture (capturedAt);
                 PRAGMA user_version = 3;
