@@ -6,7 +6,7 @@ import Observation
 ///
 /// "Today" is the phone's calendar date and stays live: it sets the caption and the limit of the forward
 /// arrow. The model reads the clock only in `init`, `refresh()`, and the foreground transitions, so a screen
-/// calls `refresh()` when the calendar day or time zone changes.
+/// goes through `DaySession.handle(_:)` when the calendar day or time zone changes.
 ///
 /// Every transition consults the same `unsavedWork` provider, which reports the dates that hold unsaved
 /// work from any feature. The screen never leaves such a date by itself, and forward reaches it even when a
@@ -22,12 +22,12 @@ public final class DayHostModel {
 
     private let clock: () -> Date
     private let currentTimeZone: () -> TimeZone
-    private let unsavedWork: () -> Set<LocalDate>
+    private let unsavedWork: @MainActor () -> Set<LocalDate>
 
     public init(
         clock: @escaping () -> Date = Date.init,
         timeZone: @escaping () -> TimeZone = { TimeZone.autoupdatingCurrent },
-        unsavedWork: @escaping () -> Set<LocalDate> = { [] }
+        unsavedWork: @escaping @MainActor () -> Set<LocalDate> = { [] }
     ) {
         self.clock = clock
         self.currentTimeZone = timeZone
@@ -67,20 +67,20 @@ public final class DayHostModel {
 
     /// Re-reads the clock and time zone. The date on screen stays, except that a date a time zone change
     /// has made a future day moves back to today when it holds no unsaved work.
-    public func refresh() {
+    func refresh() {
         now = clock()
         timeZone = currentTimeZone()
         if shownDate > today.date, !hasUnsavedWork(on: shownDate) { shownDate = today.date }
     }
 
-    public func wentToBackground() {
+    func wentToBackground() {
         refresh()
         dateWhenLeft = today.date
     }
 
     /// Opens today when the date changed while the app was away and the day on screen has no unsaved work. A
     /// date that changed while the app was in front never moves the screen.
-    public func becameActive() {
+    func becameActive() {
         let before = dateWhenLeft
         dateWhenLeft = nil
         refresh()

@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-import ExzemaCore
+@testable import ExzemaCore
 
 @MainActor
 @Suite("Day host model")

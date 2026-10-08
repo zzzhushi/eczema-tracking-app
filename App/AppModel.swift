@@ -1,6 +1,7 @@
 import ExzemaCore
 import Foundation
 import Observation
+import UIKit
 
 /// Opens the store, catalog, and diagnostics at launch and hands the food section what it needs.
 @MainActor
@@ -9,12 +10,14 @@ final class AppModel {
     private(set) var failure: String?
     private(set) var catalogFailure: String?
     let foodServices: FoodServices
-    let host: DayHostModel
+    let session: DaySession
     /// Changes when debug actions clear data, so the food section reloads.
     private(set) var dataVersion = 0
 
     private let store: DayStore?
     private let diagnostics = DiagnosticsListener()
+    /// Kept so the session keeps hearing the system's clock notifications for the app's lifetime.
+    private let dayEvents: DayEventObserver
     #if DEBUG
     private let debugClock: DebugClock
     #endif
@@ -34,17 +37,19 @@ final class AppModel {
         let matching = Self.loadCatalog()
         if matching == nil { catalogFailure = "The food catalog could not be loaded." }
         store = openedStore
-        let foodDrafts = FoodDrafts()
-        foodServices = FoodServices(store: openedStore, matching: matching, drafts: foodDrafts)
-        // Each feature that keeps unsaved work adds its dates here; the host knows only the dates.
-        let unsavedWork = { foodDrafts.datesWithUnsavedWork }
         #if DEBUG
         let debugClock = DebugClock()
         self.debugClock = debugClock
-        host = DayHostModel(clock: { debugClock.now }, unsavedWork: unsavedWork)
+        let session = DaySession(clock: { debugClock.now })
         #else
-        host = DayHostModel(unsavedWork: unsavedWork)
+        let session = DaySession()
         #endif
+        self.session = session
+        foodServices = FoodServices(store: openedStore, matching: matching, session: session)
+        dayEvents = DayEventObserver(
+            session: session,
+            clockNotifications: DayEventObserver.foundationClockNotifications + [UIApplication.significantTimeChangeNotification]
+        )
     }
 
     /// Nil when the bundled catalog cannot be loaded; nothing parses food without it.
@@ -66,7 +71,7 @@ final class AppModel {
     #if DEBUG
     func clearToday() {
         guard let store else { return }
-        try? store.delete(host.today.date)
+        try? store.delete(session.host.today.date)
         dataVersion += 1
     }
 
@@ -74,20 +79,20 @@ final class AppModel {
     /// notification does.
     func simulateMidnight() {
         debugClock.offset = nextMidnight().addingTimeInterval(60).timeIntervalSinceNow
-        host.refresh()
+        session.handle(.clockChanged)
     }
 
     /// Leaves the foreground, moves the clock to 8 a.m. the next day, and returns, as opening the app the
     /// next morning does.
     func simulateNextMorning() {
-        host.wentToBackground()
+        session.handle(.enteredBackground)
         debugClock.offset = nextMidnight().addingTimeInterval(8 * 3600).timeIntervalSinceNow
-        host.becameActive()
+        session.handle(.becameActive)
     }
 
     func resetClock() {
         debugClock.offset = 0
-        host.refresh()
+        session.handle(.clockChanged)
     }
 
     private func nextMidnight() -> Date {

@@ -11,7 +11,7 @@ struct FoodSectionView: View {
 
     var body: some View {
         if let store = services.store, let matching = services.matching {
-            FoodSectionContent(day: day, store: store, matching: matching, drafts: services.drafts)
+            FoodSectionContent(day: day, store: store, matching: matching, session: services.session)
         } else {
             Section("Food") {
                 Text("Food logging is unavailable.").foregroundStyle(.secondary)
@@ -25,8 +25,8 @@ private struct FoodSectionContent: View {
     private let day: Day
     private let catalog: Catalog
 
-    init(day: Day, store: DayStore, matching: FoodMatching, drafts: FoodDrafts) {
-        _model = State(initialValue: FoodLogModel(day: day, store: store, matcher: matching.matcher, drafts: drafts))
+    init(day: Day, store: DayStore, matching: FoodMatching, session: DaySession) {
+        _model = State(initialValue: session.makeFoodLogModel(for: day, store: store, matcher: matching.matcher))
         self.day = day
         catalog = matching.catalog
     }

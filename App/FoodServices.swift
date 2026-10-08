@@ -8,12 +8,12 @@ import Observation
 final class FoodServices {
     let store: DayStore?
     let matching: FoodMatching?
-    /// Unsaved text and open edits, kept per date so they survive the screen changing day.
-    let drafts: FoodDrafts
+    /// Holds the unsaved text and open edits, kept per date so they survive the screen changing day.
+    let session: DaySession
 
-    init(store: DayStore?, matching: FoodMatching?, drafts: FoodDrafts) {
+    init(store: DayStore?, matching: FoodMatching?, session: DaySession) {
         self.store = store
         self.matching = matching
-        self.drafts = drafts
+        self.session = session
     }
 }
