@@ -34,6 +34,6 @@ Every migration is a named, ordered step that only adds to or reshapes the store
 
 ## Diagnostics
 
-Crash and hang reports delivered by the system are saved as JSON files in a dedicated directory, excluded from backup. They are read by downloading the app container from Xcode's Devices window. Nothing is sent anywhere.
+Crash and hang reports delivered by the system are saved as JSON files in a dedicated directory, excluded from backup. They are copied to the Mac with `scripts/pull_from_phone.sh`, along with the store, when the phone is connected. Nothing is sent anywhere.
 
 Crash reports arrive at the next launch and are saved reliably. Hang reports use the same save path, but no hang report has yet been delivered, so hang collection is unverified ([#33](https://github.com/zzzhushi/eczema-tracking-app/issues/33)).

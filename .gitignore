@@ -20,3 +20,6 @@ Local.xcconfig
 
 # Build stamp generated at build time
 App/Generated/
+
+# Copies of the phone's store pulled for debugging; they hold real entries
+exzema-pulls/

@@ -25,6 +25,9 @@ jobs:
       - name: Test the bundled-data check
         run: scripts/test-check-bundled-data.sh
 
+      - name: Test the phone pull script
+        run: scripts/test-pull-from-phone.sh
+
       - name: Generate the Xcode project
         run: |
           command -v xcodegen >/dev/null || brew install xcodegen

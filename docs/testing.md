@@ -53,6 +53,8 @@ sudo /usr/bin/log collect --device --last 1d --output ~/exzema-logs.logarchive
 
 Collecting from a device needs root. The archive covers the whole phone; keep it out of the repository and delete it after use. To watch logs live without root, select the phone in Console.app and filter on the subsystem.
 
+To look at the data itself, `scripts/pull_from_phone.sh` copies the store and the crash and hang reports from a connected iPhone to a private folder on the Mac and prints a summary and the commands for the logs. It works only for a build installed from Xcode, refuses a folder inside any checkout of this repository, and prints the log command without running it, because that one needs root. The store holds the real entries and ratings, so delete the folder when finished. `scripts/test-pull-from-phone.sh` checks the script against a fake `devicectl`, so it runs in CI without a phone.
+
 ## Continuous integration
 
 - GitHub Actions on pull requests and on pushes to the default branch, in one `test` job on the `xcode-27` runner label (`macos-latest` still has an older Xcode).
