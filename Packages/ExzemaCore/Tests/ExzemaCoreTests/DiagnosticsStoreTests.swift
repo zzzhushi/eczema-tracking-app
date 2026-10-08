@@ -49,6 +49,21 @@ struct DiagnosticsStoreTests {
         #expect(try directory.resourceValues(forKeys: [.isExcludedFromBackupKey]).isExcludedFromBackup == true)
     }
 
+    @Test func reportKindsCoverEveryKindTheSystemReportsPlusOneForNewKinds() {
+        #expect(Set(DiagnosticKind.allCases.map(\.rawValue)) == [
+            "crash", "hang", "cpuException", "diskWriteException", "appLaunch", "memoryException", "unknown",
+        ])
+    }
+
+    @Test(arguments: DiagnosticKind.allCases)
+    func everyKindIsSavedOnceAndListedWithItsOwnKind(kind: DiagnosticKind) throws {
+        let store = DiagnosticsStore(directory: directory)
+
+        try store.save(report, kind: kind, receivedAt: instant("2026-10-07T20:00:00Z"))
+
+        #expect(try store.reports().map(\.kind) == [kind])
+    }
+
     @Test func emptyStoreListsNoReports() throws {
         #expect(try DiagnosticsStore(directory: directory).reports().isEmpty)
     }

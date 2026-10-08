@@ -9,9 +9,9 @@ public struct OSLogSink: LogSink {
     public func write(_ record: LogRecord) {
         let logger = os.Logger(subsystem: Self.subsystem, category: record.category.rawValue)
 
-        var head = [record.event]
-        head += record.publicFields.sorted { $0.key < $1.key }.map { "\($0.key)=\($0.value.rendered)" }
-        let privateKeys = record.privateFields.keys.sorted()
+        var head = [record.event.name]
+        head += record.publicFields.sorted { $0.key.name < $1.key.name }.map { "\($0.key.name)=\($0.value.rendered)" }
+        let privateKeys = record.privateFields.keys.map(\.name).sorted()
         if !privateKeys.isEmpty {
             head.append("private=[\(privateKeys.joined(separator: ","))]")
         }
@@ -20,7 +20,7 @@ public struct OSLogSink: LogSink {
         if privateKeys.isEmpty {
             logger.log(level: record.level.osLogType, "\(headText, privacy: .public)")
         } else {
-            let values = privateKeys.map { "\($0)=\(record.privateFields[$0] ?? "")" }.joined(separator: " ")
+            let values = record.privateFields.sorted { $0.key.name < $1.key.name }.map { "\($0.key.name)=\($0.value)" }.joined(separator: " ")
             logger.log(level: record.level.osLogType, "\(headText, privacy: .public) \(values, privacy: .private)")
         }
     }

@@ -10,7 +10,7 @@ final class AppModel {
     private(set) var failure: String?
 
     private let store: DayStore?
-    private let diagnostics = DiagnosticsSubscriber()
+    private let diagnostics = DiagnosticsListener()
 
     init() {
         Log.app.notice("app.launched", public: ["build": .int(BuildInfo(stamp: BuildStamp.value).number ?? 0)])

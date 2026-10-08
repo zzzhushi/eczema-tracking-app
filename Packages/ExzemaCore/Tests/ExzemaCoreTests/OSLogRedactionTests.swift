@@ -9,33 +9,33 @@ import ExzemaCore
 @Suite("Unified log redaction", .enabled(if: !isDebuggerAttached()))
 struct OSLogRedactionTests {
     @Test func privateFieldValuesAreRedactedWhileTheirNamesStayVisible() async throws {
-        let event = "rating.saved.\(UUID().uuidString.prefix(8))"
+        let event: LogEvent = "redaction.privateValues"
         let secret = "secret-\(UUID().uuidString.prefix(8))"
         let log = CategoryLogger(.checkIn, sink: OSLogSink())
 
         log.notice(event, public: ["schemaVersion": 1], private: ["feel": "7", "note": secret])
 
-        let message = try await composedMessage(containing: event)
-        #expect(message == "\(event) schemaVersion=1 private=[feel,note] <private>")
+        let message = try await composedMessage(containing: event.name)
+        #expect(message == "\(event.name) schemaVersion=1 private=[feel,note] <private>")
         #expect(!message.contains(secret), "a private value leaked into the unified log")
         #expect(!message.contains("feel=7"), "a numeric private value leaked into the unified log")
     }
 
     @Test func eventWithoutPrivateFieldsShowsNoPrivatePlaceholder() async throws {
-        let event = "store.probe.\(UUID().uuidString.prefix(8))"
+        let event: LogEvent = "redaction.noPrivateFields"
         let log = CategoryLogger(.storage, sink: OSLogSink())
 
         log.notice(event, public: ["schemaVersion": 1, "count": 3])
 
-        #expect(try await composedMessage(containing: event) == "\(event) count=3 schemaVersion=1")
+        #expect(try await composedMessage(containing: event.name) == "\(event.name) count=3 schemaVersion=1")
     }
 
     @Test func eventWithNoFieldsIsJustItsName() async throws {
-        let event = "app.probe.\(UUID().uuidString.prefix(8))"
+        let event: LogEvent = "redaction.bareEvent"
 
         CategoryLogger(.app, sink: OSLogSink()).notice(event)
 
-        #expect(try await composedMessage(containing: event) == event)
+        #expect(try await composedMessage(containing: event.name) == event.name)
     }
 
     private func composedMessage(containing text: String) async throws -> String {

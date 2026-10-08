@@ -1,8 +1,14 @@
 import Foundation
 
-public enum DiagnosticKind: String, Sendable {
+/// The kinds of report the system delivers; each report has exactly one. A kind the app does not recognize is kept as `unknown`.
+public enum DiagnosticKind: String, CaseIterable, Sendable {
     case crash
     case hang
+    case cpuException
+    case diskWriteException
+    case appLaunch
+    case memoryException
+    case unknown
 }
 
 public struct SavedDiagnostic: Equatable, Sendable {

@@ -14,7 +14,7 @@ struct DebugFaultsTests {
             log: CategoryLogger(.diagnostics, sink: sink),
             sleep: { seconds in
                 waited = seconds
-                eventsSeenDuringWait = sink.records.map(\.event)
+                eventsSeenDuringWait = sink.records.map(\.event.name)
             },
             crashAction: {}
         )
@@ -23,7 +23,7 @@ struct DebugFaultsTests {
 
         #expect(waited == 5)
         #expect(eventsSeenDuringWait == ["debug.hang.started"], "the start must be logged before the main thread blocks")
-        #expect(sink.records.map(\.event) == ["debug.hang.started", "debug.hang.ended"])
+        #expect(sink.records.map(\.event.name) == ["debug.hang.started", "debug.hang.ended"])
         #expect(sink.records.map(\.publicFields) == [["seconds": .int(5)], ["seconds": .int(5)]])
         #expect(sink.records.allSatisfy { $0.category == .diagnostics && $0.level == .notice && $0.privateFields.isEmpty })
     }
@@ -33,7 +33,7 @@ struct DebugFaultsTests {
         let faults = DebugFaults(
             log: CategoryLogger(.diagnostics, sink: sink),
             sleep: { _ in },
-            crashAction: { eventsSeenAtCrash = sink.records.map(\.event) }
+            crashAction: { eventsSeenAtCrash = sink.records.map(\.event.name) }
         )
 
         faults.crash()
