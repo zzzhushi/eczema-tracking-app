@@ -6,6 +6,7 @@ Where the app keeps its data, what survives, and what does not. The principles a
 
 - One SQLite file in a dedicated directory under the app's private storage. The schema version is the file's `user_version`.
 - The store holds days: a local calendar date and the time zone it was logged in. A day runs midnight to midnight in the phone's time zone and is never derived from UTC.
+- A day holds skin check-ins, one row per area with its feel and look, and is created by the first rating on it. Location captures are separate rows with their own date and time zone ([check-in](skin-check-in.md), [location](environment-and-health.md#location-capture)).
 - The file is encrypted at rest with the iOS default protection, available once the phone has been unlocked after a restart.
 - The store's directory is excluded from device and iCloud backups. Nothing from the app reaches the cloud.
 - Opening a store written by a newer schema is refused and leaves the file untouched.
