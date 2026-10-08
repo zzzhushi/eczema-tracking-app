@@ -210,7 +210,7 @@ struct SchemaV2MigrationTests {
         let store = try DayStore(at: copyOfFixture(version: 1))
         let item = ParsedItem(text: "rice", resolution: .matched(foodID: "white-rice"))
 
-        #expect(try store.schemaVersion() == 2)
+        #expect(try store.schemaVersion() == DayStore.currentSchemaVersion)
         #expect(try store.days() == [DayStoreTestSupport.fixtureDay])
         _ = try store.addFoodLine(text: "rice", items: [item], on: DayStoreTestSupport.fixtureDay)
         #expect(try store.foodLines(on: DayStoreTestSupport.fixtureDay.date).map(\.text) == ["rice"])

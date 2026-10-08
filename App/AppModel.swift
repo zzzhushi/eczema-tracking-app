@@ -11,13 +11,31 @@ final class AppModel {
     private(set) var catalogFailure: String?
     let foodServices: FoodServices
     let session: DaySession
+    let location = LocationService()
+    /// Dates that have a day row, kept current by observing the store.
+    private(set) var savedDates: Set<LocalDate> = []
+    private(set) var areas: [Area] = []
+    private(set) var checkIns: [String: CheckIn] = [:]
+    private(set) var places = DayPlaces(names: [], captureCount: 0)
+    private var checkInsFailed = false
+    private var placesFailed = false
+
+    /// Set while the shown day's ratings or places could not be read; they then show as unknown, never as another
+    /// day's values.
+    var loadFailure: String? {
+        checkInsFailed || placesFailed ? "Part of this day could not be loaded." : nil
+    }
     /// Changes when debug actions clear data, so the food section reloads.
     private(set) var dataVersion = 0
 
     private let store: DayStore?
+    private let locationRecorder: LocationRecorder?
+    private var isCapturingLocation = false
     private let diagnostics = DiagnosticsListener()
     /// Kept so the session keeps hearing the system's clock notifications for the app's lifetime.
     private let dayEvents: DayEventObserver
+    /// What the app takes as now: the real clock, or the debug clock that moves it in debug builds.
+    private let clock: @Sendable () -> Date
     #if DEBUG
     private let debugClock: DebugClock
     #endif
@@ -40,16 +58,96 @@ final class AppModel {
         #if DEBUG
         let debugClock = DebugClock()
         self.debugClock = debugClock
-        let session = DaySession(clock: { debugClock.now })
+        let clock: @Sendable () -> Date = { debugClock.now }
+        let session = DaySession(clock: clock)
         #else
+        let clock: @Sendable () -> Date = { Date() }
         let session = DaySession()
         #endif
         self.session = session
+        self.clock = clock
+        let source = location
+        locationRecorder = openedStore.map { LocationRecorder(store: $0, source: source, now: clock, places: CityNamer()) }
         foodServices = FoodServices(store: openedStore, matching: matching, session: session)
         dayEvents = DayEventObserver(
             session: session,
             clockNotifications: DayEventObserver.foundationClockNotifications + [UIApplication.significantTimeChangeNotification]
         )
+        location.onAuthorized = { [weak self] in self?.captureLocationIfDue() }
+        loadAreas()
+        observeSavedDates()
+    }
+
+    /// Record the rounded location unless one was taken within the last hour; does nothing without permission.
+    ///
+    /// Overlapping calls are dropped so two triggers at launch cannot each store a capture.
+    func captureLocationIfDue() {
+        guard location.isAuthorized, let locationRecorder, !isCapturingLocation else { return }
+        isCapturingLocation = true
+        Task {
+            await locationRecorder.captureIfDue()
+            await locationRecorder.fillMissingPlaceNames()
+            isCapturingLocation = false
+            loadPlaces()
+        }
+    }
+
+    /// Load the shown day's check-ins; call when the shown date or the stored data changes.
+    func loadCheckIns() {
+        checkIns = [:]
+        checkInsFailed = false
+        guard let store else { return }
+        do {
+            let rows = try store.checkIns(on: session.host.shownDate)
+            checkIns = Dictionary(uniqueKeysWithValues: rows.map { ($0.areaID, $0) })
+        } catch {
+            checkInsFailed = true
+            Log.storage.error("store.readFailed", public: ["query": "checkIns"], private: ["error": String(describing: error)])
+        }
+    }
+
+    /// Load the places captured on the shown date.
+    func loadPlaces() {
+        places = DayPlaces(names: [], captureCount: 0)
+        placesFailed = false
+        guard let store else { return }
+        do {
+            places = try store.places(on: session.host.shownDate)
+        } catch {
+            placesFailed = true
+            Log.storage.error("store.readFailed", public: ["query": "places"], private: ["error": String(describing: error)])
+        }
+    }
+
+    /// Give the shown day's area a rating, or clear it with nil.
+    func setRating(_ kind: RatingKind, to value: Int?, area: Area) {
+        guard let store else { return }
+        do {
+            try store.setRating(kind, to: value, area: area.id, on: session.host.day, at: clock())
+        } catch {
+            Log.checkIn.error("checkin.saveFailed", private: ["error": String(describing: error)])
+        }
+        loadCheckIns()
+    }
+
+    private func loadAreas() {
+        guard let store else { return }
+        do {
+            areas = try store.activeAreas()
+        } catch {
+            Log.storage.error("store.readFailed", public: ["query": "areas"], private: ["error": String(describing: error)])
+        }
+    }
+
+    private func observeSavedDates() {
+        guard let store else { return }
+        Task { [weak self] in
+            do {
+                for try await dates in store.savedDates() { self?.savedDates = dates }
+            } catch {
+                Log.storage.error("store.observeFailed", private: ["error": String(describing: error)])
+            }
+        }
     }
 
     /// Nil when the bundled catalog cannot be loaded; nothing parses food without it.
@@ -73,6 +171,7 @@ final class AppModel {
         guard let store else { return }
         try? store.delete(session.host.today.date)
         dataVersion += 1
+        loadCheckIns()
     }
 
     /// Moves the app's clock to just after the next midnight and refreshes, as the system's day-changed
@@ -88,6 +187,7 @@ final class AppModel {
         session.handle(.enteredBackground)
         debugClock.offset = nextMidnight().addingTimeInterval(8 * 3600).timeIntervalSinceNow
         session.handle(.becameActive)
+        captureLocationIfDue()
     }
 
     func resetClock() {
@@ -105,6 +205,7 @@ final class AppModel {
         guard let store else { return }
         try? store.deleteAll()
         dataVersion += 1
+        loadCheckIns()
     }
     #endif
 }

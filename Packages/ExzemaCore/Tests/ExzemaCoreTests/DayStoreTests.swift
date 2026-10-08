@@ -51,7 +51,7 @@ struct DayStoreTests {
         let store = try DayStore(at: storeURL)
 
         #expect(try store.schemaVersion() == DayStore.currentSchemaVersion)
-        #expect(DayStore.currentSchemaVersion == 2)
+        #expect(DayStore.currentSchemaVersion == 3)
     }
 
     @Test func storeFromANewerSchemaIsRefusedAndLeftUntouched() throws {
@@ -72,7 +72,7 @@ struct DayStoreTests {
         #expect(values.isExcludedFromBackup == true)
     }
 
-    @Test(arguments: [1, 2])
+    @Test(arguments: [1, 2, 3])
     func fixtureStoreOpensAndReadsItsDay(version: Int) throws {
         let fixture = try #require(
             Bundle.module.url(forResource: "v\(version)", withExtension: "sqlite", subdirectory: "Stores"),
@@ -85,5 +85,17 @@ struct DayStoreTests {
 
         #expect(try store.days() == [DayStoreTestSupport.fixtureDay])
         #expect(try store.schemaVersion() == DayStore.currentSchemaVersion)
+        #expect(try store.activeAreas().map(\.id) == ["face", "hands"], "migrating an older store adds the areas")
+        if version < 3 {
+            #expect(try store.checkIns(on: DayStoreTestSupport.fixtureDay.date).isEmpty, "an older day has no ratings")
+        }
+        if version >= 3 {
+            let checkIn = try #require(try store.checkIns(on: DayStoreTestSupport.fixtureDay.date).first)
+            #expect((checkIn.areaID, checkIn.feel, checkIn.look) == ("face", 4, 6))
+            #expect(checkIn.updatedAt == DayStoreTestSupport.fixtureRatedAt)
+            let capture = try #require(try store.locationCaptures().first)
+            #expect((capture.latitudeTenths, capture.longitudeTenths) == (378, -1224))
+            #expect(capture.placeName == "San Francisco")
+        }
     }
 }

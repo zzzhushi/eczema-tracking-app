@@ -221,4 +221,38 @@ struct DayHostModelTests {
 
         #expect(model.day.date == LocalDate(year: 2025, month: 12, day: 31))
     }
+
+    @Test func aFutureDateWithUnsavedWorkCanBeShownAgainAfterSteppingAwayFromIt() {
+        let clock = Clock(lateEvening, losAngeles)
+        let unsaved = Unsaved()
+        let model = makeModel(clock, unsaved: unsaved)
+        unsaved.dates = [oct8]
+
+        #expect(model.canShow(oct8) && model.latestShowableDate == oct8)
+        #expect(model.show(oct8))
+        #expect(model.show(oct6))
+        #expect(model.canShow(oct8), "stepping away must not strand the work")
+        #expect(model.show(oct8))
+    }
+
+    @Test func aFutureDateCannotBeShownOnceNothingOnItIsUnsaved() {
+        let clock = Clock(lateEvening, losAngeles)
+        let unsaved = Unsaved()
+        let model = makeModel(clock, unsaved: unsaved)
+        unsaved.dates = [oct8]
+        _ = model.show(oct6)
+
+        unsaved.dates = []
+
+        #expect(!model.canShow(oct8))
+        #expect(model.latestShowableDate == oct7)
+        #expect(!model.show(oct8))
+    }
+
+    @Test func todayAndEarlierDatesCanAlwaysBeShown() {
+        let model = makeModel(Clock(lateEvening, losAngeles))
+
+        #expect(model.canShow(oct7) && model.canShow(oct5))
+        #expect(!model.canShow(oct8))
+    }
 }

@@ -9,6 +9,8 @@ enum DayStoreTestSupport {
         timeZoneIdentifier: "America/Los_Angeles"
     )
 
+    static let fixtureRatedAt = Date(timeIntervalSince1970: 1_791_000_000)
+
     static func setSchemaVersion(_ version: Int, at url: URL) throws {
         let queue = try DatabaseQueue(path: url.path)
         try queue.writeWithoutTransaction { try $0.execute(sql: "PRAGMA user_version = \(version)") }
@@ -40,6 +42,17 @@ func writeFixtureStoreForCurrentSchema() throws {
                 ],
                 on: DayStoreTestSupport.fixtureDay
             )
+        }
+        if DayStore.currentSchemaVersion >= 3 {
+            try store.setRating(.feel, to: 4, area: "face", on: DayStoreTestSupport.fixtureDay, at: DayStoreTestSupport.fixtureRatedAt)
+            try store.setRating(.look, to: 6, area: "face", on: DayStoreTestSupport.fixtureDay, at: DayStoreTestSupport.fixtureRatedAt)
+            try store.addLocationCapture(
+                Coordinate(latitude: 37.7749, longitude: -122.4194),
+                at: DayStoreTestSupport.fixtureRatedAt,
+                in: TimeZone(identifier: DayStoreTestSupport.fixtureDay.timeZoneIdentifier)!
+            )
+            let id = try #require(try store.locationCaptures().first?.id)
+            try store.setPlaceName("San Francisco", forCaptureID: id)
         }
     }
 

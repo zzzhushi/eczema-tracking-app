@@ -13,7 +13,7 @@ public enum DayStoreError: Error, Equatable {
 
 /// The on-device store of days, versioned by SQLite's `user_version`.
 public final class DayStore: Sendable {
-    public static let currentSchemaVersion = 2
+    public static let currentSchemaVersion = 3
 
     let database: DatabaseQueue
     let log: CategoryLogger
@@ -112,6 +112,7 @@ public final class DayStore: Sendable {
                 PRAGMA user_version = 2;
                 """)
         }
+        registerV3Migration(in: &migrator)
         return migrator
     }
 
@@ -121,5 +122,28 @@ public final class DayStore: Sendable {
         var values = URLResourceValues()
         values.isExcludedFromBackup = true
         try url.setResourceValues(values)
+    }
+}
+
+extension DayStore {
+    /// Emit the dates that have a day row now and again after every change to the store, from any feature.
+    public func savedDates() -> AsyncThrowingStream<Set<LocalDate>, any Error> {
+        let observation = ValueObservation.tracking { db in
+            try String.fetchAll(db, sql: "SELECT date FROM day")
+        }
+        let values = observation.values(in: database)
+        return AsyncThrowingStream { continuation in
+            let task = Task {
+                do {
+                    for try await texts in values {
+                        continuation.yield(Set(texts.compactMap { LocalDate(isoString: $0) }))
+                    }
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+            continuation.onTermination = { _ in task.cancel() }
+        }
     }
 }

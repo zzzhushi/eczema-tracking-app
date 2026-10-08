@@ -8,8 +8,9 @@ Where the app keeps its data, what survives, and what does not. The principles a
 - The store holds days: a local calendar date and the time zone it was logged in. A day runs midnight to midnight in the phone's time zone and is never derived from UTC.
 - A day is stored on its first write, never by looking at it.
 - Food is stored as lines and items. A line is a piece of typed text with its time zone; its items are the parsed pieces, each with the catalog food ID it matched when saved, or none if unrecognized. A line always has at least one item. Deleting a day deletes its food.
+- Skin check-ins are one row per area with its feel and look, and the first rating on a day creates the day. Location captures are separate rows with their own date and time zone ([check-in](skin-check-in.md), [location](environment-and-health.md#location-capture)).
 - The file is encrypted at rest with the iOS default protection, available once the phone has been unlocked after a restart.
-- The store's directory is excluded from device and iCloud backups. Nothing from the app reaches the cloud.
+- The store's directory is excluded from device and iCloud backups, and the store is never uploaded. The only data that leaves the phone on its own is a rounded position sent to look up a city name ([location](environment-and-health.md#place-names)), and later weather.
 - Opening a store written by a newer schema is refused and leaves the file untouched.
 
 ## Schema versions
@@ -18,6 +19,7 @@ Where the app keeps its data, what survives, and what does not. The principles a
 |---|---|---|
 | 1 | `day` | Creates the table. |
 | 2 | `food_line`, `food_item` | Creates two tables and their indexes. No existing row is read or changed, so days saved under version 1 are kept. |
+| 3 | `area`, `check_in`, `location_capture` | Creates three tables, with a place name on each location capture, and seeds the face and hands areas. No existing row is read or changed, so days and food saved earlier are kept. |
 
 Every migration is a named, ordered step that only adds to or reshapes the store and never wipes it. Each version has a committed fixture store, and a test opens every fixture, migrates it, and reads it back.
 
