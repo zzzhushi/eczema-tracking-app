@@ -31,7 +31,7 @@ How the user records what they ate. The catalog it matches against is in [the fo
 
 ## What is kept
 
-- Each saved piece of text is a line, kept as typed with its time zone, and a day can have several lines.
+- Each saved piece of text is a line, kept as typed with its time zone, and a day can have several lines, for example breakfast saved when it is eaten and lunch saved later. The screen shows each line as its own numbered entry, with the text as typed above the foods it was matched to.
 - Each line keeps its parsed items, each with the catalog food it matched when saved, or none. The match is fixed at save time; chemical levels are looked up later from the food, so research added to the catalog applies to earlier days.
 - The user can reopen a line, change the text, and save again, which parses it afresh and replaces the line.
 - The user can delete a whole line, or a single item. Deleting an item rewrites the line's text from the items that remain, so the item does not come back when the line is reopened. Deleting a line's last item deletes the line, and deleting an item of the line being edited ends the edit.

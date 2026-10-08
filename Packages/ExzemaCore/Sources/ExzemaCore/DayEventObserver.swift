@@ -7,7 +7,8 @@ import Foundation
 /// UIKit-only significant-time-change name.
 @MainActor
 public final class DayEventObserver {
-    public static let foundationClockNotifications: [Notification.Name] = [.NSCalendarDayChanged, .NSSystemTimeZoneDidChange]
+    /// The day changing, the time zone changing, and the user or system setting the clock.
+    public static let foundationClockNotifications: [Notification.Name] = [.NSCalendarDayChanged, .NSSystemTimeZoneDidChange, .NSSystemClockDidChange]
 
     private let subscription: Subscription
 

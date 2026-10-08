@@ -2,6 +2,7 @@ import Foundation
 import Testing
 @testable import ExzemaCore
 
+/// Wiring only: the policy behind each event is owned by `DayHostModelTests`.
 @MainActor
 @Suite("Day session")
 struct DaySessionTests {
@@ -15,17 +16,11 @@ struct DaySessionTests {
         init(_ now: Date) { self.now = now }
     }
 
-    /// A stand-in for another feature's unsaved work, such as a check-in being filled in.
-    @MainActor
-    private final class OtherFeatureDrafts: UnsavedWorkSource {
-        var datesWithUnsavedWork: Set<LocalDate> = []
-    }
-
     private func makeSession(_ clock: Clock) -> DaySession {
         DaySession(clock: { clock.now }, timeZone: { losAngeles })
     }
 
-    @Test func aClockChangeUpdatesWhatTodayIsAndLeavesTheScreenOnItsDate() {
+    @Test func theClockEventReachesTheHost() {
         let clock = Clock(lateEvening)
         let session = makeSession(clock)
 
@@ -33,10 +28,9 @@ struct DaySessionTests {
         session.handle(.clockChanged)
 
         #expect(session.host.today.date == oct8)
-        #expect(session.host.day.date == oct7)
     }
 
-    @Test func returningTheNextMorningOpensTodayWhenNothingIsUnsaved() {
+    @Test func theLifecycleEventsReachTheHost() {
         let clock = Clock(lateEvening)
         let session = makeSession(clock)
         session.handle(.enteredBackground)
@@ -44,10 +38,10 @@ struct DaySessionTests {
         clock.now = lateEvening.addingTimeInterval(10 * 3600)
         session.handle(.becameActive)
 
-        #expect(session.host.day.date == oct8)
+        #expect(session.host.day.date == oct8, "returning after the date changed must open today")
     }
 
-    @Test func returningTheNextMorningStaysWhenFoodTextIsUnsaved() {
+    @Test func foodDraftsCountAsUnsavedWorkForTheHost() {
         let clock = Clock(lateEvening)
         let session = makeSession(clock)
         session.foodDrafts.setText("rice", for: oct7)
@@ -57,30 +51,6 @@ struct DaySessionTests {
         session.handle(.becameActive)
 
         #expect(session.host.day.date == oct7)
-    }
-
-    @Test func unsavedWorkFromAnotherFeatureAlsoKeepsTheScreenOnItsDate() {
-        let clock = Clock(lateEvening)
-        let session = makeSession(clock)
-        let other = OtherFeatureDrafts()
-        session.register(other)
-        other.datesWithUnsavedWork = [oct7]
-        session.handle(.enteredBackground)
-
-        clock.now = lateEvening.addingTimeInterval(10 * 3600)
-        session.handle(.becameActive)
-
-        #expect(session.host.day.date == oct7)
-    }
-
-    @Test func unsavedWorkFromAnotherFeatureOnAFutureDateKeepsForwardOpen() {
-        let clock = Clock(lateEvening)
-        let session = makeSession(clock)
-        let other = OtherFeatureDrafts()
-        session.register(other)
-        other.datesWithUnsavedWork = [oct8]
-
-        #expect(session.host.canGoForward)
     }
 
     @Test func theFoodModelItBuildsSharesTheSessionsDrafts() throws {
@@ -95,6 +65,5 @@ struct DaySessionTests {
         model.updateDraft("rice")
 
         #expect(session.foodDrafts.text(for: oct7) == "rice")
-        #expect(session.host.day.date == oct7)
     }
 }

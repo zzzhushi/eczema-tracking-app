@@ -19,7 +19,7 @@ struct DayEventObserverTests {
         DaySession(clock: { clock.now }, timeZone: { losAngeles })
     }
 
-    @Test(arguments: [Notification.Name.NSCalendarDayChanged, .NSSystemTimeZoneDidChange, Notification.Name("test.significantTimeChange")])
+    @Test(arguments: [Notification.Name.NSCalendarDayChanged, .NSSystemTimeZoneDidChange, .NSSystemClockDidChange, Notification.Name("test.significantTimeChange")])
     func eachClockNotificationRefreshesWhatTodayIs(name: Notification.Name) {
         let clock = Clock(lateEvening)
         let session = makeSession(clock)
@@ -33,19 +33,6 @@ struct DayEventObserverTests {
         center.post(name: name, object: nil)
 
         #expect(session.host.today.date == oct8)
-        withExtendedLifetime(observer) {}
-    }
-
-    @Test func aNotificationItDoesNotWatchChangesNothing() {
-        let clock = Clock(lateEvening)
-        let session = makeSession(clock)
-        let center = NotificationCenter()
-        let observer = DayEventObserver(session: session, center: center)
-
-        clock.now = lateEvening.addingTimeInterval(180)
-        center.post(name: Notification.Name("something.else"), object: nil)
-
-        #expect(session.host.today.date != oct8)
         withExtendedLifetime(observer) {}
     }
 

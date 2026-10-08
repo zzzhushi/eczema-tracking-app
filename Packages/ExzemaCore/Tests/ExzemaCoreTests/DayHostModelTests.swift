@@ -197,6 +197,23 @@ struct DayHostModelTests {
         #expect(model.day.date == oct7 && model.isShowingToday)
     }
 
+    @Test func showingADateOpensItWhenItIsTodayOrEarlier() {
+        let model = makeModel(Clock(lateEvening, losAngeles))
+
+        #expect(model.show(oct5))
+        #expect(model.day.date == oct5)
+        #expect(model.show(oct7))
+        #expect(model.isShowingToday)
+    }
+
+    @Test func showingAFutureDateIsRefusedAndLeavesTheScreenAlone() {
+        let model = makeModel(Clock(lateEvening, losAngeles))
+        model.goBack()
+
+        #expect(model.show(oct8) == false)
+        #expect(model.day.date == oct6)
+    }
+
     @Test func stepsBackAcrossMonthAndYearBoundaries() {
         let newYear = Date(timeIntervalSince1970: 1_767_268_800) // 2026-01-01 04:00 in Los Angeles
         let model = makeModel(Clock(newYear, losAngeles))

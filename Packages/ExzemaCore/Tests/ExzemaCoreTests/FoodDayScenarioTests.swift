@@ -2,14 +2,15 @@ import Foundation
 import Testing
 import ExzemaCore
 
-/// The day-boundary scenarios, driven through the same calls the app's notifications and lifecycle make.
+/// A few journeys across the host, the drafts, the food model, and the store. The policy for each event is
+/// owned by `DayHostModelTests` and the draft state transitions by `FoodDraftsTests`.
 @MainActor
-@Suite("Food day scenarios")
+@Suite("Food day journeys")
 struct FoodDayScenarioTests {
     private let losAngeles = TimeZone(identifier: "America/Los_Angeles")!
     private let tokyo = TimeZone(identifier: "Asia/Tokyo")!
+    private let honolulu = TimeZone(identifier: "Pacific/Honolulu")!
     private let lateEvening = Date(timeIntervalSince1970: 1_791_442_680) // 2026-10-07 23:58 in Los Angeles
-    private let oct6 = LocalDate(year: 2026, month: 10, day: 6)
     private let oct7 = LocalDate(year: 2026, month: 10, day: 7)
     private let oct8 = LocalDate(year: 2026, month: 10, day: 8)
 
@@ -19,155 +20,72 @@ struct FoodDayScenarioTests {
         init(_ now: Date, _ timeZone: TimeZone) { self.now = now; self.timeZone = timeZone }
     }
 
-    /// Wires the host, drafts, and food model the way the screens do.
+    /// The app's day screen: a session over a temporary store. The food model is built for the day on screen
+    /// each time it is asked for, as the screen does by giving the food section the day as its identity.
     @MainActor
     private struct App {
         let clock: Clock
         let session: DaySession
         let store: DayStore
-        let model: FoodLogModel
-        var host: DayHostModel { session.host }
+        let matcher: FoodMatcher
 
-        init(clock: Clock, directory: URL) throws {
+        init(clock: Clock) throws {
             self.clock = clock
             session = DaySession(clock: { clock.now }, timeZone: { clock.timeZone })
+            let directory = FileManager.default.temporaryDirectory.appendingPathComponent("FoodDayScenarioTests-\(UUID().uuidString)")
+            try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
             store = try DayStore(at: directory.appendingPathComponent("store.sqlite"))
-            let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
-            model = session.makeFoodLogModel(for: session.host.day, store: store, matcher: matching.matcher)
+            matcher = try FoodMatching.load(dataDirectory: shippedDataDirectory).matcher
         }
 
-        /// What the food section does when the day on screen changes.
-        func sync() { model.show(host.day) }
-        func advance(_ seconds: TimeInterval) { clock.now = clock.now.addingTimeInterval(seconds); session.handle(.clockChanged); sync() }
-        func tapBack() { host.goBack(); sync() }
-        func tapForward() { host.goForward(); sync() }
-        func tapToday() { host.goToToday(); sync() }
-        func leave() { session.handle(.enteredBackground) }
-        func returnAfter(_ seconds: TimeInterval) {
-            clock.now = clock.now.addingTimeInterval(seconds)
-            session.handle(.becameActive)
-            sync()
-        }
-        func changeTimeZone(to zone: TimeZone) { clock.timeZone = zone; session.handle(.clockChanged); sync() }
+        var host: DayHostModel { session.host }
+        var model: FoodLogModel { session.makeFoodLogModel(for: host.day, store: store, matcher: matcher) }
+
+        func advance(_ seconds: TimeInterval) { clock.now = clock.now.addingTimeInterval(seconds); session.handle(.clockChanged) }
+        func changeTimeZone(to zone: TimeZone) { clock.timeZone = zone; session.handle(.clockChanged) }
         func lines(on date: LocalDate) throws -> [String] { try store.foodLines(on: date).map(\.text) }
     }
 
     private func makeApp(timeZone: TimeZone? = nil) throws -> App {
-        let directory = FileManager.default.temporaryDirectory.appendingPathComponent("FoodDayScenarioTests-\(UUID().uuidString)")
-        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        return try App(clock: Clock(lateEvening, timeZone ?? losAngeles), directory: directory)
+        try App(clock: Clock(lateEvening, timeZone ?? losAngeles))
     }
 
-    @Test func dinnerTypedAtMidnightIsSavedOnTheDayItWasTypedFor() throws {
+    @Test func dinnerTypedBeforeMidnightIsSavedOnTheDayItWasTypedFor() throws {
         let app = try makeApp()
         app.model.updateDraft("rice and tofu")
 
         app.advance(180)
-        #expect(app.model.day.date == oct7 && app.host.daysBack == 1)
         app.model.save()
 
+        #expect(app.host.day.date == oct7)
         #expect(try app.lines(on: oct7) == ["rice and tofu"])
         #expect(try app.lines(on: oct8).isEmpty)
     }
 
-    @Test func anEditOpenAtMidnightUpdatesTheOriginalLine() throws {
+    @Test func returningTheNextMorningWithUnsavedTextKeepsThatDayAndItsText() throws {
         let app = try makeApp()
         app.model.updateDraft("rice")
-        app.model.save()
-        app.model.beginEditing(try #require(app.model.lines.first))
-        app.model.updateDraft("rice and tofu")
+        app.session.handle(.enteredBackground)
 
-        app.advance(180)
-        app.model.save()
+        app.clock.now = app.clock.now.addingTimeInterval(10 * 3600)
+        app.session.handle(.becameActive)
 
-        #expect(try app.lines(on: oct7) == ["rice and tofu"])
-        #expect(try app.store.foodLines(on: oct7).count == 1)
-    }
-
-    @Test func backfillingAPastDayContinuesAcrossMidnight() throws {
-        let app = try makeApp()
-        app.tapBack()
-        app.model.updateDraft("oatmeal")
-
-        app.advance(180)
-        app.model.save()
-
-        #expect(app.model.day.date == oct6 && app.host.daysBack == 2)
-        #expect(try app.lines(on: oct6) == ["oatmeal"])
-    }
-
-    @Test func openingTheAppNextMorningWithNothingUnsavedShowsToday() throws {
-        let app = try makeApp()
-        app.leave()
-
-        app.returnAfter(10 * 3600)
-
-        #expect(app.model.day.date == oct8 && app.host.isShowingToday)
-    }
-
-    @Test func openingTheAppNextMorningWithUnsavedTextKeepsThatDayAndText() throws {
-        let app = try makeApp()
-        app.model.updateDraft("rice")
-        app.leave()
-
-        app.returnAfter(10 * 3600)
-
-        #expect(app.model.day.date == oct7 && !app.host.isShowingToday)
-        #expect(app.model.draft == "rice")
-        app.tapToday()
-        #expect(app.model.day.date == oct8 && app.model.draft.isEmpty)
-        app.model.updateDraft("oatmeal")
-        app.model.save()
-        app.tapBack()
-        #expect(app.model.draft == "rice", "the text typed for Oct 7 must still be there")
-    }
-
-    @Test func textTypedForOneDayStaysWithItWhenSteppingToAnother() throws {
-        let app = try makeApp()
-        app.model.updateDraft("rice")
-
-        app.tapBack()
-        #expect(app.model.draft.isEmpty)
-        app.tapForward()
-
+        #expect(app.host.day.date == oct7 && !app.host.isShowingToday)
         #expect(app.model.draft == "rice")
     }
 
-    @Test func aTimeZoneChangeDoesNotMoveTheScreenOrTheTypedText() throws {
-        let app = try makeApp()
-        app.model.updateDraft("rice")
-
-        app.changeTimeZone(to: tokyo)
-
-        #expect(app.model.day.date == oct7 && app.model.day.timeZoneIdentifier == "Asia/Tokyo")
-        #expect(app.model.draft == "rice")
-        #expect(app.host.today.date == oct8)
-    }
-
-    @Test func aDraftOnADateThatBecomesFutureAfterATimeZoneChangeIsNotStranded() throws {
+    @Test func aDraftOnADateThatBecameFutureAfterATimeZoneChangeIsKeptAndSavesOnThatDate() throws {
         let app = try makeApp(timeZone: tokyo) // 2026-10-08 15:58
         app.model.updateDraft("rice and tofu")
 
-        app.changeTimeZone(to: TimeZone(identifier: "Pacific/Honolulu")!) // 2026-10-07 20:58
-
-        #expect(app.model.day.date == oct8 && app.model.draft == "rice and tofu")
+        app.changeTimeZone(to: honolulu) // 2026-10-07 20:58
+        #expect(app.host.day.date == oct8 && app.model.draft == "rice and tofu")
         app.model.save()
+
         #expect(try app.lines(on: oct8) == ["rice and tofu"])
     }
 
-    @Test func aDraftOnADateThatBecameFutureIsReachableByStepping() throws {
-        let app = try makeApp(timeZone: tokyo)
-        app.model.updateDraft("rice and tofu")
-        app.changeTimeZone(to: TimeZone(identifier: "Pacific/Honolulu")!)
-        app.tapBack()
-        #expect(app.model.day.date == oct7 && app.model.draft.isEmpty)
-
-        app.tapForward()
-
-        #expect(app.model.day.date == oct8 && app.model.draft == "rice and tofu")
-    }
-
-    @Test func aNewEntryTypedBeforeAnEditSurvivesTheEditAndMidnight() throws {
+    @Test func anEditAndAHeldNewEntrySurviveMidnight() throws {
         let app = try makeApp()
         app.model.updateDraft("rice")
         app.model.save()
@@ -178,7 +96,7 @@ struct FoodDayScenarioTests {
         app.advance(180)
         app.model.save()
 
-        #expect(app.model.day.date == oct7 && app.model.draft == "a late snack of oatmeal")
         #expect(try app.lines(on: oct7) == ["rice and tofu"])
+        #expect(app.model.draft == "a late snack of oatmeal")
     }
 }

@@ -8,7 +8,7 @@ import Observation
 @MainActor
 @Observable
 public final class FoodLogModel {
-    public private(set) var day: Day
+    public let day: Day
     public private(set) var preview: [ParsedItem] = []
     public private(set) var lines: [FoodLine] = []
     public private(set) var errorMessage: String?
@@ -94,16 +94,6 @@ public final class FoodLogModel {
         guard perform("foodItem.deleteFailed", { try store.deleteFoodItem(item.id) }), let owner else { return }
         drafts.discardEdit(owner, for: day.date)
         preview = matcher.parse(draft)
-    }
-
-    /// Show another day, with that day's own unsaved text and open edit. The day left behind keeps its own.
-    public func show(_ newDay: Day) {
-        let dateChanged = newDay.date != day.date
-        day = newDay
-        guard dateChanged else { return }
-        preview = matcher.parse(draft)
-        errorMessage = nil
-        reload()
     }
 
     public func reload() {
