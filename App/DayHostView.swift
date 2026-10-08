@@ -36,10 +36,12 @@ struct DayHostView: View {
                     CheckInSection(model: model)
                     FoodSectionView(day: day)
                         .id(model.dataVersion)
+                    LocationSection(model: model)
                 }
                 .scrollDismissesKeyboard(.interactively)
                 .task(id: LoadKey(date: host.shownDate, dataVersion: model.dataVersion)) {
                     model.loadCheckIns()
+                    model.loadPlaces()
                 }
             }
             .navigationTitle(day.date.longTitle)

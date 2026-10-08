@@ -43,6 +43,6 @@ targets:
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: eXzema
-        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: eXzema notes your approximate location, rounded to about 11 km, to look up weather and air quality for each day.
+        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: eXzema notes your approximate location, rounded to about 11 km, to show the city and later to look up weather and air quality for each day.
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait

@@ -16,6 +16,7 @@ final class AppModel {
     private(set) var savedDates: Set<LocalDate> = []
     private(set) var areas: [Area] = []
     private(set) var checkIns: [String: CheckIn] = [:]
+    private(set) var places = DayPlaces(names: [], captureCount: 0)
     /// Changes when debug actions clear data, so the food section reloads.
     private(set) var dataVersion = 0
 
@@ -58,7 +59,7 @@ final class AppModel {
         self.session = session
         self.clock = clock
         let source = location
-        locationRecorder = openedStore.map { LocationRecorder(store: $0, source: source, now: clock) }
+        locationRecorder = openedStore.map { LocationRecorder(store: $0, source: source, now: clock, places: CityNamer()) }
         foodServices = FoodServices(store: openedStore, matching: matching, session: session)
         dayEvents = DayEventObserver(
             session: session,
@@ -77,7 +78,9 @@ final class AppModel {
         isCapturingLocation = true
         Task {
             await locationRecorder.captureIfDue()
+            await locationRecorder.fillMissingPlaceNames()
             isCapturingLocation = false
+            loadPlaces()
         }
     }
 
@@ -89,6 +92,16 @@ final class AppModel {
             checkIns = Dictionary(uniqueKeysWithValues: rows.map { ($0.areaID, $0) })
         } catch {
             Log.storage.error("store.readFailed", public: ["query": "checkIns"], private: ["error": String(describing: error)])
+        }
+    }
+
+    /// Load the places captured on the shown date.
+    func loadPlaces() {
+        guard let store else { return }
+        do {
+            places = try store.places(on: session.host.shownDate)
+        } catch {
+            Log.storage.error("store.readFailed", public: ["query": "places"], private: ["error": String(describing: error)])
         }
     }
 

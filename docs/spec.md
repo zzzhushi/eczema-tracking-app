@@ -45,7 +45,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 
 ### Privacy boundary
 
-- The app never sends user data off the phone on its own. The only automatic network request is the weather and air-quality fetch, with coordinates rounded to about 11 km.
+- The app never sends user data off the phone on its own. The only automatic network requests are the lookup of a city name for a captured location and the weather and air-quality fetch, each sending only coordinates rounded to about 11 km.
 - Exports the user starts go to a destination the user picks; a cloud destination shows a warning first. For personal use, exports stay off the cloud.
 - Photos stay inside the app: downscaled to about 1600 px, encrypted at rest, never in the Photos library, excluded from device and cloud backups. They reach the user's Mac only on request. Test photos stay in a local folder that git ignores; the repository is public and never holds photos.
 
@@ -81,7 +81,7 @@ Everything stays on the phone or the user's Mac; no third-party service receives
 
 ## Non-functional requirements
 
-- Privacy: the app never sends user data off the phone on its own; the only automatic network request is the weather and air-quality fetch with coordinates rounded to about 11 km. Exports the user starts go to a destination the user picks, with a warning for cloud destinations. Photos never reach the Photos library, device and cloud backups, or the repository.
+- Privacy: the app never sends user data off the phone on its own; the only automatic network requests are the city-name lookup and the weather and air-quality fetch, each with coordinates rounded to about 11 km. Exports the user starts go to a destination the user picks, with a warning for cloud destinations. Photos never reach the Photos library, device and cloud backups, or the repository.
 - Cost: no paid services and no per-use AI costs.
 - Ease of use: a typical day takes about a minute; an unchanged routine takes zero taps; anything that can be automatic is.
 - Data honesty: unknown is never treated as zero; raw inputs are stored and combinations computed; every result shows its confidence and data coverage.

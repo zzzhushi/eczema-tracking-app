@@ -4,7 +4,7 @@ What the app asks the user to allow, and the screens where they review it.
 
 ## First launch
 
-- The first launch shows one full screen with a Continue button. It states that the app finds patterns in the user's own data and does not give medical advice, that the data stays on the phone and is not backed up so deleting the app deletes it, and that the app notes an approximate location while in use.
+- The first launch shows one full screen with a Continue button. It states that the app finds patterns in the user's own data and does not give medical advice, that the data stays on the phone and is not backed up so deleting the app deletes it, and that the app notes an approximate location while in use and sends the rounded position to Apple's maps service to find the city name.
 - Continue records that the screen was seen and then asks for location permission. The screen does not appear again.
 - The flag is an app preference kept in `UserDefaults`, not in the store. It is lost with the data when the app is deleted.
 

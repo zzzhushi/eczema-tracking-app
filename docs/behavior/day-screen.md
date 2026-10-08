@@ -10,6 +10,10 @@ The home screen: which date is on screen and how it changes. What each section h
 - A dot under a date means the day has a saved row from any feature. Looking at a day stores nothing.
 - A date after today is dimmed and cannot be opened, except as described under time zones.
 
+## Sections
+
+Below the week strip, the shown date lists its skin check-in, its food, and the cities recorded for it. The sections are described in [skin check-in](skin-check-in.md), [food logging](food-logging.md), and [environment and health](environment-and-health.md#place-names).
+
 ## Which date is on screen
 
 - The app opens on today, the phone's calendar date. Only the user moves the date on screen, apart from the two cases below.
