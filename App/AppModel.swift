@@ -2,12 +2,15 @@ import ExzemaCore
 import Foundation
 import Observation
 
-/// Opens the store and diagnostics at launch and exposes the saved days to the screen.
+/// Opens the store and diagnostics at launch and exposes the saved days and the selected day to the screens.
 @MainActor
 @Observable
 final class AppModel {
     private(set) var days: [Day] = []
+    private(set) var navigation = DayNavigation(today: AppModel.currentDate())
     private(set) var failure: String?
+
+    var savedDates: Set<LocalDate> { Set(days.map(\.date)) }
 
     private let store: DayStore?
     private let diagnostics = DiagnosticsListener()
@@ -24,6 +27,15 @@ final class AppModel {
             Log.storage.fault("store.unavailable", private: ["error": String(describing: error)])
         }
         reload()
+    }
+
+    func select(_ date: LocalDate) {
+        navigation.select(date)
+    }
+
+    /// Re-read the phone's date; call when the app becomes active, since midnight may have passed.
+    func refreshDate() {
+        navigation.dateChanged(to: Self.currentDate())
     }
 
     func saveToday() {
@@ -53,5 +65,9 @@ final class AppModel {
 
     private func reload() {
         days = (try? store?.days()) ?? []
+    }
+
+    private static func currentDate() -> LocalDate {
+        Day(loggedAt: Date(), in: .current).date
     }
 }

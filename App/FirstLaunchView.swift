@@ -1,0 +1,28 @@
+import SwiftUI
+
+struct FirstLaunchView: View {
+    let onContinue: () -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 24) {
+            Spacer()
+            Text("eXzema").font(.largeTitle.bold())
+            VStack(alignment: .leading, spacing: 16) {
+                Text("It finds patterns in your own data. It does not give medical advice.")
+                Text(DataNote.deletion)
+            }
+            .font(.title3)
+            Spacer()
+            Button(action: onContinue) {
+                Text("Continue").frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
+        }
+        .padding(24)
+    }
+}
+
+enum DataNote {
+    static let deletion = "Your data stays on this phone and is not backed up. Deleting the app deletes its data."
+}

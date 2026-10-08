@@ -1,8 +1,9 @@
 import ExzemaCore
 import SwiftUI
 
-struct DayListView: View {
+struct SettingsView: View {
     let model: AppModel
+    @Environment(\.dismiss) private var dismiss
     #if DEBUG
     @State private var confirmingClearAll = false
     #endif
@@ -13,16 +14,8 @@ struct DayListView: View {
                 if let failure = model.failure {
                     Text(failure).foregroundStyle(.red)
                 }
-                Section("Saved days") {
-                    if model.days.isEmpty {
-                        Text("No days saved yet").foregroundStyle(.secondary)
-                    }
-                    ForEach(model.days, id: \.date) { day in
-                        VStack(alignment: .leading) {
-                            Text(day.date.isoString)
-                            Text(day.timeZoneIdentifier).font(.caption).foregroundStyle(.secondary)
-                        }
-                    }
+                Section("Your data") {
+                    Text(DataNote.deletion)
                 }
                 Section {
                 } footer: {
@@ -38,7 +31,13 @@ struct DayListView: View {
                 }
                 #endif
             }
-            .navigationTitle("eXzema")
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") { dismiss() }
+                }
+            }
             #if DEBUG
             .confirmationDialog("Delete every saved day?", isPresented: $confirmingClearAll, titleVisibility: .visible) {
                 Button("Delete all days", role: .destructive) { model.clearAll() }
