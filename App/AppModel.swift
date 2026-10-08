@@ -8,6 +8,8 @@ import Observation
 final class AppModel {
     private(set) var days: [Day] = []
     private(set) var navigation = DayNavigation(today: AppModel.currentDate())
+    private(set) var areas: [Area] = []
+    private(set) var checkIns: [String: CheckIn] = [:]
     private(set) var failure: String?
 
     var savedDates: Set<LocalDate> { Set(days.map(\.date)) }
@@ -31,11 +33,25 @@ final class AppModel {
 
     func select(_ date: LocalDate) {
         navigation.select(date)
+        reloadCheckIns()
     }
 
     /// Re-read the phone's date; call when the app becomes active, since midnight may have passed.
     func refreshDate() {
         navigation.dateChanged(to: Self.currentDate())
+        reloadCheckIns()
+    }
+
+    /// Give the selected day's area a rating, or clear it with nil.
+    func setRating(_ kind: RatingKind, to value: Int?, area: Area) {
+        guard let store else { return }
+        let day = Day(date: navigation.selected, timeZoneIdentifier: TimeZone.current.identifier)
+        do {
+            try store.setRating(kind, to: value, area: area.id, on: day)
+        } catch {
+            Log.checkIn.error("checkin.saveFailed", private: ["error": String(describing: error)])
+        }
+        reload()
     }
 
     func saveToday() {
@@ -64,7 +80,25 @@ final class AppModel {
     #endif
 
     private func reload() {
-        days = (try? store?.days()) ?? []
+        days = read("days") { try $0.days() } ?? []
+        areas = read("areas") { try $0.activeAreas() } ?? []
+        reloadCheckIns()
+    }
+
+    private func reloadCheckIns() {
+        let rows = read("checkIns") { try $0.checkIns(on: navigation.selected) } ?? []
+        checkIns = Dictionary(uniqueKeysWithValues: rows.map { ($0.areaID, $0) })
+    }
+
+    /// Read from the store, logging a failure instead of silently showing an empty screen.
+    private func read<Value>(_ name: StaticString, _ query: (DayStore) throws -> Value) -> Value? {
+        guard let store else { return nil }
+        do {
+            return try query(store)
+        } catch {
+            Log.storage.error("store.readFailed", public: ["query": .text(name)], private: ["error": String(describing: error)])
+            return nil
+        }
     }
 
     private static func currentDate() -> LocalDate {

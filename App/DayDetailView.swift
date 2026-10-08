@@ -3,14 +3,11 @@ import SwiftUI
 
 /// One day's sections. Each feature adds its own section here.
 struct DayDetailView: View {
-    let date: LocalDate
-    let isToday: Bool
+    let model: AppModel
 
     var body: some View {
         List {
-            Section("Skin check-in") {
-                Text("Not rated").foregroundStyle(.secondary)
-            }
+            CheckInSection(model: model)
             Section("Food") {
                 Text("Nothing logged").foregroundStyle(.secondary)
             }

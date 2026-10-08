@@ -11,7 +11,7 @@ struct DayScreen: View {
             VStack(spacing: 0) {
                 WeekStripView(model: model)
                 Divider()
-                DayDetailView(date: model.navigation.selected, isToday: model.navigation.selected == model.navigation.today)
+                DayDetailView(model: model)
             }
             .navigationTitle(model.navigation.selected.longTitle)
             .navigationBarTitleDisplayMode(.inline)
