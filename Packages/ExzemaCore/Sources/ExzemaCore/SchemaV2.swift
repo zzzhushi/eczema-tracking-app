@@ -1,7 +1,7 @@
 import GRDB
 
 extension DayStore {
-    /// The skin check-in slice's tables: areas and per-day ratings.
+    /// The skin check-in slice's tables: areas, per-day ratings, and location captures.
     static func registerV2Migration(in migrator: inout DatabaseMigrator) {
         migrator.registerMigration("v2") { db in
             try db.execute(sql: """
@@ -20,6 +20,15 @@ extension DayStore {
                     updatedAt TEXT NOT NULL,
                     PRIMARY KEY (dayDate, areaId)
                 );
+                CREATE TABLE location_capture (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    capturedAt TEXT NOT NULL,
+                    localDate TEXT NOT NULL,
+                    timeZoneIdentifier TEXT NOT NULL,
+                    latitudeTenths INTEGER NOT NULL,
+                    longitudeTenths INTEGER NOT NULL
+                );
+                CREATE INDEX location_capture_capturedAt ON location_capture (capturedAt);
                 PRAGMA user_version = 2;
                 """)
         }

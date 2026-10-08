@@ -9,7 +9,10 @@ struct RootView: View {
         if acknowledged {
             DayScreen(model: model)
         } else {
-            FirstLaunchView { acknowledged = true }
+            FirstLaunchView {
+                acknowledged = true
+                model.location.requestPermission()
+            }
         }
     }
 }

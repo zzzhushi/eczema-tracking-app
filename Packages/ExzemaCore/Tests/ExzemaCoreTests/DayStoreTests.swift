@@ -93,6 +93,8 @@ struct DayStoreTests {
             let checkIn = try #require(try store.checkIns(on: DayStoreTestSupport.fixtureDay.date).first)
             #expect((checkIn.areaID, checkIn.feel, checkIn.look) == ("face", 4, 6))
             #expect(checkIn.updatedAt == DayStoreTestSupport.fixtureRatedAt)
+            let capture = try #require(try store.locationCaptures().first)
+            #expect((capture.latitudeTenths, capture.longitudeTenths) == (378, -1224))
         }
     }
 }

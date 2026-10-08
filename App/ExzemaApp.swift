@@ -10,7 +10,10 @@ struct ExzemaApp: App {
         WindowGroup {
             RootView(model: model)
                 .onChange(of: scenePhase) { _, phase in
-                    if phase == .active { model.refreshDate() }
+                    if phase == .active {
+                        model.refreshDate()
+                        model.captureLocationIfDue()
+                    }
                 }
         }
     }

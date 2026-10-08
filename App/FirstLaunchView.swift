@@ -10,6 +10,7 @@ struct FirstLaunchView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Text("It finds patterns in your own data. It does not give medical advice.")
                 Text(DataNote.deletion)
+                Text(DataNote.location)
             }
             .font(.title3)
             Spacer()
@@ -24,5 +25,6 @@ struct FirstLaunchView: View {
 }
 
 enum DataNote {
+    static let location = "While you use eXzema it notes your approximate location, rounded to about 11 km, to look up weather later."
     static let deletion = "Your data stays on this phone and is not backed up. Deleting the app deletes its data."
 }

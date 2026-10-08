@@ -7,6 +7,7 @@ public enum LogCategory: String, CaseIterable, Sendable {
     case photos
     case analysis
     case diagnostics
+    case environment
 }
 
 /// Unified-log levels. Notice and above persist on the phone; debug and info are live only.
@@ -157,4 +158,5 @@ public enum Log {
     public static let photos = CategoryLogger(.photos)
     public static let analysis = CategoryLogger(.analysis)
     public static let diagnostics = CategoryLogger(.diagnostics)
+    public static let environment = CategoryLogger(.environment)
 }

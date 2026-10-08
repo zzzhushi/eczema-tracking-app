@@ -14,7 +14,10 @@ final class AppModel {
 
     var savedDates: Set<LocalDate> { Set(days.map(\.date)) }
 
+    let location = LocationService()
+
     private let store: DayStore?
+    private let locationRecorder: LocationRecorder?
     private let diagnostics = DiagnosticsListener()
 
     init() {
@@ -28,7 +31,16 @@ final class AppModel {
             failure = "The store could not be opened."
             Log.storage.fault("store.unavailable", private: ["error": String(describing: error)])
         }
+        let source = location
+        locationRecorder = store.map { LocationRecorder(store: $0, source: source) }
+        location.onAuthorized = { [weak self] in self?.captureLocationIfDue() }
         reload()
+    }
+
+    /// Record the rounded location unless one was taken within the last hour; does nothing without permission.
+    func captureLocationIfDue() {
+        guard location.isAuthorized, let locationRecorder else { return }
+        Task { await locationRecorder.captureIfDue() }
     }
 
     func select(_ date: LocalDate) {

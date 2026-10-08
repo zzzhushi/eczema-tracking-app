@@ -61,7 +61,7 @@ struct LoggingTests {
 
     @Test func categoriesAreAFixedList() {
         #expect(Set(LogCategory.allCases.map(\.rawValue)) == [
-            "app", "storage", "foodLogging", "checkIn", "photos", "analysis", "diagnostics",
+            "app", "storage", "foodLogging", "checkIn", "photos", "analysis", "diagnostics", "environment",
         ])
     }
 }

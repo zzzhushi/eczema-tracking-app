@@ -35,6 +35,11 @@ func writeFixtureStoreForCurrentSchema() throws {
         try store.save(DayStoreTestSupport.fixtureDay)
         try store.setRating(.feel, to: 4, area: "face", on: DayStoreTestSupport.fixtureDay, at: DayStoreTestSupport.fixtureRatedAt)
         try store.setRating(.look, to: 6, area: "face", on: DayStoreTestSupport.fixtureDay, at: DayStoreTestSupport.fixtureRatedAt)
+        try store.addLocationCapture(
+            Coordinate(latitude: 37.7749, longitude: -122.4194),
+            at: DayStoreTestSupport.fixtureRatedAt,
+            in: TimeZone(identifier: DayStoreTestSupport.fixtureDay.timeZoneIdentifier)!
+        )
     }
 
     let queue = try DatabaseQueue(path: url.path)

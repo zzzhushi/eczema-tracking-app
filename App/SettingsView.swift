@@ -1,4 +1,5 @@
 import ExzemaCore
+import CoreLocation
 import SwiftUI
 
 struct SettingsView: View {
@@ -8,6 +9,14 @@ struct SettingsView: View {
     @State private var confirmingClearAll = false
     #endif
 
+    private var locationStatus: String {
+        switch model.location.status {
+        case .notDetermined: "Not asked yet"
+        case .authorizedWhenInUse, .authorizedAlways: "On while you use the app"
+        default: "Off. eXzema does not record where you are."
+        }
+    }
+
     var body: some View {
         NavigationStack {
             List {
@@ -16,6 +25,16 @@ struct SettingsView: View {
                 }
                 Section("Your data") {
                     Text(DataNote.deletion)
+                }
+                Section {
+                    Text(locationStatus)
+                    if model.location.status != .notDetermined {
+                        Link("Open iOS Settings", destination: URL(string: UIApplication.openSettingsURLString)!)
+                    }
+                } header: {
+                    Text("Location")
+                } footer: {
+                    Text(DataNote.location)
                 }
                 Section {
                 } footer: {
