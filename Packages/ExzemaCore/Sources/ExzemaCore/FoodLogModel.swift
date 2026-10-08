@@ -3,33 +3,40 @@ import Observation
 
 /// The state behind one day's food section: the text being typed, its live parse, and the saved lines.
 ///
-/// A match is stored when a line is saved, so what the user sees in the preview is what is kept.
+/// A match is stored when a line is saved, so what the user sees in the preview is what is kept. Unsaved
+/// text and an open edit belong to the date they were typed for and live in `FoodDrafts`.
 @MainActor
 @Observable
 public final class FoodLogModel {
     public private(set) var day: Day
-    public private(set) var draft = ""
     public private(set) var preview: [ParsedItem] = []
     public private(set) var lines: [FoodLine] = []
-    /// The saved line being reopened, or nil when the draft is new.
-    public private(set) var editing: FoodLineID?
     public private(set) var errorMessage: String?
 
     private let store: DayStore
     private let matcher: FoodMatcher
+    private let drafts: FoodDrafts
 
-    public init(day: Day, store: DayStore, matcher: FoodMatcher) {
+    public init(day: Day, store: DayStore, matcher: FoodMatcher, drafts: FoodDrafts = FoodDrafts()) {
         self.day = day
         self.store = store
         self.matcher = matcher
+        self.drafts = drafts
+        preview = matcher.parse(drafts.text(for: day.date))
         reload()
     }
+
+    /// The unsaved text for the day on screen.
+    public var draft: String { drafts.text(for: day.date) }
+
+    /// The saved line being reopened on this day, or nil when the draft is new.
+    public var editing: FoodLineID? { drafts.editing(for: day.date) }
 
     /// A line with no parsed item would store nothing, so it cannot be saved.
     public var canSave: Bool { !preview.isEmpty }
 
     public func updateDraft(_ text: String) {
-        draft = text
+        drafts.setText(text, for: day.date)
         preview = matcher.parse(text)
     }
 
@@ -42,8 +49,8 @@ public final class FoodLogModel {
             } else {
                 try store.addFoodLine(text: draft, items: preview, on: day)
             }
-            self.editing = nil
-            updateDraft("")
+            drafts.clear(for: day.date)
+            preview = []
             errorMessage = nil
         } catch {
             errorMessage = "The food could not be saved."
@@ -53,14 +60,14 @@ public final class FoodLogModel {
     }
 
     public func beginEditing(_ line: FoodLine) {
-        editing = line.id
-        updateDraft(line.text)
+        drafts.beginEditing(line.id, text: line.text, for: day.date)
+        preview = matcher.parse(line.text)
         errorMessage = nil
     }
 
     public func cancelEditing() {
-        editing = nil
-        updateDraft("")
+        drafts.clear(for: day.date)
+        preview = []
         errorMessage = nil
     }
 
@@ -77,13 +84,13 @@ public final class FoodLogModel {
         cancelEditing()
     }
 
-    /// Show another day. The typed draft stays, so text typed across midnight or before stepping to another
-    /// day is saved under the day then showing; an edit of a line on the old day ends.
+    /// Show another day, with that day's own unsaved text and open edit. The day left behind keeps its own.
     public func show(_ newDay: Day) {
         let dateChanged = newDay.date != day.date
         day = newDay
         guard dateChanged else { return }
-        if editing != nil { cancelEditing() }
+        preview = matcher.parse(draft)
+        errorMessage = nil
         reload()
     }
 

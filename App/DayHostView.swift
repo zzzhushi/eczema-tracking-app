@@ -2,19 +2,20 @@ import ExzemaCore
 import SwiftUI
 import UIKit
 
-/// Opens on today and steps back through earlier days; the food section does all the food work.
+/// Shows one date at a time and steps through them; the food section does all the food work.
 ///
-/// The day on screen is refreshed when the calendar day or time zone changes and when the app returns to the
-/// foreground, so a screen left open past midnight moves to the new day.
+/// The date on screen changes only when the user steps, taps Today, or returns to the app after the date
+/// changed with nothing unsaved. The calendar day and time zone changing refresh what "today" is, which
+/// ages the caption and limits the forward arrow, and never move the screen.
 struct DayHostView: View {
     let model: AppModel
-    @State private var host = DayHostModel()
     @Environment(\.scenePhase) private var scenePhase
     #if DEBUG
     @State private var confirmingClearAll = false
     #endif
 
     var body: some View {
+        let host = model.host
         let day = host.day
         NavigationStack {
             List {
@@ -31,7 +32,7 @@ struct DayHostView: View {
                         Spacer()
                         VStack {
                             Text(day.date.isoString).font(.headline)
-                            Text(caption).font(.caption).foregroundStyle(.secondary)
+                            Text(caption(daysBack: host.daysBack)).font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer()
                         Button { host.goForward() } label: { Image(systemName: "chevron.right") }
@@ -39,6 +40,10 @@ struct DayHostView: View {
                             .disabled(!host.canGoForward)
                     }
                     .buttonStyle(.borderless)
+                    if !host.isShowingToday {
+                        Button("Back to today") { host.goToToday() }
+                            .buttonStyle(.borderless)
+                    }
                 }
                 FoodSectionView(day: day)
                     .id(model.dataVersion)
@@ -50,6 +55,9 @@ struct DayHostView: View {
                 Section("Debug") {
                     Button("Clear today", role: .destructive) { model.clearToday() }
                     Button("Clear all days", role: .destructive) { confirmingClearAll = true }
+                    Button("Simulate midnight") { model.simulateMidnight() }
+                    Button("Simulate next morning") { model.simulateNextMorning() }
+                    Button("Reset clock") { model.resetClock() }
                     Button("Crash now", role: .destructive) { DebugActions.crash() }
                     Button("Hang for 5 seconds") { DebugActions.hang() }
                 }
@@ -68,12 +76,19 @@ struct DayHostView: View {
         .onReceive(NotificationCenter.default.publisher(for: .NSSystemTimeZoneDidChange)) { _ in host.refresh() }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.significantTimeChangeNotification)) { _ in host.refresh() }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { host.refresh() }
+            switch phase {
+            case .background:
+                host.wentToBackground()
+            case .active:
+                host.becameActive(hasUnsavedWork: model.foodServices.drafts.hasUnsavedWork(on: host.shownDate))
+            default:
+                break
+            }
         }
     }
 
-    private var caption: String {
-        switch host.daysBack {
+    private func caption(daysBack: Int) -> String {
+        switch daysBack {
         case 0: "Today"
         case 1: "Yesterday"
         case let days: "\(days) days ago"

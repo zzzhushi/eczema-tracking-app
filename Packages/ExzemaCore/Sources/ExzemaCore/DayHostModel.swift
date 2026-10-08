@@ -1,17 +1,20 @@
 import Foundation
 import Observation
 
-/// Which day the screen shows: today, or a day the user stepped back to.
+/// Which date the screen shows. Only the user, the Today button, and a return to the app after the date
+/// changed move it; the clock and time zone never do.
 ///
-/// The model only reads the clock and time zone in `init` and `refresh()`, so a screen must call `refresh()`
-/// when the calendar day changes, the time zone changes, or the app returns to the foreground. Today follows
-/// the clock; a day the user stepped back to stays put. Never a day after today.
+/// "Today" is the phone's calendar date and stays live: it sets the caption and the limit of the forward
+/// arrow. The model reads the clock only in `init`, `refresh()`, and the foreground transitions, so a screen
+/// calls `refresh()` when the calendar day or time zone changes.
 @MainActor
 @Observable
 public final class DayHostModel {
     public private(set) var now: Date
     public private(set) var timeZone: TimeZone
-    private var pinned: LocalDate?
+    public private(set) var shownDate: LocalDate
+    /// What today was when the app last left the foreground, or nil while it is in front.
+    private var dateWhenLeft: LocalDate?
 
     private let clock: () -> Date
     private let currentTimeZone: () -> TimeZone
@@ -22,35 +25,57 @@ public final class DayHostModel {
     ) {
         self.clock = clock
         self.currentTimeZone = timeZone
-        now = clock()
-        self.timeZone = timeZone()
+        let now = clock()
+        let zone = timeZone()
+        self.now = now
+        self.timeZone = zone
+        shownDate = Day(loggedAt: now, in: zone).date
     }
 
     public var today: Day { Day(loggedAt: now, in: timeZone) }
 
     /// The day on screen, logged in the phone's current time zone.
-    public var day: Day {
-        pinned.map { Day(date: $0, timeZoneIdentifier: timeZone.identifier) } ?? today
-    }
+    public var day: Day { Day(date: shownDate, timeZoneIdentifier: timeZone.identifier) }
 
-    public var isToday: Bool { pinned == nil }
-    public var canGoForward: Bool { pinned != nil }
-    public var daysBack: Int { today.date.days(from: day.date) }
+    public var isShowingToday: Bool { shownDate == today.date }
+    public var canGoForward: Bool { shownDate < today.date }
+    /// How many days before today the screen is; zero on today.
+    public var daysBack: Int { max(0, today.date.days(from: shownDate)) }
 
     public func goBack() {
-        pinned = day.date.adding(days: -1)
+        shownDate = shownDate.adding(days: -1)
     }
 
-    /// Does nothing on today. Stepping forward onto today goes back to following the clock.
+    /// Does nothing on today, so a future day is never reachable.
     public func goForward() {
-        guard let pinned else { return }
-        let next = pinned.adding(days: 1)
-        self.pinned = next < today.date ? next : nil
+        guard canGoForward else { return }
+        shownDate = shownDate.adding(days: 1)
     }
 
+    public func goToToday() {
+        shownDate = today.date
+    }
+
+    /// Re-reads the clock and time zone. The date on screen stays, except that a date which a time zone
+    /// change has made a future day moves back to today.
     public func refresh() {
         now = clock()
         timeZone = currentTimeZone()
-        if let pinned, pinned >= today.date { self.pinned = nil }
+        if shownDate > today.date { shownDate = today.date }
+    }
+
+    public func wentToBackground() {
+        refresh()
+        dateWhenLeft = today.date
+    }
+
+    /// Opens today when the date changed while the app was away and the day on screen has no unsaved text or
+    /// open edit. A date that changed while the app was in front never moves the screen.
+    public func becameActive(hasUnsavedWork: Bool) {
+        let before = dateWhenLeft
+        dateWhenLeft = nil
+        refresh()
+        guard let before, before != today.date, !hasUnsavedWork else { return }
+        shownDate = today.date
     }
 }

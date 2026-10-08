@@ -178,17 +178,65 @@ struct FoodLogModelTests {
         #expect(model.lines.first?.text == "rice")
     }
 
-    @Test func movingToAnotherDayKeepsTheDraftAndSavesUnderTheNewDay() throws {
-        let store = try makeStore()
-        let model = try makeModel(for: day, store: store)
+    @Test func eachDayKeepsItsOwnUnsavedText() throws {
+        let model = try makeModel(for: day, store: makeStore())
         model.updateDraft("rice")
 
         model.show(yesterday)
+        #expect(model.draft.isEmpty && model.preview.isEmpty)
+        model.updateDraft("oatmeal")
+
+        model.show(day)
         #expect(model.draft == "rice")
+        model.show(yesterday)
+        #expect(model.draft == "oatmeal")
+    }
+
+    @Test func savingStoresToTheDayOnScreenAndLeavesTheOtherDaysTextAlone() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+        model.show(yesterday)
+        model.updateDraft("oatmeal")
+
         model.save()
 
-        #expect(try store.foodLines(on: yesterday.date).map(\.text) == ["rice"])
+        #expect(try store.foodLines(on: yesterday.date).map(\.text) == ["oatmeal"])
         #expect(try store.foodLines(on: day.date).isEmpty)
+        model.show(day)
+        #expect(model.draft == "rice")
+    }
+
+    @Test func anOpenEditStaysWithItsDayWhileAnotherDayShows() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+        model.save()
+        let line = try #require(model.lines.first)
+        model.beginEditing(line)
+        model.updateDraft("rice and oatmeal")
+
+        model.show(yesterday)
+        #expect(model.editing == nil && model.draft.isEmpty)
+        model.show(day)
+        #expect(model.editing == line.id && model.draft == "rice and oatmeal")
+        model.save()
+
+        #expect(try store.foodLines(on: day.date).map(\.text) == ["rice and oatmeal"])
+        #expect(model.lines.first?.id == line.id)
+    }
+
+    @Test func aModelBuiltAgainOverTheSameDraftsFindsTheTextStillThere() throws {
+        let store = try makeStore()
+        let drafts = FoodDrafts()
+        let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
+        let first = FoodLogModel(day: day, store: store, matcher: matching.matcher, drafts: drafts)
+        first.updateDraft("rice")
+
+        let rebuilt = FoodLogModel(day: day, store: store, matcher: matching.matcher, drafts: drafts)
+
+        #expect(rebuilt.draft == "rice")
+        #expect(rebuilt.preview.map(\.resolution) == [.matched(foodID: "white-rice")])
     }
 
     @Test func movingToAnotherDayShowsThatDaysLines() throws {
@@ -202,19 +250,6 @@ struct FoodLogModelTests {
         model.show(day)
 
         #expect(model.lines.map(\.text) == ["rice"])
-    }
-
-    @Test func movingToAnotherDayEndsAnEditOfTheOldDaysLine() throws {
-        let store = try makeStore()
-        let model = try makeModel(for: day, store: store)
-        model.updateDraft("rice")
-        model.save()
-        model.beginEditing(try #require(model.lines.first))
-
-        model.show(yesterday)
-
-        #expect(model.editing == nil && model.draft.isEmpty)
-        #expect(try store.foodLines(on: day.date).map(\.text) == ["rice"])
     }
 
     @Test func aFailedSaveKeepsTheTypedTextAndSaysSo() throws {
