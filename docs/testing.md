@@ -56,7 +56,7 @@ Collecting from a device needs root. The archive covers the whole phone; keep it
 ## Continuous integration
 
 - GitHub Actions on pull requests and on pushes to the default branch, in one `test` job on the `xcode-27` runner label (`macos-latest` still has an older Xcode).
-- Runs the core package's tests, the pre-commit hook's test, and an unsigned build of the app for the iOS simulator; branch protection on the default branch blocks merging until the latest run passes.
+- Runs the core package's tests, the pre-commit hook's test, and unsigned Debug and Release builds of the app for the iOS simulator, so the Debug-only tools are checked to stay out of Release; branch protection on the default branch blocks merging until the latest run passes.
 - AI evaluations and manual checks are excluded.
 - GitHub's runner images can lag a new Xcode release. If the `xcode-27` label breaks, fall back to `macos-latest` running only the core package's tests, which must then avoid Xcode 27-only APIs.
 
