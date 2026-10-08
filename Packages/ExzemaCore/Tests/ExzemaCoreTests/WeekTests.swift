@@ -47,4 +47,20 @@ struct WeekTests {
         #expect(date(2026, 3, 1).adding(days: -1) == date(2026, 2, 28))
         #expect(date(2028, 3, 1).adding(days: -1) == date(2028, 2, 29))
     }
+
+    @Test func pageOffsetCountsWholeWeeksFromTheReferenceWeek() {
+        let wednesday = date(2026, 10, 7)
+
+        #expect(Week.offset(of: date(2026, 10, 11), from: wednesday) == 0, "Sunday is in the same week")
+        #expect(Week.offset(of: date(2026, 10, 12), from: wednesday) == 1, "Monday starts the next week")
+        #expect(Week.offset(of: date(2026, 9, 28), from: wednesday) == -1)
+        #expect(Week.offset(of: date(2026, 9, 27), from: wednesday) == -2)
+    }
+
+    @Test func aMondayThatIsTodayPlusOneAcrossATimeZoneBoundaryNeedsTheNextWeekPage() {
+        let sunday = date(2026, 10, 11)
+        let protectedMonday = date(2026, 10, 12)
+
+        #expect(Week.offset(of: protectedMonday, from: sunday) == 1)
+    }
 }

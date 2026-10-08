@@ -220,7 +220,7 @@ public struct LocationRecorder: Sendable {
         return named
     }
 
-    /// Store a location unless the newest capture is no more than an hour old; return whether one was stored.
+    /// Store a location unless the newest capture is less than an hour old; return whether one was stored.
     ///
     /// The hour runs from the newest stored capture, so an unavailable location does not start a wait. A clock that
     /// moved backwards past the newest capture counts as due.
@@ -230,7 +230,7 @@ public struct LocationRecorder: Sendable {
         do {
             if let latest = try store.latestLocationCaptureTime() {
                 let age = instant.timeIntervalSince(latest)
-                guard age > Self.minimumInterval || age < 0 else { return false }
+                guard age >= Self.minimumInterval || age < 0 else { return false }
             }
             guard let coordinate = await source.currentLocation() else {
                 Log.environment.notice("location.unavailable")

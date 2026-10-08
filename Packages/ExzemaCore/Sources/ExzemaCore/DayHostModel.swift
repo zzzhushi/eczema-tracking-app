@@ -69,10 +69,16 @@ public final class DayHostModel {
     /// Returns whether the screen moved.
     @discardableResult
     public func show(_ date: LocalDate) -> Bool {
-        guard date <= forwardLimit else { return false }
+        guard canShow(date) else { return false }
         shownDate = date
         return true
     }
+
+    /// Whether `show(_:)` would open `date`: today or earlier, or a later date that holds unsaved work.
+    public func canShow(_ date: LocalDate) -> Bool { date <= forwardLimit }
+
+    /// The latest date `show(_:)` opens, so a screen that lists dates can reach every one of them.
+    public var latestShowableDate: LocalDate { forwardLimit }
 
     /// Re-reads the clock and time zone. The date on screen stays, except that a date a time zone change
     /// has made a future day moves back to today when it holds no unsaved work.

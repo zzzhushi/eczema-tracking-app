@@ -17,6 +17,14 @@ final class AppModel {
     private(set) var areas: [Area] = []
     private(set) var checkIns: [String: CheckIn] = [:]
     private(set) var places = DayPlaces(names: [], captureCount: 0)
+    private var checkInsFailed = false
+    private var placesFailed = false
+
+    /// Set while the shown day's ratings or places could not be read; they then show as unknown, never as another
+    /// day's values.
+    var loadFailure: String? {
+        checkInsFailed || placesFailed ? "Part of this day could not be loaded." : nil
+    }
     /// Changes when debug actions clear data, so the food section reloads.
     private(set) var dataVersion = 0
 
@@ -86,21 +94,27 @@ final class AppModel {
 
     /// Load the shown day's check-ins; call when the shown date or the stored data changes.
     func loadCheckIns() {
+        checkIns = [:]
+        checkInsFailed = false
         guard let store else { return }
         do {
             let rows = try store.checkIns(on: session.host.shownDate)
             checkIns = Dictionary(uniqueKeysWithValues: rows.map { ($0.areaID, $0) })
         } catch {
+            checkInsFailed = true
             Log.storage.error("store.readFailed", public: ["query": "checkIns"], private: ["error": String(describing: error)])
         }
     }
 
     /// Load the places captured on the shown date.
     func loadPlaces() {
+        places = DayPlaces(names: [], captureCount: 0)
+        placesFailed = false
         guard let store else { return }
         do {
             places = try store.places(on: session.host.shownDate)
         } catch {
+            placesFailed = true
             Log.storage.error("store.readFailed", public: ["query": "places"], private: ["error": String(describing: error)])
         }
     }

@@ -112,6 +112,21 @@ struct LocationCaptureTests {
         #expect(source.requests == 1, "a capture that is not due must not ask the phone for a location")
     }
 
+    @Test func activationExactlyAnHourAfterTheLastCaptureRecordsAgain() async throws {
+        let store = try openStore()
+        let source = FakeLocationSource()
+        source.next = sanFrancisco
+        let clock = FakeClock(start)
+        let recorder = recorder(store, source: source, clock: clock)
+        _ = await recorder.captureIfDue()
+
+        clock.now = start.addingTimeInterval(60 * 60)
+        let stored = await recorder.captureIfDue()
+
+        #expect(stored, "a capture is suppressed only while the newest one is less than an hour old")
+        #expect(try store.locationCaptures().count == 2)
+    }
+
     @Test func activationMoreThanAnHourAfterTheLastCaptureRecordsAgain() async throws {
         let store = try openStore()
         let source = FakeLocationSource()

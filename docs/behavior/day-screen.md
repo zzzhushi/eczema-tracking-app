@@ -8,7 +8,7 @@ The home screen: which date is on screen and how it changes. What each section h
 - Tapping a date shows it. The strip follows the shown date, so it moves to that week when the date changes some other way.
 - A Today button appears in the top bar whenever another date is on screen.
 - A dot under a date means the day has a saved row from any feature. Looking at a day stores nothing.
-- A date after today is dimmed and cannot be opened, except as described under time zones.
+- A date after today is dimmed and cannot be opened, except as described under time zones. When such a date is open, the strip includes its week, so the date can be reached again after stepping away from it.
 
 ## Sections
 

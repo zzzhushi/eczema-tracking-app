@@ -11,8 +11,9 @@ struct WeekStripView: View {
     var body: some View {
         let host = model.session.host
         let currentMonday = Week(containing: host.today.date).monday
+        let lastOffset = lastOffset(host)
         TabView(selection: $weeksBack) {
-            ForEach(-Self.reach...0, id: \.self) { offset in
+            ForEach(-Self.reach...lastOffset, id: \.self) { offset in
                 WeekRow(model: model, week: Week(containing: currentMonday.adding(days: offset * 7)))
                     .tag(offset)
             }
@@ -20,14 +21,19 @@ struct WeekStripView: View {
         .tabViewStyle(.page(indexDisplayMode: .never))
         .frame(height: 76)
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-        .onChange(of: host.shownDate) { _, _ in weeksBack = weeksBack(for: host.shownDate, currentMonday: currentMonday) }
-        .onChange(of: host.today.date) { _, _ in weeksBack = weeksBack(for: host.shownDate, currentMonday: Week(containing: host.today.date).monday) }
+        .onChange(of: host.shownDate) { _, _ in weeksBack = page(for: host.shownDate, host: host) }
+        .onChange(of: host.today.date) { _, _ in weeksBack = page(for: host.shownDate, host: host) }
+    }
+
+    /// The last page: the week of the latest date the host can show, which is later than today only while a
+    /// date made a future day by a time zone change still holds unsaved work.
+    private func lastOffset(_ host: DayHostModel) -> Int {
+        max(0, Week.offset(of: host.latestShowableDate, from: host.today.date))
     }
 
     /// The page showing `date`, so the strip follows a date chosen elsewhere (Today, returning after midnight).
-    private func weeksBack(for date: LocalDate, currentMonday: LocalDate) -> Int {
-        let weeks = Week(containing: date).monday.days(from: currentMonday) / 7
-        return min(0, max(-Self.reach, weeks))
+    private func page(for date: LocalDate, host: DayHostModel) -> Int {
+        min(lastOffset(host), max(-Self.reach, Week.offset(of: date, from: host.today.date)))
     }
 }
 
@@ -43,7 +49,7 @@ private struct WeekRow: View {
                     date: date,
                     isSelected: date == host.shownDate,
                     isToday: date == host.today.date,
-                    isOpenable: date <= host.today.date || date == host.shownDate,
+                    isOpenable: host.canShow(date),
                     hasData: model.savedDates.contains(date)
                 ) { host.show(date) }
             }

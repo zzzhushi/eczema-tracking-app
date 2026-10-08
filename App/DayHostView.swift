@@ -30,6 +30,9 @@ struct DayHostView: View {
                     if let catalogFailure = model.catalogFailure {
                         Text(catalogFailure).foregroundStyle(.red)
                     }
+                    if let loadFailure = model.loadFailure {
+                        Text(loadFailure).foregroundStyle(.red)
+                    }
                     if host.isAfterToday {
                         Text("Later than today here").foregroundStyle(.secondary)
                     }

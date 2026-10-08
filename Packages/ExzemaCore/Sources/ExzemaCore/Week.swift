@@ -28,6 +28,12 @@ public struct Week: Hashable, Sendable {
         (0..<7).map { monday.adding(days: $0) }
     }
 
+    /// The number of whole weeks from the week containing `reference` to the week containing `date`; negative
+    /// when `date` is earlier.
+    public static func offset(of date: LocalDate, from reference: LocalDate) -> Int {
+        Week(containing: date).monday.days(from: Week(containing: reference).monday) / 7
+    }
+
     public var previous: Week { Week(containing: monday.adding(days: -7)) }
     public var next: Week { Week(containing: monday.adding(days: 7)) }
 }
