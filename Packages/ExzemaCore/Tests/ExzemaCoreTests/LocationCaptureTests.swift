@@ -172,6 +172,34 @@ struct LocationCaptureTests {
         #expect(try store.locationCaptures().count == 1)
     }
 
+    @Test func aFixThatIsRejectedForQualityStoresNothingAndTheNextOpenUsesAGoodOne() async throws {
+        final class Fixes: LocationSource, @unchecked Sendable {
+            var batches: [[LocationFix]]
+            init(_ batches: [[LocationFix]]) { self.batches = batches }
+            func currentLocation() async -> Coordinate? {
+                LocationFix.bestUsable(batches.isEmpty ? [] : batches.removeFirst())
+            }
+        }
+        let place = Coordinate(latitude: 37.7749, longitude: -122.4194)
+        let source = Fixes([
+            [LocationFix(coordinate: place, horizontalAccuracy: -1)],
+            [LocationFix(coordinate: place, horizontalAccuracy: 30_000)],
+            [LocationFix(coordinate: place, horizontalAccuracy: 80)],
+        ])
+        let store = try openStore()
+        let clock = FakeClock(start)
+        let recorder = LocationRecorder(store: store, source: source, now: { clock.now }, timeZone: { losAngeles })
+
+        let invalid = await recorder.captureIfDue()
+        let coarse = await recorder.captureIfDue()
+        #expect(!invalid && !coarse)
+        #expect(try store.locationCaptures().isEmpty, "a rejected fix must not become a stored position")
+
+        let good = await recorder.captureIfDue()
+        #expect(good, "rejections do not start the one-hour wait")
+        #expect(try store.locationCaptures().count == 1)
+    }
+
     @Test func capturingALocationNeverCreatesADay() async throws {
         let store = try openStore()
         let source = FakeLocationSource()

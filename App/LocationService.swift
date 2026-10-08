@@ -42,9 +42,13 @@ final class LocationService: NSObject, CLLocationManagerDelegate, LocationSource
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let coordinate = locations.last.map {
-            Coordinate(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude)
+        let fixes = locations.map {
+            LocationFix(
+                coordinate: Coordinate(latitude: $0.coordinate.latitude, longitude: $0.coordinate.longitude),
+                horizontalAccuracy: $0.horizontalAccuracy
+            )
         }
+        let coordinate = LocationFix.bestUsable(fixes)
         Task { @MainActor in finish(coordinate) }
     }
 

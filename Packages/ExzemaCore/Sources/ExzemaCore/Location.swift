@@ -16,6 +16,36 @@ public struct Coordinate: Equatable, Sendable {
     }
 }
 
+/// A position with the uncertainty the phone reported for it.
+public struct LocationFix: Equatable, Sendable {
+    public let coordinate: Coordinate
+    /// Radius of uncertainty in metres; negative means the phone considers the position invalid.
+    public let horizontalAccuracy: Double
+
+    public init(coordinate: Coordinate, horizontalAccuracy: Double) {
+        self.coordinate = coordinate
+        self.horizontalAccuracy = horizontalAccuracy
+    }
+
+    /// Return the newest fix that is usable, or nil when none is, so the capture is skipped and a later open
+    /// tries again.
+    public static func bestUsable(_ fixes: [LocationFix]) -> Coordinate? {
+        fixes.last { LocationQuality.isUsable(horizontalAccuracy: $0.horizontalAccuracy) }?.coordinate
+    }
+}
+
+/// Which fixes the app records. A fix is rounded into a 0.1° cell, about 11 km across, so a fix whose
+/// uncertainty is a large part of that could be attributed to the wrong cell, city, or weather.
+public enum LocationQuality {
+    /// The largest reported uncertainty, in metres, a fix may have: under half the width of a cell.
+    public static let maximumUncertainty: Double = 5_000
+
+    /// Whether a reported horizontal accuracy describes a valid, precise-enough fix.
+    public static func isUsable(horizontalAccuracy: Double) -> Bool {
+        horizontalAccuracy >= 0 && horizontalAccuracy <= maximumUncertainty
+    }
+}
+
 /// A stored position, rounded to 0.1° (about 11 km) and counted in whole tenths of a degree.
 public struct LocationCapture: Equatable, Sendable {
     public let id: Int

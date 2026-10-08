@@ -11,6 +11,7 @@ The context that sits beside a day's food and skin. Only location capture exists
 - Coordinates are rounded to 0.1° (about 11 km) before they are stored, as whole tenths of a degree. Halves round away from zero.
 - Each capture records the instant, the local calendar date, and the time zone at that moment. The date is the phone's local date, never derived from UTC.
 - A coordinate outside the valid range is dropped.
+- A fix is used only if the phone reports a horizontal uncertainty from 0 to 5 km. A fix the phone marks invalid, or one coarser than 5 km (under half the 0.1° cell it is rounded into), is skipped, nothing is written, and the next open tries again. When iOS provides only approximate location, its fixes may be too coarse to use and nothing is recorded.
 - A capture is not tied to a day and never creates one. Deleting days leaves captures in place.
 - A day with no capture is not filled in here; later releases decide a day's place when the analysis runs.
 - Coordinates and place names are never written to the log.

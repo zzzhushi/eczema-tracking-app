@@ -63,4 +63,25 @@ struct WeekTests {
 
         #expect(Week.offset(of: protectedMonday, from: sunday) == 1)
     }
+
+    @Test func theLastPageKeepsTheWeekOnScreenAfterItsProtectedDateIsCleared() {
+        let sunday = date(2026, 10, 11)
+        let monday = date(2026, 10, 12)
+
+        let last = Week.lastOffset(today: sunday, latestShowable: sunday, shown: monday)
+
+        #expect(last == 1, "the page being viewed must not leave the range while the host has not moved off it")
+    }
+
+    @Test func theLastPageReachesAProtectedDateThatIsNotOnScreen() {
+        let sunday = date(2026, 10, 11)
+
+        #expect(Week.lastOffset(today: sunday, latestShowable: date(2026, 10, 12), shown: date(2026, 10, 9)) == 1)
+    }
+
+    @Test func theLastPageIsTheCurrentWeekWhenNothingIsInTheFuture() {
+        let wednesday = date(2026, 10, 7)
+
+        #expect(Week.lastOffset(today: wednesday, latestShowable: wednesday, shown: date(2026, 9, 1)) == 0)
+    }
 }

@@ -34,6 +34,12 @@ public struct Week: Hashable, Sendable {
         Week(containing: date).monday.days(from: Week(containing: reference).monday) / 7
     }
 
+    /// The last page of a strip: the week of the latest of today, the latest date that can be shown, and the date
+    /// on screen, so the page being viewed never leaves the range when a protected date is cleared.
+    public static func lastOffset(today: LocalDate, latestShowable: LocalDate, shown: LocalDate) -> Int {
+        max(0, offset(of: latestShowable, from: today), offset(of: shown, from: today))
+    }
+
     public var previous: Week { Week(containing: monday.adding(days: -7)) }
     public var next: Week { Week(containing: monday.adding(days: 7)) }
 }

@@ -25,10 +25,11 @@ struct WeekStripView: View {
         .onChange(of: host.today.date) { _, _ in weeksBack = page(for: host.shownDate, host: host) }
     }
 
-    /// The last page: the week of the latest date the host can show, which is later than today only while a
-    /// date made a future day by a time zone change still holds unsaved work.
+    /// The last page: the week of the latest of today, the latest date the host can show, and the date on screen.
+    /// It is later than today only while a date made a future day by a time zone change holds unsaved work, or
+    /// until the host moves off such a date once that work is cleared.
     private func lastOffset(_ host: DayHostModel) -> Int {
-        max(0, Week.offset(of: host.latestShowableDate, from: host.today.date))
+        Week.lastOffset(today: host.today.date, latestShowable: host.latestShowableDate, shown: host.shownDate)
     }
 
     /// The page showing `date`, so the strip follows a date chosen elsewhere (Today, returning after midnight).
