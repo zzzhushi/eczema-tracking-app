@@ -1,14 +1,13 @@
-import Foundation
+import ExzemaCore
 
 #if DEBUG
-/// Provokes the failures that crash and hang collection must catch; absent from Release builds.
 enum DebugActions {
-    static func crash() -> Never {
-        preconditionFailure("Crash requested from the debug section")
+    static func crash() {
+        DebugFaults().crash()
     }
 
     static func hang() {
-        Thread.sleep(forTimeInterval: 5)
+        DebugFaults().hang(seconds: 5)
     }
 }
 #endif
