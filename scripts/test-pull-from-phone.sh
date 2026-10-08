@@ -84,6 +84,10 @@ git init -q "$work/other"
 git -C "$work/other" -c user.name=Test -c user.email=test@example.com commit -q --allow-empty -m start
 git -C "$work/other" worktree add -q "$work/sibling" -b sibling 2>/dev/null
 mine="$root/pull-refused-$$"
+[ ! -e "$mine" ] || { echo "FAIL: $mine already exists" >&2; exit 1; }
+# The name is unique to this run and checked absent above, so removing it can only remove what this run made, which
+# matters only if the guard is broken: a refusal that fails must not leave output inside the repository.
+trap 'rm -rf "$work" "$mine"' EXIT
 refused "an output folder inside this repository" "inside a git checkout" "$script" "$mine/deeper"
 check "a refusal inside this repository creates nothing" "[ ! -e '$mine' ]"
 refused "an output folder inside a sibling worktree" "inside a git checkout" "$script" "$work/sibling/pulls/one"
