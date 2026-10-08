@@ -60,6 +60,9 @@ copy Store || { cat "$out/.copy-error" >&2; fail "could not copy the store; unlo
 if ! copy Diagnostics; then
     echo "note: no diagnostic reports on the phone"
 fi
+if ! copy Logs; then
+    echo "note: no app log files on the phone (the build predates them, or nothing has been logged)"
+fi
 rm -f "$out/.copy-error"
 chmod -R go-rwx "$out"
 
@@ -72,8 +75,14 @@ if command -v sqlite3 >/dev/null 2>&1; then
         select 'days: ' || count(*) from day; select 'food lines: ' || count(*) from food_line;
         select 'food items: ' || count(*) from food_item;"
 fi
+if [ -d "$out/Logs" ]; then
+    echo "app log lines: $(cat "$out"/Logs/*.jsonl 2>/dev/null | wc -l | tr -d ' ')"
+fi
 echo
-echo "look at the data:   sqlite3 -readonly '$store' '.tables'"
-echo "pull logs (root):   sudo /usr/bin/log collect --device --last 1d --output '$out/logs.logarchive'"
-echo "read them:          /usr/bin/log show '$out/logs.logarchive' --predicate 'subsystem == \"$bundle\"'"
+echo "look at the data:    sqlite3 -readonly '$store' '.tables'"
+if [ -d "$out/Logs" ]; then
+    echo "app logs:           cat '$out'/Logs/previous.jsonl '$out'/Logs/current.jsonl"
+fi
+echo "system logs (root): sudo /usr/bin/log collect --device --last 1d --output '$out/logs.logarchive'"
+echo "read them:           /usr/bin/log show '$out/logs.logarchive' --predicate 'subsystem == \"$bundle\"'"
 echo "The store holds real entries and ratings; logs mark them private. Delete the folder when finished."

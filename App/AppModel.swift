@@ -41,6 +41,9 @@ final class AppModel {
     #endif
 
     init() {
+        if let directory = try? AppPaths.applicationSupport().appendingPathComponent("Logs", isDirectory: true) {
+            try? LogFiles.enable(directory: directory)
+        }
         Log.app.notice("app.launched", public: ["build": .int(BuildInfo(stamp: BuildStamp.value).number ?? 0)])
         let openedStore: DayStore?
         do {

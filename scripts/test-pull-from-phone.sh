@@ -34,6 +34,11 @@ case "$1 $2" in
             mkdir -p "$dest"
             sqlite3 "$dest/store.sqlite" "pragma user_version=2; create table day(date text); create table food_line(id integer); create table food_item(id integer); insert into day values ('2026-10-08'); insert into food_line values (1); insert into food_item values (1),(2);"
             ;;
+        */Logs)
+            [ -z "${FAKE_NO_LOGS:-}" ] || { echo "ERROR: no node" >&2; exit 1; }
+            mkdir -p "$dest"
+            printf '{"event":"a"}\n{"event":"b"}\n' > "$dest/current.jsonl"; printf '{"event":"c"}\n' > "$dest/previous.jsonl"
+            ;;
         */Diagnostics)
             [ -z "${FAKE_NO_DIAGNOSTICS:-}" ] || { echo "ERROR: no node" >&2; exit 1; }
             mkdir -p "$dest"; echo '{}' > "$dest/crash-1.json"
@@ -52,6 +57,7 @@ FAKE_DEVICES=one "$script" "$work/pull1" >"$work/out.txt" 2>"$work/err.txt" || {
 check "a pull from one phone succeeds" "[ -f '$work/pull1/Store/store.sqlite' ]"
 check "the diagnostic reports are copied" "[ -f '$work/pull1/Diagnostics/crash-1.json' ]"
 check "the summary has the counts" "grep -q 'food items: 2' '$work/out.txt' && grep -q 'schema version: 2' '$work/out.txt' && grep -q 'integrity: ok' '$work/out.txt'"
+check "the app log files are copied and counted" "[ -f '$work/pull1/Logs/current.jsonl' ] && grep -q 'app log lines: 3' '$work/out.txt'"
 check "the log command is printed, not run" "grep -q 'sudo /usr/bin/log collect' '$work/out.txt' && [ ! -e '$work/pull1/logs.logarchive' ]"
 check "the folder is private" "[ \"\$(stat -f %Lp '$work/pull1')\" = 700 ]"
 check "the phone found was used" "grep -qx phone-a '$work/copies.log'"
@@ -81,6 +87,9 @@ check "a missing store says to unlock and check the install" "grep -q 'unlock th
 
 FAKE_DEVICES=one FAKE_NO_DIAGNOSTICS=1 "$script" "$work/pull6" >"$work/out.txt" 2>/dev/null
 check "missing diagnostics is a note, not a failure" "[ -f '$work/pull6/Store/store.sqlite' ] && grep -q 'no diagnostic reports' '$work/out.txt'"
+
+FAKE_DEVICES=one FAKE_NO_LOGS=1 "$script" "$work/pull7" >"$work/out.txt" 2>/dev/null
+check "missing app logs is a note, not a failure" "[ -f '$work/pull7/Store/store.sqlite' ] && grep -q 'no app log files' '$work/out.txt'"
 
 HOME="$work/home" FAKE_DEVICES=one "$script" >/dev/null 2>&1
 check "the default folder is under the home directory" "[ -n \"\$(ls '$work/home/exzema-pulls' 2>/dev/null)\" ]"

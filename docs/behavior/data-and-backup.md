@@ -34,6 +34,10 @@ Every migration is a named, ordered step that only adds to or reshapes the store
 
 ## Diagnostics
 
-Crash and hang reports delivered by the system are saved as JSON files in a dedicated directory, excluded from backup. They are copied to the Mac with `scripts/pull_from_phone.sh`, along with the store, when the phone is connected. Nothing is sent anywhere.
+Crash and hang reports delivered by the system are saved as JSON files in a dedicated directory, excluded from backup. They are copied to the Mac with `scripts/pull_from_phone.sh`, along with the store and the app's log files, when the phone is connected. Nothing is sent anywhere.
+
+## App log files
+
+Besides Apple's unified log, the app keeps its notice, error, and fault events in two rotating files of at most 512 KB each, one JSON object per line (`current.jsonl` and `previous.jsonl`), in a `Logs` directory beside the store and excluded from backup. A line carries the time, level, category, event name, and the public fields; private values are never written, only the names of the private fields. Debug and info events are not kept. The files are the way to read what the app did, without root and across launches.
 
 Crash reports arrive at the next launch and are saved reliably. Hang reports use the same save path, but no hang report has yet been delivered, so hang collection is unverified ([#33](https://github.com/zzzhushi/eczema-tracking-app/issues/33)).

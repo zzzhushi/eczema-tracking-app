@@ -111,7 +111,7 @@ public struct CategoryLogger: Sendable {
     public let category: LogCategory
     private let sink: any LogSink
 
-    public init(_ category: LogCategory, sink: any LogSink = OSLogSink()) {
+    public init(_ category: LogCategory, sink: any LogSink = StandardLogSink()) {
         self.category = category
         self.sink = sink
     }
