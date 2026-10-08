@@ -239,6 +239,96 @@ struct FoodLogModelTests {
         #expect(rebuilt.preview.map(\.resolution) == [.matched(foodID: "white-rice")])
     }
 
+    @Test func startingAnEditKeepsTheNewEntryBeingTypedAndBringsItBack() throws {
+        let store = try makeStore()
+        let model = try makeModel(for: day, store: store)
+        model.updateDraft("rice")
+        model.save()
+        let line = try #require(model.lines.first)
+        model.updateDraft("a new entry of oatmeal")
+
+        model.beginEditing(line)
+        #expect(model.draft == "rice")
+        #expect(model.heldNewText == "a new entry of oatmeal")
+        model.updateDraft("rice and tofu")
+        model.save()
+
+        #expect(model.draft == "a new entry of oatmeal", "saving the edit must leave the new entry alone")
+        #expect(model.editing == nil && model.heldNewText.isEmpty)
+        #expect(try store.foodLines(on: day.date).map(\.text) == ["rice and tofu"])
+    }
+
+    @Test func cancellingAnEditBringsTheNewEntryBack() throws {
+        let model = try makeModel(for: day, store: makeStore())
+        model.updateDraft("rice")
+        model.save()
+        model.updateDraft("oatmeal")
+        model.beginEditing(try #require(model.lines.first))
+
+        model.cancelEditing()
+
+        #expect(model.draft == "oatmeal")
+        #expect(model.preview.map(\.text) == ["oatmeal"])
+    }
+
+    @Test func tappingASecondLineWhileEditingKeepsTheFirstEditsChanges() throws {
+        let model = try makeModel(for: day, store: makeStore())
+        model.updateDraft("rice")
+        model.save()
+        model.updateDraft("oatmeal")
+        model.save()
+        let first = try #require(model.lines.first)
+        let second = try #require(model.lines.last)
+        model.beginEditing(first)
+        model.updateDraft("rice and tofu")
+
+        model.beginEditing(second)
+        #expect(model.draft == "oatmeal")
+        model.beginEditing(first)
+
+        #expect(model.draft == "rice and tofu")
+    }
+
+    @Test func anEditWithNoChangesIsNotKeptAroundWhenSwitchingAway() throws {
+        let drafts = FoodDrafts()
+        let store = try makeStore()
+        let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
+        let model = FoodLogModel(day: day, store: store, matcher: matching.matcher, drafts: drafts)
+        model.updateDraft("rice")
+        model.save()
+        model.updateDraft("oatmeal")
+        model.save()
+        let first = try #require(model.lines.first)
+        let second = try #require(model.lines.last)
+
+        model.beginEditing(first)
+        model.beginEditing(second)
+        model.cancelEditing()
+
+        #expect(drafts.hasUnsavedWork(on: day.date) == false)
+    }
+
+    @Test func deletingALineDiscardsItsKeptEdit() throws {
+        let drafts = FoodDrafts()
+        let store = try makeStore()
+        let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
+        let model = FoodLogModel(day: day, store: store, matcher: matching.matcher, drafts: drafts)
+        model.updateDraft("rice")
+        model.save()
+        model.updateDraft("oatmeal")
+        model.save()
+        let first = try #require(model.lines.first)
+        model.beginEditing(first)
+        model.updateDraft("rice and tofu")
+        model.beginEditing(try #require(model.lines.last))
+
+        model.delete(first)
+
+        #expect(drafts.hasUnsavedWork(on: day.date) == true, "the line still being edited is unsaved work")
+        model.cancelEditing()
+        #expect(drafts.hasUnsavedWork(on: day.date) == false, "the deleted line's changes must not linger")
+    }
+
     @Test func movingToAnotherDayShowsThatDaysLines() throws {
         let store = try makeStore()
         let model = try makeModel(for: day, store: store)

@@ -50,6 +50,10 @@ private struct FoodSectionContent: View {
             ForEach(Array(model.preview.enumerated()), id: \.offset) { _, item in
                 ItemRow(item: item, catalog: catalog)
             }
+            if model.editing != nil, !model.heldNewText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                Text("The new entry you were typing is kept and returns when you finish or cancel.")
+                    .font(.caption).foregroundStyle(.secondary)
+            }
             HStack {
                 Button(model.editing == nil ? "Save" : "Update") { model.save() }
                     .disabled(!model.canSave)

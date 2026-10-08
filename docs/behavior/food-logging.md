@@ -6,10 +6,12 @@ How the user records what they ate. The catalog it matches against is in [the fo
 
 - The app opens on today. The screen shows one date, and only the user moves it: the previous/next control steps one day at a time, back as far as they like and forward only up to today, and a Today button appears whenever the screen is on another date.
 - Any past day can be added to, edited, and deleted from. A future day cannot be opened.
-- Today is the phone's calendar date and stays current. It sets the caption (Today, Yesterday, 3 days ago) and where forward stops. When midnight passes or the time zone changes, the screen stays on its date and only the caption and the forward limit change; a date that a time zone change makes a future day moves the screen back to today.
+- Today is the phone's calendar date and stays current. It sets the caption (Today, Yesterday, 3 days ago) and where forward stops. When midnight passes or the time zone changes, the screen stays on its date and only the caption and the forward limit change.
+- A date that a time zone change makes a future day moves the screen back to today, unless it holds unsaved work. Then the screen stays on it, captioned as later than today, and forward still reaches it from earlier dates, so the work is never stranded. Once nothing on that date is unsaved, future dates are closed again.
 - Food typed for a date is saved under that date, however late it is saved.
-- When the app returns to the foreground after the date changed while it was away, it opens on today, unless the date on screen has unsaved text or an open edit, in which case it stays there. A date that changed while the app was in front never moves the screen.
-- Unsaved text and an open edit belong to the date they were made on. Stepping to another day shows that day's own, and returning brings the first back. They are kept in memory only, so quitting the app discards them.
+- When the app returns to the foreground after the date changed while it was away, it opens on today, unless the date on screen has unsaved work, in which case it stays there. A date that changed while the app was in front never moves the screen.
+- Unsaved work belongs to the date it was made on. Stepping to another day shows that day's own, and returning brings the first back. It is kept in memory only, so quitting the app discards it.
+- A new entry and the edit of a saved line are separate. Tapping a saved line while a new entry is half typed sets the new entry aside, and it returns when the edit is saved, cancelled, or deleted. Changes made to a line stay when the user taps another line, and are dropped only by Cancel, by saving, or by deleting the line.
 - The food section takes one day and nothing else, so the screen hosting it holds no food logic.
 - Looking at a day stores nothing; a day is stored by its first saved food.
 
@@ -48,5 +50,5 @@ Chemical levels are not shown on this screen. Looking up a food's level for a ch
 
 - Unsaved text is lost when the app is quit.
 - A line whose item was deleted no longer shows the wording the user originally typed; it shows the remaining items, separated by commas.
-- A word such as "grilled" is an unrecognized item until the user deletes it (reopening and saving the line brings it back), and an unrecognized item makes that day's peak unknown for analysis.
+- A word such as "grilled" is an unrecognized item until the user deletes it and an unrecognized item makes that day's peak unknown for analysis.
 - Words the user might type that are not aliases are unrecognized; mapping them to a food is a later change.

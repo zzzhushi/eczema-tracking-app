@@ -22,8 +22,13 @@ struct DayHostModelTests {
     private let oct7 = LocalDate(year: 2026, month: 10, day: 7)
     private let oct8 = LocalDate(year: 2026, month: 10, day: 8)
 
-    private func makeModel(_ clock: Clock) -> DayHostModel {
-        DayHostModel(clock: { clock.now }, timeZone: { clock.timeZone })
+    /// The dates that have unsaved work, as any feature would report them.
+    private final class Unsaved: @unchecked Sendable {
+        var dates: Set<LocalDate> = []
+    }
+
+    private func makeModel(_ clock: Clock, unsaved: Unsaved = Unsaved()) -> DayHostModel {
+        DayHostModel(clock: { clock.now }, timeZone: { clock.timeZone }, unsavedWork: { unsaved.dates })
     }
 
     @Test func startsOnToday() {
@@ -66,7 +71,7 @@ struct DayHostModelTests {
         model.wentToBackground()
 
         clock.now = lateEvening.addingTimeInterval(10 * 3600)
-        model.becameActive(hasUnsavedWork: false)
+        model.becameActive()
 
         #expect(model.day.date == oct8)
         #expect(model.isShowingToday)
@@ -80,18 +85,20 @@ struct DayHostModelTests {
         model.wentToBackground()
 
         clock.now = lateEvening.addingTimeInterval(10 * 3600)
-        model.becameActive(hasUnsavedWork: false)
+        model.becameActive()
 
         #expect(model.day.date == oct8)
     }
 
     @Test func returningAfterTheDateChangedWithUnsavedWorkStaysOnThatDay() {
         let clock = Clock(lateEvening, losAngeles)
-        let model = makeModel(clock)
+        let unsaved = Unsaved()
+        let model = makeModel(clock, unsaved: unsaved)
+        unsaved.dates = [oct7]
         model.wentToBackground()
 
         clock.now = lateEvening.addingTimeInterval(10 * 3600)
-        model.becameActive(hasUnsavedWork: true)
+        model.becameActive()
 
         #expect(model.day.date == oct7)
         #expect(!model.isShowingToday && model.canGoForward)
@@ -104,7 +111,7 @@ struct DayHostModelTests {
         model.wentToBackground()
 
         clock.now = lateEvening.addingTimeInterval(-3600)
-        model.becameActive(hasUnsavedWork: false)
+        model.becameActive()
 
         #expect(model.day.date == oct6)
     }
@@ -117,7 +124,7 @@ struct DayHostModelTests {
 
         model.wentToBackground()
         clock.now = lateEvening.addingTimeInterval(3600)
-        model.becameActive(hasUnsavedWork: false)
+        model.becameActive()
 
         #expect(model.day.date == oct7)
     }
@@ -132,6 +139,37 @@ struct DayHostModelTests {
         #expect(model.day.date == oct7)
         #expect(model.today.date == oct8)
         #expect(model.day.timeZoneIdentifier == "Asia/Tokyo")
+    }
+
+    @Test func aFutureDateWithUnsavedWorkStaysOnScreenAfterATimeZoneChange() {
+        let clock = Clock(lateEvening, tokyo) // 2026-10-08 15:58 in Tokyo
+        let unsaved = Unsaved()
+        let model = makeModel(clock, unsaved: unsaved)
+        unsaved.dates = [oct8]
+
+        clock.timeZone = TimeZone(identifier: "Pacific/Honolulu")! // 2026-10-07 20:58
+        model.refresh()
+
+        #expect(model.day.date == oct8, "the screen must not leave a date that holds unsaved work")
+        #expect(model.isAfterToday && !model.canGoForward)
+        #expect(model.today.date == oct7)
+    }
+
+    @Test func aFutureDateWithUnsavedWorkIsStillReachableAfterSteppingAway() {
+        let clock = Clock(lateEvening, TimeZone(identifier: "Pacific/Honolulu")!) // 2026-10-07 20:58
+        let unsaved = Unsaved()
+        unsaved.dates = [oct8]
+        let model = makeModel(clock, unsaved: unsaved)
+        #expect(model.day.date == oct7 && model.canGoForward)
+
+        model.goForward()
+        #expect(model.day.date == oct8 && model.isAfterToday)
+        model.goForward()
+        #expect(model.day.date == oct8, "forward stops at the last date holding unsaved work")
+
+        unsaved.dates = []
+        model.goBack()
+        #expect(model.day.date == oct7 && !model.canGoForward, "once nothing is unsaved a future date is closed again")
     }
 
     @Test func aDateThatBecomesTheFutureAfterATimeZoneChangeMovesBackToToday() {

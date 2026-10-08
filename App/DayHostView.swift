@@ -32,7 +32,7 @@ struct DayHostView: View {
                         Spacer()
                         VStack {
                             Text(day.date.isoString).font(.headline)
-                            Text(caption(daysBack: host.daysBack)).font(.caption).foregroundStyle(.secondary)
+                            Text(caption(host)).font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer()
                         Button { host.goForward() } label: { Image(systemName: "chevron.right") }
@@ -80,18 +80,19 @@ struct DayHostView: View {
             case .background:
                 host.wentToBackground()
             case .active:
-                host.becameActive(hasUnsavedWork: model.foodServices.drafts.hasUnsavedWork(on: host.shownDate))
+                host.becameActive()
             default:
                 break
             }
         }
     }
 
-    private func caption(daysBack: Int) -> String {
-        switch daysBack {
-        case 0: "Today"
-        case 1: "Yesterday"
-        case let days: "\(days) days ago"
+    private func caption(_ host: DayHostModel) -> String {
+        if host.isAfterToday { return "Later than today here" }
+        switch host.daysBack {
+        case 0: return "Today"
+        case 1: return "Yesterday"
+        case let days: return "\(days) days ago"
         }
     }
 }

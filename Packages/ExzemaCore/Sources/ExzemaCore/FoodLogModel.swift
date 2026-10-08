@@ -32,6 +32,9 @@ public final class FoodLogModel {
     /// The saved line being reopened on this day, or nil when the draft is new.
     public var editing: FoodLineID? { drafts.editing(for: day.date) }
 
+    /// The new entry's text, set aside while a saved line is being edited.
+    public var heldNewText: String { editing == nil ? "" : drafts.heldNewText(for: day.date) }
+
     /// A line with no parsed item would store nothing, so it cannot be saved.
     public var canSave: Bool { !preview.isEmpty }
 
@@ -46,11 +49,12 @@ public final class FoodLogModel {
         do {
             if let editing {
                 try store.replaceFoodLine(editing, text: draft, items: preview)
+                drafts.endEditing(for: day.date)
             } else {
                 try store.addFoodLine(text: draft, items: preview, on: day)
+                drafts.clearNewText(for: day.date)
             }
-            drafts.clear(for: day.date)
-            preview = []
+            preview = matcher.parse(draft)
             errorMessage = nil
         } catch {
             errorMessage = "The food could not be saved."
@@ -59,29 +63,37 @@ public final class FoodLogModel {
         reload()
     }
 
+    /// Opens a saved line. The new entry being typed and any other line's unsaved changes are kept.
     public func beginEditing(_ line: FoodLine) {
+        if let open = editing, let openLine = lines.first(where: { $0.id == open }), draft == openLine.text {
+            drafts.discardEdit(open, for: day.date)
+        }
         drafts.beginEditing(line.id, text: line.text, for: day.date)
-        preview = matcher.parse(line.text)
+        preview = matcher.parse(draft)
         errorMessage = nil
     }
 
+    /// Closes the open edit and drops its changes; the new entry returns to the field.
     public func cancelEditing() {
-        drafts.clear(for: day.date)
-        preview = []
+        drafts.endEditing(for: day.date)
+        preview = matcher.parse(draft)
         errorMessage = nil
     }
 
-    /// Deleting the line being edited ends the edit, but only once the delete has succeeded.
+    /// Deleting a line drops its unsaved changes, ending its edit if open, but only once the delete succeeded.
     public func delete(_ line: FoodLine) {
-        guard perform("foodLine.deleteFailed", { try store.deleteFoodLine(line.id) }), editing == line.id else { return }
-        cancelEditing()
+        guard perform("foodLine.deleteFailed", { try store.deleteFoodLine(line.id) }) else { return }
+        drafts.discardEdit(line.id, for: day.date)
+        preview = matcher.parse(draft)
     }
 
-    /// Deleting an item changes its line's text, so an edit of that line ends once the delete has succeeded.
+    /// Deleting an item changes its line's text, so the line's unsaved changes are dropped once the delete
+    /// has succeeded.
     public func delete(_ item: StoredFoodItem) {
         let owner = lines.first { $0.items.contains { $0.id == item.id } }?.id
-        guard perform("foodItem.deleteFailed", { try store.deleteFoodItem(item.id) }), owner != nil, owner == editing else { return }
-        cancelEditing()
+        guard perform("foodItem.deleteFailed", { try store.deleteFoodItem(item.id) }), let owner else { return }
+        drafts.discardEdit(owner, for: day.date)
+        preview = matcher.parse(draft)
     }
 
     /// Show another day, with that day's own unsaved text and open edit. The day left behind keeps its own.

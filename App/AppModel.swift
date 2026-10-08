@@ -34,13 +34,16 @@ final class AppModel {
         let matching = Self.loadCatalog()
         if matching == nil { catalogFailure = "The food catalog could not be loaded." }
         store = openedStore
-        foodServices = FoodServices(store: openedStore, matching: matching, drafts: FoodDrafts())
+        let foodDrafts = FoodDrafts()
+        foodServices = FoodServices(store: openedStore, matching: matching, drafts: foodDrafts)
+        // Each feature that keeps unsaved work adds its dates here; the host knows only the dates.
+        let unsavedWork = { foodDrafts.datesWithUnsavedWork }
         #if DEBUG
         let debugClock = DebugClock()
         self.debugClock = debugClock
-        host = DayHostModel(clock: { debugClock.now })
+        host = DayHostModel(clock: { debugClock.now }, unsavedWork: unsavedWork)
         #else
-        host = DayHostModel()
+        host = DayHostModel(unsavedWork: unsavedWork)
         #endif
     }
 
@@ -79,7 +82,7 @@ final class AppModel {
     func simulateNextMorning() {
         host.wentToBackground()
         debugClock.offset = nextMidnight().addingTimeInterval(8 * 3600).timeIntervalSinceNow
-        host.becameActive(hasUnsavedWork: foodServices.drafts.hasUnsavedWork(on: host.shownDate))
+        host.becameActive()
     }
 
     func resetClock() {

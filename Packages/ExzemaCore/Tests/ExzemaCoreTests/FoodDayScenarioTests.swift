@@ -24,13 +24,15 @@ struct FoodDayScenarioTests {
     private struct App {
         let clock: Clock
         let host: DayHostModel
-        let drafts = FoodDrafts()
+        let drafts: FoodDrafts
         let store: DayStore
         let model: FoodLogModel
 
         init(clock: Clock, directory: URL) throws {
             self.clock = clock
-            host = DayHostModel(clock: { clock.now }, timeZone: { clock.timeZone })
+            let drafts = FoodDrafts()
+            self.drafts = drafts
+            host = DayHostModel(clock: { clock.now }, timeZone: { clock.timeZone }, unsavedWork: { drafts.datesWithUnsavedWork })
             store = try DayStore(at: directory.appendingPathComponent("store.sqlite"))
             let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
             model = FoodLogModel(day: host.day, store: store, matcher: matching.matcher, drafts: drafts)
@@ -44,9 +46,10 @@ struct FoodDayScenarioTests {
         func leave() { host.wentToBackground() }
         func returnAfter(_ seconds: TimeInterval) {
             clock.now = clock.now.addingTimeInterval(seconds)
-            host.becameActive(hasUnsavedWork: drafts.hasUnsavedWork(on: host.day.date))
+            host.becameActive()
             sync()
         }
+        func changeTimeZone(to zone: TimeZone) { clock.timeZone = zone; host.refresh(); sync() }
         func lines(on date: LocalDate) throws -> [String] { try store.foodLines(on: date).map(\.text) }
     }
 
@@ -142,5 +145,43 @@ struct FoodDayScenarioTests {
         #expect(app.model.day.date == oct7 && app.model.day.timeZoneIdentifier == "Asia/Tokyo")
         #expect(app.model.draft == "rice")
         #expect(app.host.today.date == oct8)
+    }
+
+    @Test func h_aDraftOnADateThatBecomesFutureAfterATimeZoneChangeIsNotStranded() throws {
+        let app = try makeApp(timeZone: tokyo) // 2026-10-08 15:58
+        app.model.updateDraft("rice and tofu")
+
+        app.changeTimeZone(to: TimeZone(identifier: "Pacific/Honolulu")!) // 2026-10-07 20:58
+
+        #expect(app.model.day.date == oct8 && app.model.draft == "rice and tofu")
+        app.model.save()
+        #expect(try app.lines(on: oct8) == ["rice and tofu"])
+    }
+
+    @Test func h2_aStrandedDraftIsReachableByStepping() throws {
+        let app = try makeApp(timeZone: tokyo)
+        app.model.updateDraft("rice and tofu")
+        app.changeTimeZone(to: TimeZone(identifier: "Pacific/Honolulu")!)
+        app.tapBack()
+        #expect(app.model.day.date == oct7 && app.model.draft.isEmpty)
+
+        app.tapForward()
+
+        #expect(app.model.day.date == oct8 && app.model.draft == "rice and tofu")
+    }
+
+    @Test func i_aNewEntryTypedBeforeAnEditSurvivesTheEditAndMidnight() throws {
+        let app = try makeApp()
+        app.model.updateDraft("rice")
+        app.model.save()
+        app.model.updateDraft("a late snack of oatmeal")
+        app.model.beginEditing(try #require(app.model.lines.first))
+        app.model.updateDraft("rice and tofu")
+
+        app.advance(180)
+        app.model.save()
+
+        #expect(app.model.day.date == oct7 && app.model.draft == "a late snack of oatmeal")
+        #expect(try app.lines(on: oct7) == ["rice and tofu"])
     }
 }
