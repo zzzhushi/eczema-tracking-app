@@ -42,3 +42,12 @@ import Testing
         #expect(after.result(forFoodID: storedFoodID, .salicylates)?.level == .low)
     }
 }
+
+@Suite struct CatalogFoodLookupTests {
+    @Test func findsAFoodByItsStoredID() throws {
+        let catalog = try Catalog.load(dataDirectory: shippedDataDirectory)
+
+        #expect(catalog.food(id: "white-rice")?.name == "White rice")
+        #expect(catalog.food(id: "dragonfruit") == nil)
+    }
+}

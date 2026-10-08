@@ -7,7 +7,7 @@ struct ExzemaApp: App {
 
     var body: some Scene {
         WindowGroup {
-            DayListView(model: model)
+            DayHostView(model: model)
         }
     }
 }

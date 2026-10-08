@@ -2,75 +2,64 @@ import ExzemaCore
 import Foundation
 import Observation
 
-/// Opens the store and diagnostics at launch and exposes the saved days to the screen.
+/// Opens the store, catalog, and diagnostics at launch and hands the food section what it needs.
 @MainActor
 @Observable
 final class AppModel {
-    private(set) var days: [Day] = []
     private(set) var failure: String?
     private(set) var catalogFailure: String?
-    /// Nil when the bundled catalog failed to load; nothing parses food without it.
-    private(set) var foodMatching: FoodMatching?
+    let foodServices: FoodServices
+    /// Changes when debug actions clear data, so the food section reloads.
+    private(set) var dataVersion = 0
 
     private let store: DayStore?
     private let diagnostics = DiagnosticsListener()
 
     init() {
         Log.app.notice("app.launched", public: ["build": .int(BuildInfo(stamp: BuildStamp.value).number ?? 0)])
+        let openedStore: DayStore?
         do {
             let directory = try AppPaths.applicationSupport().appendingPathComponent("Store", isDirectory: true)
             try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-            store = try DayStore(at: directory.appendingPathComponent("store.sqlite"))
+            openedStore = try DayStore(at: directory.appendingPathComponent("store.sqlite"))
         } catch {
-            store = nil
+            openedStore = nil
             failure = "The store could not be opened."
             Log.storage.fault("store.unavailable", private: ["error": String(describing: error)])
         }
-        loadCatalog()
-        reload()
+        let matching = Self.loadCatalog()
+        if matching == nil { catalogFailure = "The food catalog could not be loaded." }
+        store = openedStore
+        foodServices = FoodServices(store: openedStore, matching: matching)
     }
 
-    private func loadCatalog() {
+    /// Nil when the bundled catalog cannot be loaded; nothing parses food without it.
+    private static func loadCatalog() -> FoodMatching? {
         do {
             guard let directory = Bundle.main.resourceURL else { throw CocoaError(.fileNoSuchFile) }
             let matching = try FoodMatching.load(dataDirectory: directory)
-            foodMatching = matching
             Log.foodLogging.notice("catalog.loaded", public: [
                 "catalogVersion": .int(matching.catalog.manifest.catalogVersion),
                 "foods": .int(matching.catalog.foods.count),
             ])
+            return matching
         } catch {
-            catalogFailure = "The food catalog could not be loaded."
             Log.foodLogging.fault("catalog.unavailable", private: ["error": String(describing: error)])
+            return nil
         }
-    }
-
-    func saveToday() {
-        guard let store else { return }
-        let day = Day(loggedAt: Date(), in: .current)
-        do {
-            try store.save(day)
-        } catch {
-            Log.storage.error("day.saveFailed", private: ["error": String(describing: error)])
-        }
-        reload()
     }
 
     #if DEBUG
     func clearToday() {
         guard let store else { return }
         try? store.delete(Day(loggedAt: Date(), in: .current).date)
-        reload()
+        dataVersion += 1
     }
 
     func clearAll() {
         guard let store else { return }
         try? store.deleteAll()
-        reload()
+        dataVersion += 1
     }
     #endif
-
-    private func reload() {
-        days = (try? store?.days()) ?? []
-    }
 }
