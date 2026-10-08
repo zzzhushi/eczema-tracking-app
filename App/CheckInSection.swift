@@ -29,6 +29,12 @@ private struct RatingRow: View {
     let detail: String
     let value: Int?
     let onChange: (Int?) -> Void
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    private var columns: [GridItem] {
+        let count = dynamicTypeSize.isAccessibilitySize ? 6 : DayStore.ratingScale.count
+        return Array(repeating: GridItem(.flexible(), spacing: 2), count: count)
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -36,13 +42,15 @@ private struct RatingRow: View {
                 Text(title).font(.headline)
                 Text(detail).font(.caption).foregroundStyle(.secondary)
             }
-            HStack(spacing: 2) {
+            LazyVGrid(columns: columns, spacing: 2) {
                 ForEach(DayStore.ratingScale, id: \.self) { number in
                     Button {
                         onChange(value == number ? nil : number)
                     } label: {
                         Text("\(number)")
                             .font(.callout.monospacedDigit())
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
                             .frame(maxWidth: .infinity, minHeight: 44)
                             .background(value == number ? Color.accentColor : Color.secondary.opacity(0.12), in: .rect(cornerRadius: 6))
                             .foregroundStyle(value == number ? Color.white : Color.primary)

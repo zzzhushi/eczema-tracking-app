@@ -12,7 +12,7 @@ What the app asks the user to allow, and the screens where they review it.
 
 - The app asks for location only while it is in use, never always, and asks once, after the first-launch screen.
 - If the user declines, the app records no location and does not ask again.
-- Settings shows whether location is not yet asked, on while using the app, or off, with a link to iOS Settings once the user has answered.
+- Settings shows whether location is not yet asked, on while using the app, or off. While it is not yet asked, which also follows an Allow Once answer, an Allow location button asks again; after an answer it links to iOS Settings.
 
 ## Settings
 

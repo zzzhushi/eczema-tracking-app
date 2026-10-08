@@ -28,7 +28,9 @@ struct SettingsView: View {
                 }
                 Section {
                     Text(locationStatus)
-                    if model.location.status != .notDetermined {
+                    if model.location.status == .notDetermined {
+                        Button("Allow location") { model.location.requestPermission() }
+                    } else {
                         Link("Open iOS Settings", destination: URL(string: UIApplication.openSettingsURLString)!)
                     }
                 } header: {

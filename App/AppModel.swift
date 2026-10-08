@@ -18,6 +18,7 @@ final class AppModel {
 
     private let store: DayStore?
     private let locationRecorder: LocationRecorder?
+    private var isCapturingLocation = false
     private let diagnostics = DiagnosticsListener()
 
     init() {
@@ -38,9 +39,15 @@ final class AppModel {
     }
 
     /// Record the rounded location unless one was taken within the last hour; does nothing without permission.
+    ///
+    /// Overlapping calls are dropped so two triggers at launch cannot each store a capture.
     func captureLocationIfDue() {
-        guard location.isAuthorized, let locationRecorder else { return }
-        Task { await locationRecorder.captureIfDue() }
+        guard location.isAuthorized, let locationRecorder, !isCapturingLocation else { return }
+        isCapturingLocation = true
+        Task {
+            await locationRecorder.captureIfDue()
+            isCapturingLocation = false
+        }
     }
 
     func select(_ date: LocalDate) {

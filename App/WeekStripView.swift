@@ -18,6 +18,7 @@ struct WeekStripView: View {
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .frame(height: 76)
+        .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         .onChange(of: model.navigation.today) { _, _ in weeksBack = 0 }
     }
 }
@@ -56,6 +57,8 @@ private struct DayCell: View {
                 Text(date.weekdayInitial).font(.caption).foregroundStyle(.secondary)
                 Text("\(date.day)")
                     .font(.body.weight(isToday ? .bold : .regular))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
                     .frame(width: 36, height: 36)
                     .background(isSelected ? Color.accentColor : .clear, in: Circle())
                     .foregroundStyle(isSelected ? Color.white : Color.primary)
