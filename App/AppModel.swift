@@ -41,6 +41,13 @@ final class AppModel {
     #endif
 
     init() {
+        do {
+            let directory = try AppPaths.applicationSupport().appendingPathComponent("Logs", isDirectory: true)
+            try LogFiles.enable(directory: directory)
+        } catch {
+            // Only the unified log is active at this point, so this is the one place the failure is recorded.
+            Log.app.error("fileLog.unavailable", private: ["error": String(describing: error)])
+        }
         Log.app.notice("app.launched", public: ["build": .int(BuildInfo(stamp: BuildStamp.value).number ?? 0)])
         let openedStore: DayStore?
         do {

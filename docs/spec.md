@@ -74,7 +74,7 @@ An iPhone app that collects exposures and a daily check-in of each area's skin, 
 Everything stays on the phone or the user's Mac; no third-party service receives logs.
 
 - **Logging**: Apple's unified logging through one wrapper that every feature uses. A line is a fixed event name plus fields, one category per feature. Every field is private unless explicitly marked public, and public values are limited to numbers, flags, and fixed text, because Apple redacts strings but not numbers by default. Ratings, food text, notes, photo contents, coordinates, and model prompts or responses are never logged; a line carries enough non-health context (event, identifiers, counts, reason) to diagnose without them.
-- **Log levels**: notice, error, and fault persist on the phone and can be pulled to the Mac later; debug and info are live only.
+- **Log levels**: notice, error, and fault persist on the phone and can be pulled to the Mac later; debug and info are live only. The app also writes notice, error, and fault events to its own rotating log files, without private values, so they can be copied to the Mac without root.
 - **Timing**: signposts mark the start and end of meal parsing, photo rating, and analysis, so Instruments shows how long each took.
 - **Diagnostics**: crash and hang reports collected on the phone and saved as local files.
 - **Provenance**: every analysis result links to the day records, foods, and ratings it came from, and AI explanations rest on that trail.
