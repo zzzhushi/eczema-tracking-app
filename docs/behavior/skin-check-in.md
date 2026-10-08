@@ -2,14 +2,7 @@
 
 How the user opens a day and rates their skin. The ownership of unknown values is in [the spec](../spec.md#data-principles); the terms are in [the glossary](../../CONTEXT.md).
 
-## Day screen
-
-- The home screen shows a week strip over the selected day. A week runs Monday to Sunday and the strip pages back one week at a time.
-- A fresh launch selects today, the local calendar date shown on the phone. Any past day can be selected and edited.
-- A day after today is shown dimmed and cannot be selected.
-- A dot under a date means the day has a saved row; browsing a day never creates one.
-- When the app becomes active after the date has changed, the selection moves to the new today only if it was on today. A past day being edited stays selected.
-- The strip reaches back about twenty years. Its text stops growing with the system text size at the largest ordinary setting, so every date stays visible.
+The date shown, the week strip, and what happens across midnight are in [the day screen](day-screen.md).
 
 ## Check-in
 

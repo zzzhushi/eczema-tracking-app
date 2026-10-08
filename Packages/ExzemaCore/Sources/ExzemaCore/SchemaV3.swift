@@ -2,8 +2,8 @@ import GRDB
 
 extension DayStore {
     /// The skin check-in slice's tables: areas, per-day ratings, and location captures.
-    static func registerV2Migration(in migrator: inout DatabaseMigrator) {
-        migrator.registerMigration("v2") { db in
+    static func registerV3Migration(in migrator: inout DatabaseMigrator) {
+        migrator.registerMigration("v3") { db in
             try db.execute(sql: """
                 CREATE TABLE area (
                     id TEXT PRIMARY KEY NOT NULL,
@@ -29,7 +29,7 @@ extension DayStore {
                     longitudeTenths INTEGER NOT NULL
                 );
                 CREATE INDEX location_capture_capturedAt ON location_capture (capturedAt);
-                PRAGMA user_version = 2;
+                PRAGMA user_version = 3;
                 """)
         }
     }

@@ -20,9 +20,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                if let failure = model.failure {
-                    Text(failure).foregroundStyle(.red)
-                }
                 Section("Your data") {
                     Text(DataNote.deletion)
                 }
@@ -44,9 +41,11 @@ struct SettingsView: View {
                 }
                 #if DEBUG
                 Section("Debug") {
-                    Button("Save today") { model.saveToday() }
                     Button("Clear today", role: .destructive) { model.clearToday() }
                     Button("Clear all days", role: .destructive) { confirmingClearAll = true }
+                    Button("Simulate midnight") { model.simulateMidnight() }
+                    Button("Simulate next morning") { model.simulateNextMorning() }
+                    Button("Reset clock") { model.resetClock() }
                     Button("Crash now", role: .destructive) { DebugActions.crash() }
                     Button("Hang for 5 seconds") { DebugActions.hang() }
                 }

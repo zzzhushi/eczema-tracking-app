@@ -96,7 +96,7 @@ public struct LocationRecorder: Sendable {
         store: DayStore,
         source: any LocationSource,
         now: @escaping @Sendable () -> Date = { Date() },
-        timeZone: @escaping @Sendable () -> TimeZone = { .current }
+        timeZone: @escaping @Sendable () -> TimeZone = { .autoupdatingCurrent }
     ) {
         self.store = store
         self.source = source

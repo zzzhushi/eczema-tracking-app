@@ -7,7 +7,7 @@ struct RootView: View {
 
     var body: some View {
         if acknowledged {
-            DayScreen(model: model)
+            DayHostView(model: model)
         } else {
             FirstLaunchView {
                 acknowledged = true

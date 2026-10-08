@@ -5,14 +5,18 @@ public enum DayStoreError: Error, Equatable {
     /// The store was written by a newer app version; opening it could lose data, so it is left untouched.
     case newerSchema(found: Int)
     case unreadableDate(String)
+    /// A food line must hold at least one item, so a logged day always has food in it.
+    case noItems
+    case unknownFoodLine
+    case unknownFoodItem
 }
 
 /// The on-device store of days, versioned by SQLite's `user_version`.
 public final class DayStore: Sendable {
-    public static let currentSchemaVersion = 2
+    public static let currentSchemaVersion = 3
 
     let database: DatabaseQueue
-    private let log: CategoryLogger
+    let log: CategoryLogger
 
     /// Open the store at `url`, creating or migrating it to the current schema.
     ///
@@ -88,7 +92,27 @@ public final class DayStore: Sendable {
                 PRAGMA user_version = 1;
                 """)
         }
-        registerV2Migration(in: &migrator)
+        migrator.registerMigration("v2") { db in
+            try db.execute(sql: """
+                CREATE TABLE food_line (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    date TEXT NOT NULL REFERENCES day(date) ON DELETE CASCADE,
+                    text TEXT NOT NULL,
+                    timeZoneIdentifier TEXT NOT NULL
+                );
+                CREATE INDEX food_line_date ON food_line(date);
+                CREATE TABLE food_item (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    lineId INTEGER NOT NULL REFERENCES food_line(id) ON DELETE CASCADE,
+                    position INTEGER NOT NULL,
+                    text TEXT NOT NULL,
+                    foodID TEXT
+                );
+                CREATE INDEX food_item_line ON food_item(lineId);
+                PRAGMA user_version = 2;
+                """)
+        }
+        registerV3Migration(in: &migrator)
         return migrator
     }
 
@@ -98,5 +122,28 @@ public final class DayStore: Sendable {
         var values = URLResourceValues()
         values.isExcludedFromBackup = true
         try url.setResourceValues(values)
+    }
+}
+
+extension DayStore {
+    /// Emit the dates that have a day row now and again after every change to the store, from any feature.
+    public func savedDates() -> AsyncThrowingStream<Set<LocalDate>, any Error> {
+        let observation = ValueObservation.tracking { db in
+            try String.fetchAll(db, sql: "SELECT date FROM day")
+        }
+        let values = observation.values(in: database)
+        return AsyncThrowingStream { continuation in
+            let task = Task {
+                do {
+                    for try await texts in values {
+                        continuation.yield(Set(texts.compactMap { LocalDate(isoString: $0) }))
+                    }
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+            continuation.onTermination = { _ in task.cancel() }
+        }
     }
 }

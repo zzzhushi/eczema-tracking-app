@@ -8,7 +8,12 @@ The bundled reference data that says what each food is, what it is called, and h
 
 - `catalog/foods/<id>.json`: one file per food.
 - `data/sources.json`: the shared bibliography, one record per source.
+- `catalog/filler-words.json`: words typed between foods, such as "and" and "with", that matching drops instead of keeping as unrecognized entries. One lowercase word each, never an alias.
 - `catalog/manifest.json`: `schemaVersion` changes with the file format; `catalogVersion` increases in any change to foods, aliases, or levels.
+
+## In the app
+
+The app bundles `data/catalog/` and `data/sources.json` from the repository, never a copy kept elsewhere, and loads them at launch through the loader, whose checks must pass. If the catalog cannot be loaded, the app says so on screen and logs a fault; it never continues with an empty catalog. CI compares the built app's bundled data with the repository's.
 
 ## Food file
 
@@ -16,7 +21,7 @@ The bundled reference data that says what each food is, what it is called, and h
 |---|---|
 | `id` | Stable kebab-case key, never reused. |
 | `name`, `description` | Display name and what the entry covers (form, freshness). |
-| `aliases` | Lowercase words that match the food in typed text, unique across the catalog. An alias names the food alone: a composite or prepared dish that adds other ingredients, such as a matcha latte or scrambled eggs, is not an alias. |
+| `aliases` | Lowercase words that match the food in typed text, unique across the catalog. An alias names the food alone: a composite or prepared dish that adds other ingredients, such as a matcha latte or scrambled eggs, is not an alias. A plain word that several foods share, such as "chicken" or "coffee", is an alias of the one default food. |
 | `varieties` | Kinds researched under this food, at most one `default`. A variety is never chosen when logging. |
 | `allergens` | From a fixed list: milk, egg, fish, crustacean-shellfish, tree-nuts, peanuts, wheat, soy, sesame. |
 | `serving` | The typical serving the levels describe. |

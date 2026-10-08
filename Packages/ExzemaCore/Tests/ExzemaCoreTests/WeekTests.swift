@@ -43,8 +43,8 @@ struct WeekTests {
     }
 
     @Test func addingDaysCrossesMonthAndYearBoundaries() {
-        #expect(date(2026, 12, 31).addingDays(1) == date(2027, 1, 1))
-        #expect(date(2026, 3, 1).addingDays(-1) == date(2026, 2, 28))
-        #expect(date(2028, 3, 1).addingDays(-1) == date(2028, 2, 29))
+        #expect(date(2026, 12, 31).adding(days: 1) == date(2027, 1, 1))
+        #expect(date(2026, 3, 1).adding(days: -1) == date(2026, 2, 28))
+        #expect(date(2028, 3, 1).adding(days: -1) == date(2028, 2, 29))
     }
 }

@@ -18,7 +18,13 @@ targets:
   eXzema:
     type: application
     platform: iOS
-    sources: [App]
+    sources:
+      - App
+      - path: data/catalog
+        type: folder
+        buildPhase: resources
+      - path: data/sources.json
+        buildPhase: resources
     dependencies:
       - package: ExzemaCore
     preBuildScripts:

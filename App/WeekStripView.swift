@@ -9,17 +9,25 @@ struct WeekStripView: View {
     private static let reach = 1040
 
     var body: some View {
-        let currentMonday = Week(containing: model.navigation.today).monday
+        let host = model.session.host
+        let currentMonday = Week(containing: host.today.date).monday
         TabView(selection: $weeksBack) {
             ForEach(-Self.reach...0, id: \.self) { offset in
-                WeekRow(model: model, week: Week(containing: currentMonday.addingDays(offset * 7)))
+                WeekRow(model: model, week: Week(containing: currentMonday.adding(days: offset * 7)))
                     .tag(offset)
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))
         .frame(height: 76)
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-        .onChange(of: model.navigation.today) { _, _ in weeksBack = 0 }
+        .onChange(of: host.shownDate) { _, _ in weeksBack = weeksBack(for: host.shownDate, currentMonday: currentMonday) }
+        .onChange(of: host.today.date) { _, _ in weeksBack = weeksBack(for: host.shownDate, currentMonday: Week(containing: host.today.date).monday) }
+    }
+
+    /// The page showing `date`, so the strip follows a date chosen elsewhere (Today, returning after midnight).
+    private func weeksBack(for date: LocalDate, currentMonday: LocalDate) -> Int {
+        let weeks = Week(containing: date).monday.days(from: currentMonday) / 7
+        return min(0, max(-Self.reach, weeks))
     }
 }
 
@@ -28,15 +36,16 @@ private struct WeekRow: View {
     let week: Week
 
     var body: some View {
+        let host = model.session.host
         HStack(spacing: 0) {
             ForEach(week.days, id: \.self) { date in
                 DayCell(
                     date: date,
-                    isSelected: date == model.navigation.selected,
-                    isToday: date == model.navigation.today,
-                    isOpenable: model.navigation.canOpen(date),
+                    isSelected: date == host.shownDate,
+                    isToday: date == host.today.date,
+                    isOpenable: date <= host.today.date || date == host.shownDate,
                     hasData: model.savedDates.contains(date)
-                ) { model.select(date) }
+                ) { host.show(date) }
             }
         }
         .padding(.horizontal, 8)
