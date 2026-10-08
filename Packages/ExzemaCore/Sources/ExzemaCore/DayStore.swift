@@ -5,14 +5,18 @@ public enum DayStoreError: Error, Equatable {
     /// The store was written by a newer app version; opening it could lose data, so it is left untouched.
     case newerSchema(found: Int)
     case unreadableDate(String)
+    /// A food line must hold at least one item, so a logged day always has food in it.
+    case noItems
+    case unknownFoodLine
+    case unknownFoodItem
 }
 
 /// The on-device store of days, versioned by SQLite's `user_version`.
 public final class DayStore: Sendable {
-    public static let currentSchemaVersion = 1
+    public static let currentSchemaVersion = 2
 
-    private let database: DatabaseQueue
-    private let log: CategoryLogger
+    let database: DatabaseQueue
+    let log: CategoryLogger
 
     /// Open the store at `url`, creating or migrating it to the current schema.
     ///
@@ -86,6 +90,26 @@ public final class DayStore: Sendable {
                     timeZoneIdentifier TEXT NOT NULL
                 );
                 PRAGMA user_version = 1;
+                """)
+        }
+        migrator.registerMigration("v2") { db in
+            try db.execute(sql: """
+                CREATE TABLE food_line (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    date TEXT NOT NULL REFERENCES day(date) ON DELETE CASCADE,
+                    text TEXT NOT NULL,
+                    timeZoneIdentifier TEXT NOT NULL
+                );
+                CREATE INDEX food_line_date ON food_line(date);
+                CREATE TABLE food_item (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    lineId INTEGER NOT NULL REFERENCES food_line(id) ON DELETE CASCADE,
+                    position INTEGER NOT NULL,
+                    text TEXT NOT NULL,
+                    foodID TEXT
+                );
+                CREATE INDEX food_item_line ON food_item(lineId);
+                PRAGMA user_version = 2;
                 """)
         }
         return migrator

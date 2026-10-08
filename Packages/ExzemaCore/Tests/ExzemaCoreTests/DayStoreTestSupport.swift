@@ -31,6 +31,16 @@ func writeFixtureStoreForCurrentSchema() throws {
     do {
         let store = try DayStore(at: url)
         try store.save(DayStoreTestSupport.fixtureDay)
+        if DayStore.currentSchemaVersion >= 2 {
+            try store.addFoodLine(
+                text: "oatmeal and dragonfruit",
+                items: [
+                    ParsedItem(text: "oatmeal", resolution: .matched(foodID: "oatmeal")),
+                    ParsedItem(text: "dragonfruit", resolution: .unrecognized),
+                ],
+                on: DayStoreTestSupport.fixtureDay
+            )
+        }
     }
 
     let queue = try DatabaseQueue(path: url.path)
