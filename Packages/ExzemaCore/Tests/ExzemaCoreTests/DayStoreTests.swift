@@ -51,7 +51,7 @@ struct DayStoreTests {
         let store = try DayStore(at: storeURL)
 
         #expect(try store.schemaVersion() == DayStore.currentSchemaVersion)
-        #expect(DayStore.currentSchemaVersion == 1)
+        #expect(DayStore.currentSchemaVersion == 2)
     }
 
     @Test func storeFromANewerSchemaIsRefusedAndLeftUntouched() throws {
@@ -72,7 +72,7 @@ struct DayStoreTests {
         #expect(values.isExcludedFromBackup == true)
     }
 
-    @Test(arguments: [1])
+    @Test(arguments: [1, 2])
     func fixtureStoreOpensAndReadsItsDay(version: Int) throws {
         let fixture = try #require(
             Bundle.module.url(forResource: "v\(version)", withExtension: "sqlite", subdirectory: "Stores"),
