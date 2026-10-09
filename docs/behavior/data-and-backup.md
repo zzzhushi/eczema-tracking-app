@@ -20,6 +20,7 @@ Where the app keeps its data, what survives, and what does not. The principles a
 | 1 | `day` | Creates the table. |
 | 2 | `food_line`, `food_item` | Creates two tables and their indexes. No existing row is read or changed, so days saved under version 1 are kept. |
 | 3 | `area`, `check_in`, `location_capture` | Creates three tables, with a place name on each location capture, and seeds the face and hands areas. No existing row is read or changed, so days and food saved earlier are kept. |
+| 4 | `photo_slot`, `photo` | Creates two tables and seeds the face, left hand, and right hand slots. No existing row is read or changed, so everything saved earlier is kept. A photo row records its day, slot, kind, camera, capture time and time zone, and the name of its image file; the image is a separate file. |
 
 Every migration is a named, ordered step that only adds to or reshapes the store and never wipes it. Each version has a committed fixture store, and a test opens every fixture, migrates it, and reads it back.
 

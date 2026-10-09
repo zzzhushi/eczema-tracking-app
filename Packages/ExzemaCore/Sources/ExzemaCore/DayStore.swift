@@ -13,7 +13,7 @@ public enum DayStoreError: Error, Equatable {
 
 /// The on-device store of days, versioned by SQLite's `user_version`.
 public final class DayStore: Sendable {
-    public static let currentSchemaVersion = 3
+    public static let currentSchemaVersion = 4
 
     let database: DatabaseQueue
     let log: CategoryLogger
@@ -113,6 +113,7 @@ public final class DayStore: Sendable {
                 """)
         }
         registerV3Migration(in: &migrator)
+        registerV4Migration(in: &migrator)
         return migrator
     }
 
