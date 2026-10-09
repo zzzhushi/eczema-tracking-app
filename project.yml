@@ -44,5 +44,6 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: eXzema
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: eXzema notes your approximate location, rounded to about 11 km, to show the city and later to look up weather and air quality for each day.
+        INFOPLIST_KEY_NSCameraUsageDescription: eXzema takes photos of your skin to keep beside your ratings. They stay inside the app and are never saved to your Photos library.
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait

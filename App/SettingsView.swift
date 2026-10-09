@@ -36,6 +36,13 @@ struct SettingsView: View {
                     Text(DataNote.location)
                 }
                 Section {
+                    NavigationLink("Photo tips") { PhotoTipsView() }
+                } header: {
+                    Text("Photos")
+                } footer: {
+                    Text(DataNote.photos)
+                }
+                Section {
                 } footer: {
                     Text(BuildInfo(stamp: BuildStamp.value).label)
                 }

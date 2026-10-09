@@ -54,6 +54,14 @@ func writeFixtureStoreForCurrentSchema() throws {
             let id = try #require(try store.locationCaptures().first?.id)
             try store.setPlaceName("San Francisco", forCaptureID: id)
         }
+        if DayStore.currentSchemaVersion >= 4 {
+            try store.addPhoto(
+                fileName: "fixture.jpg", slot: "face", kind: .photo, camera: .front,
+                takenAt: DayStoreTestSupport.fixtureRatedAt,
+                in: TimeZone(identifier: DayStoreTestSupport.fixtureDay.timeZoneIdentifier)!,
+                filedOn: DayStoreTestSupport.fixtureDay.date, today: DayStoreTestSupport.fixtureDay.date
+            )
+        }
     }
 
     let queue = try DatabaseQueue(path: url.path)
