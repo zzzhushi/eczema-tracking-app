@@ -33,6 +33,9 @@ struct DayHostView: View {
                     if let loadFailure = model.loadFailure {
                         Text(loadFailure).foregroundStyle(.red)
                     }
+                    if model.savingPhotos > 0 {
+                        Label("Saving photo…", systemImage: "arrow.down.circle").foregroundStyle(.secondary)
+                    }
                     if let photoFailure = model.photoFailure {
                         Text(photoFailure).foregroundStyle(.red)
                     }

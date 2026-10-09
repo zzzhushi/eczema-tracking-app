@@ -124,7 +124,7 @@ extension DayStore {
                 let stamp: String = row["takenAt"]
                 let kindText: String = row["kind"]
                 let cameraText: String = row["camera"]
-                guard let takenAt = Self.parseTimestamp(stamp) else { throw CheckInError.unreadableTimestamp(stamp) }
+                guard let takenAt = Self.parseTimestamp(stamp) else { throw PhotoError.unreadableRecord(stamp) }
                 guard let kind = PhotoKind(rawValue: kindText) else { throw PhotoError.unreadableRecord(kindText) }
                 guard let camera = PhotoCamera(rawValue: cameraText) else { throw PhotoError.unreadableRecord(cameraText) }
                 return StoredPhoto(

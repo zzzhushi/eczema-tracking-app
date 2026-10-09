@@ -21,6 +21,8 @@ final class AppModel {
     /// The shown day's photos, by slot and capture time.
     private(set) var photos: [StoredPhoto] = []
     private(set) var photoFailure: String?
+    /// Photos captured and not yet stored; each one exists only in memory until its save finishes.
+    private(set) var savingPhotos = 0
     let photoFlow = PhotoFlow()
     private var checkInsFailed = false
     private var placesFailed = false
@@ -182,16 +184,19 @@ final class AppModel {
     ///
     /// The capture time, time zone, and days are fixed here on the main actor; encoding, resizing, and writing the
     /// file and record run in the background, and the day's photos reload when they finish.
-    func addPhoto(_ capture: CapturedPhoto, lensModel: String?, request: CaptureRequest) {
+    func addPhoto(_ capture: CapturedPhoto, metadata: CaptureMetadata, request: CaptureRequest) {
         guard let photoLibrary else {
             photoFailure = "Photos can't be stored right now."
             return
         }
         photoFailure = nil
-        let takenAt = clock()
         let timeZone = TimeZone.autoupdatingCurrent
+        let takenAt = metadata.shutterTime(fallbackZone: timeZone) ?? clock()
+        let lensModel = metadata.lensModel
         let filedOn = session.host.shownDate
         let today = session.host.today.date
+        let background = BackgroundWork(name: "photo.save")
+        savingPhotos += 1
         Task { [weak self] in
             let outcome = await Task.detached { () -> Result<Void, any Error> in
                 Result {
@@ -202,7 +207,9 @@ final class AppModel {
                     )
                 }
             }.value
+            background.end()
             guard let self else { return }
+            savingPhotos -= 1
             if case .failure(let error) = outcome {
                 photoFailure = "The photo could not be saved."
                 Log.photos.error("photo.saveFailed", private: ["error": String(describing: error)])
@@ -317,7 +324,11 @@ final class AppModel {
             UIColor.white.setFill()
             context.fill(CGRect(x: 300, y: 250, width: 600, height: 400))
         }
-        addPhoto(CapturedPhoto(image: image), lensModel: nil, request: request)
+        addPhoto(
+            CapturedPhoto(image: image),
+            metadata: CaptureMetadata(lensModel: nil, dateTimeOriginal: nil, offsetTimeOriginal: nil),
+            request: request
+        )
     }
 
     /// Moves the app's clock to just after the next midnight and refreshes, as the system's day-changed

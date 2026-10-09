@@ -19,7 +19,7 @@ How the app takes, files, stores, and shows photos of the user's skin. The priva
 ## Which day a photo belongs to
 
 - A photo is filed under the day on screen, and only today and yesterday take new photos, so a photo taken just after midnight can still count for the day before. Earlier days show their photos but have no Add tile.
-- The real capture time and time zone are always stored. When a photo is filed under a different day than it was taken on, the viewer says so.
+- The real capture time and time zone are always stored. The capture time is the shutter time the camera records, with its offset when given, because the camera's Use Photo step can come well after the shutter; without a readable shutter time it is the time the photo was saved. When a photo is filed under a different day than it was taken on, the viewer says so.
 - The first photo on a day creates the day.
 - Photos come only from the in-app camera; nothing is imported from the Photos library.
 
@@ -28,7 +28,7 @@ How the app takes, files, stores, and shows photos of the user's skin. The priva
 - A photo's image is a JPEG file in the app's private storage, in a `Photos` directory beside the store; the store holds a record with its day, slot, kind, camera, capture time, time zone, and file name.
 - Images are downscaled to about 1600 px on the long side, rotated upright, and stripped of all camera metadata, including location.
 - Files are protected until the first unlock after a restart, excluded from device and cloud backups, and never written to the Photos library. Temporary files from the camera are not kept.
-- Resizing and writing a captured photo run in the background after the camera closes; its thumbnail appears when it is stored. If the photo directory cannot be opened, the day screen says so and offers no Add tiles.
+- Resizing and writing a captured photo run in the background after the camera closes, under a background task so leaving the app does not stop them; a "Saving photo…" row shows until each is stored, and its thumbnail then appears. The captured image exists only in memory until then, and iOS limits how long the task may run. If the photo directory cannot be opened, the day screen says so and offers no Add tiles.
 - A record and its file are added and removed together. Files with no record are removed when the app starts.
 - Deleting a day deletes its photo records, and the next start removes their files.
 

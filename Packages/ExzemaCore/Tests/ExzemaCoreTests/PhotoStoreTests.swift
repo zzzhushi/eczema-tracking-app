@@ -1,4 +1,5 @@
 import Foundation
+import GRDB
 import Testing
 import ExzemaCore
 
@@ -160,6 +161,15 @@ struct PhotoStoreTests {
 
         #expect(throws: PhotoError.unknownSlot("chin")) { try add(store, file: "x.jpg", slot: "chin") }
         #expect(try store.days().isEmpty)
+    }
+
+    @Test func corruptCaptureTimeIsAPhotoRecordError() throws {
+        let store = try openStore()
+        _ = try add(store, file: "a.jpg")
+        let queue = try DatabaseQueue(path: directory.appendingPathComponent("store.sqlite").path)
+        try queue.write { try $0.execute(sql: "UPDATE photo SET takenAt = 'not a time'") }
+
+        #expect(throws: PhotoError.unreadableRecord("not a time")) { try store.photos(on: tuesday) }
     }
 
     @Test func fileNameCannotBeStoredTwice() throws {
