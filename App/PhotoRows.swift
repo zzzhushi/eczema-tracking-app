@@ -80,6 +80,14 @@ private struct PhotoThumbnail: View {
     @State private var image: UIImage?
     @Environment(\.scenePhase) private var scenePhase
 
+    /// Names the slot, the kind, and the time taken, so photos in a row can be told apart without seeing them.
+    private var accessibilityLabel: String {
+        let slot = model.photoSlots.first { $0.id == photo.slotID }?.name ?? "Photo"
+        let zone = TimeZone(identifier: photo.timeZoneIdentifier) ?? .current
+        let time = photo.takenAt.formatted(Date.FormatStyle(date: .omitted, time: .shortened, timeZone: zone))
+        return "\(slot) \(photo.kind == .closeUp ? "close-up" : "photo"), taken \(time). Open"
+    }
+
     var body: some View {
         Button {
             model.photoFlow.viewing = PhotoViewerTarget(slotID: photo.slotID, startID: photo.id)
@@ -96,7 +104,7 @@ private struct PhotoThumbnail: View {
             .clipShape(.rect(cornerRadius: 8))
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("Open photo")
+        .accessibilityLabel(accessibilityLabel)
         .task(id: photo.fileName) { image = await model.thumbnail(for: photo) }
     }
 }

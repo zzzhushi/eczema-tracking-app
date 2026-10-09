@@ -190,8 +190,8 @@ final class AppModel {
             return
         }
         photoFailure = nil
-        let timeZone = TimeZone.autoupdatingCurrent
-        let takenAt = metadata.shutterTime(fallbackZone: timeZone) ?? clock()
+        let currentZone = TimeZone.autoupdatingCurrent
+        let moment = metadata.shutterMoment(fallbackZone: currentZone) ?? CaptureMoment(instant: clock(), timeZone: currentZone)
         let lensModel = metadata.lensModel
         let filedOn = session.host.shownDate
         let today = session.host.today.date
@@ -203,7 +203,7 @@ final class AppModel {
                     guard let data = capture.image.jpegData(compressionQuality: 0.95) else { throw PhotoFileError.unreadableImage }
                     try photoLibrary.add(
                         imageData: data, slot: request.slot.id, kind: request.kind, presetCamera: request.slot.presetCamera,
-                        lensModel: lensModel, takenAt: takenAt, in: timeZone, filedOn: filedOn, today: today
+                        lensModel: lensModel, takenAt: moment.instant, in: moment.timeZone, filedOn: filedOn, today: today
                     )
                 }
             }.value

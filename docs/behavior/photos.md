@@ -19,7 +19,7 @@ How the app takes, files, stores, and shows photos of the user's skin. The priva
 ## Which day a photo belongs to
 
 - A photo is filed under the day on screen, and only today and yesterday take new photos, so a photo taken just after midnight can still count for the day before. Earlier days show their photos but have no Add tile.
-- The real capture time and time zone are always stored. The capture time is the shutter time the camera records, with its offset when given, because the camera's Use Photo step can come well after the shutter; without a readable shutter time it is the time the photo was saved. When a photo is filed under a different day than it was taken on, the viewer says so.
+- The real capture time and time zone are always stored. The capture time is the shutter time the camera records, because the camera's Use Photo step can come well after the shutter; the stored zone is the one the shutter time was read in, the camera's recorded offset when given and the phone's zone otherwise, so the viewer shows the local time and day it was taken. Without a readable shutter time the capture time is when the photo was saved, in the phone's zone. When a photo is filed under a different day than it was taken on, the viewer says so.
 - The first photo on a day creates the day.
 - Photos come only from the in-app camera; nothing is imported from the Photos library.
 
@@ -35,6 +35,7 @@ How the app takes, files, stores, and shows photos of the user's skin. The priva
 ## Viewing and deleting
 
 - Tapping a thumbnail opens the photo full screen. Pinching or double tapping zooms, swiping moves between that slot's photos for the day, and the bar shows the slot, the time taken, and where the day differs.
+- Each thumbnail is announced to VoiceOver with its slot, its kind, and the time taken, so photos in a row can be told apart.
 - Delete asks first, then removes the file and its record. The day stays.
 - Whenever the app is not active, every photo on screen, thumbnails and the viewer, is replaced by a placeholder, so the app switcher never shows skin.
 

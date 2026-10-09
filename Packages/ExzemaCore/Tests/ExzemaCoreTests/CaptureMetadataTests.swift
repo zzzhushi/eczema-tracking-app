@@ -15,38 +15,66 @@ struct CaptureMetadataTests {
         CaptureMetadata(lensModel: nil, dateTimeOriginal: time, offsetTimeOriginal: offset)
     }
 
-    @Test func shutterTimeUsesTheRecordedOffset() throws {
-        let shutter = metadata("2026:10:08 20:37:11", offset: "-07:00").shutterTime(fallbackZone: tokyo)
+    @Test func shutterMomentUsesTheRecordedOffset() throws {
+        let moment = try #require(metadata("2026:10:08 20:37:11", offset: "-07:00").shutterMoment(fallbackZone: tokyo))
 
-        #expect(shutter == (try instant("2026-10-09T03:37:11Z")), "the offset wins over the fallback zone")
+        #expect(moment.instant == (try instant("2026-10-09T03:37:11Z")), "the offset wins over the fallback zone")
     }
 
-    @Test func shutterTimeFallsBackToTheGivenZoneWithoutAnOffset() throws {
-        let shutter = metadata("2026:10:08 20:37:11").shutterTime(fallbackZone: losAngeles)
+    @Test func shutterMomentCarriesTheZoneItWasReadIn() throws {
+        let moment = try #require(metadata("2026:10:08 20:37:11", offset: "-07:00").shutterMoment(fallbackZone: tokyo))
 
-        #expect(shutter == (try instant("2026-10-09T03:37:11Z")))
+        #expect(moment.timeZone.secondsFromGMT(for: moment.instant) == -7 * 3600, "not the fallback zone")
+        #expect(moment.timeZone != tokyo)
     }
 
-    @Test func malformedOffsetFallsBackToTheGivenZone() throws {
-        let shutter = metadata("2026:10:08 20:37:11", offset: "later").shutterTime(fallbackZone: losAngeles)
+    @Test func shutterMomentKeepsTheFallbackZoneWhenItAgreesWithTheOffset() throws {
+        let moment = try #require(metadata("2026:10:08 20:37:11", offset: "-07:00").shutterMoment(fallbackZone: losAngeles))
 
-        #expect(shutter == (try instant("2026-10-09T03:37:11Z")))
+        #expect(moment.timeZone == losAngeles, "a named zone says more than a bare offset")
+    }
+
+    @Test func shutterMomentFallsBackToTheGivenZoneWithoutAnOffset() throws {
+        let moment = try #require(metadata("2026:10:08 20:37:11").shutterMoment(fallbackZone: losAngeles))
+
+        #expect(moment.instant == (try instant("2026-10-09T03:37:11Z")))
+        #expect(moment.timeZone == losAngeles)
+    }
+
+    @Test(arguments: ["later", "-oops:00", "+oops:07:00", "+07:00:00", "+15:00", "+07:60", "07:00", ""])
+    func malformedOffsetFallsBackToTheGivenZone(offset: String) throws {
+        let moment = try #require(metadata("2026:10:08 20:37:11", offset: offset).shutterMoment(fallbackZone: losAngeles))
+
+        #expect(moment.instant == (try instant("2026-10-09T03:37:11Z")))
+        #expect(moment.timeZone == losAngeles)
     }
 
     @Test func photoShotJustBeforeMidnightKeepsItsDayWhateverTheTimeItIsAccepted() throws {
-        let shutter = try #require(metadata("2026:10:08 23:59:55", offset: "-07:00").shutterTime(fallbackZone: losAngeles))
+        let moment = try #require(metadata("2026:10:08 23:59:55", offset: "-07:00").shutterMoment(fallbackZone: losAngeles))
 
-        #expect(Day(loggedAt: shutter, in: losAngeles).date == LocalDate(year: 2026, month: 10, day: 8))
+        #expect(Day(loggedAt: moment.instant, in: moment.timeZone).date == LocalDate(year: 2026, month: 10, day: 8))
     }
 
     @Test func photoShotJustAfterMidnightIsOnTheNextDay() throws {
-        let shutter = try #require(metadata("2026:10:09 00:00:05", offset: "-07:00").shutterTime(fallbackZone: losAngeles))
+        let moment = try #require(metadata("2026:10:09 00:00:05", offset: "-07:00").shutterMoment(fallbackZone: losAngeles))
 
-        #expect(Day(loggedAt: shutter, in: losAngeles).date == LocalDate(year: 2026, month: 10, day: 9))
+        #expect(Day(loggedAt: moment.instant, in: moment.timeZone).date == LocalDate(year: 2026, month: 10, day: 9))
     }
 
-    @Test(arguments: [nil, "", "not a time", "2026-10-08 20:37:11", "2026:13:08 20:37:11", "2026:10:32 20:37:11", "2026:10:08 25:00:00"])
-    func missingOrMalformedTimeGivesNoShutterTime(time: String?) {
-        #expect(metadata(time).shutterTime(fallbackZone: losAngeles) == nil)
+    @Test func localDayFollowsTheRecordedZoneNotTheFallbackZone() throws {
+        let moment = try #require(metadata("2026:10:08 23:30:00", offset: "-07:00").shutterMoment(fallbackZone: tokyo))
+
+        #expect(Day(loggedAt: moment.instant, in: moment.timeZone).date == LocalDate(year: 2026, month: 10, day: 8))
+        #expect(Day(loggedAt: moment.instant, in: tokyo).date == LocalDate(year: 2026, month: 10, day: 9), "the fallback zone would give the next day")
+    }
+
+    @Test(arguments: [
+        nil, "", "not a time", "2026-10-08 20:37:11",
+        "2026:13:08 20:37:11", "2026:10:32 20:37:11", "2026:10:08 25:00:00",
+        "2026:oops:08 20:37:11", "2026:oops:10:08 20:37:11", "2026:10:08 20:37:11:oops", "2026:10:08 20:oops:11",
+        "2026:10:08  20:37:11", "2026:10:08", "2026:+1:08 20:37:11", "2026::08 20:37:11",
+    ])
+    func missingOrMalformedTimeGivesNoShutterMoment(time: String?) {
+        #expect(metadata(time).shutterMoment(fallbackZone: losAngeles) == nil)
     }
 }

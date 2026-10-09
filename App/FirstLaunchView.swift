@@ -26,6 +26,6 @@ struct FirstLaunchView: View {
 
 enum DataNote {
     static let location = "While you use eXzema it notes your approximate location, rounded to about 11 km. The rounded position is sent to Apple's maps service to find the city name, and later to look up weather."
-    static let photos = "Photos stay inside eXzema, protected by your passcode. They are not saved to your Photos library or backed up."
+    static let photos = "Photos stay inside eXzema, encrypted by iPhone Data Protection. They are not saved to your Photos library or backed up."
     static let deletion = "Your data stays on this phone and is not backed up. Deleting the app deletes its data."
 }

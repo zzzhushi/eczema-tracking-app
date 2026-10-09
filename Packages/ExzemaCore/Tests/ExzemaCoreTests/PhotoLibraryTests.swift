@@ -70,6 +70,23 @@ struct PhotoLibraryTests {
         #expect(try add(library, preset: .back, lensModel: nil).camera == .back)
     }
 
+    @Test func photoKeepsTheZoneItWasTakenInEvenWhenItDiffersFromTheCurrentOne() throws {
+        let (library, store, _) = try openLibrary()
+        let metadata = CaptureMetadata(lensModel: nil, dateTimeOriginal: "2026:10:08 23:30:00", offsetTimeOriginal: "-07:00")
+        let moment = try #require(metadata.shutterMoment(fallbackZone: TimeZone(identifier: "Asia/Tokyo")!))
+        let shotDay = LocalDate(year: 2026, month: 10, day: 8)
+
+        _ = try library.add(
+            imageData: imageData(), slot: "face", kind: .photo, presetCamera: .front, lensModel: nil,
+            takenAt: moment.instant, in: moment.timeZone, filedOn: shotDay, today: shotDay
+        )
+
+        let stored = try #require(try store.photos(on: shotDay).first)
+        let zone = try #require(TimeZone(identifier: stored.timeZoneIdentifier))
+        #expect(zone.secondsFromGMT(for: stored.takenAt) == -7 * 3600, "the viewer formats the time in the zone it was taken in")
+        #expect(Day(loggedAt: stored.takenAt, in: zone).date == shotDay)
+    }
+
     @Test func refusedFilingStoresNoFile() throws {
         let (library, store, files) = try openLibrary()
 
