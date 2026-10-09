@@ -4,9 +4,9 @@
 #
 # Usage: scripts/pull_from_phone.sh [output-dir]
 #   output-dir   must not exist yet; defaults to ~/exzema-pulls/<UTC timestamp>. It must be outside every git
-#                checkout, because the store holds the user's real entries.
+#                checkout, because the store and the photos hold the user's real entries and skin.
 #
-# The three copies are separate operations, so they describe one moment only if nothing is writing: force-quit
+# The copies are separate operations, so they describe one moment only if nothing is writing: force-quit
 # the app on the phone first. The script refuses to run while the app is running.
 #
 # Environment:
@@ -121,4 +121,4 @@ if [ -d "$out/Logs" ]; then
 fi
 echo "system logs (root):  sudo /usr/bin/log collect --device --last 1d --output '$out/logs.logarchive'"
 echo "read them:           /usr/bin/log show '$out/logs.logarchive' --predicate 'subsystem == \"$bundle\"'"
-echo "The store holds real entries and ratings; logs mark them private. Delete the folder when finished."
+echo "The store holds real entries and ratings, and the Photos folder holds unencrypted skin photos; logs leave private values out. Delete the folder when finished."

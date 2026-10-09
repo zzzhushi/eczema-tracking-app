@@ -97,6 +97,15 @@ struct PhotoStoreTests {
         #expect(photos.first { $0.fileName == "close.jpg" }?.kind == .closeUp)
     }
 
+    @Test(arguments: ["left-hand", "right-hand"])
+    func closeUpOfASlotThatDoesNotOfferOneIsRefusedAndWritesNothing(slot: String) throws {
+        let store = try openStore()
+
+        #expect(throws: PhotoError.closeUpNotOffered(slot)) { try add(store, file: "hand.jpg", slot: slot, kind: .closeUp) }
+        #expect(try store.days().isEmpty, "a refused photo writes no day")
+        #expect(try store.allPhotoFileNames().isEmpty)
+    }
+
     @Test func photoRecordsCameraTimeAndZone() throws {
         let store = try openStore()
         let stored = try store.addPhoto(

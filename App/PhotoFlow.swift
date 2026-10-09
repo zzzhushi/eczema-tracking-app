@@ -11,6 +11,12 @@ struct CaptureRequest: Identifiable, Equatable {
     var id: String { "\(slot.id)-\(kind.rawValue)" }
 }
 
+/// A camera image handed to the background work that stores it. The image is not changed after capture, and
+/// reading a `UIImage` from another thread is safe.
+struct CapturedPhoto: @unchecked Sendable {
+    let image: UIImage
+}
+
 /// The photos of one slot and day that the full-screen viewer pages through, opened on `startID`.
 struct PhotoViewerTarget: Identifiable {
     let slotID: String
@@ -55,11 +61,16 @@ final class PhotoFlow {
     func tipsFinished() {
         defaults.set(true, forKey: Self.tipsSeenKey)
         showingTips = false
-        Task { await proceed() }
     }
 
+    /// Called when the tips sheet has finished dismissing, so the permission message or the camera is never
+    /// presented while the sheet is still on its way out.
     func tipsDismissed() {
-        if !defaults.bool(forKey: Self.tipsSeenKey) { pending = nil }
+        if defaults.bool(forKey: Self.tipsSeenKey) {
+            Task { await proceed() }
+        } else {
+            pending = nil
+        }
     }
 
     private func proceed() async {

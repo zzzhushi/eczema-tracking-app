@@ -55,6 +55,7 @@ public struct StoredPhoto: Equatable, Sendable {
 
 public enum PhotoError: Error, Equatable {
     case unknownSlot(String)
+    case closeUpNotOffered(String)
     case cannotFile(on: LocalDate)
     case unreadableRecord(String)
 }
@@ -80,7 +81,8 @@ extension DayStore {
     /// Record a photo whose image is already stored under `fileName`, filed under `filedOn`.
     ///
     /// The day is created in `timeZone` if it has no row yet. Throws `PhotoError.cannotFile` unless `filedOn` is
-    /// `today` or the day before, and `PhotoError.unknownSlot` for a slot that does not exist; either writes nothing.
+    /// `today` or the day before, `PhotoError.unknownSlot` for a slot that does not exist, and
+    /// `PhotoError.closeUpNotOffered` for a close-up of a slot that takes none; each writes nothing.
     @discardableResult
     public func addPhoto(
         fileName: String, slot: String, kind: PhotoKind, camera: PhotoCamera,
@@ -89,8 +91,10 @@ extension DayStore {
         guard PhotoFiling.canFile(on: filedOn, today: today) else { throw PhotoError.cannotFile(on: filedOn) }
         let stamp = Self.formatTimestamp(takenAt)
         let id = try database.write { db -> Int64 in
-            guard try Bool.fetchOne(db, sql: "SELECT EXISTS (SELECT 1 FROM photo_slot WHERE id = ?)", arguments: [slot]) == true
+            guard let row = try Row.fetchOne(db, sql: "SELECT id, areaId, name FROM photo_slot WHERE id = ?", arguments: [slot])
             else { throw PhotoError.unknownSlot(slot) }
+            let found = PhotoSlot(id: row["id"], areaID: row["areaId"], name: row["name"])
+            if kind == .closeUp, !found.offersCloseUp { throw PhotoError.closeUpNotOffered(slot) }
             try db.execute(
                 sql: "INSERT OR IGNORE INTO day (date, timeZoneIdentifier) VALUES (?, ?)",
                 arguments: [filedOn.isoString, timeZone.identifier]

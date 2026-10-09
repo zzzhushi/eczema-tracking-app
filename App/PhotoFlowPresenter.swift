@@ -26,9 +26,9 @@ struct PhotoFlowPresenter: ViewModifier {
                 Color.clear.fullScreenCover(item: $flow.cameraRequest) { request in
                     CameraPicker(
                         device: request.slot.presetCamera == .front ? .front : .rear,
-                        onCapture: { data, lensModel in
-                            model.addPhoto(data, lensModel: lensModel, request: request)
+                        onCapture: { image, lensModel in
                             flow.cameraRequest = nil
+                            model.addPhoto(CapturedPhoto(image: image), lensModel: lensModel, request: request)
                         },
                         onCancel: { flow.cameraRequest = nil }
                     )

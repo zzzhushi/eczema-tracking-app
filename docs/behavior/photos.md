@@ -28,6 +28,7 @@ How the app takes, files, stores, and shows photos of the user's skin. The priva
 - A photo's image is a JPEG file in the app's private storage, in a `Photos` directory beside the store; the store holds a record with its day, slot, kind, camera, capture time, time zone, and file name.
 - Images are downscaled to about 1600 px on the long side, rotated upright, and stripped of all camera metadata, including location.
 - Files are protected until the first unlock after a restart, excluded from device and cloud backups, and never written to the Photos library. Temporary files from the camera are not kept.
+- Resizing and writing a captured photo run in the background after the camera closes; its thumbnail appears when it is stored. If the photo directory cannot be opened, the day screen says so and offers no Add tiles.
 - A record and its file are added and removed together. Files with no record are removed when the app starts.
 - Deleting a day deletes its photo records, and the next start removes their files.
 

@@ -32,9 +32,9 @@ final class AppModel {
         checkInsFailed || placesFailed || photosFailed ? "Part of this day could not be loaded." : nil
     }
 
-    /// Whether the shown day takes a new photo: only today and yesterday do.
+    /// Whether the shown day takes a new photo: only today and yesterday do, and only while photos can be stored.
     var canAddPhotos: Bool {
-        PhotoFiling.canFile(on: session.host.shownDate, today: session.host.today.date)
+        photoLibrary != nil && PhotoFiling.canFile(on: session.host.shownDate, today: session.host.today.date)
     }
     /// Changes when debug actions clear data, so the food section reloads.
     private(set) var dataVersion = 0
@@ -179,20 +179,36 @@ final class AppModel {
     }
 
     /// File a captured image under the shown day.
-    func addPhoto(_ imageData: Data, lensModel: String?, request: CaptureRequest) {
-        guard let photoLibrary else { return }
-        photoFailure = nil
-        do {
-            try photoLibrary.add(
-                imageData: imageData, slot: request.slot.id, kind: request.kind, presetCamera: request.slot.presetCamera,
-                lensModel: lensModel, takenAt: clock(), in: .autoupdatingCurrent,
-                filedOn: session.host.shownDate, today: session.host.today.date
-            )
-        } catch {
-            photoFailure = "The photo could not be saved."
-            Log.photos.error("photo.saveFailed", private: ["error": String(describing: error)])
+    ///
+    /// The capture time, time zone, and days are fixed here on the main actor; encoding, resizing, and writing the
+    /// file and record run in the background, and the day's photos reload when they finish.
+    func addPhoto(_ capture: CapturedPhoto, lensModel: String?, request: CaptureRequest) {
+        guard let photoLibrary else {
+            photoFailure = "Photos can't be stored right now."
+            return
         }
-        loadPhotos()
+        photoFailure = nil
+        let takenAt = clock()
+        let timeZone = TimeZone.autoupdatingCurrent
+        let filedOn = session.host.shownDate
+        let today = session.host.today.date
+        Task { [weak self] in
+            let outcome = await Task.detached { () -> Result<Void, any Error> in
+                Result {
+                    guard let data = capture.image.jpegData(compressionQuality: 0.95) else { throw PhotoFileError.unreadableImage }
+                    try photoLibrary.add(
+                        imageData: data, slot: request.slot.id, kind: request.kind, presetCamera: request.slot.presetCamera,
+                        lensModel: lensModel, takenAt: takenAt, in: timeZone, filedOn: filedOn, today: today
+                    )
+                }
+            }.value
+            guard let self else { return }
+            if case .failure(let error) = outcome {
+                photoFailure = "The photo could not be saved."
+                Log.photos.error("photo.saveFailed", private: ["error": String(describing: error)])
+            }
+            loadPhotos()
+        }
     }
 
     func deletePhoto(_ photo: StoredPhoto) {
@@ -301,8 +317,7 @@ final class AppModel {
             UIColor.white.setFill()
             context.fill(CGRect(x: 300, y: 250, width: 600, height: 400))
         }
-        guard let data = image.jpegData(compressionQuality: 0.9) else { return }
-        addPhoto(data, lensModel: nil, request: request)
+        addPhoto(CapturedPhoto(image: image), lensModel: nil, request: request)
     }
 
     /// Moves the app's clock to just after the next midnight and refreshes, as the system's day-changed
