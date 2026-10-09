@@ -17,19 +17,33 @@ final class AppModel {
     private(set) var areas: [Area] = []
     private(set) var checkIns: [String: CheckIn] = [:]
     private(set) var places = DayPlaces(names: [], captureCount: 0)
+    private(set) var photoSlots: [PhotoSlot] = []
+    /// The shown day's photos, by slot and capture time.
+    private(set) var photos: [StoredPhoto] = []
+    private(set) var photoFailure: String?
+    let photoFlow = PhotoFlow()
     private var checkInsFailed = false
     private var placesFailed = false
+    private var photosFailed = false
 
-    /// Set while the shown day's ratings or places could not be read; they then show as unknown, never as another
-    /// day's values.
+    /// Set while the shown day's ratings, places, or photos could not be read; they then show as unknown, never as
+    /// another day's values.
     var loadFailure: String? {
-        checkInsFailed || placesFailed ? "Part of this day could not be loaded." : nil
+        checkInsFailed || placesFailed || photosFailed ? "Part of this day could not be loaded." : nil
+    }
+
+    /// Whether the shown day takes a new photo: only today and yesterday do.
+    var canAddPhotos: Bool {
+        PhotoFiling.canFile(on: session.host.shownDate, today: session.host.today.date)
     }
     /// Changes when debug actions clear data, so the food section reloads.
     private(set) var dataVersion = 0
 
     private let store: DayStore?
     private let locationRecorder: LocationRecorder?
+    private let photoFiles: PhotoFileStore?
+    private let photoLibrary: PhotoLibrary?
+    @ObservationIgnored private let thumbnails = NSCache<NSString, UIImage>()
     private var isCapturingLocation = false
     private let diagnostics = DiagnosticsListener()
     /// Kept so the session keeps hearing the system's clock notifications for the app's lifetime.
@@ -62,6 +76,18 @@ final class AppModel {
         let matching = Self.loadCatalog()
         if matching == nil { catalogFailure = "The food catalog could not be loaded." }
         store = openedStore
+        var openedFiles: PhotoFileStore?
+        if openedStore != nil {
+            do {
+                let directory = try AppPaths.applicationSupport().appendingPathComponent("Photos", isDirectory: true)
+                openedFiles = try PhotoFileStore(directory: directory)
+            } catch {
+                failure = "The photo folder could not be opened."
+                Log.photos.fault("photos.unavailable", private: ["error": String(describing: error)])
+            }
+        }
+        photoFiles = openedFiles
+        photoLibrary = openedStore.flatMap { store in openedFiles.map { PhotoLibrary(store: store, files: $0) } }
         #if DEBUG
         let debugClock = DebugClock()
         self.debugClock = debugClock
@@ -81,7 +107,16 @@ final class AppModel {
             clockNotifications: DayEventObserver.foundationClockNotifications + [UIApplication.significantTimeChangeNotification]
         )
         location.onAuthorized = { [weak self] in self?.captureLocationIfDue() }
+        do {
+            try photoLibrary?.removeOrphanFiles()
+        } catch {
+            Log.photos.error("photos.cleanupFailed", private: ["error": String(describing: error)])
+        }
+        #if DEBUG
+        photoFlow.simulatorCapture = { [weak self] request in self?.addDebugPhoto(for: request) }
+        #endif
         loadAreas()
+        loadPhotoSlots()
         observeSavedDates()
     }
 
@@ -126,6 +161,71 @@ final class AppModel {
         }
     }
 
+    /// Load the photos filed under the shown date.
+    func loadPhotos() {
+        photos = []
+        photosFailed = false
+        guard let store else { return }
+        do {
+            photos = try store.photos(on: session.host.shownDate)
+        } catch {
+            photosFailed = true
+            Log.storage.error("store.readFailed", public: ["query": "photos"], private: ["error": String(describing: error)])
+        }
+    }
+
+    func photos(in slot: PhotoSlot, kind: PhotoKind) -> [StoredPhoto] {
+        photos.filter { $0.slotID == slot.id && $0.kind == kind }
+    }
+
+    /// File a captured image under the shown day.
+    func addPhoto(_ imageData: Data, lensModel: String?, request: CaptureRequest) {
+        guard let photoLibrary else { return }
+        photoFailure = nil
+        do {
+            try photoLibrary.add(
+                imageData: imageData, slot: request.slot.id, kind: request.kind, presetCamera: request.slot.presetCamera,
+                lensModel: lensModel, takenAt: clock(), in: .autoupdatingCurrent,
+                filedOn: session.host.shownDate, today: session.host.today.date
+            )
+        } catch {
+            photoFailure = "The photo could not be saved."
+            Log.photos.error("photo.saveFailed", private: ["error": String(describing: error)])
+        }
+        loadPhotos()
+    }
+
+    func deletePhoto(_ photo: StoredPhoto) {
+        guard let photoLibrary else { return }
+        do {
+            try photoLibrary.delete(photo)
+        } catch {
+            photoFailure = "The photo could not be deleted."
+            Log.photos.error("photo.deleteFailed", private: ["error": String(describing: error)])
+        }
+        thumbnails.removeObject(forKey: photo.fileName as NSString)
+        loadPhotos()
+    }
+
+    /// A small version of a stored photo for the day screen.
+    func thumbnail(for photo: StoredPhoto) async -> UIImage? {
+        if let cached = thumbnails.object(forKey: photo.fileName as NSString) { return cached }
+        guard let photoFiles else { return nil }
+        let name = photo.fileName
+        let data = await Task.detached { try? photoFiles.thumbnailData(fileName: name, maxPixel: 240) }.value
+        guard let data, let image = UIImage(data: data) else { return nil }
+        thumbnails.setObject(image, forKey: name as NSString)
+        return image
+    }
+
+    /// A stored photo at its full stored size.
+    func image(for photo: StoredPhoto) async -> UIImage? {
+        guard let photoFiles else { return nil }
+        let name = photo.fileName
+        let data = await Task.detached { try? photoFiles.imageData(fileName: name) }.value
+        return data.flatMap { UIImage(data: $0) }
+    }
+
     /// Give the shown day's area a rating, or clear it with nil.
     func setRating(_ kind: RatingKind, to value: Int?, area: Area) {
         guard let store else { return }
@@ -135,6 +235,15 @@ final class AppModel {
             Log.checkIn.error("checkin.saveFailed", private: ["error": String(describing: error)])
         }
         loadCheckIns()
+    }
+
+    private func loadPhotoSlots() {
+        guard let store else { return }
+        do {
+            photoSlots = try store.photoSlots()
+        } catch {
+            Log.storage.error("store.readFailed", public: ["query": "photoSlots"], private: ["error": String(describing: error)])
+        }
     }
 
     private func loadAreas() {
@@ -177,8 +286,23 @@ final class AppModel {
     func clearToday() {
         guard let store else { return }
         try? store.delete(session.host.today.date)
+        try? photoLibrary?.removeOrphanFiles()
         dataVersion += 1
         loadCheckIns()
+        loadPhotos()
+    }
+
+    /// Adds a plain generated image to the requested slot, for walking the photo screens in the simulator.
+    func addDebugPhoto(for request: CaptureRequest) {
+        let size = CGSize(width: 1200, height: 900)
+        let image = UIGraphicsImageRenderer(size: size).image { context in
+            UIColor(hue: .random(in: 0...1), saturation: 0.35, brightness: 0.9, alpha: 1).setFill()
+            context.fill(CGRect(origin: .zero, size: size))
+            UIColor.white.setFill()
+            context.fill(CGRect(x: 300, y: 250, width: 600, height: 400))
+        }
+        guard let data = image.jpegData(compressionQuality: 0.9) else { return }
+        addPhoto(data, lensModel: nil, request: request)
     }
 
     /// Moves the app's clock to just after the next midnight and refreshes, as the system's day-changed
@@ -211,8 +335,10 @@ final class AppModel {
     func clearAll() {
         guard let store else { return }
         try? store.deleteAll()
+        try? photoLibrary?.removeOrphanFiles()
         dataVersion += 1
         loadCheckIns()
+        loadPhotos()
     }
     #endif
 }

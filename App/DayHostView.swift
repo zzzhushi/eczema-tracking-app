@@ -33,6 +33,9 @@ struct DayHostView: View {
                     if let loadFailure = model.loadFailure {
                         Text(loadFailure).foregroundStyle(.red)
                     }
+                    if let photoFailure = model.photoFailure {
+                        Text(photoFailure).foregroundStyle(.red)
+                    }
                     if host.isAfterToday {
                         Text("Later than today here").foregroundStyle(.secondary)
                     }
@@ -45,6 +48,7 @@ struct DayHostView: View {
                 .task(id: LoadKey(date: host.shownDate, dataVersion: model.dataVersion)) {
                     model.loadCheckIns()
                     model.loadPlaces()
+                    model.loadPhotos()
                 }
             }
             .navigationTitle(day.date.longTitle)
@@ -62,6 +66,7 @@ struct DayHostView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView(model: model)
             }
+            .modifier(PhotoFlowPresenter(model: model))
         }
         .environment(model.foodServices)
         .onAppear { model.captureLocationIfDue() }

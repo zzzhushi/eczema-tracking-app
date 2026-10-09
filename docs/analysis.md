@@ -105,7 +105,7 @@ Numbers may start provisional; the structural cases may not.
 - When an area has several photos on one day (one per hand, for example), the area's AI skin score is the worse photo's skin score, so a one-sided flare isn't averaged away. Each photo keeps its own scores, so the area can later be split.
 - **Look in the analysis is the user's look rating for now.** The AI's skin score is shown beside it and enters the analysis once promoted.
 - **Promotion (provisional, to confirm before data is collected)**: the AI skin score may feed the analysis after at least 30 photos with the user's look rating, taken over at least 3 weeks and including at least 3 flare onsets. It must be within 1.5 points of the user's look on at least 80% of photos and rank the photos like the user (rank correlation of at least 0.8). On days the user's look rises 2 or more points above the area's previous 7 days, the AI skin score must do the same at least 80% of the time, and on other days at most 10% of the time. Two photos of the same skin seconds apart must differ by at most 1 point. It is judged on the paired ratings the app already stores, with the recipe unchanged.
-- The mapping from sign scores (0–21) to the 1–10 skin score, its rounding, and how unscored signs affect it are defined in the S4 issue. Until promotion, the skin score is the AI's second opinion, for display; it is not a look.
+- The mapping from sign scores (0–21) to the 1–10 skin score, its rounding, and how unscored signs affect it are defined in the AI photo rating issue. Until promotion, the skin score is the AI's second opinion, for display; it is not a look.
 
 ## Later releases (provisional)
 

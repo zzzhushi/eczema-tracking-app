@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copies the app's store, log files, and diagnostic reports from a connected iPhone to a new private folder on
+# Copies the app's store, photos, log files, and diagnostic reports from a connected iPhone to a new private folder on
 # this Mac, for debugging. The app must be installed from Xcode so its data container is readable.
 #
 # Usage: scripts/pull_from_phone.sh [output-dir]
@@ -93,6 +93,9 @@ fi
 if ! copy Logs; then
     echo "note: no app log files on the phone (the build predates them, or nothing has been logged)"
 fi
+if ! copy Photos; then
+    echo "note: no photos on the phone"
+fi
 chmod -R go-rwx "$out"
 
 store="$out/Store/store.sqlite"
@@ -108,8 +111,11 @@ fi
 if [ -d "$out/Logs" ]; then
     echo "app log lines: $(cat "$out"/Logs/*.jsonl 2>/dev/null | wc -l | tr -d ' ')"
 fi
+if [ -d "$out/Photos" ]; then
+    echo "photos: $(ls "$out/Photos" | wc -l | tr -d ' ')"
+fi
 echo
-echo "look at the data:    sqlite3 -readonly '$store' '.tables'"
+echo "look at the data:   sqlite3 -readonly '$store' '.tables'"
 if [ -d "$out/Logs" ]; then
     echo "app logs:            cat '$out'/Logs/previous.jsonl '$out'/Logs/current.jsonl"
 fi

@@ -47,6 +47,11 @@ case "$1 $2" in
             mkdir -p "$dest"
             printf '{"event":"a"}\n{"event":"b"}\n' > "$dest/current.jsonl"; printf '{"event":"c"}\n' > "$dest/previous.jsonl"
             ;;
+        */Photos)
+            [ -z "${FAKE_NO_PHOTOS:-}" ] || { echo "ERROR: no node" >&2; exit 1; }
+            mkdir -p "$dest"
+            echo a > "$dest/one.jpg"; echo b > "$dest/two.jpg"
+            ;;
         */Diagnostics)
             [ -z "${FAKE_NO_DIAGNOSTICS:-}" ] || { echo "ERROR: no node" >&2; exit 1; }
             mkdir -p "$dest"; echo '{}' > "$dest/crash-1.json"
@@ -74,6 +79,8 @@ export FAKE_DEVICES=one
 check "a pull from one phone succeeds" "[ -f '$work/pull1/Store/store.sqlite' ]"
 check "the diagnostic reports are copied" "[ -f '$work/pull1/Diagnostics/crash-1.json' ]"
 check "the app log files are copied and counted" "[ -f '$work/pull1/Logs/current.jsonl' ] && grep -q 'app log lines: 3' '$work/out.txt'"
+check "the photos are copied and counted" "[ -f '$work/pull1/Photos/one.jpg' ] && grep -q 'photos: 2' '$work/out.txt'"
+check "the photo folder is private" "[ \"\$(stat -f %Lp '$work/pull1/Photos')\" = 700 ]"
 check "the summary has the counts" "grep -q 'food items: 2' '$work/out.txt' && grep -q 'schema version: 2' '$work/out.txt' && grep -q 'integrity: ok' '$work/out.txt'"
 check "the log command is printed, not run" "grep -q 'sudo /usr/bin/log collect' '$work/out.txt' && [ ! -e '$work/pull1/logs.logarchive' ]"
 check "the folder is private" "[ \"\$(stat -f %Lp '$work/pull1')\" = 700 ]"
@@ -120,6 +127,9 @@ FAKE_NO_DIAGNOSTICS=1 "$script" "$work/pull6" >"$work/out.txt" 2>/dev/null
 check "missing diagnostics is a note, not a failure" "[ -f '$work/pull6/Store/store.sqlite' ] && grep -q 'no diagnostic reports' '$work/out.txt'"
 FAKE_NO_LOGS=1 "$script" "$work/pull7" >"$work/out.txt" 2>/dev/null
 check "missing app logs is a note, not a failure" "[ -f '$work/pull7/Store/store.sqlite' ] && grep -q 'no app log files' '$work/out.txt'"
+
+FAKE_NO_PHOTOS=1 "$script" "$work/pull8" >"$work/out.txt" 2>/dev/null
+check "missing photos is a note, not a failure" "[ -f '$work/pull8/Store/store.sqlite' ] && grep -q 'no photos on the phone' '$work/out.txt'"
 
 HOME="$work/home" "$script" >/dev/null 2>&1
 check "the default folder is under the home directory" "[ -n \"\$(ls '$work/home/exzema-pulls' 2>/dev/null)\" ]"
