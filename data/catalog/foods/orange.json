@@ -1,0 +1,128 @@
+{
+  "id": "orange",
+  "name": "Orange",
+  "description": "Fresh.",
+  "aliases": [
+    "orange"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Orange",
+          "basis": "1 fruit, 29 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 29.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Oranges, raw",
+          "basis": "one, 23.3 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 23.3,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: orange",
+          "basis": "compatibility score 3",
+          "kind": "list",
+          "level": "very high",
+          "markers": [
+            "A",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Citrus: Orange",
+          "basis": "5.75 µg per 140 g, 92 samples; about 5.75 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 5.75,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

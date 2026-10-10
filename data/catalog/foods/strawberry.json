@@ -1,0 +1,120 @@
+{
+  "id": "strawberry",
+  "name": "Strawberry",
+  "description": "Fresh.",
+  "aliases": [
+    "strawberry"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Strawberry",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Strawberries",
+          "basis": "1/2 cup, 2 mg (sheet serving)",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Strawberries, raw",
+          "basis": "1/2 cup, 1.2 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.2,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: strawberry",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "A",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Berries: Strawberries",
+          "basis": "6.63 µg per 140 g, 117 samples; about 6.63 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 6.63,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

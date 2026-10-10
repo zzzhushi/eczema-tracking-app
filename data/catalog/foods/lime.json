@@ -1,0 +1,114 @@
+{
+  "id": "lime",
+  "name": "Lime",
+  "description": "Fresh.",
+  "aliases": [
+    "lime"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "50 g fresh",
+    "grams": 50,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fruits used primarily as ingredients, others (cranberries, lemon, lime): 50 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Limes",
+          "basis": "1/2 fruit, 3 mg (sheet serving)",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.0,
+            "unit": "mg",
+            "per": "1/2 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Limes, raw",
+          "basis": "1/8 lime, 0.7 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "1/8 lime"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: lime",
+          "basis": "compatibility score 3",
+          "kind": "list",
+          "level": "very high",
+          "markers": [
+            "A",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

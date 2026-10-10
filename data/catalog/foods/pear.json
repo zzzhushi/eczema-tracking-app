@@ -1,0 +1,142 @@
+{
+  "id": "pear",
+  "name": "Pear",
+  "description": "Fresh.",
+  "aliases": [
+    "pear"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Pears fresh, ripe, soft and juicy, peeled thickly",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Pear fresh with peel, unripe, canned in juice, drained",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Pears",
+          "basis": "1 fruit, 2 mg (sheet serving)",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Pears, raw",
+          "basis": "one, 1.8 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.8,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Pears fresh, ripe, soft and juicy, peeled thickly",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: pear",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "A"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Pears fresh, ripe, soft and juicy, peeled thickly",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Pear",
+          "basis": "8.26 µg per 140 g, 176 samples; about 8.26 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 8.26,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

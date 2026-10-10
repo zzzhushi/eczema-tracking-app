@@ -1,0 +1,103 @@
+{
+  "id": "olive",
+  "name": "Olive",
+  "description": "Brined or canned.",
+  "aliases": [
+    "olive"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "15 g",
+    "grams": 15,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Olives: 15 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Olives",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Olives",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: olives",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "?"
+          ],
+          "note": "Usually fermented, sometimes with intolerated ingredients"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Olives",
+          "basis": "1.31 µg per 15 g, 56 samples; about 1.31 µg at 15 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 1.31,
+            "unit": "µg",
+            "per": "15 g",
+            "perGrams": 15.0
+          }
+        }
+      ]
+    }
+  }
+}

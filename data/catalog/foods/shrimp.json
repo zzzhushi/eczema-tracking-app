@@ -1,0 +1,151 @@
+{
+  "id": "shrimp",
+  "name": "Shrimp",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "shrimp",
+    "prawn",
+    "prawns"
+  ],
+  "varieties": [],
+  "allergens": [
+    "crustacean-shellfish"
+  ],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Fish: Shrimp",
+          "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Prawns",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: prawn",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H!",
+            "L"
+          ]
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: shrimp",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H!",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood: Prawn",
+          "basis": "9.31 µg per 125 g, 9 samples; about 6.33 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 9.31,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood: Shrimp",
+          "basis": "11.39 µg per 125 g, 6 samples; about 7.75 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 11.39,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood - Prepared: Shrimp, cooked",
+          "basis": "2.05 µg per 100 g, 97 samples; about 1.74 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.05,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
+        }
+      ]
+    }
+  }
+}

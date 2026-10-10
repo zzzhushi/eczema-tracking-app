@@ -1,0 +1,112 @@
+{
+  "id": "tangerine",
+  "name": "Tangerine",
+  "description": "Fresh.",
+  "aliases": [
+    "tangerine",
+    "mandarin",
+    "clementine"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Tangerine",
+          "basis": "1 fruit, 10 mg (sheet serving)",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 10.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Tangerines, raw",
+          "basis": "one, 15.7 mg",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 15.7,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: mandarin orange, mandarin, mandarine (Citrus",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

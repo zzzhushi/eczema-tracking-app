@@ -1,0 +1,155 @@
+{
+  "id": "potato",
+  "name": "Potato",
+  "description": "Fresh.",
+  "aliases": [
+    "potato"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "110 g fresh",
+    "grams": 110,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Potatoes and sweet potatoes/yams: plain, fresh, canned, or frozen: 110 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Potato white, peeled",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Potato, baked, unsalted, flesh & skin",
+          "basis": "one, 91.7 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 91.7,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Potato white, peeled",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: potato, new, with peel",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Dark place! Green points are poisonous! Possibly"
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: potato, peeled",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Dark place! Green points are poisonous!"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Potato white, peeled",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Potato",
+          "basis": "8.17 µg per 110 g, 84 samples; about 8.17 µg at 110 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 8.17,
+            "unit": "µg",
+            "per": "110 g",
+            "perGrams": 110.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Potato, cooked",
+          "basis": "7.59 µg per 167 g, 132 samples; about 5 µg at 110 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.59,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Potato, cooked with skin",
+          "basis": "9.35 µg per 167 g, 89 samples; about 6.16 µg at 110 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 9.35,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        }
+      ]
+    }
+  }
+}

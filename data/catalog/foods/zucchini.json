@@ -1,0 +1,132 @@
+{
+  "id": "zucchini",
+  "name": "Zucchini",
+  "description": "Fresh.",
+  "aliases": [
+    "zucchini",
+    "courgette"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Zucchini (courgette) peeled",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Zucchini (Courgette) with peel",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Zucchini",
+          "basis": "1/2 cup, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: courgette",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: zucchini",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Zucchini",
+          "basis": "9.82 µg per 85 g, 5 samples; about 9.82 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 9.82,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Zucchini, cooked",
+          "basis": "7.84 µg per 130 g, 87 samples; about 5.13 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.84,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "apple",
+  "name": "Apple",
+  "description": "Fresh.",
+  "aliases": [
+    "apple"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Apple Golden & red Delicious",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Apples Bonza, Fuji, Gala, Jonathan, Granny Smith, Pink Lady, Sundowner",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Apples",
+          "basis": "1 fruit, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Apples, raw with skin",
+          "basis": "one, 0.7 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "one"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Apples, raw without skin",
+          "basis": "one, 0.7 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: apple",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Apple",
+          "basis": "3.01 µg per 140 g, 143 samples; about 3.01 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.01,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

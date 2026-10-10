@@ -1,0 +1,86 @@
+{
+  "id": "hemp-seed",
+  "name": "Hemp seed",
+  "description": "Shelled, raw or dry-roasted.",
+  "aliases": [
+    "hemp seed",
+    "hemp seeds",
+    "hemp hearts"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Nuts, seeds and mixtures, all types: sliced, chopped, slivered, and whole: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: hemp seeds (Cannabis sativa)",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "note": "The legal non-psychoactive subspecies. Too much hemp"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Nuts and seeds: Hemp seeds",
+          "basis": "145 µg per 30 g, 3 samples; about 145 µg at 30 g",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 145.0,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

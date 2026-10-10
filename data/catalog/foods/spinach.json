@@ -1,0 +1,169 @@
+{
+  "id": "spinach",
+  "name": "Spinach",
+  "description": "Fresh.",
+  "aliases": [
+    "spinach"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Spinach baby, English, Chinese (Kangkong)",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Spinach, cooked",
+          "basis": "1/2 cup, 755 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 755.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        },
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Spinach, raw",
+          "basis": "1 cup, 656 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 656.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Spinach, boiled, drained, unsalted",
+          "basis": "1/2 cup, 547.4 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 547.4,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Spinach, raw",
+          "basis": "1 cup, 316.2 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 316.2,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Spinach baby, English, Chinese (Kangkong)",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: spinach",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Spinach baby, English, Chinese (Kangkong)",
+          "basis": "very high column, G symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Leafy: Spinach",
+          "basis": "8.94 µg per 85 g, 45 samples; about 8.94 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 8.94,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Spinach, cooked",
+          "basis": "7.16 µg per 130 g, 54 samples; about 4.68 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.16,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

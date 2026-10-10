@@ -1,0 +1,111 @@
+{
+  "id": "pumpkin",
+  "name": "Pumpkin",
+  "description": "Fresh.",
+  "aliases": [
+    "pumpkin"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Pumpkin butternut",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Pumpkin grey, jap, kent",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: pumpkins (various varieties)",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Pumpkin",
+          "basis": "14.16 µg per 85 g, 5 samples; about 14.2 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 14.16,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Pumpkin, cooked",
+          "basis": "11.18 µg per 130 g, 3 samples; about 7.31 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 11.18,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}
