@@ -71,21 +71,37 @@
           "basis": "fresh weight, 3.5 mg per 100 g total; about 3.0 mg at 85 g",
           "kind": "review",
           "level": "low",
-          "note": "Savoy cabbage stands in for cooked green cabbage."
+          "note": "Savoy cabbage stands in for cooked green cabbage.",
+          "amount": {
+            "value": 3.5,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "uchicago-oxalate",
           "locator": "Vegetables: Cabbage",
           "basis": "1/2 cup, 1 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Vegetables: Cabbage, boiled, drained, unsalted",
           "basis": "1/2 cup boiled, 1.4 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 1.4,
+            "unit": "mg",
+            "per": "1/2 cup boiled"
+          }
         }
       ]
     },
@@ -144,7 +160,13 @@
           "locator": "Table 1: Cabbage",
           "basis": "50 mg free glutamate per 100 g; about 42 mg at 85 g",
           "kind": "guidance",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 50.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     },
@@ -159,14 +181,26 @@
           "locator": "Vegetables: Cabbage",
           "basis": "4.8 µg per 85 g, 59 samples; about 4.8 µg at 85 g",
           "kind": "list",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 4.8,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
         },
         {
           "sourceId": "rebelytics-nickel",
           "locator": "Vegetables: Cabbage, cooked",
           "basis": "3.62 µg per 130 g, 65 samples; about 2.4 µg at 85 g",
           "kind": "list",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 3.62,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
         }
       ]
     }

@@ -139,8 +139,20 @@ extension Catalog {
                     issue(food.id, "missing \(chemical.rawValue)")
                     continue
                 }
-                for evidence in assessment.evidence where index[evidence.sourceId] == nil {
-                    issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
+                for evidence in assessment.evidence {
+                    if index[evidence.sourceId] == nil {
+                        issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
+                    }
+                    guard let amount = evidence.amount else { continue }
+                    guard ChemicalCutoffs.unit(for: chemical) == amount.unit else {
+                        issue(food.id, "\(chemical.rawValue) amount is in \(amount.unit.rawValue), which its cutoffs do not use")
+                        continue
+                    }
+                    if let grams = food.serving?.grams,
+                       let level = ChemicalCutoffs.level(for: chemical, amount: amount, servingGrams: grams),
+                       level != evidence.level {
+                        issue(food.id, "\(chemical.rawValue) evidence '\(evidence.locator)' is \(evidence.level.rawValue) but its amount gives \(level.rawValue)")
+                    }
                 }
                 switch assessment.result {
                 case .known:

@@ -74,7 +74,13 @@
           "basis": "3 oz, 0 mg (sheet serving)",
           "kind": "list",
           "level": "negligible",
-          "note": "Only ground beef is listed."
+          "note": "Only ground beef is listed.",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
         }
       ]
     },
@@ -141,21 +147,39 @@
           "basis": "4.4 mg free glutamate per 100 g; about 3.8 mg at 85 g",
           "kind": "measurement",
           "level": "negligible",
-          "note": "Free glutamate in chilled beef leg rises to 65 mg per 100 g by day 10."
+          "note": "Free glutamate in chilled beef leg rises to 65 mg per 100 g by day 10.",
+          "amount": {
+            "value": 4.4,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "fsanz-msg-2003",
           "locator": "Table 1: Beef",
           "basis": "33 mg free glutamate per 100 g; about 28 mg at 85 g",
           "kind": "guidance",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 33.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "andeal-umami",
           "locator": "Table 1: Beef",
           "basis": "10 mg free glutamate per 100 g; about 8.5 mg at 85 g",
           "kind": "guidance",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 10.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     },
@@ -171,7 +195,13 @@
           "basis": "6.92 µg per 100 g, 192 samples; about 5.9 µg at 85 g",
           "kind": "list",
           "level": "low",
-          "note": "Cooked ground beef and pork averages about 18 µg per 100 g and is not used."
+          "note": "Cooked ground beef and pork averages about 18 µg per 100 g and is not used.",
+          "amount": {
+            "value": 6.92,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     }

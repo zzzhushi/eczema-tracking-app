@@ -91,7 +91,13 @@
           "locator": "Fats and oils: Avocado oil",
           "basis": "0.64 µg per 10 g, 11 samples; about 0.9 µg at 14 g",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.64,
+            "unit": "µg",
+            "per": "10 g",
+            "perGrams": 10.0
+          }
         }
       ]
     }

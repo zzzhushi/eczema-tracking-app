@@ -94,6 +94,7 @@ public struct Evidence: Codable, Equatable, Sendable {
     public var foodMatch: FoodMatch?
     public var formMatch: FormMatch?
     public var markers: [EvidenceMarker]?
+    public var amount: Amount?
     public var note: String?
 
     /// 0 for the exact food in the exact form, 1 for a converted form, 2 for a related food.

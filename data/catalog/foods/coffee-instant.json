@@ -72,7 +72,13 @@
           "basis": "8 oz, 2.2 mg, directly measured",
           "kind": "list",
           "level": "low",
-          "note": "Only decaffeinated instant coffee is listed."
+          "note": "Only decaffeinated instant coffee is listed.",
+          "amount": {
+            "value": 2.2,
+            "unit": "mg",
+            "per": "8 oz",
+            "perGrams": 226.8
+          }
         }
       ]
     },
@@ -142,7 +148,12 @@
           "basis": "1.74 µg per 3 g, 10 samples; about 1.7 µg at 3 g",
           "kind": "list",
           "level": "low",
-          "note": "One cup uses about 3 g of powder."
+          "note": "One cup uses about 3 g of powder.",
+          "amount": {
+            "value": 1.74,
+            "unit": "µg",
+            "per": "3 g"
+          }
         }
       ]
     }

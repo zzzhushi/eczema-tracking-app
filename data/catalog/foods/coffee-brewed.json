@@ -73,14 +73,25 @@
           "locator": "Beverages: Coffee",
           "basis": "1 cup, 1 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Beverages: Coffee, brewed",
           "basis": "8 oz, 1.7 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 1.7,
+            "unit": "mg",
+            "per": "8 oz",
+            "perGrams": 226.8
+          }
         }
       ]
     },
@@ -148,7 +159,13 @@
           "locator": "Beverages: Coffee, brewed",
           "basis": "3.57 µg per 250 g, 145 samples; about 3.4 µg at 240 g",
           "kind": "list",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 3.57,
+            "unit": "µg",
+            "per": "250 g",
+            "perGrams": 250.0
+          }
         }
       ]
     }
