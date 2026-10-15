@@ -27,6 +27,34 @@
           "basis": "high column, S symbol",
           "kind": "list",
           "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Watermelon",
+          "basis": "fresh weight, 4.8 mg/kg; about 1.34 mg at 280 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 4.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Watermelon",
+          "basis": "fresh weight, 4.8 mg/kg; about 1.34 mg at 280 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 4.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

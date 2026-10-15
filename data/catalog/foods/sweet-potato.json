@@ -19,7 +19,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "moderate"
+        "level": "very high"
       },
       "evidence": [
         {
@@ -35,6 +35,34 @@
           "basis": "moderate column, S symbol",
           "kind": "list",
           "level": "moderate"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Potato, sweet yellow",
+          "basis": "fresh weight, 21.15 mg/kg; about 2.33 mg at 110 g",
+          "kind": "measurement",
+          "level": "very high",
+          "amount": {
+            "value": 21.15,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Potato, sweet",
+          "basis": "fresh weight, 4.8 mg/kg; about 0.53 mg at 110 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 4.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

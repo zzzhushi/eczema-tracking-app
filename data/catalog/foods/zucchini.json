@@ -19,7 +19,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "high"
+        "level": "moderate"
       },
       "evidence": [
         {
@@ -35,6 +35,34 @@
           "basis": "high column, S symbol",
           "kind": "list",
           "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Zucchini",
+          "basis": "fresh weight, 6.13 mg/kg; about 0.52 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 6.13,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Zucchini",
+          "basis": "fresh weight, 10.4 mg/kg; about 0.88 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 10.4,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

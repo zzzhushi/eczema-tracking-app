@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "high"
+        "level": "moderate"
       },
       "evidence": [
         {
@@ -27,6 +27,60 @@
           "basis": "high column, S symbol",
           "kind": "list",
           "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Tomato, table/common",
+          "basis": "fresh weight, 3.18 mg/kg; about 0.27 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 3.18,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Tomato, cherry",
+          "basis": "fresh weight, 7.05 mg/kg; about 0.6 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 7.05,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Tomato, roma",
+          "basis": "fresh weight, 5.02 mg/kg; about 0.43 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 5.02,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Tomato, variety not reported",
+          "basis": "fresh weight, 1.3 mg/kg; about 0.11 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 1.3,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

@@ -19,10 +19,39 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "high"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Green beans",
+          "basis": "fresh weight, 13.88 mg/kg; about 1.18 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 13.88,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Green beans",
+          "basis": "fresh weight, 1.1 mg/kg; about 0.094 mg at 85 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 1.1,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
     },
     "oxalates": {
       "result": {

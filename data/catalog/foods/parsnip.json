@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "moderate"
+        "level": "low"
       },
       "evidence": [
         {
@@ -27,6 +27,34 @@
           "basis": "moderate column, S symbol",
           "kind": "list",
           "level": "moderate"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Parsnip",
+          "basis": "fresh weight, 3.9 mg/kg; about 0.33 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 3.9,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Parsnip",
+          "basis": "fresh weight, 4.5 mg/kg; about 0.38 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 4.5,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

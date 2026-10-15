@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "high"
+        "level": "moderate"
       },
       "evidence": [
         {
@@ -27,6 +27,34 @@
           "basis": "high column, S symbol",
           "kind": "list",
           "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Persimmon",
+          "basis": "fresh weight, 5.91 mg/kg; about 0.83 mg at 140 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 5.91,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Persimmon",
+          "basis": "fresh weight, 1.8 mg/kg; about 0.25 mg at 140 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 1.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

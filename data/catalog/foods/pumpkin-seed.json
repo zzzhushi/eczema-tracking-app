@@ -19,10 +19,24 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "unknown",
-        "reason": "not-yet-researched"
+        "kind": "known",
+        "level": "moderate"
       },
-      "evidence": []
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1c (herbs, spices, nuts, seeds): Pumpkin seeds",
+          "basis": "fresh weight, 17.58 mg/kg; about 0.53 mg at 30 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 17.58,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        }
+      ]
     },
     "oxalates": {
       "result": {

@@ -19,7 +19,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "low"
+        "level": "moderate"
       },
       "evidence": [
         {
@@ -28,6 +28,34 @@
           "basis": "overall Low column, no S symbol",
           "kind": "list",
           "level": "low"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Brussel sprouts",
+          "basis": "fresh weight, 8.6 mg/kg; about 0.73 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 8.6,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Brussel sprouts",
+          "basis": "fresh weight, 0.7 mg/kg; about 0.059 mg at 85 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

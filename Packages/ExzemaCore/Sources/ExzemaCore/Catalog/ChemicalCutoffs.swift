@@ -27,19 +27,20 @@ public enum ChemicalCutoffs {
     /// The unit the cutoffs for `chemical` use; nil when the chemical has no numeric cutoffs.
     public static func unit(for chemical: FoodChemical) -> AmountUnit? {
         switch chemical {
-        case .oxalates, .glutamates: .milligrams
+        case .salicylates, .oxalates, .glutamates: .milligrams
         case .nickel: .micrograms
-        case .salicylates, .amines, .histamine: nil
+        case .amines, .histamine: nil
         }
     }
 
     /// Lower bounds of low, moderate, high, and very high per serving.
     private static func bounds(for chemical: FoodChemical) -> [Double]? {
         switch chemical {
+        case .salicylates: [0.1, 0.5, 1, 2]
         case .oxalates: [2, 5, 10, 13]
         case .nickel: [1, 10, 20, 50]
         case .glutamates: [14, 140, 280, 700]
-        case .salicylates, .amines, .histamine: nil
+        case .amines, .histamine: nil
         }
     }
 

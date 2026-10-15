@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "high"
+        "level": "low"
       },
       "evidence": [
         {
@@ -27,6 +27,19 @@
           "basis": "high column, S symbol",
           "kind": "list",
           "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Cauliflower",
+          "basis": "fresh weight, 5.86 mg/kg; about 0.5 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 5.86,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ]
     },

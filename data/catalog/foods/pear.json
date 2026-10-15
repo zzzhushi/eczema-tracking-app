@@ -17,8 +17,8 @@
   "chemicals": {
     "salicylates": {
       "result": {
-        "kind": "known",
-        "level": "moderate"
+        "kind": "unknown",
+        "reason": "sources-conflict"
       },
       "evidence": [
         {
@@ -34,8 +34,50 @@
           "basis": "moderate column, S symbol",
           "kind": "list",
           "level": "moderate"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Pear, packham, peeled",
+          "basis": "fresh weight, 2.95 mg/kg; about 0.41 mg at 140 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 2.95,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Pear, packham, unpeeled",
+          "basis": "fresh weight, 12.9 mg/kg; about 1.81 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 12.9,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Pear, packham",
+          "basis": "salicylate reported as 0",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
-      ]
+      ],
+      "note": "Peeled pear measures low and unpeeled pear high, more than one level apart; whether to split the food is pending."
     },
     "oxalates": {
       "result": {

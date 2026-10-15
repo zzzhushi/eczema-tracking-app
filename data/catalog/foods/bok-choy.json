@@ -19,7 +19,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "moderate"
+        "level": "low"
       },
       "evidence": [
         {
@@ -28,6 +28,19 @@
           "basis": "moderate column, S symbol",
           "kind": "list",
           "level": "moderate"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Bok choy",
+          "basis": "fresh weight, 1.84 mg/kg; about 0.16 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 1.84,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ]
     },

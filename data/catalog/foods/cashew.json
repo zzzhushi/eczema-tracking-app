@@ -20,7 +20,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "low"
+        "level": "high"
       },
       "evidence": [
         {
@@ -29,6 +29,34 @@
           "basis": "overall Low column, no S symbol",
           "kind": "list",
           "level": "low"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1c (herbs, spices, nuts, seeds): Cashew nut",
+          "basis": "fresh weight, 41.1 mg/kg; about 1.23 mg at 30 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 41.1,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1c (herbs, spices, nuts, seeds): Cashew nut",
+          "basis": "fresh weight, 0.7 mg/kg; about 0.021 mg at 30 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

@@ -31,9 +31,23 @@
           "basis": "overall Low column, no salicylate symbol",
           "kind": "list",
           "level": "low"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1c (herbs, spices, nuts, seeds): Chives, fresh",
+          "basis": "fresh weight, 20.16 mg/kg; about 1.71 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "foodMatch": "related",
+          "amount": {
+            "value": 20.16,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ],
-      "note": "The list names garlic chives; other lists rate common chives low."
+      "note": "The list names garlic chives; measured common chives, a related food, read higher but do not decide the level."
     },
     "oxalates": {
       "result": {

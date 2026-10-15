@@ -19,7 +19,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "high"
+        "level": "low"
       },
       "evidence": [
         {
@@ -56,6 +56,20 @@
           "basis": "overall High column, S symbol",
           "kind": "list",
           "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1d (beverages, sugars, oils, cereals): Coffee, instant regular",
+          "basis": "prepared, 2.04 mg/L prepared; about 0.48 mg at 237 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 2.04,
+            "unit": "mg",
+            "per": "1 L prepared",
+            "perGrams": 1000
+          },
+          "note": "One teaspoon of instant coffee in 250 mL; a litre of prepared coffee is taken as 1 kg."
         }
       ],
       "note": "The lists rate coffee in general, not instant coffee specifically."

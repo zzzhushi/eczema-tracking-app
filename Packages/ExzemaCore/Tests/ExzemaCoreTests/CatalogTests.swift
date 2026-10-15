@@ -64,6 +64,18 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
         #expect(LevelDerivation.result(from: [evidence(.list, .high, food: .related)]) == .known(.high))
     }
 
+    @Test func supersededMeasurementNeverDecides() {
+        var older = evidence(.measurement, .veryHigh)
+        older.superseded = true
+        #expect(LevelDerivation.result(from: [older, evidence(.measurement, .low)]) == .known(.low))
+    }
+
+    @Test func supersededEvidenceAloneDerivesNothing() {
+        var older = evidence(.measurement, .high)
+        older.superseded = true
+        #expect(LevelDerivation.result(from: [older]) == nil)
+    }
+
     @Test func noEvidenceDerivesNothing() {
         #expect(LevelDerivation.result(from: []) == nil)
     }
@@ -99,8 +111,13 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
         #expect(level(.oxalates, 8, .milligrams, perGrams: nil, servingGrams: 500) == .moderate)
     }
 
+    @Test func salicylateBandsStartAtTheirLowerBounds() {
+        let levels = [0.09, 0.1, 0.49, 0.5, 0.99, 1, 1.99, 2].map { level(.salicylates, $0, .milligrams) }
+        #expect(levels == [.negligible, .low, .low, .moderate, .moderate, .high, .high, .veryHigh])
+    }
+
     @Test func chemicalWithoutNumericCutoffsHasNoLevel() {
-        #expect(level(.salicylates, 5, .milligrams) == nil)
+        #expect(level(.amines, 5, .milligrams) == nil)
     }
 
     @Test func unitOtherThanTheCutoffsUnitHasNoLevel() {
@@ -172,6 +189,35 @@ private func evidence(_ kind: SourceKind, _ level: ChemicalLevel, food: FoodMatc
     @Test func amountInTheWrongUnitIsReported() {
         let wrong = nickelFood(level: .low, amount: Amount(value: 3, unit: .milligrams, per: "100 g"))
         #expect(catalog([wrong]).validate().contains { $0.message.contains("which its cutoffs do not use") })
+    }
+
+    private func salicylateFood(_ items: [Evidence]) -> Food {
+        var base = food(serving: racc)
+        let result = LevelDerivation.result(from: items) ?? .unknown(.notYetResearched)
+        base.chemicals[.salicylates] = ChemicalAssessment(result: result, evidence: items, note: nil)
+        return base
+    }
+
+    private func superseded(_ kind: SourceKind, note: String?) -> Evidence {
+        var older = evidence(kind, .high)
+        older.superseded = true
+        older.note = note
+        return older
+    }
+
+    @Test func supersededEvidenceWithoutANoteIsReported() {
+        let issues = catalog([salicylateFood([superseded(.measurement, note: nil), evidence(.measurement, .low)])]).validate()
+        #expect(issues.contains { $0.message.contains("needs a note") })
+    }
+
+    @Test func supersededEvidenceWithoutAReplacementIsReported() {
+        let issues = catalog([salicylateFood([superseded(.measurement, note: "older method"), evidence(.list, .low)])]).validate()
+        #expect(issues.contains { $0.message.contains("has no current evidence of the same kind and match") })
+    }
+
+    @Test func supersededEvidenceWithANoteAndAReplacementPasses() {
+        let issues = catalog([salicylateFood([superseded(.measurement, note: "older method"), evidence(.measurement, .low)])]).validate()
+        #expect(!issues.contains { $0.message.contains("superseded") })
     }
 
     @Test func evidenceCitingAnUnknownSourceIsReported() {

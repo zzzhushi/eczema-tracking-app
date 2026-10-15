@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "very high"
+        "level": "moderate"
       },
       "evidence": [
         {
@@ -27,6 +27,19 @@
           "basis": "very high column, S symbol",
           "kind": "list",
           "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Mushroom, button",
+          "basis": "fresh weight, 8.16 mg/kg; about 0.69 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 8.16,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ]
     },

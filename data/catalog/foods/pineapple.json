@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "very high"
+        "level": "high"
       },
       "evidence": [
         {
@@ -27,6 +27,34 @@
           "basis": "very high column, S symbol",
           "kind": "list",
           "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Pineapple",
+          "basis": "fresh weight, 7.29 mg/kg; about 1.02 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 7.29,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Pineapple",
+          "basis": "fresh weight, 21 mg/kg; about 2.94 mg at 140 g",
+          "kind": "measurement",
+          "level": "very high",
+          "amount": {
+            "value": 21,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },

@@ -18,7 +18,7 @@
     "salicylates": {
       "result": {
         "kind": "known",
-        "level": "very high"
+        "level": "high"
       },
       "evidence": [
         {
@@ -34,6 +34,19 @@
           "basis": "very high column, S symbol",
           "kind": "list",
           "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Blueberry",
+          "basis": "fresh weight, 9.12 mg/kg; about 1.28 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 9.12,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ]
     },
