@@ -1,0 +1,90 @@
+{
+  "id": "moose",
+  "name": "Moose",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "moose"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Meat & Meat Alternatives: Moose",
+          "basis": "3oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3oz",
+            "perGrams": 85.0
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat, poultry and eggs - Prepared: Moose, cooked",
+          "basis": "0.6 µg per 100 g, 1 samples; about 0.51 µg at 85 g",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.6,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
+        }
+      ]
+    }
+  }
+}
