@@ -1,0 +1,94 @@
+{
+  "id": "guava",
+  "name": "Guava",
+  "description": "Fresh.",
+  "aliases": [
+    "guava"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Guava",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: guava",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "?"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Guava",
+          "basis": "13.26 µg per 140 g, 4 samples; about 13.3 µg at 140 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 13.26,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

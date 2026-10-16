@@ -1,0 +1,175 @@
+{
+  "id": "onion",
+  "name": "Onion",
+  "description": "Fresh.",
+  "aliases": [
+    "onion"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Onions",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Onion, white",
+          "basis": "fresh weight, 5.11 mg/kg; about 0.43 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 5.11,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Onion, spanish",
+          "basis": "fresh weight, 12.85 mg/kg; about 1.09 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 12.85,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Onion",
+          "basis": "fresh weight, 1.6 mg/kg; about 0.14 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 1.6,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ],
+      "note": "White onion measures low and spanish onion high, more than one level apart; whether to split the food is pending."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Onions",
+          "basis": "1 small onion, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 small onion"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Onions, raw",
+          "basis": "one, 2.1 mg, directly measured",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.1,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: onion",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "L"
+          ],
+          "note": "Incompatible in large quantities"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Onion",
+          "basis": "3.06 µg per 85 g, 92 samples; about 3.06 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.06,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Onion, cooked",
+          "basis": "5.15 µg per 130 g, 21 samples; about 3.37 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 5.15,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

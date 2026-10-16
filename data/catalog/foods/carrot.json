@@ -1,0 +1,153 @@
+{
+  "id": "carrot",
+  "name": "Carrot",
+  "description": "Fresh.",
+  "aliases": [
+    "carrot"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Carrot",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Carrots, raw",
+          "basis": "1/2 lg carrot, 15 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 15.0,
+            "unit": "mg",
+            "per": "1/2 lg carrot"
+          }
+        },
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Carrots, cooked",
+          "basis": "1/2 cup sliced, 7 mg (sheet serving)",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 7.0,
+            "unit": "mg",
+            "per": "1/2 cup sliced"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Carrots, boiled, drained, unsalted",
+          "basis": "1/2 cup, 8.2 mg, directly measured",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 8.2,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Carrots, raw",
+          "basis": "1/2 large, 4.5 mg, directly measured",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 4.5,
+            "unit": "mg",
+            "per": "1/2 large"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: carrot",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Carrot",
+          "basis": "3.79 µg per 85 g, 103 samples; about 3.79 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.79,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Carrot, cooked",
+          "basis": "5.66 µg per 130 g, 53 samples; about 3.7 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 5.66,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

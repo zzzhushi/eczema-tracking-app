@@ -1,0 +1,109 @@
+{
+  "id": "sauerkraut",
+  "name": "Sauerkraut",
+  "description": "Fermented or pickled.",
+  "aliases": [
+    "sauerkraut"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Pickles and pickled vegetables, all types: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Sauerkraut",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Sauerkraut",
+          "basis": "1/2 cup, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Sauerkraut",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: sauerkraut",
+          "basis": "compatibility score 3",
+          "kind": "list",
+          "level": "very high",
+          "markers": [
+            "H"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Sauerkraut",
+          "basis": "very high column, G symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

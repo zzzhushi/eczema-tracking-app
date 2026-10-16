@@ -1,0 +1,91 @@
+{
+  "id": "navy-bean",
+  "name": "Navy bean",
+  "description": "Cooked.",
+  "aliases": [
+    "navy bean",
+    "haricot bean",
+    "white bean"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "90 g prepared",
+    "grams": 90,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Beans, plain or in sauce: 90 g for others prepared",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Navy Beans",
+          "basis": "1/2 cup, 76 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 76.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Beans and bean products: Beans, white, cooked",
+          "basis": "25.26 µg per 80 g, 48 samples; about 28.4 µg at 90 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 25.26,
+            "unit": "µg",
+            "per": "80 g",
+            "perGrams": 80.0
+          }
+        }
+      ]
+    }
+  }
+}

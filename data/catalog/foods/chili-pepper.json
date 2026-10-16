@@ -1,0 +1,127 @@
+{
+  "id": "chili-pepper",
+  "name": "Chili pepper",
+  "description": "Fresh.",
+  "aliases": [
+    "chili pepper",
+    "chilli",
+    "chili",
+    "chillies",
+    "hot pepper"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g fresh",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fresh or canned chili peppers, jalapeno peppers, other hot peppers, green onion: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Chilli red, green",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Chilli, red",
+          "basis": "fresh weight, 6.57 mg/kg; about 0.197 mg at 30 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 6.57,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Chilli, red",
+          "basis": "fresh weight, 12 mg/kg; about 0.36 mg at 30 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 12,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: chili pepper, hot, fresh",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "?"
+          ],
+          "note": "Hotness is irritating"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Herbs and spices: Hot peppers",
+          "basis": "10.48 µg per 40 g, 10 samples; about 7.86 µg at 30 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 10.48,
+            "unit": "µg",
+            "per": "40 g",
+            "perGrams": 40.0
+          }
+        }
+      ]
+    }
+  }
+}

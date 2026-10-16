@@ -1,0 +1,76 @@
+{
+  "id": "spelt",
+  "name": "Spelt",
+  "description": "Cooked.",
+  "aliases": [
+    "spelt"
+  ],
+  "varieties": [],
+  "allergens": [
+    "wheat"
+  ],
+  "serving": {
+    "description": "140 g prepared",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Grains, e.g., rice, barley, plain: 140 g prepared; 45 g dry",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: spelt",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "?"
+          ],
+          "note": "Prefer old varieties. Modern ATI-varieties modified by"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

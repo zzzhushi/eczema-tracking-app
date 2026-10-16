@@ -1,0 +1,125 @@
+{
+  "id": "butter",
+  "name": "Butter",
+  "description": "Sweet cream butter, salted.",
+  "aliases": [
+    "butter"
+  ],
+  "varieties": [],
+  "allergens": [
+    "milk"
+  ],
+  "serving": {
+    "description": "1 tbsp",
+    "grams": 14.2,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Butter, margarine, oil, shortening: 1 tbsp",
+    "weightSourceId": "usda-fdc",
+    "weightLocator": "Butter, salted (fdcId 173410): 1 tbsp = 14.2 g",
+    "note": "The FDA row gives a household measure, not a weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Butter, Ghee Cream",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Spreads, Sauces & Toppings: Butter",
+          "basis": "1 Pat, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 Pat"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Butter, Ghee Cream",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: butter: sweet cream butter",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Butter, Ghee Cream",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fats and oils: Butter",
+          "basis": "0.3 µg per 10 g, 97 samples; about 0.426 µg at 14.2 g",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.3,
+            "unit": "µg",
+            "per": "10 g",
+            "perGrams": 10.0
+          }
+        }
+      ]
+    }
+  }
+}

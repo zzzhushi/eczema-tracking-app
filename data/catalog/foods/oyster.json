@@ -1,0 +1,140 @@
+{
+  "id": "oyster",
+  "name": "Oyster",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "oyster",
+    "oysters"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Oysters",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Fish: Oysters",
+          "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Oysters",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: oysters",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H!",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Oysters",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood: Oysters",
+          "basis": "58 µg per 125 g, 4 samples; about 39.4 µg at 85 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 58.0,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood - Prepared: Oysters, cooked",
+          "basis": "13 µg per 100 g, 1 samples; about 11.1 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 13.0,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "lemon",
+  "name": "Lemon",
+  "description": "Fresh.",
+  "aliases": [
+    "lemon"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "50 g fresh",
+    "grams": 50,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fruits used primarily as ingredients, others (cranberries, lemon, lime): 50 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Lemons",
+          "basis": "fresh weight, 6.74 mg/kg; about 0.34 mg at 50 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 6.74,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Lemons",
+          "basis": "fresh weight, 1.8 mg/kg; about 0.09 mg at 50 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 1.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Lemons",
+          "basis": "1 wedge, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1 wedge"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Lemons, raw, without peel",
+          "basis": "1/4 lemon, 1.2 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.2,
+            "unit": "mg",
+            "per": "1/4 lemon"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Clementine, Cumquat, Grapefruit, Lemon, Lime, Mandarin, Orange, Pomelo, Tangelo, Tangerine",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: lemon",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "A",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

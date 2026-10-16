@@ -31,9 +31,23 @@
           "basis": "overall Low column, no salicylate symbol",
           "kind": "list",
           "level": "low"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1c (herbs, spices, nuts, seeds): Chives, fresh",
+          "basis": "fresh weight, 20.16 mg/kg; about 1.71 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "foodMatch": "related",
+          "amount": {
+            "value": 20.16,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ],
-      "note": "The list names garlic chives; other lists rate common chives low."
+      "note": "The list names garlic chives; measured common chives, a related food, read higher but do not decide the level."
     },
     "oxalates": {
       "result": {
@@ -47,7 +61,13 @@
           "basis": "fresh weight, 48.6 mg per 100 g total, 45.1 soluble; about 41 mg at 85 g",
           "kind": "review",
           "level": "very high",
-          "note": "The review labels this row leek; the species is garlic chives. One survey of Korean vegetables."
+          "note": "The review labels this row leek; the species is garlic chives. One survey of Korean vegetables.",
+          "amount": {
+            "value": 48.6,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ],
       "note": "A typical serving of garlic chives may be smaller than 85 g, which would lower the level."
@@ -114,7 +134,13 @@
           "kind": "list",
           "level": "high",
           "foodMatch": "related",
-          "note": "Common chives stand in for garlic chives. Two samples only."
+          "note": "Common chives stand in for garlic chives. Two samples only.",
+          "amount": {
+            "value": 0.75,
+            "unit": "µg",
+            "per": "1.5 g",
+            "perGrams": 1.5
+          }
         }
       ],
       "note": "The level follows the 85 g vegetable serving; at a herb-sized portion of about 10 g it would be low."

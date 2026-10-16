@@ -1,0 +1,84 @@
+{
+  "id": "bitter-melon",
+  "name": "Bitter melon",
+  "description": "Fresh.",
+  "aliases": [
+    "bitter melon",
+    "bitter gourd"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Bitter melon, Karela",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Bitter melon",
+          "basis": "18.28 µg per 85 g, 4 samples; about 18.3 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 18.28,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        }
+      ]
+    }
+  }
+}

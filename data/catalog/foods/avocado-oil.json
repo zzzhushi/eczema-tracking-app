@@ -30,9 +30,37 @@
           "basis": "overall Very High column, S and A symbols",
           "kind": "list",
           "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1d (beverages, sugars, oils, cereals): Oil, olive",
+          "basis": "total salicylic acid not detected",
+          "kind": "measurement",
+          "level": "negligible",
+          "foodMatch": "related",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1d (beverages, sugars, oils, cereals): Oil, sunflower",
+          "basis": "total salicylic acid not detected",
+          "kind": "measurement",
+          "level": "negligible",
+          "foodMatch": "related",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ],
-      "note": "Avocado fruit is rated high or very high by every list; one list rates the oil very high as well, with no measured value."
+      "note": "One list rates the oil very high with no measured value. Measured olive and sunflower oils had no detectable salicylic acid, but as related foods they do not decide the level."
     },
     "oxalates": {
       "result": {
@@ -91,7 +119,13 @@
           "locator": "Fats and oils: Avocado oil",
           "basis": "0.64 µg per 10 g, 11 samples; about 0.9 µg at 14 g",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.64,
+            "unit": "µg",
+            "per": "10 g",
+            "perGrams": 10.0
+          }
         }
       ]
     }

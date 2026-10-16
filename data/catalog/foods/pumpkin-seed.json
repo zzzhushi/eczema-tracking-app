@@ -1,0 +1,103 @@
+{
+  "id": "pumpkin-seed",
+  "name": "Pumpkin seed",
+  "description": "Shelled, raw or dry-roasted.",
+  "aliases": [
+    "pumpkin seed",
+    "pumpkin seeds",
+    "pepita"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Nuts, seeds and mixtures, all types: sliced, chopped, slivered, and whole: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1c (herbs, spices, nuts, seeds): Pumpkin seeds",
+          "basis": "fresh weight, 17.58 mg/kg; about 0.53 mg at 30 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 17.58,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: pumpkin seeds",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "A"
+          ],
+          "note": "Contains a lot of spermidine (a biogenic amine)."
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Nuts and seeds: Pumpkin seeds",
+          "basis": "50.44 µg per 30 g, 6 samples; about 50.4 µg at 30 g",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 50.44,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

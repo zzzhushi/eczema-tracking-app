@@ -1,0 +1,124 @@
+{
+  "id": "venison",
+  "name": "Venison",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "venison"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Meat & Meat Alternatives: Venison",
+          "basis": "3 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Meat and poultry (fresh and unprocessed): Venison",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: venison",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "H",
+            "?"
+          ],
+          "note": "Mostly matured meat, but fresh wild boar is well tolerated."
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat, poultry, eggs and substitutes: Venison",
+          "basis": "1.9 µg per 125 g, 29 samples; about 1.29 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 1.9,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Meat, poultry and eggs - Prepared: Venison, cooked",
+          "basis": "1.65 µg per 100 g, 7 samples; about 1.4 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 1.65,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
+        }
+      ]
+    }
+  }
+}

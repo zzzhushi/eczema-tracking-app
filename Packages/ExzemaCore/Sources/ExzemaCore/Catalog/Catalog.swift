@@ -77,11 +77,13 @@ public enum CatalogError: Error, Equatable, Sendable, CustomStringConvertible {
 public enum LevelDerivation {
     /// Returns nil when there is no evidence to derive from.
     ///
-    /// Only the evidence with the closest match to the food and form counts, and within it the
-    /// strongest source kind. Levels within one step take the highest; a wider spread is a conflict.
+    /// Superseded evidence never counts. Of the rest, only the evidence with the closest match to the
+    /// food and form counts, and within it the strongest source kind. Levels within one step take the
+    /// highest; a wider spread is a conflict.
     public static func result(from evidence: [Evidence]) -> ChemicalResult? {
-        guard let closest = evidence.map(\.matchTier).min() else { return nil }
-        let nearest = evidence.filter { $0.matchTier == closest }
+        let current = evidence.filter { !$0.isSuperseded }
+        guard let closest = current.map(\.matchTier).min() else { return nil }
+        let nearest = current.filter { $0.matchTier == closest }
         guard let strongest = nearest.map(\.kind).min() else { return nil }
         let levels = nearest.filter { $0.kind == strongest }.map(\.level)
         guard let highest = levels.max(), let lowest = levels.min() else { return nil }
@@ -139,8 +141,31 @@ extension Catalog {
                     issue(food.id, "missing \(chemical.rawValue)")
                     continue
                 }
-                for evidence in assessment.evidence where index[evidence.sourceId] == nil {
-                    issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
+                for evidence in assessment.evidence {
+                    if index[evidence.sourceId] == nil {
+                        issue(food.id, "\(chemical.rawValue) cites unknown source \(evidence.sourceId)")
+                    }
+                    if evidence.isSuperseded {
+                        if (evidence.note ?? "").isEmpty {
+                            issue(food.id, "\(chemical.rawValue) superseded evidence '\(evidence.locator)' needs a note")
+                        }
+                        let replaced = assessment.evidence.contains {
+                            !$0.isSuperseded && $0.kind == evidence.kind && $0.matchTier <= evidence.matchTier
+                        }
+                        if !replaced {
+                            issue(food.id, "\(chemical.rawValue) superseded evidence '\(evidence.locator)' has no current evidence of the same kind and match")
+                        }
+                    }
+                    guard let amount = evidence.amount else { continue }
+                    guard ChemicalCutoffs.unit(for: chemical) == amount.unit else {
+                        issue(food.id, "\(chemical.rawValue) amount is in \(amount.unit.rawValue), which its cutoffs do not use")
+                        continue
+                    }
+                    if let grams = food.serving?.grams,
+                       let level = ChemicalCutoffs.level(for: chemical, amount: amount, servingGrams: grams),
+                       level != evidence.level {
+                        issue(food.id, "\(chemical.rawValue) evidence '\(evidence.locator)' is \(evidence.level.rawValue) but its amount gives \(level.rawValue)")
+                    }
                 }
                 switch assessment.result {
                 case .known:

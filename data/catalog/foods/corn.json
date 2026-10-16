@@ -1,0 +1,139 @@
+{
+  "id": "corn",
+  "name": "Corn",
+  "description": "Fresh.",
+  "aliases": [
+    "corn",
+    "sweet corn"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Corn on cob, fresh",
+          "basis": "fresh weight, 16.48 mg/kg; about 1.4 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 16.48,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Corn on cob, fresh",
+          "basis": "fresh weight, 1.3 mg/kg; about 0.11 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 1.3,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Corn",
+          "basis": "1/2 cup, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Corn",
+          "basis": "high column, G symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Corn",
+          "basis": "7.89 µg per 85 g, 14 samples; about 7.89 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.89,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Corn, cooked",
+          "basis": "4.59 µg per 130 g, 97 samples; about 3 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 4.59,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "turnip",
+  "name": "Turnip",
+  "description": "Fresh.",
+  "aliases": [
+    "turnip"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Turnip",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Turnip",
+          "basis": "1/2 cup mashed, 30 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 30.0,
+            "unit": "mg",
+            "per": "1/2 cup mashed"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: turnip",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Turnip",
+          "basis": "5.4 µg per 85 g, 4 samples; about 5.4 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 5.4,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Turnip, cooked",
+          "basis": "2.84 µg per 130 g, 49 samples; about 1.86 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.84,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

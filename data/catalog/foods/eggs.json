@@ -67,14 +67,24 @@
           "locator": "Eggs: Eggs",
           "basis": "1 medium, 0 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 medium"
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Eggs: Egg, raw whole",
           "basis": "one egg, 0.0 mg",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "one egg"
+          }
         }
       ]
     },
@@ -137,14 +147,26 @@
           "locator": "Table 1: Eggs",
           "basis": "23 mg free glutamate per 100 g; about 12 mg at 50 g",
           "kind": "guidance",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 23.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "andeal-umami",
           "locator": "Table 1: Whole chicken egg",
           "basis": "15 mg free glutamate per 100 g; about 7.5 mg at 50 g",
           "kind": "guidance",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 15.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     },
@@ -159,7 +181,13 @@
           "locator": "Meat and eggs: Egg",
           "basis": "2.09 µg per 100 g, 41 samples; about 1 µg at 50 g",
           "kind": "list",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 2.09,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     }

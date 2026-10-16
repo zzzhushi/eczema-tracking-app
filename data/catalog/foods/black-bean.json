@@ -1,0 +1,90 @@
+{
+  "id": "black-bean",
+  "name": "Black bean",
+  "description": "Cooked.",
+  "aliases": [
+    "black bean",
+    "black beans"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "90 g prepared",
+    "grams": 90,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Beans, plain or in sauce: 90 g for others prepared",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Beans And Lentils: Beans, black, boiled, unsalted",
+          "basis": "1/2 cup, 10.5 mg, directly measured",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 10.5,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Beans and bean products: Beans, black, cooked",
+          "basis": "112 µg per 80 g, 1 samples; about 126 µg at 90 g",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 112.0,
+            "unit": "µg",
+            "per": "80 g",
+            "perGrams": 80.0
+          }
+        }
+      ]
+    }
+  }
+}

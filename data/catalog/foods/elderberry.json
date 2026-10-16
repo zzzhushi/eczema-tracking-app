@@ -1,0 +1,83 @@
+{
+  "id": "elderberry",
+  "name": "Elderberry",
+  "description": "Fresh.",
+  "aliases": [
+    "elderberry"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: elderberry, elderberries",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Berries: Elderberries",
+          "basis": "3.91 µg per 80 g, 3 samples; about 6.84 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.91,
+            "unit": "µg",
+            "per": "80 g",
+            "perGrams": 80.0
+          }
+        }
+      ]
+    }
+  }
+}

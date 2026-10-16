@@ -1,0 +1,134 @@
+{
+  "id": "kiwi",
+  "name": "Kiwi",
+  "description": "Fresh.",
+  "aliases": [
+    "kiwi",
+    "kiwifruit",
+    "kiwi fruit"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Kiwifruit",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Kiwi fruit",
+          "basis": "fresh weight, 16.61 mg/kg; about 2.33 mg at 140 g",
+          "kind": "measurement",
+          "level": "very high",
+          "amount": {
+            "value": 16.61,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Kiwi fruit",
+          "basis": "fresh weight, 3.2 mg/kg; about 0.45 mg at 140 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 3.2,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Kiwi",
+          "basis": "1 fruit, 16 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 16.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Kiwifruit",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Kiwi",
+          "basis": "6.86 µg per 140 g, 29 samples; about 6.86 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 6.86,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

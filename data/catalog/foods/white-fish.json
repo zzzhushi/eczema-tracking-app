@@ -89,49 +89,91 @@
           "locator": "Fish: Cod, pacific",
           "basis": "3 oz or 1 fillet, 0 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz or 1 fillet",
+            "perGrams": 85.0
+          }
         },
         {
           "sourceId": "uchicago-oxalate",
           "locator": "Fish: Haddock",
           "basis": "3 oz, 0 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
         },
         {
           "sourceId": "uchicago-oxalate",
           "locator": "Fish: Pollock",
           "basis": "3 oz, 0 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Cod, Atlantic and Pacific, dry heat cooked",
           "basis": "4 oz, 0.0 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "4 oz",
+            "perGrams": 113.4
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Haddock, dry heat cooked",
           "basis": "4 oz, 0.1 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.1,
+            "unit": "mg",
+            "per": "4 oz",
+            "perGrams": 113.4
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Pollock, Atlantic, dry heat cooked",
           "basis": "4 oz, 0.0 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "4 oz",
+            "perGrams": 113.4
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Fish: Tilapia, dry heat cooked",
           "basis": "4 oz, 0.0 mg",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "4 oz",
+            "perGrams": 113.4
+          }
         }
       ],
       "note": "Tilapia and basa are not listed."
@@ -211,14 +253,26 @@
           "locator": "Table 1: Cod",
           "basis": "9 mg free glutamate per 100 g; about 7.7 mg at 85 g",
           "kind": "guidance",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 9.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "andeal-umami",
           "locator": "Table 1: Cod",
           "basis": "44 mg free glutamate per 100 g; about 37 mg at 85 g",
           "kind": "guidance",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 44.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ],
       "note": "Cod is the only white fish listed, and the two sources disagree (9 and 44 mg per 100 g)."
@@ -235,7 +289,13 @@
           "basis": "5.25 µg per 100 g, 389 samples; about 4.5 µg at 85 g",
           "kind": "list",
           "level": "low",
-          "note": "The source reports no difference between species."
+          "note": "The source reports no difference between species.",
+          "amount": {
+            "value": 5.25,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     }

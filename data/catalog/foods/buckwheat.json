@@ -1,0 +1,98 @@
+{
+  "id": "buckwheat",
+  "name": "Buckwheat",
+  "description": "Cooked.",
+  "aliases": [
+    "buckwheat"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g prepared",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Grains, e.g., rice, barley, plain: 140 g prepared; 45 g dry",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals, grains and flours: Buckwheat",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals, grains and flours: Buckwheat",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: buckwheat",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "?"
+          ],
+          "note": "Only incompatible, if not thoroughly peeled?"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals, grains and flours: Buckwheat",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

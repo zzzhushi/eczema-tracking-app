@@ -1,0 +1,71 @@
+{
+  "id": "borlotti-bean",
+  "name": "Borlotti bean",
+  "description": "Cooked.",
+  "aliases": [
+    "borlotti bean",
+    "cranberry bean"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "90 g prepared",
+    "grams": 90,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Beans, plain or in sauce: 90 g for others prepared",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: borlotti beans",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "id": "tuna",
+  "name": "Tuna",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "tuna"
+  ],
+  "varieties": [],
+  "allergens": [
+    "fish"
+  ],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Tuna fresh",
+          "basis": "moderate column, A symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: tuna",
+          "basis": "compatibility score 3",
+          "kind": "list",
+          "level": "very high",
+          "markers": [
+            "H",
+            "A"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

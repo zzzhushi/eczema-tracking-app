@@ -1,0 +1,164 @@
+{
+  "id": "grape",
+  "name": "Grape",
+  "description": "Fresh.",
+  "aliases": [
+    "grape"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Grape",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Grapes, thompson, seedless",
+          "basis": "fresh weight, 8.31 mg/kg; about 1.16 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 8.31,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Grapes, ralli, seedless",
+          "basis": "fresh weight, 7.65 mg/kg; about 1.07 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 7.65,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Grapes, red malaga",
+          "basis": "fresh weight, 9.4 mg/kg; about 1.32 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 9.4,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Grapes",
+          "basis": "1/2 cup or 16 seedless grapes, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1/2 cup or 16 seedless grapes"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Grape",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: grapes",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "?"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Grape",
+          "basis": "very high column, G symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Grape",
+          "basis": "4.24 µg per 140 g, 120 samples; about 4.24 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 4.24,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

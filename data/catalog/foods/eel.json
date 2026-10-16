@@ -1,0 +1,99 @@
+{
+  "id": "eel",
+  "name": "Eel",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "eel"
+  ],
+  "varieties": [],
+  "allergens": [
+    "fish"
+  ],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Eel",
+          "basis": "moderate column, A symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood: Eel",
+          "basis": "7.99 µg per 125 g, 7 samples; about 5.43 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.99,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood - Prepared: Eel, cooked",
+          "basis": "0.85 µg per 100 g, 3 samples; about 0.723 µg at 85 g",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.85,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
+        }
+      ]
+    }
+  }
+}

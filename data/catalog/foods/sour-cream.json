@@ -1,0 +1,90 @@
+{
+  "id": "sour-cream",
+  "name": "Sour cream",
+  "description": "",
+  "aliases": [
+    "sour cream"
+  ],
+  "varieties": [],
+  "allergens": [
+    "milk"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Sour cream: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Cream Products: Sour Cream",
+          "basis": "1 Tbs, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 Tbs"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Dairy products and substitutes: Sour cream",
+          "basis": "0.37 µg per 24 g, 51 samples; about 0.462 µg at 30 g",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.37,
+            "unit": "µg",
+            "per": "24 g",
+            "perGrams": 24.0
+          }
+        }
+      ]
+    }
+  }
+}

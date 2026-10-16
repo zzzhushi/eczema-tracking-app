@@ -1,0 +1,85 @@
+{
+  "id": "mozzarella",
+  "name": "Mozzarella",
+  "description": "",
+  "aliases": [
+    "mozzarella"
+  ],
+  "varieties": [],
+  "allergens": [
+    "milk"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Cheese, all others except those listed as separate categories: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Cheese Products: Mozzarella Cheese",
+          "basis": "1 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 oz",
+            "perGrams": 28.3
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Mozzarella",
+          "basis": "moderate column, A symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

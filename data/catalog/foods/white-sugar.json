@@ -43,6 +43,34 @@
           "basis": "five-level rating, serving not stated",
           "kind": "list",
           "level": "negligible"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1d (beverages, sugars, oils, cereals): Sugar, caster",
+          "basis": "total salicylic acid not detected",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1d (beverages, sugars, oils, cereals): Sugar, white granulated",
+          "basis": "salicylate reported as 0",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
         }
       ]
     },
@@ -57,14 +85,24 @@
           "locator": "Sugar",
           "basis": "1 tsp, 0 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 tsp"
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Sweeteners: Sugar, granulated",
           "basis": "1 tsp, 0.0 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 tsp"
+          }
         }
       ]
     },
@@ -139,7 +177,13 @@
           "locator": "Sweeteners: Sugar, white",
           "basis": "0.07 µg per 4 g, 71 samples; about 0.14 µg at 8 g",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.07,
+            "unit": "µg",
+            "per": "4 g",
+            "perGrams": 4.0
+          }
         }
       ]
     }

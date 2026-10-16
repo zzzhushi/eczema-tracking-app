@@ -1,0 +1,86 @@
+{
+  "id": "corn-flour",
+  "name": "Corn flour",
+  "description": "Dry.",
+  "aliases": [
+    "corn flour",
+    "cornflour"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Flours or cornmeal: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals, grains and flours: Cornflour",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals, grains and flours: Cornflour",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Gluten-free cereals, grains and flours: Cornflour",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

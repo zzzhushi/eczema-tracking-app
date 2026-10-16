@@ -1,0 +1,151 @@
+{
+  "id": "blueberry",
+  "name": "Blueberry",
+  "description": "Fresh.",
+  "aliases": [
+    "blueberry"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Blueberries, Mulberry",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Acai berry, Blackberry, Blueberry, Boysenberry, Cranberry, Goji berries, Raspberry",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Blueberry",
+          "basis": "fresh weight, 9.12 mg/kg; about 1.28 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 9.12,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Blueberries",
+          "basis": "1/2 cup, 2 mg (sheet serving)",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Blueberries",
+          "basis": "1/2 cup, 18.5 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 18.5,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Blueberries, Mulberry",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Acai berry, Blackberry, Blueberry, Boysenberry, Cranberry, Goji berries, Raspberry",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: blueberries",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Berries: Blueberries",
+          "basis": "5.65 µg per 80 g, 58 samples; about 9.89 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 5.65,
+            "unit": "µg",
+            "per": "80 g",
+            "perGrams": 80.0
+          }
+        }
+      ]
+    }
+  }
+}

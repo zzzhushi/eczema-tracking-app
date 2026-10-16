@@ -94,7 +94,12 @@ public struct Evidence: Codable, Equatable, Sendable {
     public var foodMatch: FoodMatch?
     public var formMatch: FormMatch?
     public var markers: [EvidenceMarker]?
+    public var amount: Amount?
+    /// A measurement kept for the record but outranked by a more specific, more recent method.
+    public var superseded: Bool?
     public var note: String?
+
+    public var isSuperseded: Bool { superseded ?? false }
 
     /// 0 for the exact food in the exact form, 1 for a converted form, 2 for a related food.
     public var matchTier: Int {

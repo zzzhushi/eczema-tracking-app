@@ -147,7 +147,7 @@ private func unrecognized(_ text: String) -> ParsedItem { ParsedItem(text: text,
     @Test func loadsTheCatalogAndABuiltMatcherFromOneDirectory() throws {
         let matching = try FoodMatching.load(dataDirectory: shippedDataDirectory)
 
-        #expect(matching.catalog.foods.count == 18)
+        #expect(!matching.catalog.foods.isEmpty)
         #expect(matching.matcher.parse("coffee").map(\.resolution) == [.matched(foodID: "coffee-brewed")])
     }
 

@@ -1,0 +1,104 @@
+{
+  "id": "jerusalem-artichoke",
+  "name": "Jerusalem artichoke",
+  "description": "Fresh.",
+  "aliases": [
+    "jerusalem artichoke",
+    "sunchoke"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: sunroot, sunchoke, Jerusalem artichoke, topinambur Shoot tuber prepared as a root vegetable. Not suitable for",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: Jerusalem artichoke (Helianthus tuberosus), sunroot, Shoot tuber prepared as a root vegetable. Not suitable for",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Jerusalem artichoke",
+          "basis": "12.75 µg per 85 g, 1 samples; about 12.8 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 12.75,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Jerusalem artichoke, cooked",
+          "basis": "20.54 µg per 130 g, 1 samples; about 13.4 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 20.54,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

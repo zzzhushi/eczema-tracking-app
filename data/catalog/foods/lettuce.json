@@ -1,0 +1,167 @@
+{
+  "id": "lettuce",
+  "name": "Lettuce",
+  "description": "Fresh.",
+  "aliases": [
+    "lettuce",
+    "romaine",
+    "iceberg lettuce",
+    "cos lettuce"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Lettuce, cos",
+          "basis": "fresh weight, 15.82 mg/kg; about 1.34 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 15.82,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Lettuce, iceberg",
+          "basis": "fresh weight, 2.69 mg/kg; about 0.229 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 2.69,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Lettuce, butter",
+          "basis": "fresh weight, 8.79 mg/kg; about 0.747 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 8.79,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Lettuce, variety not reported",
+          "basis": "salicylate reported as 0",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ],
+      "note": "Measured varieties differ by more than one level; whether to split the food is pending."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Iceberg Lettuce",
+          "basis": "1 cup, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        },
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Romaine Lettuce",
+          "basis": "1 cup, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: iceberg lettuce, iceberg salad",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Leafy: Lettuces",
+          "basis": "5.83 µg per 85 g, 124 samples; about 5.83 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 5.83,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        }
+      ]
+    }
+  }
+}

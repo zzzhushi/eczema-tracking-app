@@ -1,0 +1,98 @@
+{
+  "id": "cassava",
+  "name": "Cassava",
+  "description": "Fresh.",
+  "aliases": [
+    "cassava",
+    "yuca",
+    "tapioca root"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Cassava (Manioc)",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Cassava",
+          "basis": "32.63 µg per 110 g, 3 samples; about 25.2 µg at 85 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 32.63,
+            "unit": "µg",
+            "per": "110 g",
+            "perGrams": 110.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Cassava, cooked",
+          "basis": "65.05 µg per 167 g, 2 samples; about 33.1 µg at 85 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 65.05,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        }
+      ]
+    }
+  }
+}

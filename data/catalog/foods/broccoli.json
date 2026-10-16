@@ -1,0 +1,173 @@
+{
+  "id": "broccoli",
+  "name": "Broccoli",
+  "description": "Fresh.",
+  "aliases": [
+    "broccoli"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Broccoli, Broccolini",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Broccoli",
+          "basis": "fresh weight, 11.01 mg/kg; about 0.94 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 11.01,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Broccoli",
+          "basis": "fresh weight, 6.5 mg/kg; about 0.55 mg at 85 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 6.5,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Broccoli",
+          "basis": "1/2 cup chopped, 6 mg (sheet serving)",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 6.0,
+            "unit": "mg",
+            "per": "1/2 cup chopped"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Broccoli, boiled, drained, unsalted",
+          "basis": "1/2 cup, 6 mg",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 6.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Broccoli, Broccolini",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: broccoli",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Broccoli, Broccolini",
+          "basis": "high column, G symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Broccoli",
+          "basis": "9.69 µg per 85 g, 9 samples; about 9.69 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 9.69,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Broccoli, cooked",
+          "basis": "8.44 µg per 130 g, 93 samples; about 5.52 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 8.44,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

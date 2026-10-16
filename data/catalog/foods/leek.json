@@ -1,0 +1,152 @@
+{
+  "id": "leek",
+  "name": "Leek",
+  "description": "Fresh.",
+  "aliases": [
+    "leek"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Leek",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Leek",
+          "basis": "fresh weight, 4.1 mg/kg; about 0.35 mg at 85 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 4.1,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Leek",
+          "basis": "fresh weight, 0.8 mg/kg; about 0.068 mg at 85 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Leek",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: leek",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "?"
+          ],
+          "note": "In small amounts, usually well tolerated"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Leek",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Leek",
+          "basis": "4.74 µg per 85 g, 8 samples; about 4.74 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 4.74,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Leek, cooked",
+          "basis": "4.88 µg per 130 g, 4 samples; about 3.19 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 4.88,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

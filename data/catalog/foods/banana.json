@@ -1,0 +1,156 @@
+{
+  "id": "banana",
+  "name": "Banana",
+  "description": "Fresh.",
+  "aliases": [
+    "banana"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Banana, common",
+          "basis": "fresh weight, 5.39 mg/kg; about 0.75 mg at 140 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 5.39,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Banana",
+          "basis": "salicylate reported as 0",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Banana",
+          "basis": "1 fruit, 3 mg (sheet serving)",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Bananas, raw",
+          "basis": "one, 10.3 mg, directly measured",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 10.3,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Banana, Plantain just ripe",
+          "basis": "moderate column, A symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Banana, Sugar banana ripe",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: banana",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "A"
+          ],
+          "note": "(The greener the better tolerated?)"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Banana",
+          "basis": "7.32 µg per 140 g, 113 samples; about 7.32 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.32,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}
