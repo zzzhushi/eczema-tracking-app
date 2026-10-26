@@ -29,8 +29,8 @@ How the app takes, files, stores, and shows photos of the user's skin. The priva
 - Images are downscaled to about 1600 px on the long side, rotated upright, and stripped of all camera metadata, including location.
 - Files are protected until the first unlock after a restart, excluded from device and cloud backups, and never written to the Photos library. Temporary files from the camera are not kept.
 - Resizing and writing a captured photo run in the background after the camera closes, under a background task so leaving the app does not stop them; a "Saving photo…" row shows until each is stored, and its thumbnail then appears. The captured image exists only in memory until then, and iOS limits how long the task may run. If the photo directory cannot be opened, the day screen says so and offers no Add tiles.
-- A record and its file are added and removed together. Files with no record are removed when the app starts.
-- Deleting a day deletes its photo records, and the next start removes their files.
+- A record and its file are added and removed together, and deleting a photo or a day removes its files.
+- A file with no record is never deleted automatically. It can be left by an interrupted save, but it can also be the only copy of a photo whose record was lost with a reset or restored store, and a photo cannot be taken again. The app counts such files in its log when it starts.
 
 ## Viewing and deleting
 

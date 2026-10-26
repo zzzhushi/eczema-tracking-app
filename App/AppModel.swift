@@ -110,9 +110,10 @@ final class AppModel {
         )
         location.onAuthorized = { [weak self] in self?.captureLocationIfDue() }
         do {
-            try photoLibrary?.removeOrphanFiles()
+            let orphans = try photoLibrary?.orphanFileNames() ?? []
+            if !orphans.isEmpty { Log.photos.notice("photos.orphansFound", public: ["count": .int(orphans.count)]) }
         } catch {
-            Log.photos.error("photos.cleanupFailed", private: ["error": String(describing: error)])
+            Log.photos.error("photos.orphanCheckFailed", private: ["error": String(describing: error)])
         }
         #if DEBUG
         photoFlow.simulatorCapture = { [weak self] request in self?.addDebugPhoto(for: request) }
@@ -308,8 +309,11 @@ final class AppModel {
     #if DEBUG
     func clearToday() {
         guard let store else { return }
-        try? store.delete(session.host.today.date)
-        try? photoLibrary?.removeOrphanFiles()
+        if let photoLibrary {
+            try? photoLibrary.deleteDay(session.host.today.date)
+        } else {
+            try? store.delete(session.host.today.date)
+        }
         dataVersion += 1
         loadCheckIns()
         loadPhotos()
@@ -360,8 +364,11 @@ final class AppModel {
 
     func clearAll() {
         guard let store else { return }
-        try? store.deleteAll()
-        try? photoLibrary?.removeOrphanFiles()
+        if let photoLibrary {
+            try? photoLibrary.deleteAllDays()
+        } else {
+            try? store.deleteAll()
+        }
         dataVersion += 1
         loadCheckIns()
         loadPhotos()

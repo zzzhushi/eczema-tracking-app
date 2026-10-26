@@ -38,19 +38,25 @@ public final class PhotoLibrary: Sendable {
         try files.delete(fileName: fileName)
     }
 
-    /// Remove image files that no record names, such as one left by an interruption between saving the file and
-    /// recording it.
-    public func removeOrphanFiles() throws {
+    /// Return the image files that no record names, sorted. Nothing is deleted: such a file can be left by an
+    /// interrupted save, but it can also be the only copy of a photo whose record was lost with a reset or restored
+    /// store, and a photo cannot be taken again.
+    public func orphanFileNames() throws -> [String] {
         let recorded = Set(try store.allPhotoFileNames())
-        for name in try files.fileNames().subtracting(recorded) {
-            try files.delete(fileName: name)
-        }
+        return try files.fileNames().subtracting(recorded).sorted()
     }
 
-    /// Remove every image file, leaving the records. Callers that also delete the records use this first.
-    public func removeAllFiles() throws {
-        for name in try files.fileNames() {
-            try files.delete(fileName: name)
-        }
+    /// Remove a day with its photo records and their image files.
+    public func deleteDay(_ date: LocalDate) throws {
+        let names = try store.photos(on: date).map(\.fileName)
+        try store.delete(date)
+        for name in names { try files.delete(fileName: name) }
+    }
+
+    /// Remove every day with every photo record and image file.
+    public func deleteAllDays() throws {
+        let names = try store.allPhotoFileNames()
+        try store.deleteAll()
+        for name in names { try files.delete(fileName: name) }
     }
 }

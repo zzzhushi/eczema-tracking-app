@@ -57,11 +57,15 @@ public final class DayStore: Sendable {
     }
 
     /// Remove the day with `date`; a date that was never saved is left alone.
+    ///
+    /// The day's photo records go with it but their image files do not; use `PhotoLibrary.deleteDay` to remove both.
     public func delete(_ date: LocalDate) throws {
         try database.write { try $0.execute(sql: "DELETE FROM day WHERE date = ?", arguments: [date.isoString]) }
     }
 
     /// Remove every day. The store keeps its schema and stays usable.
+    ///
+    /// Photo image files are not removed; use `PhotoLibrary.deleteAllDays` to remove them with the records.
     public func deleteAll() throws {
         let count = try database.write { db -> Int in
             try db.execute(sql: "DELETE FROM day")

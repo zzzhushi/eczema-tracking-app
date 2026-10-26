@@ -48,6 +48,14 @@ _Avoid_: Breakout, outbreak
 The start of a worsening, even during a long flare.
 _Avoid_: New flare, spike
 
+**Slot**:
+A place a photo is taken of: the face, the left hand, or the right hand. A slot belongs to an area, and photos are only ever compared within one slot.
+_Avoid_: Photo position, side
+
+**Close-up**:
+An optional photo of a patch of the face's skin taken near enough to see flakes, kept as its own photo rather than a crop.
+_Avoid_: Crop, macro shot
+
 **Reference photo**:
 The photo showing an area's best state so far, which the AI rates new photos against; replaced only when the user confirms a better one.
 _Avoid_: Anchor, best photo

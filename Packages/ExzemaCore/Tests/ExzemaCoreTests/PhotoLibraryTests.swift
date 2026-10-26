@@ -119,24 +119,46 @@ struct PhotoLibraryTests {
         #expect(try files.fileNames().isEmpty)
     }
 
-    @Test func removingOrphansDeletesFilesWithNoRecordAndKeepsTheRest() throws {
+    @Test func orphanFilesAreReportedAndNeverDeleted() throws {
         let (library, _, files) = try openLibrary()
         let kept = try add(library)
         let orphan = try files.save(imageData: imageData())
 
-        try library.removeOrphanFiles()
-
-        #expect(try files.fileNames() == [kept.fileName])
-        #expect(!(try files.fileNames()).contains(orphan))
+        #expect(try library.orphanFileNames() == [orphan])
+        #expect(try files.fileNames() == [kept.fileName, orphan], "a file with no record may be the only copy of a photo")
     }
 
-    @Test func removingAllFilesLeavesTheRecordsUntouched() throws {
+    @Test func photosSurviveAStoreThatHasNoRecordOfThem() throws {
+        let (library, _, files) = try openLibrary()
+        let first = try add(library)
+        let second = try add(library, slot: "left-hand")
+        let resetStore = try DayStore(at: directory.appendingPathComponent("reset-store.sqlite"))
+        let afterReset = PhotoLibrary(store: resetStore, files: files)
+
+        #expect(Set(try afterReset.orphanFileNames()) == [first.fileName, second.fileName])
+        #expect(try files.fileNames() == [first.fileName, second.fileName], "opening a store with no records deletes nothing")
+    }
+
+    @Test func deletingADayRemovesItsRecordsAndFilesAndKeepsOtherDays() throws {
         let (library, store, files) = try openLibrary()
-        _ = try add(library)
+        let doomed = try add(library, filedOn: tuesday, today: tuesday)
+        let kept = try add(library, filedOn: tuesday.adding(days: 1), today: tuesday.adding(days: 1))
 
-        try library.removeAllFiles()
+        try library.deleteDay(tuesday)
 
+        #expect(try store.photos(on: tuesday).isEmpty)
+        #expect(try files.fileNames() == [kept.fileName])
+        #expect(!(try files.fileNames()).contains(doomed.fileName))
+    }
+
+    @Test func deletingAllDaysRemovesEveryRecordAndFile() throws {
+        let (library, store, files) = try openLibrary()
+        _ = try add(library, filedOn: tuesday, today: tuesday)
+        _ = try add(library, filedOn: tuesday.adding(days: 1), today: tuesday.adding(days: 1))
+
+        try library.deleteAllDays()
+
+        #expect(try store.days().isEmpty)
         #expect(try files.fileNames().isEmpty)
-        #expect(try store.photos(on: tuesday).count == 1)
     }
 }
