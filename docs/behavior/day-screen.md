@@ -12,7 +12,7 @@ The home screen: which date is on screen and how it changes. What each section h
 
 ## Sections
 
-Below the week strip, the shown date lists its skin check-in, its food, and the cities recorded for it. The sections are described in [skin check-in](skin-check-in.md), [food logging](food-logging.md), and [environment and health](environment-and-health.md#place-names).
+Below the week strip, the shown date lists its skin check-in, its food, and the cities recorded for it. Each area's check-in block ends with that area's photos. The sections are described in [skin check-in](skin-check-in.md), [photos](photos.md), [food logging](food-logging.md), and [environment and health](environment-and-health.md#place-names).
 
 ## Which date is on screen
 

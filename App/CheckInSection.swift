@@ -18,6 +18,7 @@ struct CheckInSection: View {
                     detail: "redness, dryness, cracks, bumps",
                     value: model.checkIns[area.id]?.look
                 ) { model.setRating(.look, to: $0, area: area) }
+                PhotoRows(model: model, area: area)
             }
         }
     }

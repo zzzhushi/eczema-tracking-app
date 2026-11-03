@@ -1,12 +1,12 @@
 #!/bin/sh
-# Copies the app's store, log files, and diagnostic reports from a connected iPhone to a new private folder on
+# Copies the app's store, photos, log files, and diagnostic reports from a connected iPhone to a new private folder on
 # this Mac, for debugging. The app must be installed from Xcode so its data container is readable.
 #
 # Usage: scripts/pull_from_phone.sh [output-dir]
 #   output-dir   must not exist yet; defaults to ~/exzema-pulls/<UTC timestamp>. It must be outside every git
-#                checkout, because the store holds the user's real entries.
+#                checkout, because the store and the photos hold the user's real entries and skin.
 #
-# The three copies are separate operations, so they describe one moment only if nothing is writing: force-quit
+# The copies are separate operations, so they describe one moment only if nothing is writing: force-quit
 # the app on the phone first. The script refuses to run while the app is running.
 #
 # Environment:
@@ -93,6 +93,9 @@ fi
 if ! copy Logs; then
     echo "note: no app log files on the phone (the build predates them, or nothing has been logged)"
 fi
+if ! copy Photos; then
+    echo "note: no photos on the phone"
+fi
 chmod -R go-rwx "$out"
 
 store="$out/Store/store.sqlite"
@@ -108,11 +111,14 @@ fi
 if [ -d "$out/Logs" ]; then
     echo "app log lines: $(cat "$out"/Logs/*.jsonl 2>/dev/null | wc -l | tr -d ' ')"
 fi
+if [ -d "$out/Photos" ]; then
+    echo "photos: $(ls "$out/Photos" | wc -l | tr -d ' ')"
+fi
 echo
-echo "look at the data:    sqlite3 -readonly '$store' '.tables'"
+echo "look at the data:   sqlite3 -readonly '$store' '.tables'"
 if [ -d "$out/Logs" ]; then
     echo "app logs:            cat '$out'/Logs/previous.jsonl '$out'/Logs/current.jsonl"
 fi
 echo "system logs (root):  sudo /usr/bin/log collect --device --last 1d --output '$out/logs.logarchive'"
 echo "read them:           /usr/bin/log show '$out/logs.logarchive' --predicate 'subsystem == \"$bundle\"'"
-echo "The store holds real entries and ratings; logs mark them private. Delete the folder when finished."
+echo "The store holds real entries and ratings, and the Photos folder holds unencrypted skin photos; logs leave private values out. Delete the folder when finished."

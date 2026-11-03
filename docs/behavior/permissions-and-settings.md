@@ -14,11 +14,17 @@ What the app asks the user to allow, and the screens where they review it.
 - If the user declines, the app records no location and does not ask again.
 - Settings shows whether location is not yet asked, on while using the app, or off. While it is not yet asked, which also follows an Allow Once answer, an Allow location button asks again; after an answer it links to iOS Settings.
 
+## Camera permission
+
+- The app asks for the camera only when the user first takes a photo, after the photo tips ([photos](photos.md#taking-a-photo)).
+- If it is off, taking a photo shows a message with a link to iOS Settings; nothing is recorded.
+
 ## Settings
 
 Settings opens from the gear on the home screen and holds:
 
 - the note that deleting the app deletes its data;
 - the location status and the explanation of what is recorded;
+- the photo tips, and a note that photos stay inside the app;
 - the build time, which identifies the installed build;
 - in debug builds only, the debug tools.

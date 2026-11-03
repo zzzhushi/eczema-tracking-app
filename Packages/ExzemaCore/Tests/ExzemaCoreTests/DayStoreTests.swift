@@ -51,7 +51,7 @@ struct DayStoreTests {
         let store = try DayStore(at: storeURL)
 
         #expect(try store.schemaVersion() == DayStore.currentSchemaVersion)
-        #expect(DayStore.currentSchemaVersion == 3)
+        #expect(DayStore.currentSchemaVersion == 4)
     }
 
     @Test func storeFromANewerSchemaIsRefusedAndLeftUntouched() throws {
@@ -72,7 +72,7 @@ struct DayStoreTests {
         #expect(values.isExcludedFromBackup == true)
     }
 
-    @Test(arguments: [1, 2, 3])
+    @Test(arguments: [1, 2, 3, 4])
     func fixtureStoreOpensAndReadsItsDay(version: Int) throws {
         let fixture = try #require(
             Bundle.module.url(forResource: "v\(version)", withExtension: "sqlite", subdirectory: "Stores"),
@@ -96,6 +96,14 @@ struct DayStoreTests {
             let capture = try #require(try store.locationCaptures().first)
             #expect((capture.latitudeTenths, capture.longitudeTenths) == (378, -1224))
             #expect(capture.placeName == "San Francisco")
+        }
+        #expect(try store.photoSlots().map(\.id) == ["face", "left-hand", "right-hand"], "migrating an older store adds the slots")
+        let photos = try store.photos(on: DayStoreTestSupport.fixtureDay.date)
+        if version < 4 {
+            #expect(photos.isEmpty, "an older day has no photos")
+        } else {
+            #expect(photos.map(\.fileName) == ["fixture.jpg"])
+            #expect(photos.first?.slotID == "face")
         }
     }
 }
