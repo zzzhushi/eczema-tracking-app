@@ -10,12 +10,15 @@ How a food's level for one food chemical is derived from its evidence. The catal
 - **Amines**: the sum of tyramine, putrescine, cadaverine, tryptamine, and β-phenylethylamine. Histamine is its own food chemical, and spermidine and spermine, which occur in all foods, are excluded.
 - **Histamine**: histamine load as the Swiss Interest Group Histamine Intolerance compatibility score gives it. The score combines histamine content, other amines, mast cell liberators, and enzyme blockers, which is why it is used: skin reacts to the total load, not to histamine content alone. It is a tolerance rating, not a measurement of histamine content. Score 0 is negligible, 1 moderate, 2 high, and 3 very high; low is unused. A score of "no general statement possible" or "insufficient information" gives the research status "researched with no data". The score's markers (H, H!, A, L, B) are kept on each evidence entry so a level shows what drives it, and measured histamine content goes in the note.
 - **Normalization**: a source that rates on the same five levels is used as is. A coarser source maps through its chemical's table below and can yield only the levels its bands allow. Negligible requires a source that says so or a measured value near zero. A level is never inferred from a similar food, except that a closely related plant of the same genus may stand in for a food that sources group with it (common chives for garlic chives); that evidence is recorded as a related food.
-- **Basis**: a level describes the food as usually eaten, per typical serving: the FDA reference amount customarily consumed where one exists, otherwise a USDA household measure. A value measured dry, raw, or per 100 g is converted to that serving. Cooking loss that sources don't measure is not subtracted, so a level taken from a different form can be too high and never too low. Arithmetic to the serving, such as per 100 g to the serving, does not weaken evidence.
+- **Basis**: a level describes the food as usually eaten, per typical serving: the FDA reference amount customarily consumed where one exists, otherwise a USDA household measure. A value measured dry, raw, or per 100 g is converted to that serving. Cooking loss that sources don't measure is not subtracted, so a level taken from a different form can be too high and never too low. Arithmetic to the serving, such as per 100 g to the serving, does not weaken evidence. An amount given for a household measure with no weight is compared with the cutoffs as published, and the evidence keeps the measure so it can be revisited.
 - **Match and strength**: evidence ranks first by how closely it matches the entry: the exact food in the exact form, then the exact food in a converted form (dry, canned, aged, leaf for powder), then a related food. Within the closest match present, measurement outranks review, then guidance, then list. Only that evidence decides the level; weaker evidence that disagrees goes in the note.
+- **Measurement method**: when measurements of the same match disagree, the one made by the more specific and more recent analytical method decides, such as mass spectrometry with an isotope-labelled internal standard over older chromatography with a non-specific detector. The older measurement stays in the evidence, marked superseded, with a note naming the method that replaced it, so its level can still be read. Marking evidence superseded is a reviewer's decision, made per source pair, not inferred from publication dates alone.
 - **Agreement**: entries of the deciding match and kind within one level of each other give the highest of them. Entries further apart give the research status "sources conflict".
 - **Varieties**: varieties within one level of each other share one food at the highest level. Varieties more than one level apart become separate foods, and the plain word matches the default variety, or, between separate foods, the default food: the one that owns the plain word as an alias. Provisional until several foods have been researched.
 
 ### Oxalate cutoffs (mg per serving, provisional)
+
+Each band starts at its lower bound in every cutoff table: 4.9 mg of oxalate is low and 5 mg is moderate.
 
 | Level | mg |
 |---|---|
@@ -48,6 +51,18 @@ Low, moderate, and high follow a published low-nickel scoring, which spreads a 1
 | very high | 700 or more |
 
 These bands are a project index for ranking foods against each other, not a safety threshold. They use the nickel table's shares of a daily amount, applied to 30 mg per kg body weight a day, about 2.1 g for a 70 kg adult. That figure is the [European Food Safety Authority's 2017 limit](https://www.efsa.europa.eu/en/press/news/170712) for glutamic acid and glutamates used as food additives; no limit exists for naturally occurring glutamate in food, so using it here is a judgment. A numeric field per serving, without bands, could replace the index if a defensible natural-glutamate basis turns up.
+
+### Salicylate cutoffs (mg of total salicylic acid per serving, provisional)
+
+| Level | mg |
+|---|---|
+| negligible | under 0.1, or not detected |
+| low | 0.1–0.49 |
+| moderate | 0.5–0.99 |
+| high | 1.0–1.99 |
+| very high | 2.0 or more |
+
+Like the glutamate bands, these are a project index for ranking foods against each other, not a tolerance threshold; no clinical threshold exists. They are set across the range that total salicylic acid (free plus bound) measures in fruit and vegetables at their reference servings. Published per-portion bands (low 0.01–0.09 mg, medium 0.1–0.5, high over 0.5) were built on older methods that read lower; applied to total salicylic acid they would rate nearly every plant food moderate or higher, which would stop the levels from separating foods.
 
 The other chemicals' tables are added with their first coarse source.
 

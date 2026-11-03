@@ -1,0 +1,152 @@
+{
+  "id": "raspberry",
+  "name": "Raspberry",
+  "description": "Fresh.",
+  "aliases": [
+    "raspberry"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Acai berry, Blackberry, Blueberry, Boysenberry, Cranberry, Goji berries, Raspberry",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Raspberry",
+          "basis": "fresh weight, 10.52 mg/kg; about 1.47 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 10.52,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Raspberry",
+          "basis": "fresh weight, 31.4 mg/kg; about 4.4 mg at 140 g",
+          "kind": "measurement",
+          "level": "very high",
+          "amount": {
+            "value": 31.4,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Raspberries",
+          "basis": "1 cup, 48 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 48.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Raspberries, raw",
+          "basis": "1/2 cup, 2.5 mg, directly measured",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.5,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Acai berry, Blackberry, Blueberry, Boysenberry, Cranberry, Goji berries, Raspberry",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: raspberry",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Berries: Raspberries",
+          "basis": "20.27 µg per 80 g, 31 samples; about 35.5 µg at 140 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 20.27,
+            "unit": "µg",
+            "per": "80 g",
+            "perGrams": 80.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "milk",
+  "name": "Milk",
+  "description": "Whole cow's milk, pasteurised.",
+  "aliases": [
+    "milk",
+    "cow's milk",
+    "whole milk"
+  ],
+  "varieties": [],
+  "allergens": [
+    "milk"
+  ],
+  "serving": {
+    "description": "1 cup (240 mL)",
+    "grams": 244,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Milk, milk-substitute beverages, milk-based drinks: 240 mL",
+    "weightSourceId": "usda-fdc",
+    "weightLocator": "Milk, whole, 3.25% milkfat, with added vitamin D (fdcId 171265): 1 cup = 244 g",
+    "note": "The FDA row gives a volume, not a weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Milk full cream, low fat, skim, buttermilk, long life, UHT, sweetened condensed, evaporate",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Milk: Whole Milk",
+          "basis": "1 cup, 1 mg",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1 cup",
+            "perGrams": 244
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Dairy And  Nondairy Creamers: Milk, whole",
+          "basis": "8 fl oz, 0.5 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.5,
+            "unit": "mg",
+            "per": "8 fl oz",
+            "perGrams": 244
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Milk full cream, low fat, skim, buttermilk, long life, UHT, sweetened condensed, evaporate",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: milk, pasteurised",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "?"
+          ]
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: milk, UHT",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "markers": [
+            "?"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Dairy foods: Milk full cream, low fat, skim, buttermilk, long life, UHT, sweetened condensed, evaporate",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Dairy products and substitutes: Milk",
+          "basis": "3.06 µg per 250 g, 352 samples; about 2.99 µg at 244 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.06,
+            "unit": "µg",
+            "per": "250 g",
+            "perGrams": 250.0
+          }
+        }
+      ]
+    }
+  }
+}

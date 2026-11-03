@@ -1,0 +1,83 @@
+{
+  "id": "taro",
+  "name": "Taro",
+  "description": "Fresh.",
+  "aliases": [
+    "taro"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "110 g fresh",
+    "grams": 110,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Potatoes and sweet potatoes/yams: plain, fresh, canned, or frozen: 110 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Taro",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Taro, cooked",
+          "basis": "28.06 µg per 167 g, 2 samples; about 18.5 µg at 110 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 28.06,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        }
+      ]
+    }
+  }
+}

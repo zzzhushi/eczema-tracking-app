@@ -1,0 +1,112 @@
+{
+  "id": "cranberry",
+  "name": "Cranberry",
+  "description": "Fresh.",
+  "aliases": [
+    "cranberry"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "50 g fresh",
+    "grams": 50,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fruits used primarily as ingredients, others (cranberries, lemon, lime): 50 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Acai berry, Blackberry, Blueberry, Boysenberry, Cranberry, Goji berries, Raspberry",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Cranberries, raw",
+          "basis": "1 cup, 0.3 mg",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.3,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Acai berry, Blackberry, Blueberry, Boysenberry, Cranberry, Goji berries, Raspberry",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: cranberry, cranberries",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Berries: Cranberries",
+          "basis": "4.4 µg per 55 g, 6 samples; about 4 µg at 50 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 4.4,
+            "unit": "µg",
+            "per": "55 g",
+            "perGrams": 55.0
+          }
+        }
+      ]
+    }
+  }
+}

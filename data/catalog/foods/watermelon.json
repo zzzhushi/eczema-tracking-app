@@ -1,0 +1,148 @@
+{
+  "id": "watermelon",
+  "name": "Watermelon",
+  "description": "Fresh.",
+  "aliases": [
+    "watermelon"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "280 g fresh",
+    "grams": 280,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Watermelon: 280 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Honeydew, Rockmelon, Watermelon",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Watermelon",
+          "basis": "fresh weight, 4.8 mg/kg; about 1.34 mg at 280 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 4.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Watermelon",
+          "basis": "fresh weight, 4.8 mg/kg; about 1.34 mg at 280 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 4.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Watermelon",
+          "basis": "1 slice, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1 slice"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Watermelon",
+          "basis": "1 slice, 0.6 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.6,
+            "unit": "mg",
+            "per": "1 slice"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: watermelon",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "markers": [
+            "?"
+          ],
+          "note": "Suspected histamine liberator effects"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Watermelon",
+          "basis": "7.94 µg per 150 g, 85 samples; about 14.8 µg at 280 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 7.94,
+            "unit": "µg",
+            "per": "150 g",
+            "perGrams": 150.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "id": "wheat-berry",
+  "name": "Wheat berry",
+  "description": "Cooked.",
+  "aliases": [
+    "wheat berry",
+    "wheat berries"
+  ],
+  "varieties": [],
+  "allergens": [
+    "wheat"
+  ],
+  "serving": {
+    "description": "140 g prepared",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Grains, e.g., rice, barley, plain: 140 g prepared; 45 g dry",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Pastas, Rice & Grains: Wheat Berries",
+          "basis": "1 cup cooked, 98 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 98.0,
+            "unit": "mg",
+            "per": "1 cup cooked"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Pasta And Other Grains: Wheat berries, cooked",
+          "basis": "1 cup, 97.6 mg",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 97.6,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

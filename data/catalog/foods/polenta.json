@@ -1,0 +1,77 @@
+{
+  "id": "polenta",
+  "name": "Polenta",
+  "description": "Dry.",
+  "aliases": [
+    "polenta",
+    "cornmeal",
+    "corn meal"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Flours or cornmeal: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Whole grains, flours and starches: Cornmeal",
+          "basis": "14.4 µg per 30 g, 4 samples; about 14.4 µg at 30 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 14.4,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

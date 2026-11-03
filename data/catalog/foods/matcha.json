@@ -123,7 +123,13 @@
           "kind": "guidance",
           "level": "negligible",
           "formMatch": "converted",
-          "note": "The figure is probably for dried leaf; matcha powder is not listed."
+          "note": "The figure is probably for dried leaf; matcha powder is not listed.",
+          "amount": {
+            "value": 668.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     },
@@ -140,7 +146,13 @@
           "kind": "list",
           "level": "moderate",
           "formMatch": "converted",
-          "note": "Matcha is not listed; whole green tea leaves stand in because the leaf is consumed."
+          "note": "Matcha is not listed; whole green tea leaves stand in because the leaf is consumed.",
+          "amount": {
+            "value": 18.09,
+            "unit": "µg",
+            "per": "3 g",
+            "perGrams": 3.0
+          }
         }
       ]
     }

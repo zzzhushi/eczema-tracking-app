@@ -1,0 +1,137 @@
+{
+  "id": "raisin",
+  "name": "Raisin",
+  "description": "Dried.",
+  "aliases": [
+    "raisin",
+    "raisins",
+    "sultana"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "40 g dried",
+    "grams": 40,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Dried fruits: 40 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Prunes, Raisins, Sultanas, Tomato",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Raisins",
+          "basis": "1 oz or 1 small snack box, 3 mg (sheet serving); about 4.24 mg at 40 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.0,
+            "unit": "mg",
+            "per": "1 oz or 1 small snack box",
+            "perGrams": 28.3
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Raisins",
+          "basis": "1 oz, 2.5 mg, directly measured; about 3.53 mg at 40 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.5,
+            "unit": "mg",
+            "per": "1 oz",
+            "perGrams": 28.3
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Prunes, Raisins, Sultanas, Tomato",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: raisins",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Only if not sulphured / without sulphite / without"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Prunes, Raisins, Sultanas, Tomato",
+          "basis": "very high column, G symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Snacks and desserts: Raisins",
+          "basis": "3.34 µg per 40 g, 74 samples; about 3.34 µg at 40 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.34,
+            "unit": "µg",
+            "per": "40 g",
+            "perGrams": 40.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "id": "date",
+  "name": "Date",
+  "description": "Dried.",
+  "aliases": [
+    "date",
+    "dates"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "40 g dried",
+    "grams": 40,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Dried fruits: 40 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Cranberry, Currants, Dates, Figs, Mango, Pineapple",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Dates, dry",
+          "basis": "fresh weight, 36.9 mg/kg; about 1.48 mg at 40 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 36.9,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Dates, dry",
+          "basis": "fresh weight, 45 mg/kg; about 1.8 mg at 40 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 45,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Dates",
+          "basis": "1 date, 24 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 24.0,
+            "unit": "mg",
+            "per": "1 date"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Dates",
+          "basis": "5 dates, 25.5 mg",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 25.5,
+            "unit": "mg",
+            "per": "5 dates"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Cranberry, Currants, Dates, Figs, Mango, Pineapple",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: dates (dried, desiccated)",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Dates, fresh",
+          "basis": "18.55 µg per 140 g, 2 samples; about 5.3 µg at 40 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 18.55,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

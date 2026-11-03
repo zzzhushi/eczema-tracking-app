@@ -1,0 +1,218 @@
+{
+  "id": "apple",
+  "name": "Apple",
+  "description": "Fresh.",
+  "aliases": [
+    "apple"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Apple Golden & red Delicious",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Apples Bonza, Fuji, Gala, Jonathan, Granny Smith, Pink Lady, Sundowner",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Apple, granny smith, peeled",
+          "basis": "fresh weight, 9.7 mg/kg; about 1.36 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 9.7,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Apple, pink lady, peeled",
+          "basis": "fresh weight, 2.93 mg/kg; about 0.41 mg at 140 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 2.93,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Apple, pink lady, unpeeled",
+          "basis": "fresh weight, 9.02 mg/kg; about 1.26 mg at 140 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 9.02,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Apple, golden delicious",
+          "basis": "fresh weight, 3.18 mg/kg; about 0.45 mg at 140 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 3.18,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Apple, golden delicious, unpeeled",
+          "basis": "fresh weight, 0.8 mg/kg; about 0.11 mg at 140 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 0.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Apple, granny smith, unpeeled",
+          "basis": "fresh weight, 5.9 mg/kg; about 0.83 mg at 140 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 5.9,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ],
+      "note": "Measured varieties and peel states differ by more than one level (peeled pink lady low, peeled granny smith high); whether to split the food is pending."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Apples",
+          "basis": "1 fruit, 1 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 1.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Apples, raw with skin",
+          "basis": "one, 0.7 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "one"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Apples, raw without skin",
+          "basis": "one, 0.7 mg, directly measured",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.7,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: apple",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Apple",
+          "basis": "3.01 µg per 140 g, 143 samples; about 3.01 µg at 140 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.01,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "id": "avocado",
+  "name": "Avocado",
+  "description": "Fresh.",
+  "aliases": [
+    "avocado",
+    "avocados"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "50 g fresh",
+    "grams": 50,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fruits used primarily as ingredients, avocado: 50 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Avocado just ripe",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Avocado very ripe",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Avocado, haas",
+          "basis": "fresh weight, 29.72 mg/kg; about 1.49 mg at 50 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 29.72,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Avocado",
+          "basis": "fresh weight, 6 mg/kg; about 0.3 mg at 50 g",
+          "kind": "measurement",
+          "level": "low",
+          "amount": {
+            "value": 6,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Avocados",
+          "basis": "1 fruit, 19 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 19.0,
+            "unit": "mg",
+            "per": "1 fruit"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Avocado",
+          "basis": "1/2 fruit, 9.5 mg, directly measured",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 9.5,
+            "unit": "mg",
+            "per": "1/2 fruit"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Avocado just ripe",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Avocado very ripe",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: avocado",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H",
+            "L"
+          ]
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: alligator pear, avocado",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H",
+            "L"
+          ]
+        },
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: avocado",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Avocado",
+          "basis": "42.44 µg per 140 g, 85 samples; about 15.2 µg at 50 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 42.44,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

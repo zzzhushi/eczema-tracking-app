@@ -1,0 +1,126 @@
+{
+  "id": "fig",
+  "name": "Fig",
+  "description": "Fresh.",
+  "aliases": [
+    "fig",
+    "figs"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Fig fresh",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Whole Fruits: Figs",
+          "basis": "1 medium fig, 9 mg (sheet serving)",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 9.0,
+            "unit": "mg",
+            "per": "1 medium fig"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Fruit: Figs, raw",
+          "basis": "one, 9.3 mg, directly measured",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 9.3,
+            "unit": "mg",
+            "per": "one"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Fig fresh",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: figs (fresh or dried)",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "note": "May be slightly laxative"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Fig",
+          "basis": "18.2 µg per 140 g, 1 samples; about 18.2 µg at 140 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 18.2,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -61,14 +61,26 @@
           "basis": "1 cup, 2 mg (sheet serving); about 1.4 mg at 170 g",
           "kind": "list",
           "level": "negligible",
-          "note": "Nonfat Greek style not listed separately."
+          "note": "Nonfat Greek style not listed separately.",
+          "amount": {
+            "value": 2.0,
+            "unit": "mg",
+            "per": "1 cup",
+            "perGrams": 242.9
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Yogurt: Greek, plain, nonfat/lowfat",
           "basis": "5.3 oz, 0.6 mg; about 0.7 mg at 170 g",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.6,
+            "unit": "mg",
+            "per": "5.3 oz",
+            "perGrams": 150.3
+          }
         }
       ]
     },
@@ -148,7 +160,13 @@
           "locator": "Dairy: Yogurt",
           "basis": "4.01 µg per 175 g, 139 samples; about 3.9 µg at 170 g",
           "kind": "list",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 4.01,
+            "unit": "µg",
+            "per": "175 g",
+            "perGrams": 175.0
+          }
         }
       ]
     }

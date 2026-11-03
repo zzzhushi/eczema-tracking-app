@@ -1,0 +1,86 @@
+{
+  "id": "green-onion",
+  "name": "Green onion",
+  "description": "Fresh.",
+  "aliases": [
+    "green onion",
+    "scallion",
+    "spring onion",
+    "scallions"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g fresh",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fresh or canned chili peppers, jalapeno peppers, other hot peppers, green onion: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Spring onions",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Spring onion",
+          "basis": "7.58 µg per 40 g, 4 samples; about 5.69 µg at 30 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.58,
+            "unit": "µg",
+            "per": "40 g",
+            "perGrams": 40.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "id": "brazil-nut",
+  "name": "Brazil nut",
+  "description": "Shelled, raw or dry-roasted.",
+  "aliases": [
+    "brazil nut",
+    "brazil nuts"
+  ],
+  "varieties": [],
+  "allergens": [
+    "tree-nuts"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Nuts, seeds and mixtures, all types: sliced, chopped, slivered, and whole: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: Brazil nut",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible",
+          "note": "Max. 1-2 nuts per day are a good source of selenium"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Nuts and seeds: Brazil nuts",
+          "basis": "77.69 µg per 30 g, 5 samples; about 77.7 µg at 30 g",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 77.69,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

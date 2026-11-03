@@ -1,0 +1,153 @@
+{
+  "id": "sweet-potato",
+  "name": "Sweet potato",
+  "description": "Fresh.",
+  "aliases": [
+    "sweet potato",
+    "kumara"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "110 g fresh",
+    "grams": 110,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Potatoes and sweet potatoes/yams: plain, fresh, canned, or frozen: 110 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Kumara",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Sweet potato white, yellow, purple",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Potato, sweet yellow",
+          "basis": "fresh weight, 21.15 mg/kg; about 2.33 mg at 110 g",
+          "kind": "measurement",
+          "level": "very high",
+          "amount": {
+            "value": 21.15,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Potato, sweet",
+          "basis": "fresh weight, 4.8 mg/kg; about 0.53 mg at 110 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 4.8,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Potatoes: Sweet Potatoes",
+          "basis": "1 cup, 28 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 28.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: sweet potato",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Sweet potato",
+          "basis": "12.55 µg per 110 g, 9 samples; about 12.6 µg at 110 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 12.55,
+            "unit": "µg",
+            "per": "110 g",
+            "perGrams": 110.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Sweet potato, cooked",
+          "basis": "15.49 µg per 167 g, 33 samples; about 10.2 µg at 110 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 15.49,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -59,7 +59,12 @@
           "locator": "Salt",
           "basis": "1 tsp, 0 mg (sheet serving)",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 tsp"
+          }
         }
       ]
     },
@@ -113,7 +118,13 @@
           "locator": "Condiments: Salt",
           "basis": "0.05 µg per 1 g, 28 samples; about 0.075 µg at 1.5 g",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.05,
+            "unit": "µg",
+            "per": "1 g",
+            "perGrams": 1.0
+          }
         }
       ]
     }

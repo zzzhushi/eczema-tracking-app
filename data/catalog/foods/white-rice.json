@@ -51,6 +51,33 @@
           "basis": "five-level rating, serving not stated",
           "kind": "list",
           "level": "negligible"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1d (beverages, sugars, oils, cereals): White rice flour",
+          "basis": "total salicylic acid not detected",
+          "kind": "measurement",
+          "level": "negligible",
+          "formMatch": "converted",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1d (beverages, sugars, oils, cereals): White rice grains",
+          "basis": "salicylate reported as 0",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
         }
       ],
       "note": "One list rates jasmine, basmati, wild, and black rice moderate for salicylates and white, brown, short, medium, and long-grain rice low."
@@ -67,7 +94,12 @@
           "basis": "1 cup cooked, 4 mg (sheet serving); about 3.5 mg at 140 g",
           "kind": "list",
           "level": "low",
-          "note": "Jasmine and short-grain not listed separately."
+          "note": "Jasmine and short-grain not listed separately.",
+          "amount": {
+            "value": 4.0,
+            "unit": "mg",
+            "per": "1 cup cooked"
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
@@ -75,7 +107,12 @@
           "basis": "1 cup cooked, 3.8 mg, directly measured; about 3.4 mg at 140 g",
           "kind": "list",
           "level": "low",
-          "note": "Jasmine and short-grain not listed separately."
+          "note": "Jasmine and short-grain not listed separately.",
+          "amount": {
+            "value": 3.8,
+            "unit": "mg",
+            "per": "1 cup cooked"
+          }
         }
       ]
     },
@@ -143,7 +180,13 @@
           "locator": "Grains: Rice, white, cooked",
           "basis": "7.04 µg per 140 g, 101 samples; about 7 µg at 140 g",
           "kind": "list",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 7.04,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
         }
       ]
     }

@@ -1,0 +1,87 @@
+{
+  "id": "macadamia",
+  "name": "Macadamia",
+  "description": "Shelled, raw or dry-roasted.",
+  "aliases": [
+    "macadamia",
+    "macadamia nut",
+    "macadamias"
+  ],
+  "varieties": [],
+  "allergens": [
+    "tree-nuts"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Nuts, seeds and mixtures, all types: sliced, chopped, slivered, and whole: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: macadamia",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Nuts and seeds: Macadamia nuts",
+          "basis": "42 µg per 30 g, 1 samples; about 42 µg at 30 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 42.0,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

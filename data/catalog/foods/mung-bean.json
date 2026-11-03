@@ -1,0 +1,76 @@
+{
+  "id": "mung-bean",
+  "name": "Mung bean",
+  "description": "Cooked.",
+  "aliases": [
+    "mung bean",
+    "mung beans"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "90 g prepared",
+    "grams": 90,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Beans, plain or in sauce: 90 g for others prepared",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Mung Beans",
+          "basis": "1/2 cup, 8 mg (sheet serving)",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 8.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

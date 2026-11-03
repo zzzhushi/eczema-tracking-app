@@ -1,0 +1,75 @@
+{
+  "id": "popcorn",
+  "name": "Popcorn",
+  "description": "Plain.",
+  "aliases": [
+    "popcorn"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All varieties, chips, pretzels, popcorn, extruded snacks, fruit and vegetable-based snacks: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Snacks and desserts: Popcorn",
+          "basis": "14.51 µg per 50 g, 73 samples; about 8.71 µg at 30 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 14.51,
+            "unit": "µg",
+            "per": "50 g",
+            "perGrams": 50.0
+          }
+        }
+      ]
+    }
+  }
+}

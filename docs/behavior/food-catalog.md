@@ -43,6 +43,8 @@ Evidence is a list of entries, each with:
 - the `level` that entry maps to;
 - `foodMatch` (`related` when the source rates a closely related plant or food that stands in; absent means exact) and `formMatch` (`converted` when the source measured a different form than the entry describes, such as dry weight for cooked food; absent means exact);
 - optional `markers`, SIGHI's own flags from a fixed set, kept so a level can show why: H (histamine content), H! (perishable, forms histamine quickly), A (other amines), L (mast cell liberator), B (enzyme blocker), and ? (SIGHI's own assessment);
+- an optional `amount` for salicylates, oxalates, nickel, and glutamates when the source gives a number: `value`, `unit` (mg for salicylates, oxalates, and glutamates, µg for nickel), `per` (the portion as the source words it), and `perGrams` when that portion has a weight, whether stated by the source or converted by a standard factor. The evidence's level comes from the amount scaled to the food's serving by weight, or as published when the portion has no weight;
+- optional `superseded: true` on a measurement replaced by a more specific, more recent method. It stays for the record, with a note saying what replaced it, and never decides the level;
 - an optional `note`.
 
 A source that gives no level for the food, such as a diet that merely allows or forbids it, is not evidence. A chemical may also carry a `note` explaining its result. A level whose strongest evidence is `guidance` or `list` is flagged for review.
@@ -59,6 +61,8 @@ The loader refuses a manifest whose `schemaVersion` it does not read, and refuse
 - Every food has all six chemicals, and every allergen is on the fixed list.
 - A known result has at least one evidence entry, and a `sources-conflict` result has at least two.
 - A result follows from its evidence under [the catalog-level rules](../analysis.md#catalog-levels-release-1).
+- An evidence level with an `amount` is the level that amount gives under the chemical's cutoffs, in the unit the cutoffs use.
+- Superseded evidence has a note, and the same chemical has current evidence of the same kind that matches the food at least as closely.
 - Every cited source exists, including those cited by servings.
 - A serving that is not an estimate names a source and locator; an estimate carries a note; a weight citation has both its source and locator.
 - A food with any known level has a serving.

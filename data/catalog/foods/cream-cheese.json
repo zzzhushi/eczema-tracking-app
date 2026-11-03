@@ -1,0 +1,104 @@
+{
+  "id": "cream-cheese",
+  "name": "Cream cheese",
+  "description": "",
+  "aliases": [
+    "cream cheese"
+  ],
+  "varieties": [],
+  "allergens": [
+    "milk"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Cheese, all others except those listed as separate categories: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Dairy Spreads: Cream Cheese",
+          "basis": "1 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 oz",
+            "perGrams": 28.3
+          }
+        },
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Spreads, Sauces & Toppings: Cream Cheese",
+          "basis": "1 oz, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 oz",
+            "perGrams": 28.3
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Dairy products and substitutes: Cream cheese",
+          "basis": "0.51 µg per 30 g, 67 samples; about 0.51 µg at 30 g",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.51,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

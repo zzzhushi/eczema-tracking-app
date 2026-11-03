@@ -1,0 +1,127 @@
+{
+  "id": "lobster",
+  "name": "Lobster",
+  "description": "Fresh, cooked.",
+  "aliases": [
+    "lobster"
+  ],
+  "varieties": [],
+  "allergens": [
+    "crustacean-shellfish"
+  ],
+  "serving": {
+    "description": "85 g cooked",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Fish, shellfish, game meats: entrees without sauce: 85 g cooked; 110 g uncooked",
+    "note": "The FDA table has no raw meat or poultry row; the nearest FDA row (fish and game meat entrees without sauce) is 85 g cooked."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Lobster",
+          "basis": "overall Low column, no S symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Lobster",
+          "basis": "overall Low column, no A symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: lobster",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high",
+          "markers": [
+            "H!",
+            "L"
+          ]
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Seafood (fresh and unprocessed): Lobster",
+          "basis": "overall Low column, no G symbol",
+          "kind": "list",
+          "level": "low"
+        }
+      ]
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood: Lobster",
+          "basis": "7 µg per 125 g, 4 samples; about 4.76 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.0,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fish and seafood - Prepared: Lobster, cooked",
+          "basis": "3.05 µg per 100 g, 4 samples; about 2.59 µg at 85 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 3.05,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
+        }
+      ]
+    }
+  }
+}

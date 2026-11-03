@@ -1,0 +1,100 @@
+{
+  "id": "peanut",
+  "name": "Peanut",
+  "description": "Shelled, raw or dry-roasted.",
+  "aliases": [
+    "peanut",
+    "peanuts"
+  ],
+  "varieties": [],
+  "allergens": [
+    "peanuts"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Nuts, seeds and mixtures, all types: sliced, chopped, slivered, and whole: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Nuts and Seeds: Peanuts",
+          "basis": "1 oz, 27 mg (sheet serving); about 28.6 mg at 30 g",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 27.0,
+            "unit": "mg",
+            "per": "1 oz",
+            "perGrams": 28.3
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: peanuts",
+          "basis": "compatibility score 2",
+          "kind": "list",
+          "level": "high"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Nuts and seeds: Peanuts",
+          "basis": "29.25 µg per 30 g, 71 samples; about 29.2 µg at 30 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 29.25,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "id": "olive-oil",
+  "name": "Olive oil",
+  "description": "Olive oil as sold for cooking and dressing.",
+  "aliases": [
+    "olive oil"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "1 tbsp",
+    "grams": 13.5,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Butter, margarine, oil, shortening: 1 tbsp",
+    "weightSourceId": "usda-fdc",
+    "weightLocator": "Oil, olive, salad or cooking (fdcId 171413): 1 tbsp = 13.5 g",
+    "note": "The FDA row gives a household measure, not a weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Olive oil light, extra, mild, mellow, delicate",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Olive oil pure, classic, traditional",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Extra virgin olive oil classic, fruity, robust, cold-pressed",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1d (beverages, sugars, oils, cereals): Oil, olive",
+          "basis": "total salicylic acid not detected",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        }
+      ],
+      "note": "Failsafe rates olive oil moderate to very high by grade with no measured value; measured olive oil had no detectable salicylic acid."
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Olive oil pure, classic, traditional",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fats and oils: Extra virgin olive oil classic, fruity, robust, cold-pressed",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: olive oil",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fats and oils: Olive oil",
+          "basis": "0.21 µg per 10 g, 90 samples; about 0.283 µg at 13.5 g",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.21,
+            "unit": "µg",
+            "per": "10 g",
+            "perGrams": 10.0
+          }
+        }
+      ]
+    }
+  }
+}

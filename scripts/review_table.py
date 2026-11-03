@@ -54,7 +54,7 @@ def catalog_cell(assessment):
     result = assessment["result"]
     if result["kind"] == "unknown":
         return STATUS_SHORT[result["reason"]]
-    evidence = assessment["evidence"]
+    evidence = [e for e in assessment["evidence"] if not e.get("superseded")]
     closest = min(match_tier(e) for e in evidence)
     deciding = [e for e in evidence if match_tier(e) == closest]
     strongest = min(KIND_ORDER.index(e["kind"]) for e in deciding)

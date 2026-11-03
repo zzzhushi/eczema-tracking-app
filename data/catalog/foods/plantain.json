@@ -1,0 +1,83 @@
+{
+  "id": "plantain",
+  "name": "Plantain",
+  "description": "Fresh.",
+  "aliases": [
+    "plantain"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "140 g fresh",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other fruits (except those listed as separate categories), fresh, canned or frozen: 140 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Fruits: Banana, Plantain just ripe",
+          "basis": "moderate column, A symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Plantain, cooked",
+          "basis": "15.81 µg per 167 g, 3 samples; about 13.3 µg at 140 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 15.81,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        }
+      ]
+    }
+  }
+}

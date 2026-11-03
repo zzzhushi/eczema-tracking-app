@@ -52,14 +52,26 @@
           "basis": "3.5 oz, 13 mg (sheet serving); about 11 mg at 85 g",
           "kind": "list",
           "level": "high",
-          "note": "The sheet rates 3.5 oz as very high."
+          "note": "The sheet rates 3.5 oz as very high.",
+          "amount": {
+            "value": 13.0,
+            "unit": "mg",
+            "per": "3.5 oz",
+            "perGrams": 99.2
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Beans and Lentils: Tofu, soft",
           "basis": "3.5 oz, 10.6 mg, directly measured; about 9.0 mg at 85 g",
           "kind": "list",
-          "level": "moderate"
+          "level": "moderate",
+          "amount": {
+            "value": 10.6,
+            "unit": "mg",
+            "per": "3.5 oz",
+            "perGrams": 99.2
+          }
         }
       ]
     },
@@ -127,7 +139,13 @@
           "locator": "Legumes: Tofu",
           "basis": "101.99 µg per 85 g, 7 samples; about 102 µg at 85 g",
           "kind": "list",
-          "level": "very high"
+          "level": "very high",
+          "amount": {
+            "value": 101.99,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
         }
       ]
     }

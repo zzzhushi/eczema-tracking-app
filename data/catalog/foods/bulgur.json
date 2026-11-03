@@ -1,0 +1,98 @@
+{
+  "id": "bulgur",
+  "name": "Bulgur",
+  "description": "Cooked.",
+  "aliases": [
+    "bulgur"
+  ],
+  "varieties": [],
+  "allergens": [
+    "wheat"
+  ],
+  "serving": {
+    "description": "140 g prepared",
+    "grams": 140,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Grains, e.g., rice, barley, plain: 140 g prepared; 45 g dry",
+    "note": "Grams are the prepared weight."
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Pastas, Rice & Grains: Bulgur, cooked",
+          "basis": "1 cup, 86 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 86.0,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Pasta And Other Grains: Bulgur, cooked",
+          "basis": "1 cup, 85.9 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 85.9,
+            "unit": "mg",
+            "per": "1 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: bulgur, burghul, riffoth",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "note": "Parboiled wheat"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    }
+  }
+}

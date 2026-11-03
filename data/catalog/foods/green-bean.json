@@ -1,0 +1,153 @@
+{
+  "id": "green-bean",
+  "name": "Green bean",
+  "description": "Fresh.",
+  "aliases": [
+    "green bean",
+    "green beans",
+    "string bean"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "85 g fresh",
+    "grams": 85,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "All other vegetables without sauce: 85 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1a (vegetables): Green beans",
+          "basis": "fresh weight, 13.88 mg/kg; about 1.18 mg at 85 g",
+          "kind": "measurement",
+          "level": "high",
+          "amount": {
+            "value": 13.88,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1a (vegetables): Green beans",
+          "basis": "fresh weight, 1.1 mg/kg; about 0.094 mg at 85 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 1.1,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "sources-conflict"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: String Beans",
+          "basis": "1/2 cup, 9 mg (sheet serving)",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 9.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        },
+        {
+          "sourceId": "harvard-oxalate-renNu",
+          "locator": "Vegetables: Green beans, boiled, drained, unsalted",
+          "basis": "1/2 cup, 13.6 mg, directly measured",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 13.6,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: green beans",
+          "basis": "compatibility score 1",
+          "kind": "list",
+          "level": "moderate",
+          "note": "Can be well tolerated in some cases"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Other: Green beans",
+          "basis": "19.14 µg per 85 g, 13 samples; about 19.1 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 19.14,
+            "unit": "µg",
+            "per": "85 g",
+            "perGrams": 85.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Green beans, cooked",
+          "basis": "17.97 µg per 130 g, 88 samples; about 11.7 µg at 85 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 17.97,
+            "unit": "µg",
+            "per": "130 g",
+            "perGrams": 130.0
+          }
+        }
+      ]
+    }
+  }
+}

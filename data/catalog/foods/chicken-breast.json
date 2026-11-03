@@ -67,14 +67,26 @@
           "basis": "3 oz, 0 mg (sheet serving)",
           "kind": "list",
           "level": "negligible",
-          "note": "Cut, skin, and cooking not specified."
+          "note": "Cut, skin, and cooking not specified.",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
         },
         {
           "sourceId": "harvard-oxalate-renNu",
           "locator": "Poultry: Chicken, roasted meat",
           "basis": "3 oz, 0.0 mg, directly measured",
           "kind": "list",
-          "level": "negligible"
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "3 oz",
+            "perGrams": 85.0
+          }
         }
       ]
     },
@@ -141,14 +153,26 @@
           "basis": "21 mg free glutamate per 100 g; about 18 mg at 85 g",
           "kind": "measurement",
           "level": "low",
-          "note": "Free glutamate in chilled chicken breast rises from 21 mg per 100 g on day 0 to about 52 on day 6, so not-fresh chicken is higher."
+          "note": "Free glutamate in chilled chicken breast rises from 21 mg per 100 g on day 0 to about 52 on day 6, so not-fresh chicken is higher.",
+          "amount": {
+            "value": 21.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "fsanz-msg-2003",
           "locator": "Table 1: Chicken",
           "basis": "44 mg free glutamate per 100 g; about 37 mg at 85 g",
           "kind": "guidance",
-          "level": "low"
+          "level": "low",
+          "amount": {
+            "value": 44.0,
+            "unit": "mg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         },
         {
           "sourceId": "andeal-umami",
@@ -171,7 +195,13 @@
           "basis": "4.66 µg per 100 g, 486 samples; about 4 µg at 85 g",
           "kind": "list",
           "level": "low",
-          "note": "Poultry in general."
+          "note": "Poultry in general.",
+          "amount": {
+            "value": 4.66,
+            "unit": "µg",
+            "per": "100 g",
+            "perGrams": 100.0
+          }
         }
       ]
     }

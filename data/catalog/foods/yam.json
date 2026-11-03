@@ -1,0 +1,117 @@
+{
+  "id": "yam",
+  "name": "Yam",
+  "description": "Fresh.",
+  "aliases": [
+    "yam"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "110 g fresh",
+    "grams": 110,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Potatoes and sweet potatoes/yams: plain, fresh, canned, or frozen: 110 g for fresh or frozen"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Vegetables: Yam",
+          "basis": "moderate column, S symbol",
+          "kind": "list",
+          "level": "moderate"
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Vegetables: Yams",
+          "basis": "1/2 cup, cubed, 40 mg (sheet serving)",
+          "kind": "list",
+          "level": "very high",
+          "amount": {
+            "value": 40.0,
+            "unit": "mg",
+            "per": "1/2 cup, cubed"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "sighi-foodlist",
+          "locator": "Food compatibility list: yam",
+          "basis": "compatibility score 0",
+          "kind": "list",
+          "level": "negligible"
+        }
+      ]
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Root: Yam",
+          "basis": "17.6 µg per 110 g, 4 samples; about 17.6 µg at 110 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 17.6,
+            "unit": "µg",
+            "per": "110 g",
+            "perGrams": 110.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Vegetables - Prepared: Yam, cooked",
+          "basis": "18.04 µg per 167 g, 1 samples; about 11.9 µg at 110 g",
+          "kind": "list",
+          "level": "moderate",
+          "amount": {
+            "value": 18.04,
+            "unit": "µg",
+            "per": "167 g",
+            "perGrams": 167.0
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "wheat-flour",
+  "name": "Wheat flour",
+  "description": "Dry.",
+  "aliases": [
+    "wheat flour",
+    "flour",
+    "white flour"
+  ],
+  "varieties": [],
+  "allergens": [
+    "wheat"
+  ],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Flours or cornmeal: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Whole grains, flours and starches: Flour, white",
+          "basis": "1.96 µg per 30 g, 47 samples; about 1.96 µg at 30 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 1.96,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Whole grains, flours and starches: Flour, whole wheat",
+          "basis": "7.53 µg per 30 g, 8 samples; about 7.53 µg at 30 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 7.53,
+            "unit": "µg",
+            "per": "30 g",
+            "perGrams": 30.0
+          }
+        }
+      ]
+    }
+  }
+}

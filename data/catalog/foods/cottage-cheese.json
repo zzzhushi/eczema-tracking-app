@@ -1,0 +1,90 @@
+{
+  "id": "cottage-cheese",
+  "name": "Cottage cheese",
+  "description": "",
+  "aliases": [
+    "cottage cheese"
+  ],
+  "varieties": [],
+  "allergens": [
+    "milk"
+  ],
+  "serving": {
+    "description": "110 g",
+    "grams": 110,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Cheese, cottage: 110 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "oxalates": {
+      "result": {
+        "kind": "known",
+        "level": "negligible"
+      },
+      "evidence": [
+        {
+          "sourceId": "uchicago-oxalate",
+          "locator": "Cheese Products: Cottage Cheese",
+          "basis": "1/2 cup, 0 mg (sheet serving)",
+          "kind": "list",
+          "level": "negligible",
+          "amount": {
+            "value": 0.0,
+            "unit": "mg",
+            "per": "1/2 cup"
+          }
+        }
+      ]
+    },
+    "amines": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "low"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Dairy products and substitutes: Cottage cheese",
+          "basis": "2.39 µg per 125 g, 77 samples; about 2.1 µg at 110 g",
+          "kind": "list",
+          "level": "low",
+          "amount": {
+            "value": 2.39,
+            "unit": "µg",
+            "per": "125 g",
+            "perGrams": 125.0
+          }
+        }
+      ]
+    }
+  }
+}

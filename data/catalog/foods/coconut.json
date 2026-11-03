@@ -1,0 +1,146 @@
+{
+  "id": "coconut",
+  "name": "Coconut",
+  "description": "Shelled, raw or dry-roasted.",
+  "aliases": [
+    "coconut"
+  ],
+  "varieties": [],
+  "allergens": [],
+  "serving": {
+    "description": "30 g",
+    "grams": 30,
+    "origin": "fda-racc",
+    "sourceId": "fda-21cfr101-12",
+    "locator": "Nuts, seeds and mixtures, all types: sliced, chopped, slivered, and whole: 30 g"
+  },
+  "chemicals": {
+    "salicylates": {
+      "result": {
+        "kind": "known",
+        "level": "moderate"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Nuts and seeds: Coconut fresh, cream, milk, yoghurt, oil",
+          "basis": "high column, S symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Nuts and seeds: Coconut dried, desiccated, flour",
+          "basis": "very high column, S symbol",
+          "kind": "list",
+          "level": "very high"
+        },
+        {
+          "sourceId": "malakar-2017",
+          "locator": "Table 1b (fruits): Coconut, dried",
+          "basis": "fresh weight, 22.26 mg/kg; about 0.668 mg at 30 g",
+          "kind": "measurement",
+          "level": "moderate",
+          "amount": {
+            "value": 22.26,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          }
+        },
+        {
+          "sourceId": "swain-1985",
+          "locator": "As quoted in Malakar et al. 2017, Table 1b (fruits): Coconut, dried",
+          "basis": "fresh weight, 2.6 mg/kg; about 0.078 mg at 30 g",
+          "kind": "measurement",
+          "level": "negligible",
+          "amount": {
+            "value": 2.6,
+            "unit": "mg",
+            "per": "1 kg",
+            "perGrams": 1000
+          },
+          "superseded": true,
+          "note": "Older method; superseded by mass spectrometry with an isotope-labelled internal standard (malakar-2017)."
+        }
+      ]
+    },
+    "oxalates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "amines": {
+      "result": {
+        "kind": "known",
+        "level": "very high"
+      },
+      "evidence": [
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Nuts and seeds: Coconut fresh, cream, milk, yoghurt, oil",
+          "basis": "high column, A symbol",
+          "kind": "list",
+          "level": "high"
+        },
+        {
+          "sourceId": "failsafe-dvd",
+          "locator": "Nuts and seeds: Coconut dried, desiccated, flour",
+          "basis": "very high column, A symbol",
+          "kind": "list",
+          "level": "very high"
+        }
+      ]
+    },
+    "histamine": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "glutamates": {
+      "result": {
+        "kind": "unknown",
+        "reason": "not-yet-researched"
+      },
+      "evidence": []
+    },
+    "nickel": {
+      "result": {
+        "kind": "known",
+        "level": "high"
+      },
+      "evidence": [
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Fruits - Other: Coconut",
+          "basis": "100.1 µg per 140 g, 4 samples; about 21.4 µg at 30 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 100.1,
+            "unit": "µg",
+            "per": "140 g",
+            "perGrams": 140.0
+          }
+        },
+        {
+          "sourceId": "rebelytics-nickel",
+          "locator": "Miscellaneous: Coconut, dried",
+          "basis": "24.45 µg per 15 g, 8 samples; about 48.9 µg at 30 g",
+          "kind": "list",
+          "level": "high",
+          "amount": {
+            "value": 24.45,
+            "unit": "µg",
+            "per": "15 g",
+            "perGrams": 15.0
+          }
+        }
+      ]
+    }
+  }
+}
